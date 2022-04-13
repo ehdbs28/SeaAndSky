@@ -8,20 +8,27 @@ public class PlayerMove : MonoBehaviour
     public float jumpPower;
     Rigidbody2D rigid;
     public float groundRayDistance = 1f;
+    public LayerMask groundLayer;
     private bool isGround = false;
+    private Vector3 footPosition;
+    private CapsuleCollider2D capsuleCollider2D;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
     }
 
     
     void Update()
     {
+        Bounds bounds = capsuleCollider2D.bounds;
+        footPosition = new Vector2(bounds.center.x, bounds.min.y);
+        isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
         float h = Input.GetAxisRaw("Horizontal");
         transform.Translate(new Vector2(h, 0) * speed * Time.deltaTime);
 
-        isGround = IsGround();
+        
         Debug.Log(isGround);
         if (isGround &&Input.GetButton("Jump"))
         {
@@ -29,15 +36,5 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    private bool IsGround()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundRayDistance, LayerMask.NameToLayer("Platform"));
-        Debug.Log(hit.collider.name);
-        Debug.DrawRay(rigid.position, Vector2.down, Color.red,groundRayDistance);
-        if (hit.collider != null)
-        {
-            return true;
-        }
-        return false;
-    }
+    
 }
