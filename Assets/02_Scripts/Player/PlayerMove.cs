@@ -13,14 +13,12 @@ public class PlayerMove : MonoBehaviour
     private Vector3 footPosition;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
-    private SpriteRenderer sprite = null;
-
+    private bool isJump = false;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
     }
 
     
@@ -30,20 +28,41 @@ public class PlayerMove : MonoBehaviour
         footPosition = new Vector2(bounds.center.x, bounds.min.y);
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
         float h = Input.GetAxisRaw("Horizontal");
-        if(h != 0)
+        if(isGround)
         {
-            anim.Play("PlayerMove");
-        }else
-        {
-            anim.Play("PlayerIdle");
+            isJump = false;
+            if (h != 0)
+            {
+                anim.Play("PlayerMove");
+                if (h < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
+            }
+            else
+            {
+                if (isJump)
+                    anim.Play("PlayerJump");
+                else
+                    anim.Play("PlayerIdle");
+            }
         }
+
+     
+
         transform.Translate(new Vector2(h, 0) * speed * Time.deltaTime);
 
-        //반대방향 돌리기 예정
 
         if (isGround &&Input.GetButton("Jump"))
         {
-            rigid.velocity = Vector2.up * jumpPower;
+            isJump = true;
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            anim.Play("PlayerJump");
         }
     }
 
