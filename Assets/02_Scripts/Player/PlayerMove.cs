@@ -24,47 +24,36 @@ public class PlayerMove : MonoBehaviour
     
     void Update()
     {
+        Move();
+        if (isGround &&Input.GetButton("Jump"))
+        {
+            anim.SetBool("isJump", true);
+            isJump = true;
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
+    }
+    private void Move()
+    {
         Bounds bounds = capsuleCollider2D.bounds;
         footPosition = new Vector2(bounds.center.x, bounds.min.y);
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
         float h = Input.GetAxisRaw("Horizontal");
-        if(isGround)
+        if (isGround)
         {
-            isJump = false;
+            anim.SetBool("isJump", false);
             if (h != 0)
             {
-                anim.Play("PlayerMove");
-                if (h < 0)
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
-                else
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                }
+                anim.SetBool("isMove", true);
             }
             else
-            {
-                if (isJump)
-                    anim.Play("PlayerJump");
-                else
-                    anim.Play("PlayerIdle");
-            }
+                anim.SetBool("isMove", false);
         }
-
-     
-
+        if (h < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        else
+            transform.localScale = new Vector3(1, 1, 1);
         transform.Translate(new Vector2(h, 0) * speed * Time.deltaTime);
-
-
-        if (isGround &&Input.GetButton("Jump"))
-        {
-            isJump = true;
-            rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            anim.Play("PlayerJump");
-        }
     }
-
     
 }
