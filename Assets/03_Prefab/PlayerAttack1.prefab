@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2586440074112063830}
   - component: {fileID: 3487095697566813684}
-  - component: {fileID: 7304612841812335906}
   - component: {fileID: 8936026020318167473}
   - component: {fileID: -6734647127306760227}
+  - component: {fileID: 1072544416012606179}
   m_Layer: 0
   m_Name: PlayerAttack1
   m_TagString: Untagged
@@ -85,18 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7304612841812335906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5735518634051750947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c1ed9a2d4eb9f409d9a66d2f725dc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &8936026020318167473
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -166,5 +154,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78512246829e34741b4c567ee98280e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   jumpPower: 5
+--- !u!95 &1072544416012606179
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5735518634051750947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 270ed87e16653ad4ba83d8f8c12e15b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

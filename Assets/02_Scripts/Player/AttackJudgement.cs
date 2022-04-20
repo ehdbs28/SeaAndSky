@@ -22,28 +22,17 @@ public class AttackJudgement : MonoBehaviour
         //피격시 튕기게
         if (collision.CompareTag("Enemy"))
         {
+            GameObject playerObject = GameObject.Find("Player");
+            Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
+
             if (Input.GetKey(KeyCode.DownArrow))
-            {
-                GameObject playerObject = GameObject.Find("Player");
-                Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
-
                 py.velocity = Vector3.up * jumpPower;
-            }
-            else if(PlayerMove.h >= 0)
-            {
-                GameObject playerObject = GameObject.Find("Player");
-                Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
 
+            else if(!PlayerMove.isLeft)
                 py.velocity = Vector3.left * speed;
-            }
             
-            else if(PlayerMove.h < 0)
-            {
-                GameObject playerObject = GameObject.Find("Player");
-                Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
-
+            else if(PlayerMove.isLeft)
                 py.velocity = Vector3.right * speed;
-            }
         }
     }
 }
