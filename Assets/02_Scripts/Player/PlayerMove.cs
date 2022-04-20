@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     private bool isAttack = false;
     public GameObject swordAttackPrefab1;
     public GameObject swordAttackPrefab2;
-    private float h;
+    public static float h;
     public LayerMask enemyLayer;
     private bool isHead = false;
 
@@ -33,9 +33,21 @@ public class PlayerMove : MonoBehaviour
         Move();
         Jump();
         PlayerAttack();
-        EnemyHeadJump();
+        //EnemyHeadJump();
+        MoveLimit();
     }
 
+    private void MoveLimit()
+    {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+            if (pos.x < 0f) pos.x = 0f;
+            if (pos.x > 1f) pos.x = 1f;
+            if (pos.y < 0f) pos.y = 0f;
+            if (pos.y > 1f) pos.y = 1f;
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
+
+    }
+    //점프
     private void Jump()
     {
         if (isGround && Input.GetButton("Jump"))
@@ -46,6 +58,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    //머리밟고 점프
     private void EnemyHeadJump()
     {
         Bounds bounds = capsuleCollider2D.bounds;
@@ -58,6 +71,8 @@ public class PlayerMove : MonoBehaviour
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
+
+    //움직이기
     private void Move()
     {
         Bounds bounds = capsuleCollider2D.bounds;
@@ -85,6 +100,7 @@ public class PlayerMove : MonoBehaviour
         anim.Play("PlayerDie");
     }
 
+    //공격실행
     private void PlayerAttack()
     {
         if (Input.GetKeyDown(KeyCode.W))
@@ -94,6 +110,7 @@ public class PlayerMove : MonoBehaviour
                 StartCoroutine(Attack());
                 anim.Play("PlayerAttack");
                 isAttack = true;
+                
             }
         }
     }
@@ -101,7 +118,20 @@ public class PlayerMove : MonoBehaviour
     //플레이어 공격
     IEnumerator Attack() 
     {
-        if(h >= 0)
+        //아래공격
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            GameObject swordAttack1;
+            GameObject swordAttack2;
+            swordAttack1 = Instantiate(swordAttackPrefab1);
+            swordAttack1.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
+            yield return new WaitForSeconds(0.1f);
+            swordAttack2 = Instantiate(swordAttackPrefab2);
+            swordAttack2.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
+            isAttack = false;
+        }
+        //오른쪽공격
+        else if(h >= 0)
         {
             GameObject swordAttack1;
             GameObject swordAttack2;
@@ -112,7 +142,8 @@ public class PlayerMove : MonoBehaviour
             swordAttack2.transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
             isAttack = false;
         }
-        else
+        //왼쪽공격
+        else if(h < 0)
         {
             GameObject swordAttack1;
             GameObject swordAttack2;
@@ -127,9 +158,10 @@ public class PlayerMove : MonoBehaviour
         } 
     }
 
+    //enemy 나 trap 닿으면 죽기
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isHead && collision.collider.CompareTag("Trap"))
+        if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
             DeathAnimator();
         }
