@@ -5,8 +5,8 @@ using UnityEngine;
 public class AttackJudgement : MonoBehaviour
 {
     
-    public float speed;
-    public float jumpPower;
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpPower;
 
     private void Start()
     {

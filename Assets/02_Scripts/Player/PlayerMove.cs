@@ -4,11 +4,12 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     
-    public float speed;
-    public float jumpPower;
-    public float groundRayDistance = 1f;
-
-    public LayerMask groundLayer;
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpPower;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private GameObject swordAttackPrefab;
+    [SerializeField] private static float h;
+    [SerializeField] private LayerMask enemyLayer;
 
     private bool isGround = false;
     private bool isAttack = false;
@@ -16,14 +17,11 @@ public class PlayerMove : MonoBehaviour
     public static bool isLeft = false;
 
     private Vector3 footPosition;
-
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
-    public GameObject swordAttackPrefab;
 
-    public static float h;
-    public LayerMask enemyLayer;
+    
     private bool isHead = false;
 
     void Start()
@@ -53,8 +51,8 @@ public class PlayerMove : MonoBehaviour
             if (pos.y < 0f) pos.y = 0f;
             if (pos.y > 1f) pos.y = 1f;
         transform.position = Camera.main.ViewportToWorldPoint(pos);
-
     }
+
     //มกวม
     private void Jump()
     {
