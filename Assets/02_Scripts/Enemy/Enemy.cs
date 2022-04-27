@@ -7,10 +7,10 @@ public class Enemy : MonoBehaviour
     enum EnemyState
     {
         Idle,
-        Chase,
+        Chase
     }
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private GameObject player = null;
+    [SerializeField] private Transform player = null;
     private SpriteRenderer _spriteRenderer;
 
     private Vector3 dir = Vector3.right;
@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        Invoke("NextMove", delay);
     }
 
     void Update()
@@ -34,14 +35,14 @@ public class Enemy : MonoBehaviour
 
     private void EnemyDir()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, maxDistance, playerLayer);
-        Debug.DrawRay(transform.position, transform.right * maxDistance, Color.red);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right * dir.x, maxDistance, playerLayer);
+        Debug.DrawRay(transform.position, transform.right * dir.x * maxDistance, Color.red);
         if (hit)
         {
             StateChanged(EnemyState.Chase);
             CancelInvoke();
             _spriteRenderer.color = Color.red;
-            dir.x = Mathf.Abs(player.transform.position.x - transform.position.x);
+            dir.x = Mathf.Abs(player.position.x - transform.position.x);
             dir.Normalize();
         }
         else if(_state != EnemyState.Idle)
@@ -49,7 +50,6 @@ public class Enemy : MonoBehaviour
             _spriteRenderer.color = Color.white;
             StateChanged(EnemyState.Idle);
         }
-
     }
 
     private void EnemyMove()
@@ -70,7 +70,8 @@ public class Enemy : MonoBehaviour
         delay = Random.Range(1.5f, 3f);
         Debug.Log(1);
         dir.x *= -1;
-        transform.rotation = dir.x == -1 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+        transform.localScale = dir.x == -1 ? new Vector2(-1, 1) : new Vector2(1, 1);
+        //transform.rotation = dir.x == -1 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         Invoke("NextMove", delay);
     }
 }

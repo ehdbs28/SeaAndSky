@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5527135322220754511}
   - component: {fileID: 5527135322220754509}
   - component: {fileID: 5527135322220754508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,12 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpPower: 5
-  groundRayDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  swordAttackPrefab1: {fileID: 5735518634051750947, guid: eb4a6ad4ea1f3644ea523ab424609f81, type: 3}
-  swordAttackPrefab2: {fileID: 8965214234490834182, guid: 81f4090771539df428d6c849b5e591db, type: 3}
+  swordAttackPrefab: {fileID: 5735518634051750947, guid: eb4a6ad4ea1f3644ea523ab424609f81, type: 3}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -143,8 +141,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: -0.025295973, y: -0.087143034}
+  m_Size: {x: 0.74940807, y: 0.8}
   m_Direction: 0
 --- !u!95 &5527135322220754508
 Animator:
