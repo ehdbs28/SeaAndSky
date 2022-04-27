@@ -15,10 +15,10 @@ public class CameraMove : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-           ChangeCameaState?.Invoke(target);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //   ChangeCameaState?.Invoke(target);
+        //}
         MoveToTarget();
     }
     public void MoveToTarget()
