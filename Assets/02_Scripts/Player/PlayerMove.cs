@@ -169,5 +169,7 @@ public class PlayerMove : MonoBehaviour
             anim.Play("PlayerDie");
             isDeath = true;
         }
+
+
     }
 }
