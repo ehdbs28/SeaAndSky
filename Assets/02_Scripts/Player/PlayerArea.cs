@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,19 +14,35 @@ public class PlayerArea : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            ChagedState();
+            SetStateChanged();
         }
+        //CheckState();
     }
-    public void CheckState()
+
+    //private void CheckState()
+    //{
+    //    if (GameManager.Instance.PlayerState == AreaState.Sky)
+    //    {
+     
+    //    }
+    //    else if (GameManager.Instance.PlayerState == AreaState.Sea)
+    //    {
+           
+    //    }
+    //}
+    
+    public void ChangedState()
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky) {
-            StateToSky(); 
+            _playerMove.speed = 5f;
+            _playerMove.jumpPower = 5f;
         }
-        else if (GameManager.Instance.PlayerState == AreaState.Sea) { 
-            StateToSea(); 
+        else if (GameManager.Instance.PlayerState == AreaState.Sea) {
+            _playerMove.speed = 3f;
+            _playerMove.jumpPower = 8f;
         }
     }
-    public void ChagedState()
+    public void SetStateChanged()
     {
         if(GameManager.Instance.PlayerState == AreaState.Sea)
         {
@@ -35,18 +52,6 @@ public class PlayerArea : MonoBehaviour
         {
             GameManager.Instance.PlayerState = AreaState.Sea;
         }
-        CheckState();
-    }
-    private void StateToSea()
-    {
-        Debug.Log("Sea");
-        _playerMove.speed = 3f;
-        _playerMove.jumpPower = 8f;
-    }
-    private void StateToSky()
-    {
-        Debug.Log("Sky");
-        _playerMove.speed = 5f;
-        _playerMove.jumpPower = 5f;
+        ChangedState();
     }
 }
