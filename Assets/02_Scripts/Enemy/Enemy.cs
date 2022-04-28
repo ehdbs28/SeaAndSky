@@ -19,8 +19,6 @@ public class Enemy : MonoBehaviour
     private float maxDistance = 3f;
     private float delay = 2;
 
-    private bool isAware = false;
-
     void Start()
     {
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
