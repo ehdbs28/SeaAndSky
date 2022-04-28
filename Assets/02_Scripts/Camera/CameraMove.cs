@@ -6,7 +6,7 @@ public class CameraMove : MonoBehaviour
 {
     public Transform target;
     public UnityEvent<Transform> MoveCamra;
-    public UnityEvent<Transform> ChangeCameaState;
+    public UnityEvent ChangeCameaState;
     private void Awake()
     {
         if (target == null)
@@ -15,10 +15,6 @@ public class CameraMove : MonoBehaviour
     
     private void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //   ChangeCameaState?.Invoke(target);
-        //}
         MoveToTarget();
     }
     public void MoveToTarget()

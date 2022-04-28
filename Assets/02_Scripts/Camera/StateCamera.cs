@@ -4,16 +4,9 @@ using UnityEngine;
 
 public class StateCamera : AgentCamera
 {
-    public override void CameraChagned(Transform target)
-    {
-        if (GameManager.Instance._State == _cameraState)
-        {
-            GameManager.Instance._State = changeState;
-        }
-	}
     public override void CameraMoving(Transform target)
     {
-        if (GameManager.Instance._State == _cameraState)
+        if (GameManager.Instance.PlayerState == _cameraState)
         {
 		    point = _camera.WorldToViewportPoint(target.position);
             Vector3 delta =(target.position - _camera.ViewportToWorldPoint(new Vector3(cameraMovementX, cameraMovementY, point.z)));

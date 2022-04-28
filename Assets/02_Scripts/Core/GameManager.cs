@@ -24,13 +24,13 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    private AreaState _state;
-    public AreaState _State
+    private AreaState _playerState;
+    public AreaState PlayerState
     {
-        get => _state;
+        get => _playerState;
         set
         {
-            _state = value;
+            _playerState = value;
         }
     }
     private void Awake()

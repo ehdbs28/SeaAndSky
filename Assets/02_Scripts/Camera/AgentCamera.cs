@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class AgentCamera : MonoBehaviour
 {
-    public AreaState changeState;
     public Camera _camera;
     public CameraMove _cameraMove = null;
     public float dampTime = 0.15f;
@@ -20,10 +19,6 @@ public abstract class AgentCamera : MonoBehaviour
         _camera = GetComponent<Camera>();
     }
     public virtual void CameraMoving(Transform target)
-    {
-
-    }
-    public virtual void CameraChagned(Transform target)
     {
 
     }

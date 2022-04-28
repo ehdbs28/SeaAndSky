@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
+    public float speed;
+    public float jumpPower; 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject swordAttackPrefab;
     [SerializeField] private static float h;
@@ -84,7 +84,6 @@ public class PlayerMove : MonoBehaviour
 
         transform.Translate(new Vector2(h, 0) * speed * Time.deltaTime);
     }
-
 
     //공격실행
     private void PlayerAttack()
