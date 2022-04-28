@@ -49,6 +49,7 @@ public class PlayerMove : MonoBehaviour
         if (isGround && Input.GetKey(KeyCode.X))
         {
             anim.SetBool("isJump", true);
+            SoundManager.Instance.SetEffectSound(0);
             rigid.velocity = Vector2.zero;
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
@@ -72,6 +73,12 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isMove", false);
         }
 
+        if (Mathf.Abs(h) != 1)
+        {
+            SoundManager.Instance.SetEffectSound3(2);
+        }
+
+        
         if (h < 0)
             isLeft = true;
         if (h > 0)
@@ -93,6 +100,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isAttack)
             {
+                SoundManager.Instance.SetEffectSound2(1);
                 StartCoroutine(Attack());
                 anim.Play("PlayerAttack");
                 isAttack = true;

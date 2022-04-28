@@ -9,8 +9,11 @@ public class Enemy : MonoBehaviour
         Idle,
         Chase
     }
+
+    [SerializeField] private LayerMask wallLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private Transform player = null;
+    [SerializeField] private float jumpPower = 5;
     private SpriteRenderer _spriteRenderer;
 
     private Vector3 dir = Vector3.right;
@@ -18,9 +21,17 @@ public class Enemy : MonoBehaviour
     private float speed = 1f;
     private float maxDistance = 3f;
     private float delay = 2;
+    private BoxCollider2D boxCollider2D;
+    private Vector3 sidePosition;
+    private Rigidbody2D rigid;
+
+    private bool isColliderWall = false;
+    private bool isJump = false;
 
     void Start()
     {
+        rigid = GetComponent<Rigidbody2D>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         Invoke("NextMove", delay);
     }
@@ -29,6 +40,7 @@ public class Enemy : MonoBehaviour
     {
         EnemyDir();
         EnemyMove();
+        ColiderWall();
     }
 
     private void EnemyDir()
@@ -47,6 +59,19 @@ public class Enemy : MonoBehaviour
         {
             _spriteRenderer.color = Color.white;
             StateChanged(EnemyState.Idle);
+        }
+    }
+
+    private void ColiderWall()
+    {
+        Bounds bounds = boxCollider2D.bounds;
+        sidePosition = new Vector2(bounds.max.x, bounds.center.y);
+        isColliderWall = Physics2D.OverlapCircle(sidePosition, 0.1f, wallLayer);
+
+        if (isColliderWall && !isJump)
+        {
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
 
