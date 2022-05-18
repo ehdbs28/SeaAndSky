@@ -12,7 +12,6 @@ public abstract class AgentCamera : MonoBehaviour
     protected Vector3 velocity = Vector3.zero;
     public AreaState _cameraState;
     protected Vector3 point;
-    //public AgentCameraMove _cameraMove = null;
     private void Awake()
     {
         _cameraMove = FindObjectOfType<CameraMove>();
@@ -20,7 +19,7 @@ public abstract class AgentCamera : MonoBehaviour
     }
     public virtual void CameraMoving(Transform target)
     {
-
+        
     }
     
 }

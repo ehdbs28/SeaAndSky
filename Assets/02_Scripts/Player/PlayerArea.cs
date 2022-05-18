@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerArea : MonoBehaviour
 {
     private PlayerMove _playerMove;
+
     private void Start()
     {
         _playerMove = GetComponent<PlayerMove>();
@@ -19,27 +20,17 @@ public class PlayerArea : MonoBehaviour
         //CheckState();
     }
 
-    //private void CheckState()
-    //{
-    //    if (GameManager.Instance.PlayerState == AreaState.Sky)
-    //    {
-     
-    //    }
-    //    else if (GameManager.Instance.PlayerState == AreaState.Sea)
-    //    {
-           
-    //    }
-    //}
-    
+
+
     public void ChangedState()
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky) {
-            _playerMove.speed = 5f;
-            _playerMove.jumpPower = 5f;
+            _playerMove.Speed = 5f;
+            _playerMove.JumpPower = 5f;
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea) {
-            _playerMove.speed = 3f;
-            _playerMove.jumpPower = 8f;
+            _playerMove.Speed = 3f;
+            _playerMove.JumpPower = 8f;
         }
     }
     public void SetStateChanged()
@@ -51,6 +42,17 @@ public class PlayerArea : MonoBehaviour
         else if(GameManager.Instance.PlayerState == AreaState.Sky)
         {
             GameManager.Instance.PlayerState = AreaState.Sea;
+        }
+
+        Vector2 chagedPos = new Vector2(transform.position.x, -transform.position.y);
+        RaycastHit2D hitFloor = Physics2D.Raycast(chagedPos, Vector2.down, 5f, LayerMask.NameToLayer("Plaform"));
+        if(hitFloor)
+        {
+            transform.position = new Vector2(transform.position.x, hitFloor.point.y + 0.3f);
+        }
+        else
+        {
+            transform.position = chagedPos;
         }
         ChangedState();
     }

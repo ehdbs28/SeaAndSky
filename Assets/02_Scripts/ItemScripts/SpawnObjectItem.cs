@@ -12,8 +12,16 @@ public class SpawnObjectItem : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(true);
-        EventManager.StartListening(SPAWN_OBJECT, SpawnObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            SpawnObject();
+        }
+    }
+
 
     void SpawnObject()
     {

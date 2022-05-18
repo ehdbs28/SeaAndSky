@@ -93,10 +93,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c1d794d3b38fd40b83deeadd281525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
   player: {fileID: 0}
+  jumpPower: 5
+  isFlatPos: {fileID: 0}
 --- !u!1 &8661045016640122611
 GameObject:
   m_ObjectHideFlags: 0

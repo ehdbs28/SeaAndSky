@@ -1,11 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstantManager;
+
 public class PlayerMove : MonoBehaviour
 {
-    
-    public float speed;
-    public float jumpPower; 
+    public static int doubleJumpCount = 0;
+
+    private float _speed;
+    public float Speed
+    {
+        get => _speed;
+        set
+        {
+            if (value < 0)
+                value = 0;
+            _speed = value;
+        }
+    }
+     private float _jumpPower;
+    public float JumpPower
+    {
+        get => _jumpPower;
+        set
+        {
+            if (value < 0)
+                value = 0;
+            _jumpPower = value;
+        }
+    }
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject swordAttackPrefab;
     [SerializeField] private static float h;
@@ -14,21 +38,23 @@ public class PlayerMove : MonoBehaviour
     private bool isGround = false;
     private bool isAttack = false;
     private bool isDeath = false;
+
     public static bool isLeft = false;
+    private bool isHead = false;
+
 
     private Vector3 footPosition;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
 
-    
-    private bool isHead = false;
-
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
+        _speed = 5f;
+        _jumpPower = 5f;
     }
 
 
@@ -37,24 +63,39 @@ public class PlayerMove : MonoBehaviour
         if (!isDeath)
         {
             Move();
-            Jump();
             PlayerAttack();
+
+            if(doubleJumpCount > 0)
+            {
+                DoubleJumpItem();
+                return;
+            }
+            Jump();
         }
     }
 
- 
-    //점프
-    private void Jump()
+    private void DoubleJumpItem()
     {
-        if (isGround && Input.GetKey(KeyCode.X))
+        if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
         {
             anim.SetBool("isJump", true);
             rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            doubleJumpCount -= 1;
         }
     }
 
-    
+    //점프
+    private void Jump()
+    {
+        if ((Input.GetKey(KeyCode.X) && isGround))
+        {
+            anim.SetBool("isJump", true);
+            SoundManager.Instance.SetEffectSound(0);
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+        }
+    }
 
     //움직이기
     private void Move()
@@ -62,6 +103,7 @@ public class PlayerMove : MonoBehaviour
         Bounds bounds = capsuleCollider2D.bounds;
         footPosition = new Vector2(bounds.center.x, bounds.min.y);
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
+
         h = Input.GetAxisRaw("Horizontal");
         if (isGround)
         {
@@ -72,6 +114,12 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isMove", false);
         }
 
+        if (Mathf.Abs(h) != 1)
+        {
+            SoundManager.Instance.SetEffectSound3(2);
+        }
+
+        
         if (h < 0)
             isLeft = true;
         if (h > 0)
@@ -82,7 +130,7 @@ public class PlayerMove : MonoBehaviour
         else
             transform.localScale = new Vector3(1, 1, 1);
 
-        transform.Translate(new Vector2(h, 0) * speed * Time.deltaTime);
+        transform.Translate(new Vector2(h, 0) * _speed * Time.deltaTime);
     }
 
     //공격실행
@@ -92,6 +140,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isAttack)
             {
+                SoundManager.Instance.SetEffectSound2(1);
                 StartCoroutine(Attack());
                 anim.Play("PlayerAttack");
                 isAttack = true;
@@ -158,7 +207,5 @@ public class PlayerMove : MonoBehaviour
             anim.Play("PlayerDie");
             isDeath = true;
         }
-
-
     }
 }
