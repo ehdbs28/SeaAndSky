@@ -15,14 +15,13 @@ public class PlayerMove : MonoBehaviour
     private bool isAttack = false;
     private bool isDeath = false;
     public static bool isLeft = false;
+    private bool isHead = false;
+
 
     private Vector3 footPosition;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
-
-    
-    private bool isHead = false;
 
     void Start()
     {
