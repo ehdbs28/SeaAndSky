@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ConstantManager;
 
 public class DoubleJumpItem : MonoBehaviour
 {
 
-    //private void Start()
-    //{
-    //    gameObject.SetActive(true);  
-    //    EventManager.StartListening(DOUBLE_JUMP, DoubleJump);
-    //}
+    private void Start()
+    {
+        gameObject.SetActive(true);  
+    }
 
-    //void DoubleJump()
-    //{
-    //    Debug.Log("double");
-    //    GameManager.Instance.playerJumpCount = 2;
-    //    gameObject.SetActive(false);
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("Player"))
+        {
+            DoubleJump();
+        }
+    }
+
+    void DoubleJump()
+    {
+        PlayerMove.doubleJumpCount = 2;
+        gameObject.SetActive(false);
+    }
 }

@@ -10,7 +10,7 @@ public class CameraMove : MonoBehaviour
     private void Awake()
     {
         if (target == null)
-            target = transform.Find("Player");
+            target = FindObjectOfType<PlayerMove>().transform;
     }
     
     private void Update()
