@@ -8,21 +8,16 @@ public class AttackJudgement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
 
-    private void Start()
-    {
-
-    }
-
-    private void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //피격시 튕기게
         if (collision.CompareTag("Enemy"))
         {
-            
+            TimeController.Instance.ModifyTimeScale(0.5f, 0.1f, () =>
+            {
+                TimeController.Instance.ModifyTimeScale(1f, 0.15f);
+            });
+
             GameObject playerObject = GameObject.Find("Player");
             Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
 
