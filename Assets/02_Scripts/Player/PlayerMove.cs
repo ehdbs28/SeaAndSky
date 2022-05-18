@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ConstantManager;
+
 public class PlayerMove : MonoBehaviour
 {
-    
+    public static int doubleJumpCount = 0;
+
     [SerializeField] private float speed;
     [SerializeField] private float jumpPower;
     [SerializeField] private LayerMask groundLayer;
@@ -14,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     private bool isGround = false;
     private bool isAttack = false;
     private bool isDeath = false;
+
     public static bool isLeft = false;
 
     private Vector3 footPosition;
@@ -37,16 +41,32 @@ public class PlayerMove : MonoBehaviour
         if (!isDeath)
         {
             Move();
-            Jump();
             PlayerAttack();
+
+            if(doubleJumpCount > 0)
+            {
+                DoubleJumpItem();
+                return;
+            }
+            Jump();
         }
     }
 
- 
+    private void DoubleJumpItem()
+    {
+        if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
+        {
+            anim.SetBool("isJump", true);
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            doubleJumpCount -= 1;
+        }
+    }
+
     //점프
     private void Jump()
     {
-        if (isGround && Input.GetKey(KeyCode.X))
+        if ((Input.GetKey(KeyCode.X) && isGround))
         {
             anim.SetBool("isJump", true);
             rigid.velocity = Vector2.zero;
@@ -54,14 +74,13 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    
-
     //움직이기
     private void Move()
     {
         Bounds bounds = capsuleCollider2D.bounds;
         footPosition = new Vector2(bounds.center.x, bounds.min.y);
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
+
         h = Input.GetAxisRaw("Horizontal");
         if (isGround)
         {
@@ -159,7 +178,5 @@ public class PlayerMove : MonoBehaviour
             anim.Play("PlayerDie");
             isDeath = true;
         }
-
-
     }
 }

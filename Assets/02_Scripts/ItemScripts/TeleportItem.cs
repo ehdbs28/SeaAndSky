@@ -11,8 +11,16 @@ public class TeleportItem : MonoBehaviour
     void Start()
     {
         gameObject.SetActive(true);
-        EventManager.StartListening(TELEPORTATION, PlayerTeleport);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            PlayerTeleport();
+        }
+    }
+
 
     void PlayerTeleport()
     {

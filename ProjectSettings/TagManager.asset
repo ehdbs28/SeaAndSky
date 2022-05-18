@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Trap
   - Enemy
+  - DoubleJump
+  - CreateObject
+  - Teleport
+  - Goal
   layers:
   - Default
   - TransparentFX
