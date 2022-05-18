@@ -13,7 +13,7 @@ public class PlayerArea : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGround)
         {
             SetStateChanged();
         }
@@ -45,15 +45,16 @@ public class PlayerArea : MonoBehaviour
         }
 
         Vector2 chagedPos = new Vector2(transform.position.x, -transform.position.y);
-        RaycastHit2D hitFloor = Physics2D.Raycast(chagedPos, Vector2.down, 5f, LayerMask.NameToLayer("Plaform"));
-        if(hitFloor)
-        {
-            transform.position = new Vector2(transform.position.x, hitFloor.point.y + 0.3f);
-        }
-        else
-        {
-            transform.position = chagedPos;
-        }
+        //RaycastHit2D hitFloor = Physics2D.Raycast(chagedPos, Vector2.down, 10f, LayerMask.NameToLayer("Plaform"));
+        //if(hitFloor)
+        //{
+        //    transform.position = new Vector2(transform.position.x, hitFloor.point.y + 0.3f);
+        //}
+        //else
+        //{
+        //    transform.position = chagedPos;
+        //}
+        transform.position = chagedPos;
         ChangedState();
     }
 }

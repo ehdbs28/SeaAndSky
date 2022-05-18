@@ -36,6 +36,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
 
     private bool isGround = false;
+    public bool IsGround
+    {
+        get => isGround;
+    }
     private bool isAttack = false;
     private bool isDeath = false;
 
