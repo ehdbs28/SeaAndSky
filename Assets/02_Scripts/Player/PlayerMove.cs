@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ConstantManager;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -41,10 +40,10 @@ public class PlayerMove : MonoBehaviour
         get => isGround;
     }
     private bool isAttack = false;
-    private bool isDeath = false;
-
-    public static bool isLeft = false;
     private bool isHead = false;
+
+    public static bool isDeath = false;
+    public static bool isLeft = false;
 
 
     private Vector3 footPosition;
