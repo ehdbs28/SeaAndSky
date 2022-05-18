@@ -25,14 +25,13 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    [SerializeField] // 테스트용 빌드시 세리얼라이즈필드 제거
-    private WorldState _state;
-    public WorldState _State
+    private AreaState _playerState;
+    public AreaState PlayerState
     {
-        get => _state;
+        get => _playerState;
         set
         {
-            _state = value;
+            _playerState = value;
         }
     }
     private void Awake()

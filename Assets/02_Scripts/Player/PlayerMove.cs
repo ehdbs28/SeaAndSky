@@ -7,8 +7,29 @@ public class PlayerMove : MonoBehaviour
 {
     public static int doubleJumpCount = 0;
 
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
+    private float _speed;
+    public float Speed
+    {
+        get => _speed;
+        set
+        {
+            if (value < 0)
+                value = 0;
+            _speed = value;
+        }
+    }
+     private float _jumpPower;
+    public float JumpPower
+    {
+        get => _jumpPower;
+        set
+        {
+            if (value < 0)
+                value = 0;
+            _jumpPower = value;
+        }
+    }
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject swordAttackPrefab;
     [SerializeField] private static float h;
@@ -19,20 +40,21 @@ public class PlayerMove : MonoBehaviour
     private bool isDeath = false;
 
     public static bool isLeft = false;
+    private bool isHead = false;
+
 
     private Vector3 footPosition;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
 
-    
-    private bool isHead = false;
-
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
+        _speed = 5f;
+        _jumpPower = 5f;
     }
 
 
@@ -58,7 +80,7 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetBool("isJump", true);
             rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
             doubleJumpCount -= 1;
         }
     }
@@ -69,8 +91,9 @@ public class PlayerMove : MonoBehaviour
         if ((Input.GetKey(KeyCode.X) && isGround))
         {
             anim.SetBool("isJump", true);
+            SoundManager.Instance.SetEffectSound(0);
             rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
         }
     }
 
@@ -91,6 +114,12 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isMove", false);
         }
 
+        if (Mathf.Abs(h) != 1)
+        {
+            SoundManager.Instance.SetEffectSound3(2);
+        }
+
+        
         if (h < 0)
             isLeft = true;
         if (h > 0)
@@ -101,9 +130,8 @@ public class PlayerMove : MonoBehaviour
         else
             transform.localScale = new Vector3(1, 1, 1);
 
-        transform.Translate(new Vector2(h, 0) * speed * Time.deltaTime);
+        transform.Translate(new Vector2(h, 0) * _speed * Time.deltaTime);
     }
-
 
     //공격실행
     private void PlayerAttack()
@@ -112,6 +140,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isAttack)
             {
+                SoundManager.Instance.SetEffectSound2(1);
                 StartCoroutine(Attack());
                 anim.Play("PlayerAttack");
                 isAttack = true;

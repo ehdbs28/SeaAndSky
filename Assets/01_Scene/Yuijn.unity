@@ -4386,7 +4386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384792b06ded814458cdc9e9fd9bc1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _state: 0
 --- !u!1001 &353009842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4630,7 +4629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b4552b3f4f01742ab8b54568b95e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeState: 1
   _camera: {fileID: 519420031}
   _cameraMove: {fileID: 1385901737}
   dampTime: 0.15
@@ -4713,7 +4711,7 @@ GameObject:
   - component: {fileID: 643123050}
   - component: {fileID: 643123049}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: YujinGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5772,7 +5770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b4552b3f4f01742ab8b54568b95e1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeState: 0
   _camera: {fileID: 1882286171}
   _cameraMove: {fileID: 1385901737}
   dampTime: 0.15
