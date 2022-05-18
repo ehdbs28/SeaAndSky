@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform player = null;
     [SerializeField] private float jumpPower = 5;
     [SerializeField] private Vector2 _flatPos;
-    private SpriteRenderer _spriteRenderer;
 
+    private SpriteRenderer _spriteRenderer;
     private Vector3 dir = Vector3.right;
     private EnemyState _state = EnemyState.Idle;
     private float speed = 1f;

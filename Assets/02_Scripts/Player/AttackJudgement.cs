@@ -22,6 +22,7 @@ public class AttackJudgement : MonoBehaviour
         //피격시 튕기게
         if (collision.CompareTag("Enemy"))
         {
+            
             GameObject playerObject = GameObject.Find("Player");
             Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
 
