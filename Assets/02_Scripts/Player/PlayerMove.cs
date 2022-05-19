@@ -43,7 +43,7 @@ public class PlayerMove : MonoBehaviour
     private bool isHead = false;
 
     public static bool isDeath = false;
-    public static bool isLeft = false;
+    public  bool isLeft = false;
 
 
     private Vector3 footPosition;
@@ -139,13 +139,14 @@ public class PlayerMove : MonoBehaviour
     //공격실행
     private void PlayerAttack()
     {
+        if (isDeath) return;
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (!isAttack)
             {
                 SoundManager.Instance.SetEffectSound2(1);
                 StartCoroutine(Attack());
-                anim.Play("PlayerAttack");
+                anim.SetTrigger("Attack");
                 isAttack = true;
             }
         }
@@ -207,8 +208,12 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
-            anim.Play("PlayerDie");
+            anim.SetTrigger("Dead");
             isDeath = true;
         }
+    }
+    public void EndDeadAnim()
+    {
+        gameObject.SetActive(false);
     }
 }

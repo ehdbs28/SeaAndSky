@@ -56,9 +56,7 @@ public class UIManager : MonoBehaviour
 
     public void Exit()
     {
-        Debug.Log("³ª°¨");
-        esc.SetActive(false);
-        escMenu++;
+        Application.Quit();
     }
 
 }
