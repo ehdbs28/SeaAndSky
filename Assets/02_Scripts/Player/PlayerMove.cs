@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
             _speed = value;
         }
     }
-     private float _jumpPower;
+    [SerializeField] private float _jumpPower;
     public float JumpPower
     {
         get => _jumpPower;
@@ -57,7 +57,7 @@ public class PlayerMove : MonoBehaviour
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         _speed = 5f;
-        _jumpPower = 5f;
+        //_jumpPower = 5f;
     }
 
 
@@ -97,6 +97,7 @@ public class PlayerMove : MonoBehaviour
             SoundManager.Instance.SetEffectSound(0);
             rigid.velocity = Vector2.zero;
             rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            
         }
     }
 

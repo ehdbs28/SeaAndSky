@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerArea : MonoBehaviour
 {
     private PlayerMove _playerMove;
+    private Rigidbody2D _rigid;
 
     private void Start()
     {
         _playerMove = GetComponent<PlayerMove>();
+        _rigid = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -24,11 +26,13 @@ public class PlayerArea : MonoBehaviour
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky) {
             _playerMove.Speed = 5f;
-            _playerMove.JumpPower = 5f;
+            //_playerMove.JumpPower = 11f;
+            _rigid.gravityScale = 3.5f;
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea) {
             _playerMove.Speed = 3f;
-            _playerMove.JumpPower = 8f;
+            //_playerMove.JumpPower = 15f;
+            _rigid.gravityScale = 2f;
         }
     }
     public void SetStateChanged()
