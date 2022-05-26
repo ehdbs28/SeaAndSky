@@ -36,10 +36,10 @@ public class UIManager : MonoBehaviour
             escMenu++;
         }
 
-        if(player.IsDeath)
+        if(player.isDeath)
         {
             gameOver.SetActive(true);
-            player.IsDeath = false;
+            player.isDeath = false;
         }
 
         if(PlayerGoal.isGoal)

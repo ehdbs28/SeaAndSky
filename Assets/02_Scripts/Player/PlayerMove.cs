@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour
     private bool isAttack = false;
     private bool isHead = false;
 
-    public static bool isDeath = false;
+    public  bool isDeath = false;
     public  bool isLeft = false;
 
 
