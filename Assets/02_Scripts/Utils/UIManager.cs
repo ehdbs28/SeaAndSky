@@ -15,6 +15,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject goal;
 
+
+    private PlayerMove player;
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerMove>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -30,10 +36,10 @@ public class UIManager : MonoBehaviour
             escMenu++;
         }
 
-        if(PlayerMove.isDeath)
+        if(player.IsDeath)
         {
             gameOver.SetActive(true);
-            PlayerMove.isDeath = false;
+            player.IsDeath = false;
         }
 
         if(PlayerGoal.isGoal)
