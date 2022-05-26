@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ConstantManager;
 
 public class PlayerGoal : MonoBehaviour
 {
-    void Start()
+
+
+    public static bool isGoal = false;
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        EventManager.StartListening(GOAL, PlayerGoalIN);
+        if (collision.collider.CompareTag("Player"))
+        {
+            PlayerGoalIN();
+            isGoal = true;
+        }
     }
 
     void PlayerGoalIN()
     {
         Time.timeScale = 0;
-        Debug.Log("GOAL!");
     }
 }

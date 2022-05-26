@@ -9,11 +9,10 @@ public class ObjectScripts : MonoBehaviour
 
     private Color color;
 
-    void Start()
+    private void Update()
     {
         ObjectSetting();
     }
-
 
     void ObjectSetting()
     {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static ConstantManager;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -41,10 +40,10 @@ public class PlayerMove : MonoBehaviour
         get => isGround;
     }
     private bool isAttack = false;
-    private bool isDeath = false;
-
-    public static bool isLeft = false;
     private bool isHead = false;
+
+    public  bool isDeath = false;
+    public  bool isLeft = false;
 
 
     private Vector3 footPosition;
@@ -140,13 +139,14 @@ public class PlayerMove : MonoBehaviour
     //공격실행
     private void PlayerAttack()
     {
+        if (isDeath) return;
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (!isAttack)
             {
                 SoundManager.Instance.SetEffectSound2(1);
                 StartCoroutine(Attack());
-                anim.Play("PlayerAttack");
+                anim.SetTrigger("Attack");
                 isAttack = true;
             }
         }
@@ -208,8 +208,12 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
-            anim.Play("PlayerDie");
+            anim.SetTrigger("Dead");
             isDeath = true;
         }
+    }
+    public void EndDeadAnim()
+    {
+        gameObject.SetActive(false);
     }
 }

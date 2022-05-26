@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
         {
             StateChanged(EnemyState.Chase);
             CancelInvoke();
-            _spriteRenderer.color = Color.red;
             dir.x = Mathf.Abs(player.position.x - transform.position.x);
             dir.Normalize();
         }
