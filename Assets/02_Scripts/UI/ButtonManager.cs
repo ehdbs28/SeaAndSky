@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
+using UnityEngine.SceneManagement;
 
-public class ButtonManager : MonoBehaviour //수정
+public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _gameStartTxt;
+    [SerializeField] private  Image _gameStart;
 
     private void Start()
     {
@@ -18,13 +17,15 @@ public class ButtonManager : MonoBehaviour //수정
     {
         while (true)
         {
-            Sequence sq = DOTween.Sequence();
-
-            sq.Append(_gameStartTxt.material.DOFade(0f, 0.5f));
-
-            sq.Append(_gameStartTxt.material.DOFade(1f, 0.5f));
-
-            yield return new WaitForSeconds(0.2f);
+            _gameStart.CrossFadeAlpha(0, 1f, true);
+            yield return new WaitForSeconds(0.5f);
+            _gameStart.CrossFadeAlpha(1, 1f, true);
+            yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void SceneChange(string name)
+    {
+        //메인씬으로 체인지 하는 코드 넣어주세요 .
     }
 }
