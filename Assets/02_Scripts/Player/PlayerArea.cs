@@ -25,16 +25,19 @@ public class PlayerArea : MonoBehaviour
     public void ChangedState()
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky) {
+            _playerMove.LocalScaleY = 1;
             _playerMove.Speed = 5f;
             //_playerMove.JumpPower = 11f;
             _rigid.gravityScale = 3.5f;
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea) {
+            _playerMove.LocalScaleY = -1;
             _playerMove.Speed = 3f;
             //_playerMove.JumpPower = 15f;
-            _rigid.gravityScale = 2f;
+            _rigid.gravityScale = -2f;
         }
     }
+
     public void SetStateChanged()
     {
         if(GameManager.Instance.PlayerState == AreaState.Sea)
