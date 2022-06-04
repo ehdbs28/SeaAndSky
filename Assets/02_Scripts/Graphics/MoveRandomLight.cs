@@ -39,7 +39,7 @@ public class MoveRandomLight : MonoBehaviour
         randomTime = Random.Range(3f, 5f);
         randomIntensity = Random.Range(0.6f, 1f);
         targetPosition = transform.position;
-        targetPosition.x += Random.Range(-0.05f, 0.05f);
+        targetPosition.x += Random.Range(-0.5f, 0.5f);
         timer = 0f;
     }
 }
