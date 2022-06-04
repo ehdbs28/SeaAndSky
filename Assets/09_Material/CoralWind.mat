@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SeaMaterial
+  m_Name: CoralWind
   m_Shader: {fileID: -6465566751694194690, guid: d2f104ffd58d4cb4b8008ee1d2880442, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -48,14 +48,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_36BC0FD6: 0.1
+    - Vector1_36BC0FD6: 0.12
     - Vector1_3AEF5FB5: 0.5
     - Vector1_52D24AB4: 1
-    - Vector1_7AA64B76: -50
+    - Vector1_7AA64B76: 4
     - _EnableExternalAlpha: 0
     m_Colors:
-    - RimColor: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_AB971143: {r: 1, g: 1, b: 0, a: 0}
+    - RimColor: {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
+    - Vector2_AB971143: {r: 2, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
