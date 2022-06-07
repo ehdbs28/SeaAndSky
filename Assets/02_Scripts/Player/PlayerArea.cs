@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerArea : MonoBehaviour
 {
     private PlayerMove _playerMove;
+    [SerializeField] private UnityEvent<AreaState> onChangeArea;
 
     private void Start()
     {
@@ -25,10 +27,12 @@ public class PlayerArea : MonoBehaviour
         if (GameManager.Instance.PlayerState == AreaState.Sky) {
             _playerMove.Speed = 5f;
             _playerMove.JumpPower = 5f;
+            onChangeArea.Invoke(AreaState.Sky);
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea) {
             _playerMove.Speed = 3f;
             _playerMove.JumpPower = 8f;
+            onChangeArea.Invoke(AreaState.Sea);
         }
     }
     public void SetStateChanged()
