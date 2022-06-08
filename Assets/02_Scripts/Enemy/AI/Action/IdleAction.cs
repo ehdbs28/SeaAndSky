@@ -5,7 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 public class IdleAction : AIAction
 {
-    
+
     public override void TakeAction()
     {
         Move();
@@ -13,7 +13,14 @@ public class IdleAction : AIAction
 
     private void Move()
     {
-       
+        if(_monster.CheckFrontGround() && _monster.CheckFrontWall() == false)
+        {
+            _monster.transform.Translate(_monster.MonsterDir * Time.deltaTime);
+        }
+        else
+        {
+            _monster.MonsterDir *= -1;
+        }
     }
-    
+   
 }
