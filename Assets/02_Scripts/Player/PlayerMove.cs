@@ -104,18 +104,14 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isJump", true);
             SoundManager.Instance.SetEffectSound(0);
 
-            if(_localScaleY == 1)
-            {
-                rigid.velocity = Vector2.zero;
-                rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
-            }
-            else if(_localScaleY == -1)
+            rigid.velocity = Vector2.zero;
+            rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+            
+            if(_localScaleY == -1)
             {
                 rigid.velocity = Vector2.zero;
                 rigid.AddForce(transform.up * _jumpPower * -1, ForceMode2D.Impulse);
             }
-            
-            
         }
     }
 
@@ -131,7 +127,7 @@ public class PlayerMove : MonoBehaviour
         {
             footPosition = new Vector3(bounds.center.x, bounds.max.y);
         }
-        Debug.Log(footPosition);
+        
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
 
         h = Input.GetAxisRaw("Horizontal");
@@ -251,4 +247,6 @@ public class PlayerMove : MonoBehaviour
     {
         transform.localScale = new Vector3(-1, 1, 0);
     }
+
+
 }

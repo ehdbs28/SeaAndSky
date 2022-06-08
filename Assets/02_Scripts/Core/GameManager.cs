@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    private AreaState _playerState;
+    private AreaState _playerState = AreaState.Sky;
     public AreaState PlayerState
     {
         get => _playerState;
