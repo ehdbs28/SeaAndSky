@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -51,11 +52,12 @@ public class PlayerMove : MonoBehaviour
     public  bool isDeath = false;
     public  bool isLeft = false;
 
-
     private Vector3 footPosition;
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
+
+    [SerializeField] private UnityEvent<Vector2> onPlayerMove;
 
     void Start()
     {
@@ -158,7 +160,10 @@ public class PlayerMove : MonoBehaviour
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
 
-        transform.Translate(new Vector2(h, 0) * _speed * Time.deltaTime);
+        Vector2 direction = new Vector2(h, 0);
+        transform.Translate(direction * _speed * Time.deltaTime);
+        
+        onPlayerMove.Invoke(direction);
     }
 
     //공격실행

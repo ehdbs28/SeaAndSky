@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerArea : MonoBehaviour
 {
     private PlayerMove _playerMove;
     private Rigidbody2D _rigid;
+    [SerializeField] private UnityEvent<AreaState> onChangeArea;
 
     private void Start()
     {
@@ -27,14 +29,16 @@ public class PlayerArea : MonoBehaviour
         if (GameManager.Instance.PlayerState == AreaState.Sky) {
             _playerMove.LocalScaleY = 1;
             _playerMove.Speed = 5f;
-            //_playerMove.JumpPower = 11f;
             _rigid.gravityScale = 3.5f;
+            _playerMove.JumpPower = 5f;
+            onChangeArea.Invoke(AreaState.Sky);
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea) {
             _playerMove.LocalScaleY = -1;
             _playerMove.Speed = 3f;
-            //_playerMove.JumpPower = 15f;
             _rigid.gravityScale = -2f;
+            _playerMove.JumpPower = 8f;
+            onChangeArea.Invoke(AreaState.Sea);
         }
     }
 
