@@ -1,0 +1,18 @@
+
+- Bomb: 3 frames
+- Bomb Explosion: 5 frames
+- Bounce Pad: 4 frames
+- Bullet Windtrail: 5 frames
+- Button: 2 frames
+- Cannon: 3 frames
+- Cannon Smoke: 5 frames
+- Clouds: 3 frames (vertically)
+- Coin: 4 framse
+- Fire: 6 frames
+- Heart: 3 frames (Duplicate first frame to extend time between beats)
+- Lava: 6 frames (each frame 64px wide)
+- Saw Blade: 2 frames (each frame is 34px wide)
+- Slime: 5 top frames walk animation, 2 bottom frames death animation
+- Spikes: 4 frames
+- Sun: 6 frames (Duplicate first frame to extend time between shines)
+- Water: 8 frames (each frame 32px wide)

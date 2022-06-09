@@ -7,6 +7,12 @@ public class PlayerMove : MonoBehaviour
 {
     public static int doubleJumpCount = 0;
 
+    private float _localScaleY = 1;
+    public float LocalScaleY
+    {
+        set => _localScaleY = value;
+        get => _localScaleY;
+    }
     private float _speed;
     public float Speed
     {
@@ -18,7 +24,7 @@ public class PlayerMove : MonoBehaviour
             _speed = value;
         }
     }
-     private float _jumpPower;
+    [SerializeField] private float _jumpPower;
     public float JumpPower
     {
         get => _jumpPower;
@@ -59,7 +65,7 @@ public class PlayerMove : MonoBehaviour
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         _speed = 5f;
-        _jumpPower = 5f;
+        //_jumpPower = 5f;
     }
 
 
@@ -97,8 +103,15 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetBool("isJump", true);
             SoundManager.Instance.SetEffectSound(0);
+
             rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+            rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+            
+            if(_localScaleY == -1)
+            {
+                rigid.velocity = Vector2.zero;
+                rigid.AddForce(transform.up * _jumpPower * -1, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -106,7 +119,15 @@ public class PlayerMove : MonoBehaviour
     private void Move()
     {
         Bounds bounds = capsuleCollider2D.bounds;
-        footPosition = new Vector2(bounds.center.x, bounds.min.y);
+        if(_localScaleY == 1)
+        {
+            footPosition = new Vector2(bounds.center.x, bounds.min.y);
+        }
+        else if(_localScaleY == -1)
+        {
+            footPosition = new Vector3(bounds.center.x, bounds.max.y);
+        }
+        
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
 
         h = Input.GetAxisRaw("Horizontal");
@@ -131,9 +152,9 @@ public class PlayerMove : MonoBehaviour
             isLeft = false;
         
         if(isLeft)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, _localScaleY, 1);
         else
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, _localScaleY, 1);
 
         Vector2 direction = new Vector2(h, 0);
         transform.Translate(direction * _speed * Time.deltaTime);
@@ -221,4 +242,11 @@ public class PlayerMove : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public void ChangePlayerState()
+    {
+        transform.localScale = new Vector3(-1, 1, 0);
+    }
+
+
 }

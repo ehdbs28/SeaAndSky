@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShadow : MonoBehaviour
 {
     private Transform _player;
-   
+
     private void Awake()
     {
         _player = FindObjectOfType<PlayerMove>().transform;

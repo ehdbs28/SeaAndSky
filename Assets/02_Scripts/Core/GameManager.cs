@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-    private AreaState _playerState;
+    private AreaState _playerState = AreaState.Sky;
     public AreaState PlayerState
     {
         get => _playerState;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             Destroy(Instance.gameObject);
             instance = this;
         }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     void Update()
