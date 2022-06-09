@@ -11,7 +11,6 @@ TagManager:
   - Teleport
   - Goal
   - AttackImpact
-  - Button
   layers:
   - Default
   - TransparentFX
@@ -22,7 +21,7 @@ TagManager:
   - Platform
   - Enemy
   - Player
-  - Trap
+  - Box
   - 
   - 
   - 
@@ -51,4 +50,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 1333292373
     locked: 0
