@@ -5,103 +5,46 @@ using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
-    [SerializeField] private List<AudioClip> effectSounds = null;
-    [SerializeField] private List<AudioClip> bgms = null;
-    [SerializeField] private List<AudioClip> easterEggEffectSounds = null;
     private AudioSource bgmAudio;
-    private AudioSource effectAudio;
-    private AudioSource effectAudio2;
-    private AudioSource effectAudio3;
+    private AudioSource effectSoundAudio;
+    private AudioSource natureAudio;
 
     private void Awake()
     {
-        SoundManager[] smanagers = FindObjectsOfType<SoundManager>();
-        if (smanagers.Length != 1)
+        if (FindObjectsOfType<SoundManager>().Length != 1)
         {
             Destroy(gameObject);
             return;
         }
-        //DontDestroyOnLoad(gameObject);
-        bgmAudio = GetComponent<AudioSource>();
-        effectAudio = transform.GetChild(0).GetComponent<AudioSource>();
-        effectAudio2 = transform.GetChild(1).GetComponent<AudioSource>();
-        effectAudio3 = transform.GetChild(2).GetComponent<AudioSource>();
+
+        AudioSource[] sources = GetComponentsInChildren<AudioSource>();
+
+        bgmAudio = sources[0];
+        effectSoundAudio = sources[1];
+        natureAudio = sources[2];
     }
 
-    private void Start()
-    {
-        VolumeSetting();
-    }
 
-    public void VolumeSetting()
+    public void PlaySound(AudioType audioType, AudioClip clip)
     {
-        bgmAudio.mute = false;
-        effectAudio.mute = false;
-        effectAudio2.mute = false;
-        effectAudio3.mute = false;
-    }
+        if (audioType == AudioType.BGM)
+        {
+            bgmAudio.Stop();
+            bgmAudio.clip = clip;
+            bgmAudio.Play();
+        }
 
-    public void BGMVolume(float value)
-    {
-        if (bgmAudio == null) return;
-        bgmAudio.volume = value;
-    }
+        else if (audioType == AudioType.EffectSound)
+        {
+            effectSoundAudio.PlayOneShot(clip);
+        }
 
-    public void BGMMute(bool isMute)
-    {
-        bgmAudio.mute = isMute;
+        else if(audioType == AudioType.Nature)
+        {
+            natureAudio.Stop();
+            natureAudio.clip = clip;
+            natureAudio.Play();
+        }
     }
-    public void EffectMute(bool isMute)
-    {
-        effectAudio.mute = isMute;
-    }
-
-    public void EffectVolume(float value)
-    {
-        if (effectAudio == null) return;
-        effectAudio.volume = value;
-    }
-    public void SetBGM(int bgmNum)
-    {
-        bgmAudio.Stop();
-        bgmAudio.clip = bgms[bgmNum];
-        bgmAudio.Play();
-    }
-    public void SetEffectSound(int effectNum)
-    {
-        effectAudio.Stop();
-        effectAudio.clip = effectSounds[effectNum];
-        effectAudio.Play();
-    }
-
-    public void SetEffectSound2(int effectNum)
-    {
-        effectAudio2.Stop();
-        effectAudio2.clip = effectSounds[effectNum];
-        effectAudio2.Play();
-    }
-
-    public void SetEffectSound3(int effectNum)
-    {
-        effectAudio3.Stop();
-        effectAudio3.clip = effectSounds[effectNum];
-        effectAudio3.Play();
-    }
-
-    public void SetEsterEggEffectSound(int effectNum)
-    {
-        effectAudio.Stop();
-        effectAudio.clip = easterEggEffectSounds[effectNum];
-        effectAudio.Play();
-    }
-    public void StopBGM()
-    {
-        bgmAudio.Stop();
-    }
-
-    public float GetEffectSoundLength()
-    {
-        return effectAudio.clip.length;
-    }
-
 }
+
