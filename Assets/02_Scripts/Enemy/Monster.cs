@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IHittable
 {
     private float maxDistance = 3f;
-    public float _hp;
+    public float _Maxhp;
+    private float _hp;
     public float _deadTime;
     public float _speed;
     public Transform target;
+    public SpriteRenderer _spriteRenderer = null;
     private bool isDead = false;
-
     public LayerMask moveableLayer;
     [SerializeField] private AIState _currentState;
 
@@ -19,6 +20,9 @@ public class Monster : MonoBehaviour
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
     private UnityAction OnMonsterChangedDir;
     private Vector2 _monsterDir = Vector2.right;
+
+    public Vector2 monsterSpawnVector2;
+    
     public Vector2 MonsterDir
     {
         get => _monsterDir;
@@ -32,6 +36,7 @@ public class Monster : MonoBehaviour
     private void Awake()
     {
         target = GameObject.Find("Player").transform;
+        _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         OnMonsterChangedDir += ChangedVelocity;
     }
     public void ChangedVelocity()
@@ -81,5 +86,21 @@ public class Monster : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void ReSpawn(Vector2 position)
+    {
+        transform.position = position;
+        _hp = _Maxhp;
+    }
+
+    public void GetHit()
+    {
+        _hp--;
+        if (_hp <= 0)
+        {
+            isDead = true;
+            OnDie?.Invoke();
+        }
     }
 }

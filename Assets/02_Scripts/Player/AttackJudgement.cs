@@ -23,17 +23,19 @@ public class AttackJudgement : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
 
+         
             PlayerMove playerObject = FindObjectOfType<PlayerMove>();
             Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
-
             if (Input.GetKey(KeyCode.DownArrow))
                 py.velocity = Vector3.up * jumpPower;
 
-            else if(!playerObject.isLeft)
+            else if (!playerObject.isLeft)
                 py.velocity = Vector3.left * speed;
-            
-            else if(playerObject.isLeft)
+
+            else if (playerObject.isLeft)
                 py.velocity = Vector3.right * speed;
+            IHittable hittable = collision.GetComponent<IHittable>();
+            hittable?.GetHit();
         }
     }
 }
