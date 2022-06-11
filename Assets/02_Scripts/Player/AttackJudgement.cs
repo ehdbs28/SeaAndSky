@@ -13,12 +13,6 @@ public class AttackJudgement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //피격시 튕기게
-        if (collision.CompareTag("Enemy"))
-        {
-            TimeController.Instance.ModifyTimeScale(0.5f, 0.1f, () =>
-            {
-                TimeController.Instance.ModifyTimeScale(1f, 0.15f);
-            });
             PlayerMove playerObject = GameObject.Find("Player").GetComponent<PlayerMove>();
 
             Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();

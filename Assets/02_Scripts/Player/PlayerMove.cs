@@ -236,11 +236,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
-            anim.SetTrigger("Dead");
             isDeath = true;
+            anim.SetTrigger("Dead");
         }
     }
-    public void EndDeadAnim()
+    public void EndDeadAnim() //애니메이션에 이벤트로 넣었음
     {
         gameObject.SetActive(false);
     }
