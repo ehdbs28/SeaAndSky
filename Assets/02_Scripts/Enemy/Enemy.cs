@@ -92,10 +92,8 @@ public class Enemy : MonoBehaviour
 
     private void EnemyMove()
     {
-
         RaycastHit2D _hit = Physics2D.Raycast(new Vector2(transform.position.x + dir.x * 0.1f, transform.position.y), transform.up * -1, maxDistance, wallLayer); 
         Debug.DrawRay(new Vector2(transform.position.x + dir.x * 0.5f, transform.position.y), transform.up * -1 *maxDistance, Color.green);
-
         if (_hit)
         {
             transform.position += dir * speed * Time.deltaTime;

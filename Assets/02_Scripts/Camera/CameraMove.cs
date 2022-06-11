@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class CameraMove : MonoBehaviour
 {
     public Transform target;
-    public UnityEvent<Transform> MoveCamra;
+    public UnityEvent<Transform> MoveCamera;
     public UnityEvent ChangeCameaState;
     private void Awake()
     {
@@ -19,6 +19,6 @@ public class CameraMove : MonoBehaviour
     }
     public void MoveToTarget()
     {
-        MoveCamra?.Invoke(target);      
+        MoveCamera?.Invoke(target);      
     }
 }
