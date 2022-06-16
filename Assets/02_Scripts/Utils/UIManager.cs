@@ -15,12 +15,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject goal;
 
-
     private PlayerMove player;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerMove>();
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -28,15 +29,17 @@ public class UIManager : MonoBehaviour
             if (escMenu % 2 == 0)
             {
                 esc.SetActive(true);
+                Time.timeScale = 0;
             }
             else
             {
                 esc.SetActive(false);
+                Time.timeScale = 1;
             }
             escMenu++;
         }
 
-        if(player.isDeath)
+        if (player.isDeath)
         {
             gameOver.SetActive(true);
             player.isDeath = false;
@@ -49,6 +52,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ContinueBtn()
+    {
+        esc.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
     public void NextStage()
     {
         Debug.Log("다음 스테이지");
@@ -56,8 +65,8 @@ public class UIManager : MonoBehaviour
 
     public void ReStart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Time.timeScale = 1;
     }
 
     public void Exit()

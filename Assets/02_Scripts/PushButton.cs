@@ -27,6 +27,7 @@ public class PushButton : MonoBehaviour
         curSprite.sprite = pushSprite;   
     }
 
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
