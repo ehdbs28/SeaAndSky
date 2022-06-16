@@ -4,14 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class ButtonManager : MonoBehaviour
 {
+    [SerializeField] GameObject _title;
     [SerializeField] private  Image _gameStart;
     [SerializeField] RectTransform _stagePanelTrm;
 
+    public UnityEvent OnChangeScene;
+    private Vector3 _initPos;
+
     private void Start()
     {
+        _initPos = new Vector3(0, -1200);
+        _stagePanelTrm.anchoredPosition = _initPos;
         StartCoroutine(FadeCoroutine());
     }
 
@@ -30,11 +37,14 @@ public class ButtonManager : MonoBehaviour
     {
         Sequence sq = DOTween.Sequence();
 
-        
+        _title.gameObject.SetActive(false);
+        _gameStart.gameObject.SetActive(false);
+        sq.Append(_stagePanelTrm.DOAnchorPosY(0, 0.5f));
     }
 
-    public void SceneChange()
+    public void SceneChange(string name)
     {
-        //SceneManager.LoadScene(0);
+        OnChangeScene.Invoke();
+        SceneManager.LoadScene(name);
     }
 }
