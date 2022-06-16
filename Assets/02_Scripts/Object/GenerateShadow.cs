@@ -31,7 +31,7 @@ public class GenerateShadow : MonoBehaviour
 
     private void SettingRenderer()
     {
-        SpriteRenderer myRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer myRenderer = GetComponentInChildren<SpriteRenderer>();
         SpriteRenderer renderer = shadow.AddComponent<SpriteRenderer>();
 
         renderer.sprite = myRenderer.sprite;
