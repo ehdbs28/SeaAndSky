@@ -84,6 +84,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
+            Debug.Log("Death");
             anim.SetTrigger("Dead");
         }
     }
