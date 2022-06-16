@@ -1,20 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PushButton : MonoBehaviour
 {
-    public bool ispush = false;
-    private SpriteRenderer spriteRenderer;
-    new private Collider2D collider;
-
+    public UnityEvent OnButtonPress;
+    public UnityEvent OnButtonPull;
+    public Sprite pushSprite;
+    public Sprite pullSprite;
+    SpriteRenderer curSprite;
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        curSprite = GetComponent<SpriteRenderer>();
     }
-    private void Update()
+
+    public void Pull()
     {
-        //if()
+        Debug.Log("¶¼Áü");
+        curSprite.sprite = pullSprite;
+    }
+
+    public void Press()
+    {
+        Debug.Log("´­¸²");
+        curSprite.sprite = pushSprite;   
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            OnButtonPress.Invoke();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            OnButtonPull.Invoke();
+        }
     }
 }

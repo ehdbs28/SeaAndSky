@@ -24,8 +24,8 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    public void SceneChange(string name)
+    public void SceneChange()
     {
-        //메인씬으로 체인지 하는 코드 넣어주세요 .
+        //SceneManager.LoadScene(0);
     }
 }

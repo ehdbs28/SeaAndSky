@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scene/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/01_Scene/doyun/Title.unity
+    guid: f1305c34a6e71a048b185696dd78620a
   m_configObjects: {}
