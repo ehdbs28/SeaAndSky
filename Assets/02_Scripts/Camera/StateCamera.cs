@@ -20,6 +20,5 @@ public class StateCamera : AgentCamera
             Vector3 destination = transform.position + delta;
             this.transform.position = Vector3.SmoothDamp(this.transform.position, destination, ref velocity, dampTime);
         }
- 
     }
 }
