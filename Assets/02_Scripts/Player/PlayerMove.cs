@@ -67,7 +67,6 @@ public class PlayerMove : MonoBehaviour
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         _speed = 5f;
-        //_jumpPower = 5f;
     }
 
 
@@ -142,12 +141,6 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isMove", false);
         }
 
-        //if (Mathf.Abs(h) != 1)
-        //{
-        //    SoundManager.Instance.SetEffectSound3(2);
-        //}
-
-        
         if (h < 0)
             isLeft = true;
         if (h > 0)
@@ -160,8 +153,8 @@ public class PlayerMove : MonoBehaviour
 
         Vector2 direction = new Vector2(h, 0);
         transform.Translate(direction * _speed * Time.deltaTime);
-        
-        onPlayerMove.Invoke(direction);
+
+        onPlayerMove.Invoke(rigid.velocity);
     }
 
     //공격실행
@@ -249,6 +242,4 @@ public class PlayerMove : MonoBehaviour
     {
         transform.localScale = new Vector3(-1, 1, 0);
     }
-
-
 }

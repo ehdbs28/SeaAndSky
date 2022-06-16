@@ -96,38 +96,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa0de455c73b91408b7df533c64a8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnButtonPress:
+  onButtonPress:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8471131359147865111}
-        m_TargetAssemblyTypeName: PushButton, Assembly-CSharp
-        m_MethodName: Press
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnButtonPull:
+      m_Calls: []
+  onButtonPull:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8471131359147865111}
-        m_TargetAssemblyTypeName: PushButton, Assembly-CSharp
-        m_MethodName: Pull
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   pushSprite: {fileID: 1763989116612304091, guid: 6469839918910dd4fba295d7f29af957, type: 3}
   pullSprite: {fileID: 2530564911472380330, guid: 6469839918910dd4fba295d7f29af957, type: 3}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!61 &8471131359147865194
 BoxCollider2D:
   m_ObjectHideFlags: 0

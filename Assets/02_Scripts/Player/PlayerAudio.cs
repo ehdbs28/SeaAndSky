@@ -56,7 +56,7 @@ public class PlayerAudio : MonoBehaviour
     {
         if (walkTimer > WALK_DELAY && Mathf.Abs(direction.x) >= 0.5f)
         {
-            if (GameManager.Instance.PlayerState == AreaState.Sky)
+            if (GameManager.Instance.PlayerState == AreaState.Sky && Mathf.Abs(direction.y) < 0.01f)
             {
                 SoundManager.Instance.PlaySound(AudioType.EffectSound, skyWalkSound);
             }

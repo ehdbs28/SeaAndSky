@@ -35,8 +35,8 @@ public class GenerateShadow : MonoBehaviour
         SpriteRenderer renderer = shadow.AddComponent<SpriteRenderer>();
 
         renderer.sprite = myRenderer.sprite;
-        Color color = Color.gray;
-        color.a = 0.7f;
+        Color color = Color.black;
+        color.a = 0.4f;
 
         renderer.color = color;
     }

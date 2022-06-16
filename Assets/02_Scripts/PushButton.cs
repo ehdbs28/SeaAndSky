@@ -5,14 +5,22 @@ using UnityEngine.Events;
 
 public class PushButton : MonoBehaviour
 {
-    public UnityEvent OnButtonPress;
-    public UnityEvent OnButtonPull;
+    public UnityEvent onButtonPress;
+    public UnityEvent onButtonPull;
     public Sprite pushSprite;
     public Sprite pullSprite;
-    SpriteRenderer curSprite;
+    private SpriteRenderer curSprite;
+
+    private List<GameObject> collisions = new List<GameObject>();
+
+    public LayerMask targetLayer;
+
+
     private void Start()
     {
         curSprite = GetComponent<SpriteRenderer>();
+        onButtonPress.AddListener(Press);
+        onButtonPull.AddListener(Pull);
     }
 
     public void Pull()
@@ -24,21 +32,34 @@ public class PushButton : MonoBehaviour
     public void Press()
     {
         Debug.Log("´­¸²");
-        curSprite.sprite = pushSprite;   
+        curSprite.sprite = pushSprite;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
+        {
+            if (!collisions.Contains(collision.gameObject) || collisions.Count == 0)
+                collisions.Add(collision.gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
         {
-            OnButtonPress.Invoke();
+            onButtonPress.Invoke();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
         {
-            OnButtonPull.Invoke();
+            if (collisions.Contains(collision.gameObject))
+            {
+                collisions.Remove(collision.gameObject);
+                onButtonPull.Invoke();
+            }
         }
     }
 }
