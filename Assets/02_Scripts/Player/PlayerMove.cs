@@ -49,7 +49,6 @@ public class PlayerMove : MonoBehaviour
     private bool isAttack = false;
     private bool isHead = false;
 
-    public  bool isDeath = false;
     public  bool isLeft = false;
 
     private Vector3 footPosition;
@@ -71,7 +70,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (!isDeath)
+        if (!GameManager.Instance.IsPlayerDeath)
         {
             Move();
             PlayerAttack();
@@ -82,6 +81,10 @@ public class PlayerMove : MonoBehaviour
                 return;
             }
             Jump();
+        }
+        else
+        {
+            anim.SetTrigger("Dead");
         }
     }
 
@@ -165,7 +168,7 @@ public class PlayerMove : MonoBehaviour
     //공격실행
     private void PlayerAttack()
     {
-        if (isDeath) return;
+        if (GameManager.Instance.IsPlayerDeath) return;
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (!isAttack)
@@ -234,8 +237,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
-            isDeath = true;
-            anim.SetTrigger("Dead");
+            GameManager.Instance.ReduceHeart();
+            //isDeath = true;
         }
     }
     public void EndDeadAnim() //애니메이션에 이벤트로 넣었음
