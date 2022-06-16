@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class ButtonManager : MonoBehaviour
 {
     [SerializeField] private  Image _gameStart;
+    [SerializeField] RectTransform _stagePanelTrm;
 
     private void Start()
     {
@@ -22,6 +24,13 @@ public class ButtonManager : MonoBehaviour
             _gameStart.CrossFadeAlpha(1, 1f, true);
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void StagePanel()
+    {
+        Sequence sq = DOTween.Sequence();
+
+        
     }
 
     public void SceneChange()
