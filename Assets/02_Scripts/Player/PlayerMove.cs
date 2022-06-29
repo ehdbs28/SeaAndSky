@@ -49,7 +49,6 @@ public class PlayerMove : MonoBehaviour
     private bool isAttack = false;
     private bool isHead = false;
 
-    public  bool isDeath = false;
     public  bool isLeft = false;
 
     private Vector3 footPosition;
@@ -67,13 +66,12 @@ public class PlayerMove : MonoBehaviour
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         _speed = 5f;
-        //_jumpPower = 5f;
     }
 
 
     void Update()
     {
-        if (!isDeath)
+        if (!GameManager.Instance.IsPlayerDeath)
         {
             Move();
             PlayerAttack();
@@ -84,6 +82,11 @@ public class PlayerMove : MonoBehaviour
                 return;
             }
             Jump();
+        }
+        else
+        {
+            Debug.Log("Death");
+            anim.SetTrigger("Dead");
         }
     }
 
@@ -142,12 +145,6 @@ public class PlayerMove : MonoBehaviour
                 anim.SetBool("isMove", false);
         }
 
-        //if (Mathf.Abs(h) != 1)
-        //{
-        //    SoundManager.Instance.SetEffectSound3(2);
-        //}
-
-        
         if (h < 0)
             isLeft = true;
         if (h > 0)
@@ -160,14 +157,14 @@ public class PlayerMove : MonoBehaviour
 
         Vector2 direction = new Vector2(h, 0);
         transform.Translate(direction * _speed * Time.deltaTime);
-        
-        onPlayerMove.Invoke(direction);
+
+        onPlayerMove.Invoke(rigid.velocity);
     }
 
     //공격실행
     private void PlayerAttack()
     {
-        if (isDeath) return;
+        if (GameManager.Instance.IsPlayerDeath) return;
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (!isAttack)
@@ -236,8 +233,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
-            isDeath = true;
-            anim.SetTrigger("Dead");
+            GameManager.Instance.ReduceHeart();
+            //isDeath = true;
         }
     }
     public void EndDeadAnim() //애니메이션에 이벤트로 넣었음
@@ -249,6 +246,4 @@ public class PlayerMove : MonoBehaviour
     {
         transform.localScale = new Vector3(-1, 1, 0);
     }
-
-
 }

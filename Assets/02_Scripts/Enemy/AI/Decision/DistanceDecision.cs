@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class DistanceDecision : AIDecision
 {
-    public float distance = 3f;
+    public float _distance = 3f;
 
     public override bool MakeDecision()
     {
-        float distanceX = Mathf.Abs(_monster.target.position.x - _monster.transform.position.x); 
-        if(distanceX <= 3f)
+        float distance = Vector2.Distance(_monster.target.position, _monster.transform.position);
+        if(distance <= _distance)
         {
             return true;
         }
