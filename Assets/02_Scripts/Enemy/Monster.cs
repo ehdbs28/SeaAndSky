@@ -11,7 +11,8 @@ public class Monster : MonoBehaviour, IHittable
     public float _deadTime;
     public float _speed;
     public Transform target;
-    public SpriteRenderer _spriteRenderer = null;
+    private SpriteRenderer _spriteRenderer = null;
+    public SpriteRenderer _SpriteRenderer { get => _spriteRenderer; }
     private bool isDead = false;
     public LayerMask moveableLayer;
     [SerializeField] private AIState _currentState;
@@ -21,8 +22,6 @@ public class Monster : MonoBehaviour, IHittable
     private UnityAction OnMonsterChangedDir;
     private Vector2 _monsterDir = Vector2.right;
 
-    public Vector2 monsterSpawnVector2;
-    
     public Vector2 MonsterDir
     {
         get => _monsterDir;
