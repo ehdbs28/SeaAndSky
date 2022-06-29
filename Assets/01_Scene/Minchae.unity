@@ -4212,7 +4212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1af4fb85e1c92241b1b235d683edece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDeath: 0
+  isToggle: 0
+  timeDelay: 3
 --- !u!95 &350945508
 Animator:
   serializedVersion: 3
@@ -4539,7 +4540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1af4fb85e1c92241b1b235d683edece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDeath: 0
+  isToggle: 0
+  timeDelay: 3
 --- !u!58 &527418908
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23004,6 +23006,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384792b06ded814458cdc9e9fd9bc1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heartCnt: 0
+  _heartPrefab: {fileID: 0}
+  _parentTrm: {fileID: 0}
 --- !u!1 &872417298
 GameObject:
   m_ObjectHideFlags: 0
@@ -48840,7 +48845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1af4fb85e1c92241b1b235d683edece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDeath: 0
+  isToggle: 1
+  timeDelay: 3
 --- !u!61 &943341031
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -63865,7 +63871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -97.53
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.y

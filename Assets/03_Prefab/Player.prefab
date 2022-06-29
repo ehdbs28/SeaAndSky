@@ -4976,6 +4976,7 @@ GameObject:
   - component: {fileID: 5527135322220754508}
   - component: {fileID: 9080806354538350403}
   - component: {fileID: 1879805588}
+  - component: {fileID: 1879805587}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5086,12 +5087,11 @@ MonoBehaviour:
   _jumpPower: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   swordAttackPrefab: {fileID: 5735518634051750947, guid: eb4a6ad4ea1f3644ea523ab424609f81, type: 3}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  isDeath: 0
   isLeft: 0
   onPlayerMove:
     m_PersistentCalls:
@@ -5108,12 +5108,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayWalkSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onPlayerJump:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayJumpSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onPlayerAttack:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayAttackSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!70 &5527135322220754509
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5176,6 +5212,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayChangeSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1879805588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5190,3 +5238,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seaEffect: {fileID: 1805624963}
   seaMoveEffect: {fileID: 248916723}
+--- !u!114 &1879805587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527135322220754506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a810165d3115549bb1818fb4a0bc25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyJumpSound: {fileID: 8300000, guid: fb0630eea6265e540afe2d8cfbd70b03, type: 3}
+  seaJumpSound: {fileID: 8300000, guid: 42192528fa1d024438983ffa132d95c1, type: 3}
+  skyWalkSound: {fileID: 8300000, guid: 29ac721203a475146b767b8d29883668, type: 3}
+  seaWalkSounds:
+  - {fileID: 8300000, guid: 4fcd6348e5ee4a443a084bd81df28f25, type: 3}
+  - {fileID: 8300000, guid: fa974b628b601344f871d7b02766773d, type: 3}
+  - {fileID: 8300000, guid: f34db974c98a46945b785fee4f8424f0, type: 3}
+  attackSound: {fileID: 8300000, guid: 1459e313613a1714f9274ff497f1801a, type: 3}
+  seaSound: {fileID: 8300000, guid: 8e6cb2bd9412fb44f9e36b78f677b048, type: 3}
+  skySound: {fileID: 8300000, guid: 92a432da5644b6643b761c7db9a95c36, type: 3}
+  seaNatureSound: {fileID: 8300000, guid: 2e5465ab54b483643b51136fb8f9e661, type: 3}
+  skyNatureSound: {fileID: 8300000, guid: 30ab60ba9666a394ebef420897c953c4, type: 3}

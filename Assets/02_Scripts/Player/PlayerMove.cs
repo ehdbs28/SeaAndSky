@@ -231,7 +231,7 @@ public class PlayerMove : MonoBehaviour
     //enemy ³ª trap ´êÀ¸¸é Á×±â
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
+        if (!isHead && (collision.collider.CompareTag("Enemy")))
         {
             GameManager.Instance.ReduceHeart();
             //isDeath = true;
