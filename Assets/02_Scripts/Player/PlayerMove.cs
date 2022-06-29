@@ -180,52 +180,57 @@ public class PlayerMove : MonoBehaviour
     //플레이어 공격
     IEnumerator Attack() 
     {
-        //위쪽공격
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (!GameManager.Instance.IsPlayerDeath)
         {
-            GameObject swordAttack;
+            #region 플레이어공격
+            //위쪽공격
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                GameObject swordAttack;
 
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.Euler(0, 0, 90));
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
-        }
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.Euler(0, 0, 90));
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
 
-        //아래공격
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            GameObject swordAttack;
-            
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
+            //아래공격
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                GameObject swordAttack;
+
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
+            //오른쪽공격
+            else if (!isLeft)
+            {
+                GameObject swordAttack;
+
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
+            //왼쪽공격
+            else if (isLeft)
+            {
+                GameObject swordAttack;
+
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.position = new Vector3(transform.position.x - 1, transform.position.y, 0);
+                swordAttack.transform.localScale = new Vector3(-1, 1, 1);
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
+#endregion
         }
-        //오른쪽공격
-        else if(!isLeft)
-        {
-            GameObject swordAttack;
-            
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
-        }
-        //왼쪽공격
-        else if(isLeft)
-        {
-            GameObject swordAttack;
-            
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.position = new Vector3(transform.position.x - 1, transform.position.y, 0);
-            swordAttack.transform.localScale = new Vector3(-1, 1, 1);
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
-        } 
     }
 
     //enemy 나 trap 닿으면 죽기
