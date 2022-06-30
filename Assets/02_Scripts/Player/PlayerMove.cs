@@ -90,6 +90,11 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
+    public void Damege()
+    {
+        GameManager.Instance.ReduceHeart();
+    }
+
     private void DoubleJumpItem()
     {
         if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
@@ -234,14 +239,13 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
 
     //enemy 나 trap 닿으면 죽기
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
         {
-            GameManager.Instance.ReduceHeart();
             //isDeath = true;
         }
-    }
+    }*/
     public void EndDeadAnim() //애니메이션에 이벤트로 넣었음
     {
         gameObject.SetActive(false);
@@ -252,8 +256,4 @@ public class PlayerMove : MonoBehaviour, IDamage
         transform.localScale = new Vector3(-1, 1, 0);
     }
 
-    public void Damege()
-    {
-        GameManager.Instance.ReduceHeart();
-    }
 }
