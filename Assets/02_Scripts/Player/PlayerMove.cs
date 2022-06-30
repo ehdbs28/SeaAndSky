@@ -201,7 +201,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             }
 
             //아래공격
-            else if (Input.GetKey(KeyCode.DownArrow))
+            else if (Input.GetKey(KeyCode.DownArrow) && !isGround)
             {
                 GameObject swordAttack;
 
