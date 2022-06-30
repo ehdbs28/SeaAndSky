@@ -46,7 +46,7 @@ public class GameManager : MonoSingleton<GameManager>
             heartList.Add(heart);
         }
 
-        LoadStage();
+        //LoadStage();
     }
 
     void Update()
@@ -85,11 +85,11 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    private void LoadStage()
-    {
-        int stage = DataManager.Instance.User.stage;
-        currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
+    //private void LoadStage()
+    //{
+    //    int stage = DataManager.Instance.User.stage;
+    //    currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
 
-        EventManager.TriggerEvent("LoadStage");
-    }
+    //    EventManager.TriggerEvent("LoadStage");
+    //}
 }

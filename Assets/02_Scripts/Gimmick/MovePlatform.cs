@@ -11,19 +11,27 @@ public class MovePlatform : MonoBehaviour
     private Vector2 originVector;
     private Sequence seq;
 
-    private void Awake()
+    private void Start()
     {
         originVector = transform.position;
     }
-    public void MoveToOffsetPosistion()
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            MoveToOffsetPosistion();
+        }
+    }
+    public virtual void MoveToOffsetPosistion()
     {
         seq = DOTween.Sequence();
-        Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.x + offsetY);
+        Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
         seq.Append(transform.DOMove(endVec, moveTime));
     }
-    public void MoveToOriginPosition()
+    public virtual void MoveToOriginPosition()
     {
-
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOMove(originVector, moveTime));
     }
 
 }
