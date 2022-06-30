@@ -4212,7 +4212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1af4fb85e1c92241b1b235d683edece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isToggle: 0
+  _trapType: 1
+  offsetX: -1
+  isToggle: 1
   timeDelay: 3
 --- !u!95 &350945508
 Animator:
@@ -4540,6 +4542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1af4fb85e1c92241b1b235d683edece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trapType: 0
+  offsetX: 3
   isToggle: 0
   timeDelay: 3
 --- !u!58 &527418908
@@ -4636,7 +4640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527418906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -88.552, y: 14.328, z: 0}
+  m_LocalPosition: {x: -88.37, y: 14.326, z: 0}
   m_LocalScale: {x: 0.92397887, y: 0.92397887, z: 0.92397887}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23007,7 +23011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heartCnt: 0
-  _heartPrefab: {fileID: 0}
+  _heartPrefab: {fileID: 4540634308594910357, guid: 3e2c389e98cb5ca45a2d5fd06dc3c60a, type: 3}
   _parentTrm: {fileID: 0}
 --- !u!1 &872417298
 GameObject:
@@ -48845,6 +48849,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1af4fb85e1c92241b1b235d683edece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trapType: 1
+  offsetX: -1
   isToggle: 1
   timeDelay: 3
 --- !u!61 &943341031
@@ -63871,11 +63877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.5
+      value: -97.87
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.84
+      value: 20.76
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.z
