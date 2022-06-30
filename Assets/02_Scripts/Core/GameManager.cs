@@ -4,29 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
-    #region 싱글톤
-    private static GameManager instance;
-    public static GameManager Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                instance = FindObjectOfType<GameManager>();
-                if(instance == null)
-                {
-                    GameObject gameManager = new GameObject("GameManager");
-                    gameManager.AddComponent<GameManager>();
-                    instance = gameManager.GetComponent<GameManager>();
-                }
-            }
-            return instance;
-        }
-    }
-    #endregion
-
     #region 플레이어 HP 관련 코드
     [SerializeField] private int _heartCnt;
     [SerializeField] private GameObject _heartPrefab;
@@ -42,6 +21,12 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region Stage
+    [SerializeField] private List<GameObject> stages;
+    private GameObject currentStage;
+    public Vector2 PlayerPosition { get => currentStage.transform.GetChild(0).position; }
+    #endregion
+
     private AreaState _playerState = AreaState.Sky;
     public AreaState PlayerState
     {
@@ -50,15 +35,6 @@ public class GameManager : MonoBehaviour
         {
             _playerState = value;
         }
-    }
-    private void Awake()
-    {
-        if(Instance != this)
-        {
-            Destroy(Instance.gameObject);
-            instance = this;
-        }
-        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -69,6 +45,8 @@ public class GameManager : MonoBehaviour
             heart.transform.SetParent(_parentTrm);
             heartList.Add(heart);
         }
+
+        LoadStage();
     }
 
     void Update()
@@ -101,9 +79,17 @@ public class GameManager : MonoBehaviour
 
     void GameReset()
     {
-        if(Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    private void LoadStage()
+    {
+        int stage = DataManager.Instance.User.stage;
+        currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
+
+        EventManager.TriggerEvent("LoadStage");
     }
 }

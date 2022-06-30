@@ -60,6 +60,11 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
 
+    private void Awake()
+    {
+        EventManager.StartListening("LoadStage", SetFirstPosition);
+    }
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -67,7 +72,6 @@ public class PlayerMove : MonoBehaviour
         anim = GetComponent<Animator>();
         _speed = 5f;
     }
-
 
     void Update()
     {
@@ -245,5 +249,15 @@ public class PlayerMove : MonoBehaviour
     public void ChangePlayerState()
     {
         transform.localScale = new Vector3(-1, 1, 0);
+    }
+
+    private void SetFirstPosition()
+    {
+        transform.position = GameManager.Instance.PlayerPosition;
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening("LoadStage", SetFirstPosition);
     }
 }
