@@ -25,13 +25,11 @@ public class PushButton : MonoBehaviour
 
     public void Pull()
     {
-        Debug.Log("¶¼Áü");
         curSprite.sprite = pullSprite;
     }
 
     public void Press()
     {
-        Debug.Log("´­¸²");
         curSprite.sprite = pushSprite;
     }
 
