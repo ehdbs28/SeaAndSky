@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ChaseAction : AIAction
 {
-    public override void TakeAction()
-    { 
-        Chase();
-    }
-    private void Chase()
+    private AIAnimationData _aIAnimationData;
+    protected override void ChildAwake()
     {
-        if (_monster.target == null || !_monster.CheckFrontGround()) return;
-        Vector2 dirX = _monster.target.transform.position - _monster.transform.position;
-
-        _monster.transform.Translate(dirX * Time.deltaTime);
+        _aIAnimationData = transform.parent.GetComponent<AIAnimationData>();
+    }
+    public override void TakeAction()
+    {
+        if (!_aIAnimationData._Animator.GetBool("Walk"))
+        {
+            _aIAnimationData._Animator.SetBool("Walk", true);
+        }
+        Vector2 dir = _monster.target.position - _monster.transform.position;
+        _monster.transform.Translate(dir * Time.deltaTime);
     }
 }

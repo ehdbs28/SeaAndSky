@@ -1,26 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 public class IdleAction : AIAction
 {
-
+    private AIAnimationData _aIAnimationData;
+    protected override void ChildAwake()
+    {
+        _aIAnimationData = transform.parent.GetComponent<AIAnimationData>();
+    }
     public override void TakeAction()
     {
-        Move();
-    }
-
-    private void Move()
-    {
-        if(_monster.CheckFrontGround() && _monster.CheckFrontWall() == false)
+        if(_aIAnimationData._Animator.GetBool("Walk"))
         {
-            _monster.transform.Translate(_monster.MonsterDir * Time.deltaTime);
-        }
-        else
-        {
-            _monster.MonsterDir *= -1;
+            _aIAnimationData._Animator.SetBool("Walk", false);
         }
     }
-   
 }

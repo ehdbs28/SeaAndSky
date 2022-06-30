@@ -8,7 +8,7 @@ public abstract class AIAction : MonoBehaviour
 
     private void Awake()
     {
-        _monster = transform.GetComponentInParent<Monster>();
+        _monster = GetComponentInParent<Monster>();
         ChildAwake();
     }
     protected virtual void ChildAwake()

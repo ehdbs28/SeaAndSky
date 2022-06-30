@@ -61428,12 +61428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08dc7d9e4569f2b4389a0b321a4642d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectSounds:
-  - {fileID: 8300000, guid: fb0630eea6265e540afe2d8cfbd70b03, type: 3}
-  - {fileID: 8300000, guid: 1459e313613a1714f9274ff497f1801a, type: 3}
-  - {fileID: 8300000, guid: 78a5ca4fed79a84499a5f6ac0d38a0db, type: 3}
-  bgms: []
-  easterEggEffectSounds: []
 --- !u!1 &1542421139
 GameObject:
   m_ObjectHideFlags: 0
@@ -61955,6 +61949,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384792b06ded814458cdc9e9fd9bc1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heartCnt: 0
+  _heartPrefab: {fileID: 0}
+  _parentTrm: {fileID: 0}
 --- !u!1 &1677430725
 GameObject:
   m_ObjectHideFlags: 0
@@ -62890,90 +62887,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2209709935133068448, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: _transitions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2666393519709768986, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
       propertyPath: m_Name
       value: MushRoomEnemySpawner
       objectReference: {fileID: 0}
     - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: _hp
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5766194288689994504}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      propertyPath: _Maxhp
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Dead
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EnemySpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8058176904654489820, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
---- !u!1 &5766194288689994503 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2666393519709768986, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-  m_PrefabInstance: {fileID: 5766194288689994502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5766194288689994504
-MonoBehaviour:
+--- !u!1001 &8579732108588482416
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5766194288689994503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 579b75f84aebcfd4585ff107f699cdd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _monster: {fileID: 0}
-  OnEnemyRespawn:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5766194288689994505}
-        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
-        m_MethodName: ReSpawn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5766194288689994505 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5720409643081690924, guid: db6e4ac7ccf6de84aab73a0673fb0c16, type: 3}
-  m_PrefabInstance: {fileID: 5766194288689994502}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e45248aef8bd254a9fb6c02bb97ac06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -90.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2039406888403786239, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4353533010683317263, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
+      propertyPath: m_Name
+      value: 'OctopuseEnemySpawner '
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bcdd5012f5a18a54fba0c3b3bbc0aab9, type: 3}
