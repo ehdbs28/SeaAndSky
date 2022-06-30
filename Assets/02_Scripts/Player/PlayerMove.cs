@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IDamage
 {
     public static int doubleJumpCount = 0;
 
@@ -250,5 +250,10 @@ public class PlayerMove : MonoBehaviour
     public void ChangePlayerState()
     {
         transform.localScale = new Vector3(-1, 1, 0);
+    }
+
+    public void Damege()
+    {
+        GameManager.Instance.ReduceHeart();
     }
 }
