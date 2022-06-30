@@ -19,8 +19,9 @@ public class GenerateGrass : MonoBehaviour
     private Vector2 rayDirection;
     private Vector3 rotation = Vector3.zero;
 
-    [SerializeField] private GameObject temporaryInactiveObject;
     [SerializeField] private Color spriteColor = Color.white;
+
+    [SerializeField] private string inactiveTag;
 
     public enum Direction
     {
@@ -31,6 +32,11 @@ public class GenerateGrass : MonoBehaviour
     }
 
     [SerializeField] private Direction direction;
+
+    private void Awake()
+    {
+        EventManager.StartListening("LoadStage", Generate);
+    }
 
     void Start()
     {
@@ -49,18 +55,19 @@ public class GenerateGrass : MonoBehaviour
                 break;
             case Direction.Left:
                 rayDirection = Vector2.left;
-                rotation =Vector2.left * 90f;
+                rotation = Vector2.left * 90f;
                 break;
         }
-
-        Generate();
     }
 
     private void Generate()
     {
-        if (temporaryInactiveObject)
+        GameObject temp = null;
+
+        if (inactiveTag != "")
         {
-            temporaryInactiveObject?.SetActive(false);
+            temp = GameObject.FindGameObjectWithTag(inactiveTag);
+            temp?.SetActive(false);
         }
 
         for (int i = 0; i < count; i++)
@@ -75,15 +82,17 @@ public class GenerateGrass : MonoBehaviour
             renderer.transform.SetParent(transform);
         }
 
-        if (temporaryInactiveObject)
-        {
-            temporaryInactiveObject?.SetActive(true);
-        }
+        temp?.SetActive(true);
     }
 
     Vector2 GetGrassPosition(float x)
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(new Vector3(x, yPosition), rayDirection, 30f, layer);
         return new Vector2(x, hitInfo.point.y);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.StopListening("LoadStage", Generate);
     }
 }

@@ -2726,8 +2726,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   material: {fileID: 2100000, guid: 8bf7ca71e2851cb46b9db9fd21af5f75, type: 2}
-  temporaryInactiveObject: {fileID: 0}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  inactiveTag: 
   direction: 1
 --- !u!114 &1642387136
 MonoBehaviour:
@@ -2752,8 +2752,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   material: {fileID: 2100000, guid: fbdef1d0a953e2a4ebdd16399af0d02c, type: 2}
-  temporaryInactiveObject: {fileID: 0}
   spriteColor: {r: 0.70800996, g: 0.7320451, b: 0.8301887, a: 1}
+  inactiveTag: Sea
   direction: 0
 --- !u!1 &1644166830
 GameObject:

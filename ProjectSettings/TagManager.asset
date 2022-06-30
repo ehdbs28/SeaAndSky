@@ -12,6 +12,8 @@ TagManager:
   - Goal
   - AttackImpact
   - Button
+  - Sky
+  - Sea
   layers:
   - Default
   - TransparentFX

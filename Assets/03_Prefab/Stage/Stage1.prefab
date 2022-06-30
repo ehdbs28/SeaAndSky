@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 5059729740756846483}
   m_Layer: 6
   m_Name: Sky Tilemap
-  m_TagString: Untagged
+  m_TagString: Sky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12421,7 +12421,7 @@ GameObject:
   - component: {fileID: 5059729741491851406}
   m_Layer: 6
   m_Name: Sea Tilemap
-  m_TagString: Untagged
+  m_TagString: Sea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
