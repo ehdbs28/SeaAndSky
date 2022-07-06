@@ -14,7 +14,7 @@ public class PushButton : MonoBehaviour
     private List<GameObject> collisions = new List<GameObject>();
 
     public LayerMask targetLayer;
-
+    private bool _isEnter = false;
 
     private void Start()
     {
@@ -33,31 +33,29 @@ public class PushButton : MonoBehaviour
         curSprite.sprite = pushSprite;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
-        {
-            if (!collisions.Contains(collision.gameObject) || collisions.Count == 0)
-                collisions.Add(collision.gameObject);
-        }
-    }
-
-
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!_isEnter) return;
         if (((1 << collision.gameObject.layer) & targetLayer) != 0)
         {
-            onButtonPress.Invoke();
+            _isEnter = true;
+            if (!collisions.Contains(collision.gameObject) || collisions.Count == 0)
+                collisions.Add(collision.gameObject);
+            onButtonPress?.Invoke();
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (((1 << collision.gameObject.layer) & targetLayer) != 0)
         {
-            if (collisions.Contains(collision.gameObject))
-            {
-                collisions.Remove(collision.gameObject);
-                onButtonPull.Invoke();
+            { 
+                if (collisions.Contains(collision.gameObject))
+                {
+                    collisions.Remove(collision.gameObject);
+                    _isEnter = false;
+                    onButtonPull?.Invoke();
+                }
             }
         }
     }
