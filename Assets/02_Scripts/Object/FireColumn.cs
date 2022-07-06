@@ -29,10 +29,10 @@ public class FireColumn : MonoBehaviour
     {
         while (true)
         {
+            renderer.enabled = true;
             animator.SetTrigger(fireHash);
 
             yield return animationDelay;
-            renderer.enabled = true;
             collider.enabled = true;
 
             yield return fireDelay;
