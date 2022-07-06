@@ -38,11 +38,8 @@ public class GenerateShadow : MonoBehaviour
     void Update()
     {
         shadow.transform.position = new Vector2(transform.position.x, -transform.position.y);
-        SettingRenderer();
-    }
 
-    private void SettingRenderer()
-    {
+        if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
         shadowRenderer.sprite = spriteRenderer.sprite;
     }
 
