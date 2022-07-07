@@ -5,7 +5,9 @@ using DG.Tweening;
 
 public class FireColumn : MonoBehaviour
 {
-    private WaitForSeconds delay = new WaitForSeconds(3f);
+    private WaitForSeconds fireDelay = new WaitForSeconds(1f);
+    private WaitForSeconds animationDelay = new WaitForSeconds(0.6f);
+    private WaitForSeconds playDelay = new WaitForSeconds(2f);
     private readonly int fireHash = Animator.StringToHash("Fire");
 
     private Animator animator;
@@ -28,13 +30,18 @@ public class FireColumn : MonoBehaviour
         while (true)
         {
             renderer.enabled = true;
-            collider.enabled = true;
             animator.SetTrigger(fireHash);
-            yield return delay;
 
-            renderer.enabled = false;
+            yield return animationDelay;
+            collider.enabled = true;
+
+            yield return fireDelay;
             collider.enabled = false;
-            yield return delay;
+
+            yield return animationDelay;
+            renderer.enabled = false;
+
+            yield return playDelay;
         }
     }
 

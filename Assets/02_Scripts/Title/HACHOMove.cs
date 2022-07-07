@@ -14,10 +14,7 @@ public class HACHOMove : MonoBehaviour
     {
         ShakeHacho();
     }
-    public void KillSeq()
-    {
-        sq.Kill();
-    }
+
     public void ShakeHacho()
     {
         sq = DOTween.Sequence();
@@ -30,5 +27,10 @@ public class HACHOMove : MonoBehaviour
         {
             ShakeHacho();
         });
+    }
+
+    private void OnDestroy()
+    {
+        sq.Kill();
     }
 }

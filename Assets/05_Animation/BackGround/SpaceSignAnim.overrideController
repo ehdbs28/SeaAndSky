@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpaceSignAnim
+  m_Controller: {fileID: 9100000, guid: 73badee69d4ecc5498df482e8bc10448, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9e508782b0767124d89e191540f39d00, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0362738283ec70e428064ad775f3502b, type: 2}

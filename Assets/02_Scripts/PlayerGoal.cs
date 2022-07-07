@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerGoal : MonoBehaviour
 {
-
-
     public static bool isGoal = false;
 
     private void OnCollisionEnter2D(Collision2D collision)
