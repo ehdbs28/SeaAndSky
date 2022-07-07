@@ -5,15 +5,26 @@ using UnityEngine;
 public class GenerateShadow : MonoBehaviour
 {
     private GameObject shadow;
+    private SpriteRenderer shadowRenderer;
+    private SpriteRenderer spriteRenderer;
+
     [SerializeField] private bool isCollide = true;
     [SerializeField] private bool isMoved = false;
 
     void Start()
     {
         shadow = new GameObject($"{name}Shadow");
-        shadow.transform.localScale = transform.localScale;
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        shadowRenderer = shadow.AddComponent<SpriteRenderer>();
 
-        SettingRenderer();
+        Vector3 scale = transform.localScale;
+        scale.y *= -1;
+        shadow.transform.localScale = scale;
+
+        shadow.transform.eulerAngles = -spriteRenderer.transform.eulerAngles;
+
+        shadowRenderer.color = new Color(0, 0, 0, 0.4f);
+
         if (isCollide)
         {
             SettingCollider();
@@ -27,23 +38,13 @@ public class GenerateShadow : MonoBehaviour
     void Update()
     {
         shadow.transform.position = new Vector2(transform.position.x, -transform.position.y);
-    }
 
-    private void SettingRenderer()
-    {
-        SpriteRenderer myRenderer = GetComponentInChildren<SpriteRenderer>();
-        SpriteRenderer renderer = shadow.AddComponent<SpriteRenderer>();
-
-        renderer.sprite = myRenderer.sprite;
-        Color color = Color.black;
-        color.a = 0.4f;
-
-        renderer.color = color;
+        if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
+        shadowRenderer.sprite = spriteRenderer.sprite;
     }
 
     private void SettingCollider()
     {
-        // LATER: 다른 콜라이더도 가능하도록 하게 해보자
         shadow.AddComponent<BoxCollider2D>();
     }
 

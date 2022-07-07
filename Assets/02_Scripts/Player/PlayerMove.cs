@@ -60,6 +60,11 @@ public class PlayerMove : MonoBehaviour, IDamage
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
 
+    private void Awake()
+    {
+        EventManager.StartListening("LoadStage", SetFirstPosition);
+    }
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -67,7 +72,6 @@ public class PlayerMove : MonoBehaviour, IDamage
         anim = GetComponent<Animator>();
         _speed = 5f;
     }
-
 
     void Update()
     {
@@ -241,7 +245,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     //enemy ³ª trap ´êÀ¸¸é Á×±â
     /*private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!isHead && (collision.collider.CompareTag("Trap") || collision.collider.CompareTag("Enemy")))
+        if (!isHead && (collision.collider.CompareTag("Enemy")))
         {
             //isDeath = true;
         }
@@ -255,5 +259,14 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         transform.localScale = new Vector3(-1, 1, 0);
     }
+    private void SetFirstPosition()
+    {
+        transform.position = GameManager.Instance.PlayerPosition;
+    }
 
+    private void OnDestroy()
+    {
+        EventManager.StopListening("LoadStage", SetFirstPosition);
+    }
 }
+
