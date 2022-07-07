@@ -96,6 +96,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     public void Damege()
     {
+        
         GameManager.Instance.ReduceHeart();
     }
 

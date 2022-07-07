@@ -19,6 +19,11 @@ public class GameManager : MonoSingleton<GameManager>
         set => _isplayerDeath = value;
         get => _isplayerDeath;
     }
+    private bool _isGameOver = false;
+    public bool IsGameOver
+    {
+        get => _isGameOver;
+    }
     #endregion
 
     #region Stage
@@ -63,8 +68,10 @@ public class GameManager : MonoSingleton<GameManager>
     //플레이어 하트 감소
     public void ReduceHeart()
     {
+        if (_isplayerDeath) return;
         if (heartList.Count > 0)
         {
+            _isplayerDeath = true;
             GameObject lastIndex = heartList[heartList.Count - 1];
             Sequence sq = DOTween.Sequence();
 
@@ -79,7 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else if(heartList.Count == 0)
         {
-            _isplayerDeath = true;
+            _isGameOver = true;
         }
     }
 
