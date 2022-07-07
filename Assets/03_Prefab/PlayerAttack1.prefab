@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78512246829e34741b4c567ee98280e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  jumpPower: 5
+  jumpPower: 15
 --- !u!95 &1072544416012606179
 Animator:
   serializedVersion: 3

@@ -52,6 +52,12 @@ public class GameManager : MonoSingleton<GameManager>
     void Update()
     {
         GameReset();
+
+        //test
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ReduceHeart();
+        }
     }
 
     //플레이어 하트 감소
@@ -71,7 +77,7 @@ public class GameManager : MonoSingleton<GameManager>
 
             heartList.RemoveAt(heartList.Count - 1);
         }
-        else
+        else if(heartList.Count == 0)
         {
             _isplayerDeath = true;
         }
