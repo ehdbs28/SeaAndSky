@@ -10,16 +10,16 @@ public class AttackJudgement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //피격시 튕기게
-        PlayerMove playerObject = GameObject.Find("Player").GetComponent<PlayerMove>();
-        Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
-        IHittable hittable = collision.GetComponent<IHittable>();
-        
-        if (Input.GetKey(KeyCode.DownArrow) && hittable != null && GameManager.Instance.PlayerState == AreaState.Sky && !playerObject.IsGround)
-        {
-            py.velocity = Vector2.zero;
-            py.velocity = Vector3.up * jumpPower;
-            hittable?.GetHit();
+            //피격시 튕기게
+            PlayerMove playerObject = GameObject.Find("Player").GetComponent<PlayerMove>();
+            Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
+            IHittable hittable = collision.GetComponent<IHittable>();
+
+            if (Input.GetKey(KeyCode.DownArrow) && hittable != null && GameManager.Instance.PlayerState == AreaState.Sky && !playerObject.IsGround)
+            {
+                py.velocity = Vector2.zero;
+                py.velocity = Vector3.up * jumpPower;
+                hittable?.GetHit();
         }
     }
 }
