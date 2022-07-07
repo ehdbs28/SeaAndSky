@@ -87,17 +87,15 @@ public class PlayerMove : MonoBehaviour, IDamage
             }
             Jump();
         }
-        else
-        {
-            Debug.Log("Death");
-            anim.SetTrigger("Dead");
-        }
     }
 
     public void Damege()
     {
-        
+        if (GameManager.Instance.IsPlayerDeath) return;
+        Debug.Log("Death");
+        anim.SetTrigger("Dead");
         GameManager.Instance.ReduceHeart();
+
     }
 
     private void DoubleJumpItem()
@@ -243,14 +241,6 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
-    //enemy 나 trap 닿으면 죽기
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!isHead && (collision.collider.CompareTag("Enemy")))
-        {
-            //isDeath = true;
-        }
-    }*/
     public void EndDeadAnim() //애니메이션에 이벤트로 넣었음
     {
         gameObject.SetActive(false);

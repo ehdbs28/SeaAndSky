@@ -37,6 +37,7 @@ public class Monster : MonoBehaviour, IHittable
         target = GameObject.Find("Player").transform;
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         OnMonsterChangedDir += ChangedVelocity;
+                _hp = _Maxhp;
     }
     public void ChangedVelocity()
     {
@@ -100,6 +101,15 @@ public class Monster : MonoBehaviour, IHittable
         {
             isDead = true;
             OnDie?.Invoke();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.CompareTag("Player"))
+        {
+            IDamage iDamage = collision.transform.GetComponent<IDamage>();
+            iDamage?.Damege();
         }
     }
 }
