@@ -41,6 +41,10 @@ public class GenerateShadow : MonoBehaviour
 
         if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
         shadowRenderer.sprite = spriteRenderer.sprite;
+
+        Vector3 curScale = transform.localScale;
+        curScale.y *= -1f;
+        shadow.transform.localScale = curScale;
     }
 
     private void SettingCollider()
