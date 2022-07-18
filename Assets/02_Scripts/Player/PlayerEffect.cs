@@ -14,7 +14,7 @@ public class PlayerEffect : MonoBehaviour
     private readonly int fadeID = Shader.PropertyToID("_Fade");
     private readonly int colorID = Shader.PropertyToID("_Color");
 
-    private void Start()
+    private void Awake()
     {
         dissolveMaterial = GetComponent<Renderer>().material;
     }

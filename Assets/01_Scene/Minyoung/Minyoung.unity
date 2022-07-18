@@ -3139,6 +3139,7 @@ MonoBehaviour:
   _parentTrm: {fileID: 0}
   stages:
   - {fileID: 5059729740326225950, guid: 0e81ccb06f5b61f4b838e5844690ef6d, type: 3}
+  isLoadState: 1
 --- !u!1 &1677430725
 GameObject:
   m_ObjectHideFlags: 0
@@ -4176,11 +4177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58.8
+      value: -66.0246
       objectReference: {fileID: 0}
     - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.9
+      value: 20.1372
       objectReference: {fileID: 0}
     - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
       propertyPath: m_LocalPosition.z

@@ -32,6 +32,8 @@ public class GameManager : MonoSingleton<GameManager>
     public Vector2 PlayerPosition { get => currentStage.transform.GetChild(0).position; }
     #endregion
 
+    public bool isLoadState = false;
+
     private AreaState _playerState = AreaState.Sky;
     public AreaState PlayerState
     {
@@ -51,7 +53,7 @@ public class GameManager : MonoSingleton<GameManager>
             heartList.Add(heart);
         }
 
-        //LoadStage();
+        LoadStage();
     }
 
     void Update()
@@ -84,7 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
 
             heartList.RemoveAt(heartList.Count - 1);
         }
-        else if(heartList.Count == 0)
+        else if (heartList.Count == 0)
         {
             _isGameOver = true;
         }
@@ -98,11 +100,14 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    //private void LoadStage()
-    //{
-    //    int stage = DataManager.Instance.User.stage;
-    //    currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
+    private void LoadStage()
+    {
+        if (isLoadState)
+        {
+            int stage = DataManager.Instance.User.stage;
+            currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
 
-    //    EventManager.TriggerEvent("LoadStage");
-    //}
+            EventManager.TriggerEvent("LoadStage");
+        }
+    }
 }

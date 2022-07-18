@@ -49,7 +49,11 @@ public class GenerateShadow : MonoBehaviour
 
     private void SettingCollider()
     {
-        shadow.AddComponent<BoxCollider2D>();
+        BoxCollider2D col = shadow.AddComponent<BoxCollider2D>();
+        BoxCollider2D myCol = GetComponentInChildren<BoxCollider2D>();
+
+        col.size = myCol.size;
+        col.offset = myCol.offset;
     }
 
     private void SettingRigidbody()
