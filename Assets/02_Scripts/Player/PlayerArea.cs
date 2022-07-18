@@ -38,7 +38,7 @@ public class PlayerArea : MonoBehaviour
             _playerMove.LocalScaleY = -1;
             _playerMove.Speed = 3f;
             _rigid.gravityScale = -2f;
-            _playerMove.JumpPower = 13f;
+            _playerMove.JumpPower = 17;
             onChangeArea.Invoke(AreaState.Sea);
         }
     }
@@ -48,10 +48,12 @@ public class PlayerArea : MonoBehaviour
         if(GameManager.Instance.PlayerState == AreaState.Sea)
         {
             GameManager.Instance.PlayerState = AreaState.Sky;
+            _rigid.drag = 1f;
         }
         else if(GameManager.Instance.PlayerState == AreaState.Sky)
         {
             GameManager.Instance.PlayerState = AreaState.Sea;
+            _rigid.drag = 2f;
         }
 
         Vector2 chagedPos = new Vector2(transform.position.x, -transform.position.y);
