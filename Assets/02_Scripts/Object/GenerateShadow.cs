@@ -22,7 +22,7 @@ public class GenerateShadow : MonoBehaviour
         shadow.transform.localScale = scale;
 
         shadow.transform.eulerAngles = -spriteRenderer.transform.eulerAngles;
-
+        shadow.gameObject.layer = LayerMask.NameToLayer("Box");
         shadowRenderer.color = new Color(0, 0, 0, 0.4f);
 
         if (isCollide)
