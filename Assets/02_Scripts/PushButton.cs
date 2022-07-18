@@ -13,7 +13,7 @@ public class PushButton : MonoBehaviour
 
     private List<GameObject> collisions = new List<GameObject>();
 
-    public LayerMask targetLayer;
+    [SerializeField] private LayerMask _targetLayer;
     private bool _isEnter = false;
 
     private void Start()
@@ -35,9 +35,10 @@ public class PushButton : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!_isEnter) return;
-        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
-        {
+        if (_isEnter) return;
+        if ((_targetLayer &(1 << collision.gameObject.layer)) > 0)
+        {   
+            Debug.Log("stay");
             _isEnter = true;
             if (!collisions.Contains(collision.gameObject) || collisions.Count == 0)
                 collisions.Add(collision.gameObject);
@@ -47,7 +48,7 @@ public class PushButton : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
+        if ((_targetLayer & (1 << collision.gameObject.layer)) > 0)
         {
             { 
                 if (collisions.Contains(collision.gameObject))

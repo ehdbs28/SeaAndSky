@@ -22,7 +22,7 @@ public class GenerateShadow : MonoBehaviour
         shadow.transform.localScale = scale;
 
         shadow.transform.eulerAngles = -spriteRenderer.transform.eulerAngles;
-
+        shadow.gameObject.layer = LayerMask.NameToLayer("Box");
         shadowRenderer.color = new Color(0, 0, 0, 0.4f);
 
         if (isCollide)
@@ -41,6 +41,10 @@ public class GenerateShadow : MonoBehaviour
 
         if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
         shadowRenderer.sprite = spriteRenderer.sprite;
+
+        Vector3 curScale = transform.localScale;
+        curScale.y *= -1f;
+        shadow.transform.localScale = curScale;
     }
 
     private void SettingCollider()

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 579b75f84aebcfd4585ff107f699cdd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monster: {fileID: 0}
+  _monster: {fileID: 5720409643081690924}
   OnEnemyRespawn:
     m_PersistentCalls:
       m_Calls:

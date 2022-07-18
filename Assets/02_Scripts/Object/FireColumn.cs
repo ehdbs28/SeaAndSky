@@ -37,10 +37,9 @@ public class FireColumn : MonoBehaviour
 
             yield return fireDelay;
             collider.enabled = false;
-
-            yield return animationDelay;
             renderer.enabled = false;
 
+            yield return animationDelay;
             yield return playDelay;
         }
     }

@@ -98,9 +98,7 @@ public class Enemy : MonoBehaviour
         {
             transform.position += dir * speed * Time.deltaTime;
         }
-
     }
-
     private void StateChanged(EnemyState newState)
     {
         _state = newState;
