@@ -34,7 +34,8 @@ public class WindZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player = GetComponent<PlayerMove>();
+            Debug.Log("sdf");
+            player = FindObjectOfType<PlayerMove>();
 
             if (player)
             {
@@ -49,6 +50,7 @@ public class WindZone : MonoBehaviour
         {
             if (rigid)
             {
+                Debug.Log("sdf");
                 rigid.position -= Vector2.right * Time.deltaTime * speed;
             }
         }

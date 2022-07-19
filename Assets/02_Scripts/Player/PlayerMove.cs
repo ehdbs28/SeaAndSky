@@ -166,7 +166,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             transform.localScale = new Vector3(1, _localScaleY, 1);
 
         Vector2 direction = new Vector2(h, 0);
-        transform.Translate(direction * _speed * Time.deltaTime);
+        rigid.position += (direction * _speed * Time.deltaTime);
 
         onPlayerMove.Invoke(rigid.velocity);
     }
