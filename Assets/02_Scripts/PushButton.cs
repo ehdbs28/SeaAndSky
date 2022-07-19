@@ -38,7 +38,6 @@ public class PushButton : MonoBehaviour
         if (_isEnter) return;
         if ((_targetLayer &(1 << collision.gameObject.layer)) > 0)
         {   
-            Debug.Log("stay");
             _isEnter = true;
             if (!collisions.Contains(collision.gameObject) || collisions.Count == 0)
                 collisions.Add(collision.gameObject);
