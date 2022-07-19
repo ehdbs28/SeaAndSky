@@ -113,7 +113,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
-    //Á¡ÇÁ
+    //ï¿½ï¿½ï¿½ï¿½
     private void Jump()
     {
         if ((Input.GetKey(KeyCode.X) && isGround))
@@ -133,7 +133,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
-    //¿òÁ÷ÀÌ±â
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½
     private void Move()
     {
         Bounds bounds = capsuleCollider2D.bounds;
@@ -168,6 +168,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
 
+/*
         direction.x = h;
         if(direction.sqrMagnitude > 0)
         {
@@ -187,7 +188,9 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             rigid.velocity = new Vector2(_maxSpeed * -1, rigid.velocity.y);
         }
-
+        Vector2 direction = new Vector2(h, 0);
+        */
+        rigid.position += (direction * _speed * Time.deltaTime);
         onPlayerMove.Invoke(rigid.velocity);
     }
     private float CalculateSpeed(Vector2 movementInput)
@@ -203,7 +206,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
         return Mathf.Clamp(_currentVelocity, 0, _maxSpeed);
     }
-    //°ø°Ý½ÇÇà
+    //ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½
     private void PlayerAttack()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
@@ -219,13 +222,13 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
-    //ÇÃ·¹ÀÌ¾î °ø°Ý
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator Attack() 
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-            #region ÇÃ·¹ÀÌ¾î°ø°Ý
-            //À§ÂÊ°ø°Ý
+            #region ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½
+            //ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 GameObject swordAttack;
@@ -237,7 +240,7 @@ public class PlayerMove : MonoBehaviour, IDamage
                 isAttack = false;
             }
 
-            //¾Æ·¡°ø°Ý
+            //ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½
             else if (Input.GetKey(KeyCode.DownArrow) && !isGround)
             {
                 GameObject swordAttack;
@@ -248,7 +251,7 @@ public class PlayerMove : MonoBehaviour, IDamage
                 Destroy(swordAttack);
                 isAttack = false;
             }
-            //¿À¸¥ÂÊ°ø°Ý
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
             else if (!isLeft)
             {
                 GameObject swordAttack;
@@ -259,7 +262,7 @@ public class PlayerMove : MonoBehaviour, IDamage
                 Destroy(swordAttack);
                 isAttack = false;
             }
-            //¿ÞÂÊ°ø°Ý
+            //ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
             else if (isLeft)
             {
                 GameObject swordAttack;
@@ -275,7 +278,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
-    public void EndDeadAnim() //¾Ö´Ï¸ÞÀÌ¼Ç¿¡ ÀÌº¥Æ®·Î ³Ö¾úÀ½
+    public void EndDeadAnim() //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç¿ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
     {
         gameObject.SetActive(false);
     }
