@@ -1557,6 +1557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 7334854454573632537, guid: b57401da7892d16409fe3d0da1bbefb2, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7334854454573632538, guid: b57401da7892d16409fe3d0da1bbefb2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8468,6 +8472,7 @@ MonoBehaviour:
   esc: {fileID: 1644166830}
   gameOver: {fileID: 1051370943}
   goal: {fileID: 708662313}
+  interactionButton: {fileID: 0}
 --- !u!4 &1446903424
 Transform:
   m_ObjectHideFlags: 0
@@ -9176,6 +9181,9 @@ MonoBehaviour:
   _heartPrefab: {fileID: 0}
   _parentTrm: {fileID: 0}
   stages: []
+  isLoadState: 0
+  <skyCamera>k__BackingField: {fileID: 0}
+  <seaCamera>k__BackingField: {fileID: 0}
 --- !u!1 &1677430725
 GameObject:
   m_ObjectHideFlags: 0
@@ -20936,11 +20944,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -94.46
+      value: -66.3
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.35
+      value: 15.9
       objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20978,6 +20986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: 08d559c909f0bb746bd9c646b3993762, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
 --- !u!1 &1884765219

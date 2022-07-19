@@ -15,7 +15,7 @@ public class GenerateShadow : MonoBehaviour
 
     private Rigidbody2D rigid;
     private float gravity;
-
+    private LayerMask _shadowLayer;
     private DissolveEffect dissolveEffect;
 
     void Start()
@@ -23,7 +23,8 @@ public class GenerateShadow : MonoBehaviour
         shadow = new GameObject($"{name}Shadow");
         rigid = GetComponentInChildren<Rigidbody2D>();
         dissolveEffect = GetComponent<DissolveEffect>();
-        gravity = rigid.gravityScale;
+        if(rigid != null)
+            gravity = rigid.gravityScale;
 
         transform.GetComponentsInChildren<SpriteRenderer>();
 
@@ -35,7 +36,7 @@ public class GenerateShadow : MonoBehaviour
         shadow.transform.localScale = scale;
 
         shadow.transform.eulerAngles = -spriteRenderer.transform.eulerAngles;
-        shadow.gameObject.layer = LayerMask.NameToLayer("Box");
+        shadow.gameObject.layer = _shadowLayer;
         shadowRenderer.color = new Color(0, 0, 0, 0.4f);
 
         if (isCollide)
