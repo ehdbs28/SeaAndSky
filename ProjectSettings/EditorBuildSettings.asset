@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/01_Scene/Main.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/01_Scene/Minyoung.unity
+    path: Assets/01_Scene/Minyoung/Minyoung.unity
     guid: 072c5c104d97c414e9ae406e2c2f5098
   - enabled: 1
     path: Assets/01_Scene/doyun/Title.unity

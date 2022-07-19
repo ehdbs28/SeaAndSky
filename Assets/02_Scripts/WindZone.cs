@@ -4,36 +4,53 @@ using UnityEngine;
 
 public class WindZone : MonoBehaviour
 {
-    private ParticleSystem windParticle;
+    private ParticleSystem[] windParticles;
     private PlayerMove player;
     private Rigidbody2D rigid;
+
+    private BoxCollider2D collider;
 
     [SerializeField]
     private float speed = 1f;
     private const string PLAYER_TAG = "Player";
 
+    // 24 1.3
     void Start()
     {
-        windParticle = GetComponentInChildren<ParticleSystem>();
-        windParticle.transform.position += Vector3.right * transform.localScale.x * 0.5f;
-    }
+        windParticles = GetComponentsInChildren<ParticleSystem>();
+        collider = GetComponent<BoxCollider2D>();
 
-    void Update()
-    {
+        foreach (ParticleSystem particle in windParticles)
+        {
+            //Vector3 pos = particle.transform.position;
+            //pos.x += collider.bounds.max.x;
 
+            //collider.
+            //particle.transform.position = pos;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player = FindObjectOfType<PlayerMove>();
-        rigid = player.GetComponentInChildren<Rigidbody2D>();
+        if (collision.CompareTag("Player"))
+        {
+            player = GetComponent<PlayerMove>();
+
+            if (player)
+            {
+                rigid = player.GetComponentInChildren<Rigidbody2D>();
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag(PLAYER_TAG))
         {
-            rigid.position -= Vector2.right * Time.deltaTime * speed;
+            if (rigid)
+            {
+                rigid.position -= Vector2.right * Time.deltaTime * speed;
+            }
         }
     }
 }
