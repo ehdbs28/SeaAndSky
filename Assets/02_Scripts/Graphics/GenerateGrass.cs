@@ -6,7 +6,6 @@ public class GenerateGrass : MonoBehaviour
 {
     [SerializeField] private float minX;
     [SerializeField] private float maxX;
-
     [SerializeField] private float yPosition;
 
     [SerializeField] private Sprite[] sprites;
@@ -20,7 +19,6 @@ public class GenerateGrass : MonoBehaviour
     private Vector3 rotation = Vector3.zero;
 
     [SerializeField] private Color spriteColor = Color.white;
-
     [SerializeField] private string inactiveTag;
 
     public enum Direction

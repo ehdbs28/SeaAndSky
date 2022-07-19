@@ -6,13 +6,14 @@ using UnityEngine.Events;
 public class PlayerMove : MonoBehaviour, IDamage
 {
     public static int doubleJumpCount = 0;
-
+    private float _currentVelocity = 3f;
     private float _localScaleY = 1;
     public float LocalScaleY
     {
         set => _localScaleY = value;
         get => _localScaleY;
     }
+    private Vector2 direction = Vector2.zero;
     private float _speed;
     public float Speed
     {
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             _speed = value;
         }
     }
+    private float _maxSpeed = 5;
     [SerializeField] private float _jumpPower;
     public float JumpPower
     {
@@ -38,6 +40,8 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject swordAttackPrefab;
+
+    [SerializeField] private MovementDataSO movementData;
     [SerializeField] private static float h;
     [SerializeField] private LayerMask enemyLayer;
 
@@ -47,7 +51,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         get => isGround;
     }
     private bool isAttack = false;
-    private bool isHead = false;
+    //private bool isHead = false;
 
     public  bool isLeft = false;
 
@@ -55,7 +59,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
-
+    private Vector2 movementDirection;
     [SerializeField] private UnityEvent<Vector2> onPlayerMove;
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
@@ -119,6 +123,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
             rigid.velocity = Vector2.zero;
             rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+            //rigid.velocity = transform.up * _jumpPower;
             
             if(_localScaleY == -1)
             {
@@ -163,12 +168,41 @@ public class PlayerMove : MonoBehaviour, IDamage
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
 
-        Vector2 direction = new Vector2(h, 0);
-        transform.Translate(direction * _speed * Time.deltaTime);
+        direction.x = h;
+        if(direction.sqrMagnitude > 0)
+        {
+            if(Vector2.Dot(direction, movementDirection) < 0)
+            {
+                _currentVelocity = 0;
+            }
+            movementDirection = direction.normalized;
+        }
+        _currentVelocity = CalculateSpeed(direction);
+        rigid.velocity = new Vector2(movementDirection.x * _currentVelocity, rigid.velocity.y);
+        if (rigid.velocity.x > _maxSpeed)
+        {
+            rigid.velocity = new Vector2(_maxSpeed, rigid.velocity.y);
+        }
+        else if (rigid.velocity.x < _maxSpeed * -1)
+        {
+            rigid.velocity = new Vector2(_maxSpeed * -1, rigid.velocity.y);
+        }
 
         onPlayerMove.Invoke(rigid.velocity);
     }
+    private float CalculateSpeed(Vector2 movementInput)
+    {
+        if(movementInput.sqrMagnitude > 0)
+        {
+            _currentVelocity += movementData.acceleration * Time.deltaTime;
+        }
+        else
+        {
+            _currentVelocity -= movementData.deAcceleration * Time.deltaTime;
+        }
 
+        return Mathf.Clamp(_currentVelocity, 0, _maxSpeed);
+    }
     //공격실행
     private void PlayerAttack()
     {

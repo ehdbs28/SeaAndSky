@@ -10,10 +10,11 @@ public class AttackJudgement : MonoBehaviour
     //public UnityEvent AttackFeedback;
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    { 
+    
         if (isAttack) return;
         isAttack = true;
-        //ÇÇ°Ý½Ã Æ¨±â°Ô
+        //ï¿½Ç°Ý½ï¿½ Æ¨ï¿½ï¿½ï¿?
         PlayerMove playerObject = GameObject.Find("Player").GetComponent<PlayerMove>();
         Rigidbody2D py = playerObject.GetComponent<Rigidbody2D>();
         IHittable hittable = collision.GetComponent<IHittable>();
