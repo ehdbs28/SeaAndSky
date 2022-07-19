@@ -24,7 +24,7 @@ public class AttackJudgement : MonoBehaviour
             py.velocity = Vector2.zero;
             py.velocity = Vector3.up * jumpPower;
         }
-        else if (collision.CompareTag("Trap")) 
+        else if (collision.CompareTag("Trap") || collision.CompareTag("Enemy")) 
         {
             py.velocity = Vector2.zero;
             py.velocity = Vector3.up * jumpPower;

@@ -74,7 +74,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         rigid = GetComponent<Rigidbody2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
-        _speed = 5f;
+        _speed = movementData.maxSpeed;
     }
 
     void Update()
@@ -167,12 +167,11 @@ public class PlayerMove : MonoBehaviour, IDamage
             transform.localScale = new Vector3(-1, _localScaleY, 1);
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
+        Vector2 direction = new Vector2(h, 0);
 
-/*
-        direction.x = h;
-        if(direction.sqrMagnitude > 0)
+        if (direction.sqrMagnitude > 0)
         {
-            if(Vector2.Dot(direction, movementDirection) < 0)
+            if (Vector2.Dot(direction, movementDirection) < 0)
             {
                 _currentVelocity = 0;
             }
@@ -188,8 +187,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             rigid.velocity = new Vector2(_maxSpeed * -1, rigid.velocity.y);
         }
-        Vector2 direction = new Vector2(h, 0);
-        */
+
         rigid.position += (direction * _speed * Time.deltaTime);
         onPlayerMove.Invoke(rigid.velocity);
     }
@@ -227,7 +225,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-            #region �÷��̾����
+            #region �÷��̾����?
             //���ʰ���
             if (Input.GetKey(KeyCode.UpArrow))
             {
