@@ -5,15 +5,28 @@ using UnityEngine;
 public class GenerateShadow : MonoBehaviour
 {
     private GameObject shadow;
+    public GameObject Shadow { get => shadow; }
+
     private SpriteRenderer shadowRenderer;
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] private bool isCollide = true;
     [SerializeField] private bool isMoved = false;
 
+    private Rigidbody2D rigid;
+    private float gravity;
+
+    private DissolveEffect dissolveEffect;
+
     void Start()
     {
         shadow = new GameObject($"{name}Shadow");
+        rigid = GetComponentInChildren<Rigidbody2D>();
+        dissolveEffect = GetComponent<DissolveEffect>();
+        gravity = rigid.gravityScale;
+
+        transform.GetComponentsInChildren<SpriteRenderer>();
+
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         shadowRenderer = shadow.AddComponent<SpriteRenderer>();
 
@@ -60,5 +73,16 @@ public class GenerateShadow : MonoBehaviour
     {
         Rigidbody2D rigid = shadow.AddComponent<Rigidbody2D>();
         rigid.gravityScale = 0f;
+    }
+
+    public void ChangeToShadow()
+    {
+        gravity *= -1f;
+        rigid.gravityScale = gravity;
+        
+        AreaState state = (gravity > 0) ? AreaState.Sky : AreaState.Sea;
+        
+        dissolveEffect.PlayEffect(state);
+        transform.position = shadow.transform.position;
     }
 }

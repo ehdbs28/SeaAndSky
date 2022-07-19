@@ -44,6 +44,21 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    #region Controller
+    public UIManager UIManager { get; private set; }
+    #endregion
+
+    [field: SerializeField]
+    public Camera skyCamera { get; private set; }
+
+    [field: SerializeField]
+    public Camera seaCamera { get; private set; }
+
+    private void Awake()
+    {
+        UIManager = FindObjectOfType<UIManager>();
+    }
+
     private void Start()
     {
         for (int i = 0; i < _heartCnt; i++)
