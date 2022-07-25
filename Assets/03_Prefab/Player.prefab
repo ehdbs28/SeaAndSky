@@ -4977,6 +4977,7 @@ GameObject:
   - component: {fileID: 9080806354538350403}
   - component: {fileID: 1879805588}
   - component: {fileID: 1879805587}
+  - component: {fileID: 415869105}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5040,7 +5041,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1776076511524276625, guid: 858e415b5a06e2547835ea79ba71fb6e, type: 3}
+  m_Sprite: {fileID: -5344091540504377624, guid: 858e415b5a06e2547835ea79ba71fb6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5089,6 +5090,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 576
   swordAttackPrefab: {fileID: 5735518634051750947, guid: eb4a6ad4ea1f3644ea523ab424609f81, type: 3}
+  movementData: {fileID: 11400000, guid: 08d559c909f0bb746bd9c646b3993762, type: 2}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5238,6 +5240,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seaEffect: {fileID: 1805624963}
   seaMoveEffect: {fileID: 248916723}
+  dissolveWidth: 8
+  dissolveHeight: 15
 --- !u!114 &1879805587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5262,3 +5266,17 @@ MonoBehaviour:
   skySound: {fileID: 8300000, guid: 92a432da5644b6643b761c7db9a95c36, type: 3}
   seaNatureSound: {fileID: 8300000, guid: 2e5465ab54b483643b51136fb8f9e661, type: 3}
   skyNatureSound: {fileID: 8300000, guid: 30ab60ba9666a394ebef420897c953c4, type: 3}
+--- !u!114 &415869105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527135322220754506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3910fa8e0b3164746a81f704e014e79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCollide: 0
+  isMoved: 0

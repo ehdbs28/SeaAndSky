@@ -1,14 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ReverseItem : MonoBehaviour
+public class ReverseAbility : MonoBehaviour
 {
     private const float BOX_SIZE = 2.3f;
     private LayerMask TARGET_LAYER;
 
     private const float UI_X_OFFSET = 1.5f;
     private const float UI_Y_OFFSET = 0.3f;
+
+    [SerializeField] private UnityEvent<bool> onReverseBegin;
+
+    private bool isReverse;
+    public bool IsReverse
+    {
+        get => isReverse;
+
+        set
+        {
+            onReverseBegin.Invoke(value);
+            isReverse = value;
+        }
+    }
 
     private void Start()
     {
@@ -18,6 +33,8 @@ public class ReverseItem : MonoBehaviour
 
     private void Update()
     {
+        if (!IsReverse) return;
+
         Collider2D collider = Physics2D.OverlapBox(transform.position, Vector2.one * BOX_SIZE, 0f, TARGET_LAYER);
 
         if (collider)
@@ -47,7 +64,12 @@ public class ReverseItem : MonoBehaviour
     private void ReverseObject(Collider2D collider)
     {
         GenerateShadow shadowController = collider.GetComponent<GenerateShadow>();
-        shadowController.ChangeToShadow();
+
+        if (shadowController)
+        {
+            IsReverse = false;
+            shadowController.ChangeToShadow();
+        }
     }
 
     private Vector2 GetUIPosition(Vector2 point)

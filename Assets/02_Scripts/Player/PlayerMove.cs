@@ -227,7 +227,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-            #region �÷��̾����
+            #region �÷��̾����?
             //���ʰ���
             if (Input.GetKey(KeyCode.UpArrow))
             {
