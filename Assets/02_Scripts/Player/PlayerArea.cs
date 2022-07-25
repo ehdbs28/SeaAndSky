@@ -10,6 +10,13 @@ public class PlayerArea : MonoBehaviour
     private Rigidbody2D _rigid;
     [SerializeField] private UnityEvent<AreaState> onChangeArea;
 
+    private bool _isSoapBubble = false;
+    public bool IsSoapBubble
+    {
+        get => _isSoapBubble;
+        set => _isSoapBubble = value;
+    }
+
     private void Start()
     {
         _playerMove = GetComponent<PlayerMove>();
@@ -35,9 +42,9 @@ public class PlayerArea : MonoBehaviour
             onChangeArea.Invoke(AreaState.Sky);
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea) {
-            _playerMove.LocalScaleY = -1;
+            _playerMove.LocalScaleY = _isSoapBubble ? 1 : -1;
             _playerMove.Speed = 3f;
-            _rigid.gravityScale = -2f;
+            _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
             _playerMove.JumpPower = 17;
             onChangeArea.Invoke(AreaState.Sea);
         }
