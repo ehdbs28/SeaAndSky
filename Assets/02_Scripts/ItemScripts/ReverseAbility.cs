@@ -68,6 +68,8 @@ public class ReverseAbility : MonoBehaviour
         if (shadowController)
         {
             IsReverse = false;
+            GameManager.Instance.UIManager.SetInteractionButton(false);
+
             shadowController.ChangeToShadow();
         }
     }
