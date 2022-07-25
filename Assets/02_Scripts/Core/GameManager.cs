@@ -19,6 +19,11 @@ public class GameManager : MonoSingleton<GameManager>
         set => _isplayerDeath = value;
         get => _isplayerDeath;
     }
+    private bool _isGameOver = false;
+    public bool IsGameOver
+    {
+        get => _isGameOver;
+    }
     #endregion
 
     #region Stage
@@ -26,6 +31,8 @@ public class GameManager : MonoSingleton<GameManager>
     private GameObject currentStage;
     public Vector2 PlayerPosition { get => currentStage.transform.GetChild(0).position; }
     #endregion
+
+    public bool isLoadState = false;
 
     private AreaState _playerState = AreaState.Sky;
     public AreaState PlayerState
@@ -37,6 +44,21 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    #region Controller
+    public UIManager UIManager { get; private set; }
+    #endregion
+
+    [field: SerializeField]
+    public Camera skyCamera { get; private set; }
+
+    [field: SerializeField]
+    public Camera seaCamera { get; private set; }
+
+    private void Awake()
+    {
+        UIManager = FindObjectOfType<UIManager>();
+    }
+
     private void Start()
     {
         for (int i = 0; i < _heartCnt; i++)
@@ -46,19 +68,27 @@ public class GameManager : MonoSingleton<GameManager>
             heartList.Add(heart);
         }
 
-        //LoadStage();
+        LoadStage();
     }
 
     void Update()
     {
         GameReset();
+
+        //test
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ReduceHeart();
+        }
     }
 
     //플레이어 하트 감소
     public void ReduceHeart()
     {
+        if (_isplayerDeath) return;
         if (heartList.Count > 0)
         {
+            _isplayerDeath = true;
             GameObject lastIndex = heartList[heartList.Count - 1];
             Sequence sq = DOTween.Sequence();
 
@@ -71,9 +101,9 @@ public class GameManager : MonoSingleton<GameManager>
 
             heartList.RemoveAt(heartList.Count - 1);
         }
-        else
+        else if (heartList.Count == 0)
         {
-            _isplayerDeath = true;
+            _isGameOver = true;
         }
     }
 
@@ -85,11 +115,14 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
-    //private void LoadStage()
-    //{
-    //    int stage = DataManager.Instance.User.stage;
-    //    currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
+    private void LoadStage()
+    {
+        if (isLoadState)
+        {
+            int stage = DataManager.Instance.User.stage;
+            currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
 
-    //    EventManager.TriggerEvent("LoadStage");
-    //}
+            EventManager.TriggerEvent("LoadStage");
+        }
+    }
 }

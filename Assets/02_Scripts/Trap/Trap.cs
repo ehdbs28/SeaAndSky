@@ -6,7 +6,7 @@ public enum TrapType
     Blade,
     Spike
 }
-public class ObstacleDie : MonoBehaviour
+public class Trap : MonoBehaviour
 {
     public TrapType _trapType;
     public float offsetX = 1f;  
@@ -72,7 +72,6 @@ public class ObstacleDie : MonoBehaviour
         if (_trapType != TrapType.Spike) return;
         if (isToggle == true)
         {
-            //Debug.Log(gameObject.name);
             timer += Time.deltaTime;
             if (timer >= timeDelay)
             {
@@ -94,12 +93,13 @@ public class ObstacleDie : MonoBehaviour
         isActive = value;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-            if(collision.collider.CompareTag("Player") && isActive)
-            {
-                GameManager.Instance.ReduceHeart();
-            }
+        if (collision.transform.CompareTag("Player"))
+        {
+            IDamage iDamage = collision.transform.GetComponent<IDamage>();
+            iDamage?.Damege();
+        }
     }
 
 }

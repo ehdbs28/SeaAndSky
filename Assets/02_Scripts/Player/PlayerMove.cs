@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : MonoBehaviour, IDamage
 {
     public static int doubleJumpCount = 0;
-
+    private float _currentVelocity = 3f;
     private float _localScaleY = 1;
     public float LocalScaleY
     {
         set => _localScaleY = value;
         get => _localScaleY;
     }
+    private Vector2 direction = Vector2.zero;
     private float _speed;
     public float Speed
     {
@@ -24,6 +25,7 @@ public class PlayerMove : MonoBehaviour
             _speed = value;
         }
     }
+    private float _maxSpeed = 5;
     [SerializeField] private float _jumpPower;
     public float JumpPower
     {
@@ -38,6 +40,8 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private GameObject swordAttackPrefab;
+
+    [SerializeField] private MovementDataSO movementData;
     [SerializeField] private static float h;
     [SerializeField] private LayerMask enemyLayer;
 
@@ -47,7 +51,7 @@ public class PlayerMove : MonoBehaviour
         get => isGround;
     }
     private bool isAttack = false;
-    private bool isHead = false;
+    //private bool isHead = false;
 
     public  bool isLeft = false;
 
@@ -55,7 +59,7 @@ public class PlayerMove : MonoBehaviour
     private CapsuleCollider2D capsuleCollider2D;
     private Animator anim = null;
     private Rigidbody2D rigid;
-
+    private Vector2 movementDirection;
     [SerializeField] private UnityEvent<Vector2> onPlayerMove;
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
@@ -70,7 +74,7 @@ public class PlayerMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
-        _speed = 5f;
+        _speed = movementData.maxSpeed;
     }
 
     void Update()
@@ -87,11 +91,15 @@ public class PlayerMove : MonoBehaviour
             }
             Jump();
         }
-        else
-        {
-            Debug.Log("Death");
-            anim.SetTrigger("Dead");
-        }
+    }
+
+    public void Damege()
+    {
+        if (GameManager.Instance.IsPlayerDeath) return;
+        Debug.Log("Death");
+        anim.SetTrigger("Dead");
+        GameManager.Instance.ReduceHeart();
+
     }
 
     private void DoubleJumpItem()
@@ -105,7 +113,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    //Á¡ÇÁ
+    //ï¿½ï¿½ï¿½ï¿½
     private void Jump()
     {
         if ((Input.GetKey(KeyCode.X) && isGround))
@@ -115,6 +123,7 @@ public class PlayerMove : MonoBehaviour
 
             rigid.velocity = Vector2.zero;
             rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+            //rigid.velocity = transform.up * _jumpPower;
             
             if(_localScaleY == -1)
             {
@@ -124,7 +133,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    //¿òÁ÷ÀÌ±â
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½
     private void Move()
     {
         Bounds bounds = capsuleCollider2D.bounds;
@@ -158,14 +167,44 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(-1, _localScaleY, 1);
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
-
         Vector2 direction = new Vector2(h, 0);
-        transform.Translate(direction * _speed * Time.deltaTime);
 
+        if (direction.sqrMagnitude > 0)
+        {
+            if (Vector2.Dot(direction, movementDirection) < 0)
+            {
+                _currentVelocity = 0;
+            }
+            movementDirection = direction.normalized;
+        }
+        _currentVelocity = CalculateSpeed(direction);
+        rigid.velocity = new Vector2(movementDirection.x * _currentVelocity, rigid.velocity.y);
+        if (rigid.velocity.x > _maxSpeed)
+        {
+            rigid.velocity = new Vector2(_maxSpeed, rigid.velocity.y);
+        }
+        else if (rigid.velocity.x < _maxSpeed * -1)
+        {
+            rigid.velocity = new Vector2(_maxSpeed * -1, rigid.velocity.y);
+        }
+
+        rigid.position += (direction * _speed * Time.deltaTime);
         onPlayerMove.Invoke(rigid.velocity);
     }
+    private float CalculateSpeed(Vector2 movementInput)
+    {
+        if(movementInput.sqrMagnitude > 0)
+        {
+            _currentVelocity += movementData.acceleration * Time.deltaTime;
+        }
+        else
+        {
+            _currentVelocity -= movementData.deAcceleration * Time.deltaTime;
+        }
 
-    //°ø°Ý½ÇÇà
+        return Mathf.Clamp(_currentVelocity, 0, _maxSpeed);
+    }
+    //ï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½
     private void PlayerAttack()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
@@ -181,67 +220,63 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    //ÇÃ·¹ÀÌ¾î °ø°Ý
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator Attack() 
     {
-        //À§ÂÊ°ø°Ý
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (!GameManager.Instance.IsPlayerDeath)
         {
-            GameObject swordAttack;
+            #region ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿?
+            //ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                GameObject swordAttack;
 
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.Euler(0, 0, 90));
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
-        }
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.Euler(0, 0, 90));
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
 
-        //¾Æ·¡°ø°Ý
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            GameObject swordAttack;
-            
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
+            //ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½
+            else if (Input.GetKey(KeyCode.DownArrow) && !isGround)
+            {
+                GameObject swordAttack;
+
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
+            else if (!isLeft)
+            {
+                GameObject swordAttack;
+
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
+            //ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
+            else if (isLeft)
+            {
+                GameObject swordAttack;
+
+                swordAttack = Instantiate(swordAttackPrefab);
+                swordAttack.transform.position = new Vector3(transform.position.x - 1, transform.position.y, 0);
+                swordAttack.transform.localScale = new Vector3(-1, 1, 1);
+                yield return new WaitForSeconds(0.1f);
+                Destroy(swordAttack);
+                isAttack = false;
+            }
+#endregion
         }
-        //¿À¸¥ÂÊ°ø°Ý
-        else if(!isLeft)
-        {
-            GameObject swordAttack;
-            
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
-        }
-        //¿ÞÂÊ°ø°Ý
-        else if(isLeft)
-        {
-            GameObject swordAttack;
-            
-            swordAttack = Instantiate(swordAttackPrefab);
-            swordAttack.transform.position = new Vector3(transform.position.x - 1, transform.position.y, 0);
-            swordAttack.transform.localScale = new Vector3(-1, 1, 1);
-            yield return new WaitForSeconds(0.1f);
-            Destroy(swordAttack);
-            isAttack = false;
-        } 
     }
 
-    //enemy ³ª trap ´êÀ¸¸é Á×±â
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!isHead && (collision.collider.CompareTag("Enemy")))
-        {
-            GameManager.Instance.ReduceHeart();
-            //isDeath = true;
-        }
-    }
-    public void EndDeadAnim() //¾Ö´Ï¸ÞÀÌ¼Ç¿¡ ÀÌº¥Æ®·Î ³Ö¾úÀ½
+    public void EndDeadAnim() //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼Ç¿ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
     {
         gameObject.SetActive(false);
     }
@@ -250,7 +285,6 @@ public class PlayerMove : MonoBehaviour
     {
         transform.localScale = new Vector3(-1, 1, 0);
     }
-
     private void SetFirstPosition()
     {
         transform.position = GameManager.Instance.PlayerPosition;
@@ -261,3 +295,4 @@ public class PlayerMove : MonoBehaviour
         EventManager.StopListening("LoadStage", SetFirstPosition);
     }
 }
+
