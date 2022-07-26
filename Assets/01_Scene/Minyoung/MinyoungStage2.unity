@@ -8585,6 +8585,11 @@ Transform:
   m_Father: {fileID: 409564039}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &334545388 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 1805624964, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 1807560317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &337134989
 GameObject:
   m_ObjectHideFlags: 0
@@ -12676,20 +12681,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5527135322220754506, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
   m_PrefabInstance: {fileID: 1807560317}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1676411668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676411667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3910fa8e0b3164746a81f704e014e79d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCollide: 0
-  isMoved: 0
 --- !u!114 &1676411669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12699,7 +12690,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676411667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bd6554684134cc4388f9bc3dbec5a25, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f76af7858dc0d94ebd0c659e0efa3fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReverseBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1676411672}
+        m_TargetAssemblyTypeName: PlayerEffect, Assembly-CSharp
+        m_MethodName: OnReverseEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1676411672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1879805588, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 1807560317}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676411667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba952d499191cc4184b503aec0c5aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1708298563
@@ -13186,6 +13203,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1879805588, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: seaEffect
+      value: 
+      objectReference: {fileID: 334545388}
     - target: {fileID: 5527135322220754504, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_RootOrder
       value: 2

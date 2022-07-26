@@ -55,7 +55,9 @@ public class FireColumn : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.Instance.IsPlayerDeath = true;
+            //GameManager.Instance.IsPlayerDeath = true;
+            IDamage damage = collision.transform.GetComponent<IDamage>();
+            damage?.Damege();
         }
     }
 }
