@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BackgroundMove : MonoBehaviour
 {
-    private MeshRenderer meshRenderer;
+    new private Renderer renderer;
     private int mainTextureID = Shader.PropertyToID("_MainTex");
 
     [Flags]
@@ -24,12 +24,12 @@ public class BackgroundMove : MonoBehaviour
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        renderer = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        Vector2 offset = meshRenderer.material.GetTextureOffset(mainTextureID);
+        Vector2 offset = renderer.material.GetTextureOffset(mainTextureID);
 
         if ((moveType & MoveType.MoveX) != 0)
             offset.x += speed * Time.deltaTime;
@@ -37,8 +37,8 @@ public class BackgroundMove : MonoBehaviour
         if ((moveType & MoveType.MoveY) != 0)
             offset.y += speed * Time.deltaTime;
 
-        meshRenderer.material.SetTextureOffset(mainTextureID, offset);
-        meshRenderer.material.SetTextureScale(mainTextureID, new Vector2(offsetX, offsetY));
+        renderer.material.SetTextureOffset(mainTextureID, offset);
+        renderer.material.SetTextureScale(mainTextureID, new Vector2(offsetX, offsetY));
 
     }
 }

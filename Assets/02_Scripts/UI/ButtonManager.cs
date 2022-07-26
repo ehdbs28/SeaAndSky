@@ -44,9 +44,9 @@ public class ButtonManager : MonoBehaviour
     {
         while (true)
         {
-            _gameStart.CrossFadeAlpha(0, 1f, true);
+            _gameStart?.CrossFadeAlpha(0, 1f, true);
             yield return new WaitForSeconds(0.5f);
-            _gameStart.CrossFadeAlpha(1, 1f, true);
+            _gameStart?.CrossFadeAlpha(1, 1f, true);
             yield return new WaitForSeconds(0.5f);
         }
     }

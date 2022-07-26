@@ -14,7 +14,10 @@ public class TitleAnimation : MonoBehaviour
 
     private void Start()
     {
-        seaCam.transform.DOMove(new Vector3(0f, -5f, -10f), duration).SetEase(camEase);
-        skyCam.transform.DOMove(new Vector3(0f, 5f, -10f), duration).SetEase(camEase);
+        Sequence seq = DOTween.Sequence();
+
+        seq.AppendInterval(2f);
+        seq.Append(seaCam.transform.DOMove(new Vector3(0f, -5f, -10f), duration).SetEase(camEase));
+        seq.Join(skyCam.transform.DOMove(new Vector3(0f, 5f, -10f), duration).SetEase(camEase));
     }
 }
