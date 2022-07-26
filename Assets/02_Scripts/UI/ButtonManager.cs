@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.Events;
 
+
 public class ButtonManager : MonoBehaviour
 {
     [SerializeField] GameObject _title;
@@ -72,5 +73,10 @@ public class ButtonManager : MonoBehaviour
         }
 
         _stageButton.gameObject.SetActive(false);
+    }
+
+    public void KeySet()
+    {
+
     }
 }

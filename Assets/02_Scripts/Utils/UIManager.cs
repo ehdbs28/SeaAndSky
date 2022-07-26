@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     private GameObject gameOver;
     [SerializeField]
     private GameObject goal;
+    [SerializeField]
+    private GameObject keyPanel;
 
     [SerializeField]
     private CanvasGroup interactionButton;
@@ -75,6 +77,11 @@ public class UIManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+    
+    public void KeySetBtn()
+    {
+        keyPanel.SetActive(true);
     }
 
     public void SetInteractionButton(bool isActive, Vector2 pos = default)

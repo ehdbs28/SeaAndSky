@@ -104,6 +104,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private void DoubleJumpItem()
     {
+        //if (doubleJumpCount > 0 && (Input.GetKey(KeySetting.keys[Key.jump])))
         if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
         {
             anim.SetBool("isJump", true);
@@ -208,7 +209,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     private void PlayerAttack()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
-        if (Input.GetKeyDown(KeyCode.Z))
+        //if(Input.GetKey(KeySetting.keys[Key.attack]))
+        //if (Input.GetKeyDown(KeyCode.Z))
         {
             if (!isAttack)
             {
