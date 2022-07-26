@@ -103,6 +103,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         else if (heartList.Count == 0)
         {
+            _isplayerDeath = true;
             _isGameOver = true;
         }
     }

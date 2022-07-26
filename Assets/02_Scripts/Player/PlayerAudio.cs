@@ -60,7 +60,7 @@ public class PlayerAudio : MonoBehaviour
             {
                 SoundManager.Instance.PlaySound(AudioType.EffectSound, skyWalkSound);
             }
-            else
+            else if(GameManager.Instance.PlayerState == AreaState.Sea && Mathf.Abs(direction.y) < 0.01f)
             {
                 SoundManager.Instance.PlaySound(AudioType.EffectSound, seaWalkSounds[Random.Range(0, seaWalkSounds.Length)]);
             }
