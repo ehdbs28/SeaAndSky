@@ -23,9 +23,9 @@ public class ButtonManager : MonoBehaviour
 
     private void Start()
     {
-        _initPos = new Vector3(0, STAGE_PANEL_Y);
-        _stagePanelTrm.anchoredPosition = _initPos;
-        StartCoroutine(FadeCoroutine());
+        //_initPos = new Vector3(0, STAGE_PANEL_Y);
+        //_stagePanelTrm.anchoredPosition = _initPos;
+        //StartCoroutine(FadeCoroutine());
         GenerateStageButtons();
     }
 
