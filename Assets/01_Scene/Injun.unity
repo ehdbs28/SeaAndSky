@@ -1393,22 +1393,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_SortingOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
 --- !u!1 &289911099
@@ -7176,22 +7160,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489905454266331739, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_SortingOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465788559437747340, guid: dfd0afdf4666f624aac54ce67283cd64, type: 3}
-      propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -32604,6 +32572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCollide: 1
   isMoved: 0
+  isColChanged: 0
 --- !u!1 &2071077015
 GameObject:
   m_ObjectHideFlags: 0

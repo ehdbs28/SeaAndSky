@@ -12,7 +12,10 @@ public class GenerateShadow : MonoBehaviour
 
     [SerializeField] private bool isCollide = true;
     [SerializeField] private bool isMoved = false;
+    [SerializeField] private bool isColChanged = false;
 
+    private BoxCollider2D col;
+    private BoxCollider2D myCol;
     private Rigidbody2D rigid;
     private float gravity;
     private LayerMask _shadowLayer;
@@ -41,6 +44,8 @@ public class GenerateShadow : MonoBehaviour
 
         if (isCollide)
         {
+            col = shadow.AddComponent<BoxCollider2D>();
+            myCol = GetComponentInChildren<BoxCollider2D>();
             SettingCollider();
         }
         if (isMoved)
@@ -58,16 +63,15 @@ public class GenerateShadow : MonoBehaviour
 
         if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
         shadowRenderer.sprite = spriteRenderer.sprite;
-
         Vector3 curScale = transform.localScale;
         curScale.y *= -1f;
         shadow.transform.localScale = curScale;
+
+        if (isColChanged) SettingCollider();
     }
 
     private void SettingCollider()
     {
-        BoxCollider2D col = shadow.AddComponent<BoxCollider2D>();
-        BoxCollider2D myCol = GetComponentInChildren<BoxCollider2D>();
         col.size = myCol.size;
         col.offset = myCol.offset;
     }
