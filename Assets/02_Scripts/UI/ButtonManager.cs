@@ -24,9 +24,9 @@ public class ButtonManager : MonoBehaviour
 
     private void Start()
     {
-        _initPos = new Vector3(0, STAGE_PANEL_Y);
-        _stagePanelTrm.anchoredPosition = _initPos;
-        StartCoroutine(FadeCoroutine());
+        //_initPos = new Vector3(0, STAGE_PANEL_Y);
+        //_stagePanelTrm.anchoredPosition = _initPos;
+        //StartCoroutine(FadeCoroutine());
         GenerateStageButtons();
     }
 
@@ -45,9 +45,9 @@ public class ButtonManager : MonoBehaviour
     {
         while (true)
         {
-            _gameStart.CrossFadeAlpha(0, 1f, true);
+            _gameStart?.CrossFadeAlpha(0, 1f, true);
             yield return new WaitForSeconds(0.5f);
-            _gameStart.CrossFadeAlpha(1, 1f, true);
+            _gameStart?.CrossFadeAlpha(1, 1f, true);
             yield return new WaitForSeconds(0.5f);
         }
     }
