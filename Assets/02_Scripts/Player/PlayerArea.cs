@@ -25,7 +25,7 @@ public class PlayerArea : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKey(KeySetting.keys[Key.changeworld]) && _playerMove.IsGround)
+        if(Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _playerMove.IsGround)
         {
             SetStateChanged();
         }
