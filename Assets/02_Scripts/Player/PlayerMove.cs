@@ -210,7 +210,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
         //if(Input.GetKey(KeySetting.keys[Key.attack]))
-        //if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if (!isAttack)
             {
