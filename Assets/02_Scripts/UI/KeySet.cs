@@ -17,7 +17,7 @@ public static class KeySetting { public static Dictionary<Key, KeyCode> keys = n
 public class KeySet : MonoBehaviour
 {
     int key = -1;
-    KeyCode[] defalutkeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
+    KeyCode[] defalutkeys = new KeyCode[] { KeyCode.X, KeyCode.Z, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
  
     private void Awake()
     {
