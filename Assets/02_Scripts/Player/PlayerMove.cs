@@ -210,7 +210,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     private void PlayerAttack()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
-        //if (Input.GetKeyDown(KeyCode.Z))
+
         if(Input.GetKey(KeySetting.keys[Key.attack]))
         {
             if (!isAttack)
@@ -220,6 +220,11 @@ public class PlayerMove : MonoBehaviour, IDamage
                 anim.SetTrigger("Attack");
                 isAttack = true;
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("Sdf");
         }
     }
 
