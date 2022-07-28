@@ -25,7 +25,7 @@ public class PlayerArea : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGround)
+        if (Input.GetKeyDown(KeyCode.Space) && _playerMove.IsGround)
         {
             SetStateChanged();
         }
@@ -34,30 +34,34 @@ public class PlayerArea : MonoBehaviour
 
     public void ChangedState()
     {
-        if (GameManager.Instance.PlayerState == AreaState.Sky) {
+        if (GameManager.Instance.PlayerState == AreaState.Sky)
+        {
             _playerMove.LocalScaleY = 1;
             _playerMove.Speed = 5f;
             _rigid.gravityScale = 3.5f;
             _playerMove.JumpPower = 11f;
             onChangeArea.Invoke(AreaState.Sky);
         }
-        else if (GameManager.Instance.PlayerState == AreaState.Sea) {
+        else if (GameManager.Instance.PlayerState == AreaState.Sea)
+        {
             _playerMove.LocalScaleY = _isSoapBubble ? 1 : -1;
             _playerMove.Speed = 3f;
             _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
             _playerMove.JumpPower = 17;
             onChangeArea.Invoke(AreaState.Sea);
         }
+
+        EventManager<AreaState>.TriggerEvent("ChangeArea", GameManager.Instance.PlayerState);
     }
 
     public void SetStateChanged()
     {
-        if(GameManager.Instance.PlayerState == AreaState.Sea)
+        if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
             GameManager.Instance.PlayerState = AreaState.Sky;
             _rigid.drag = 1f;
         }
-        else if(GameManager.Instance.PlayerState == AreaState.Sky)
+        else if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
             GameManager.Instance.PlayerState = AreaState.Sea;
             _rigid.drag = 2f;
