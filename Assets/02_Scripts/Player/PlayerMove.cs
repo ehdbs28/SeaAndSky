@@ -104,8 +104,8 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private void DoubleJumpItem()
     {
-        //if (doubleJumpCount > 0 && (Input.GetKey(KeySetting.keys[Key.jump])))
-        if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
+        //if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
+        if (doubleJumpCount > 0 && (Input.GetKey(KeySetting.keys[Key.jump])))
         {
             anim.SetBool("isJump", true);
             rigid.velocity = Vector2.zero;
@@ -117,7 +117,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     //����
     private void Jump()
     {
-        if ((Input.GetKey(KeyCode.X) && isGround))
+        //if ((Input.GetKey(KeyCode.X) && isGround))
+        if ((Input.GetKey(KeySetting.keys[Key.jump]) && isGround))
         {
             anim.SetBool("isJump", true);
             onPlayerJump.Invoke();
@@ -158,7 +159,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             else
                 anim.SetBool("isMove", false);
         }
-
+        
         if (h < 0)
             isLeft = true;
         if (h > 0)
@@ -209,8 +210,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     private void PlayerAttack()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
-        //if(Input.GetKey(KeySetting.keys[Key.attack]))
-        if (Input.GetKeyDown(KeyCode.Z))
+
+        if(Input.GetKey(KeySetting.keys[Key.attack]))
         {
             if (!isAttack)
             {
@@ -219,6 +220,11 @@ public class PlayerMove : MonoBehaviour, IDamage
                 anim.SetTrigger("Attack");
                 isAttack = true;
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            Debug.Log("Sdf");
         }
     }
 
@@ -241,7 +247,8 @@ public class PlayerMove : MonoBehaviour, IDamage
             }
 
             //�Ʒ�����
-            else if (Input.GetKey(KeyCode.DownArrow) && !isGround)
+            //else if (Input.GetKey(KeyCode.DownArrow) && !isGround)
+            else if (Input.GetKey(KeySetting.keys[Key.down]) && !isGround)
             {
                 GameObject swordAttack;
 

@@ -8,6 +8,8 @@ public enum Key
     attack,
     right,
     left,
+    down,
+    changeworld,
     keycount
 }
 public static class KeySetting { public static Dictionary<Key, KeyCode> keys = new Dictionary<Key, KeyCode>(); }
@@ -15,13 +17,13 @@ public static class KeySetting { public static Dictionary<Key, KeyCode> keys = n
 public class KeySet : MonoBehaviour
 {
     int key = -1;
-    KeyCode[] defalutkeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.D, KeyCode.A };
+    KeyCode[] defalutkeys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
  
     private void Awake()
     {
         for(int i = 0; i <(int)Key.keycount; i++)
         {
-            KeySetting.keys.Add((Key)i, defalutkeys[i]); 
+            KeySetting.keys.Add((Key)i, defalutkeys[i]);
             key = -1;
         }  
     }
@@ -32,9 +34,10 @@ public class KeySet : MonoBehaviour
         if (keyEvent.isKey)
         {
             KeySetting.keys[(Key)key]= keyEvent.keyCode;
-            key =  -1;
+            key = -1;
         }
     }
+
     public void ChangeKey(int num)
     {
         key = num;
