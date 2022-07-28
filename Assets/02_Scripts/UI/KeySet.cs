@@ -21,7 +21,7 @@ public class KeySet : MonoBehaviour
     {
         for(int i = 0; i <(int)Key.keycount; i++)
         {
-            KeySetting.keys.Add((Key)i, defalutkeys[i]);
+            KeySetting.keys.Add((Key)i, defalutkeys[i]); 
             key = -1;
         }  
     }
@@ -32,6 +32,7 @@ public class KeySet : MonoBehaviour
         if (keyEvent.isKey)
         {
             KeySetting.keys[(Key)key]= keyEvent.keyCode;
+            key =  -1;
         }
     }
     public void ChangeKey(int num)
