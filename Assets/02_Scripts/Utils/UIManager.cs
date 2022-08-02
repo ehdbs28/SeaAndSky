@@ -83,6 +83,10 @@ public class UIManager : MonoBehaviour
     {
         keyPanel.SetActive(true);
     }
+    public void KeySetQuit()
+    {
+        keyPanel.SetActive(false);
+    }
 
     public void SetInteractionButton(bool isActive, Vector2 pos = default)
     {

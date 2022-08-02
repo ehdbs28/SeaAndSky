@@ -339,7 +339,6 @@ GameObject:
   - component: {fileID: 6420449460707829700}
   - component: {fileID: 6420449460707829707}
   - component: {fileID: 6420449460707829706}
-  - component: {fileID: 6420449460707829701}
   m_Layer: 6
   m_Name: MoverPlatformTemplete
   m_TagString: Untagged
@@ -403,21 +402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f57614acbc858e488a61480e031573f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAuto: 0
+  _stopDelay: 0
   offsetX: 0
   offsetY: 3
   moveTime: 1
---- !u!114 &6420449460707829701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6420449460707829703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3910fa8e0b3164746a81f704e014e79d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCollide: 1
-  isMoved: 0
-  isColChanged: 0
