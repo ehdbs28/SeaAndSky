@@ -104,7 +104,6 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private void DoubleJumpItem()
     {
-        //if (doubleJumpCount > 0 && (Input.GetKey(KeyCode.X)))
         if (doubleJumpCount > 0 && (Input.GetKey(KeySetting.keys[Key.jump])))
         {
             anim.SetBool("isJump", true);
@@ -117,7 +116,6 @@ public class PlayerMove : MonoBehaviour, IDamage
     //����
     private void Jump()
     {
-        //if ((Input.GetKey(KeyCode.X) && isGround))
         if ((Input.GetKey(KeySetting.keys[Key.jump]) && isGround))
         {
             anim.SetBool("isJump", true);
@@ -206,7 +204,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
         return Mathf.Clamp(_currentVelocity, 0, _maxSpeed);
     }
-    //���ݽ���
+
     private void PlayerAttack()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
@@ -228,13 +226,12 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
 
-    //�÷��̾� ����
+
     IEnumerator Attack() 
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-            #region �÷��̾����?
-            //���ʰ���
+
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 GameObject swordAttack;
@@ -246,8 +243,6 @@ public class PlayerMove : MonoBehaviour, IDamage
                 isAttack = false;
             }
 
-            //�Ʒ�����
-            //else if (Input.GetKey(KeyCode.DownArrow) && !isGround)
             else if (Input.GetKey(KeySetting.keys[Key.down]) && !isGround)
             {
                 GameObject swordAttack;
@@ -258,7 +253,6 @@ public class PlayerMove : MonoBehaviour, IDamage
                 Destroy(swordAttack);
                 isAttack = false;
             }
-            //�����ʰ���
             else if (!isLeft)
             {
                 GameObject swordAttack;
@@ -269,7 +263,6 @@ public class PlayerMove : MonoBehaviour, IDamage
                 Destroy(swordAttack);
                 isAttack = false;
             }
-            //���ʰ���
             else if (isLeft)
             {
                 GameObject swordAttack;
@@ -281,11 +274,10 @@ public class PlayerMove : MonoBehaviour, IDamage
                 Destroy(swordAttack);
                 isAttack = false;
             }
-#endregion
         }
     }
 
-    public void EndDeadAnim() //�ִϸ��̼ǿ� �̺�Ʈ�� �־���
+    public void EndDeadAnim() 
     {
         gameObject.SetActive(false);
     }
