@@ -6859,6 +6859,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: eca91f08bde772c4a94c5de4f6dfa527, type: 2}
+    - target: {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: _cheakPointImg
+      value: 
+      objectReference: {fileID: 5874282622798847245, guid: 7a26812c257b83843b791cad48c9ea71, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
 --- !u!1 &1889939637

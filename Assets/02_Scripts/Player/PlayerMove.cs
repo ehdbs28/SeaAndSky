@@ -64,6 +64,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
+    [SerializeField] Sprite _cheakPointImg;
 
     private void Awake()
     {
@@ -83,7 +84,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         if (collision.CompareTag("CheakPoint"))
         {
             _cheakPointTrm = collision.transform.position;
-            Destroy(collision.gameObject);
+            collision.GetComponent<SpriteRenderer>().sprite = _cheakPointImg;
         }
     }
 
