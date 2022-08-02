@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject esc;
     [SerializeField]
-    private GameObject gameOver;
+    private GameObject gameOverUI;
     [SerializeField]
     private GameObject goal;
     [SerializeField]
@@ -47,7 +47,7 @@ public class UIManager : MonoBehaviour
 
         if (GameManager.Instance.IsPlayerDeath)
         {
-            gameOver.SetActive(true);
+            gameOverUI.SetActive(true);
             GameManager.Instance.IsPlayerDeath = false;
         }
         /*if (PlayerGoal.isGoal)
