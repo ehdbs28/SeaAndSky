@@ -54,8 +54,7 @@ public class DataManager : MonoSingleton<DataManager>
 
     private void SaveUser()
     {
-        User newUser = new User();
-        SaveToJson(newUser);
+        SaveToJson(user);
     }
 
     private void OnApplicationQuit()

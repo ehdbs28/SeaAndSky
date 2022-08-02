@@ -32,7 +32,7 @@ public class GenerateGrass : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.StartListening("LoadStage", Generate);
+        //EventManager.StartListening("LoadStage", Generate);
     }
 
     void Start()
@@ -55,6 +55,8 @@ public class GenerateGrass : MonoBehaviour
                 rotation = Vector2.left * 90f;
                 break;
         }
+
+        Generate();
     }
 
     private void Generate()
@@ -79,11 +81,12 @@ public class GenerateGrass : MonoBehaviour
     Vector2 GetGrassPosition(float x)
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(new Vector3(x, yPosition), rayDirection, 30f, layer);
+        Debug.Log(hitInfo.point.y);
         return new Vector2(x, hitInfo.point.y);
     }
 
     private void OnDestroy()
     {
-        EventManager.StopListening("LoadStage", Generate);
+        //EventManager.StopListening("LoadStage", Generate);
     }
 }

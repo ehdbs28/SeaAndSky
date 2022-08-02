@@ -6,12 +6,10 @@ public class SoapBubbleItem : MonoBehaviour
 {
     private SoapBubble _soapBubble;
 
-    private void Start()
+    private void Awake()
     {
         gameObject.SetActive(true);
         _soapBubble = FindObjectOfType<SoapBubble>();
-
-        _soapBubble.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -5607,6 +5607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSoapBubble
       objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826502, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
 --- !u!4 &8791568946573081427 stripped

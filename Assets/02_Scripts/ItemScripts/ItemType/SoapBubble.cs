@@ -10,6 +10,7 @@ public class SoapBubble : MonoBehaviour
     private void Start()
     {
         _anim = GetComponent<Animator>();
+        gameObject.SetActive(false);
     }
 
     public void DestroyBubbleAnim()
