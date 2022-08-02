@@ -29,7 +29,9 @@ public class SoapBubble : MonoBehaviour
 
     IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(_destroyTime);
+        yield return new WaitForSeconds(_destroyTime / 2);
+        _anim.Play("FadeBubble");
+        yield return new WaitForSeconds(_destroyTime / 2);
         _anim.Play("DestroyBubble");
     }
 }
