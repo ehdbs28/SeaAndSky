@@ -19,7 +19,6 @@ public class GenerateGrass : MonoBehaviour
     private Vector3 rotation = Vector3.zero;
 
     [SerializeField] private Color spriteColor = Color.white;
-    [SerializeField] private string inactiveTag;
 
     public enum Direction
     {
@@ -61,12 +60,6 @@ public class GenerateGrass : MonoBehaviour
     private void Generate()
     {
         GameObject temp = null;
-
-        if (inactiveTag != "")
-        {
-            temp = GameObject.FindGameObjectWithTag(inactiveTag);
-            temp?.SetActive(false);
-        }
 
         for (int i = 0; i < count; i++)
         {

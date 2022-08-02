@@ -14,6 +14,7 @@ TagManager:
   - Button
   - Sky
   - Sea
+  - CheakPoint
   layers:
   - Default
   - TransparentFX

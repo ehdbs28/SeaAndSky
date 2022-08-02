@@ -22,17 +22,24 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private AudioClip seaSound;
     [SerializeField] private AudioClip skySound;
 
+    [Header("Die")]
+    public AudioClip dieSound;
+
     [Header("Nature Sound")]
     [SerializeField] private AudioClip seaNatureSound;
     [SerializeField] private AudioClip skyNatureSound;
 
-
     private float walkTimer = 0f;
     private float WALK_DELAY = 0f;
 
-    private void Start()
+    private bool isStart;
+
+    private IEnumerator Start()
     {
         WALK_DELAY = skySound.length;
+
+        yield return new WaitForSeconds(0.1f);
+        isStart = false;
     }
 
     private void Update()
@@ -74,8 +81,15 @@ public class PlayerAudio : MonoBehaviour
         SoundManager.Instance.PlaySound(AudioType.EffectSound, attackSound);
     }
 
+    public void PlayerDieSound()
+    {
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, dieSound);
+    }
+
     public void PlayChangeSound(AreaState area)
     {
+        if (isStart) return;
+
         if (area == AreaState.Sea)
         {
             SoundManager.Instance.PlaySound(AudioType.EffectSound, seaSound);
@@ -89,4 +103,6 @@ public class PlayerAudio : MonoBehaviour
             WALK_DELAY = 0.3f;
         }
     }
+
+
 }

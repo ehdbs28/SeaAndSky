@@ -20,7 +20,6 @@ public class TeleportItem : MonoBehaviour
         }
     }
 
-
     void PlayerTeleport()
     {
         gameObject.SetActive(false);

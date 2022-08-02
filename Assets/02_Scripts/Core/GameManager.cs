@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -24,10 +25,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         get => _isGameOver;
     }
+    private bool _isInvincibility = false;
     #endregion
 
     #region Stage
-    [SerializeField] private List<GameObject> stages;
+    [SerializeField] StageSO stages;
     private GameObject currentStage;
     public Vector2 PlayerPosition { get => currentStage.transform.GetChild(0).position; }
     #endregion
@@ -74,21 +76,21 @@ public class GameManager : MonoSingleton<GameManager>
     void Update()
     {
         GameReset();
-
-        //test
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ReduceHeart();
-        }
     }
 
     //플레이어 하트 감소
-    public void ReduceHeart()
+    public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null)
     {
         if (_isplayerDeath) return;
-        if (heartList.Count > 0)
+        if (heartList.Count > 0 && !_isInvincibility)
         {
-            _isplayerDeath = true;
+            _isInvincibility = true;
+
+            if(heartList.Count != 0)
+            {
+                PlayerRevival(playerTrm, cheakPoint);
+            }
+
             GameObject lastIndex = heartList[heartList.Count - 1];
             Sequence sq = DOTween.Sequence();
 
@@ -97,15 +99,24 @@ public class GameManager : MonoSingleton<GameManager>
             sq.OnComplete(() =>
             {
                 Destroy(lastIndex);
+                _isInvincibility = false;
             });
 
             heartList.RemoveAt(heartList.Count - 1);
+
+            if(heartList.Count == 0)
+            {
+                _isplayerDeath = true;
+                _isGameOver = true;
+
+                OnPlayerDead?.Invoke();
+            }
         }
-        else if (heartList.Count == 0)
-        {
-            _isplayerDeath = true;
-            _isGameOver = true;
-        }
+    }
+
+    private void PlayerRevival(Transform playerTrm, Vector2 cheakPoint)
+    {
+        playerTrm.position = cheakPoint;
     }
 
     void GameReset()
@@ -121,7 +132,8 @@ public class GameManager : MonoSingleton<GameManager>
         if (isLoadState)
         {
             int stage = DataManager.Instance.User.stage;
-            currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
+            Debug.Log($"Stage {stage}");
+            currentStage = Instantiate(stages.stages[stage - 1], Vector3.zero, Quaternion.identity);
 
             EventManager.TriggerEvent("LoadStage");
         }

@@ -18,7 +18,7 @@ public class KeySet : MonoBehaviour
 {
     int key = -1;
     KeyCode[] defalutkeys = new KeyCode[] { KeyCode.X, KeyCode.Z, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
- 
+
     private void Awake()
     {
         if (KeySetting.keys.Count == 0)
@@ -36,7 +36,7 @@ public class KeySet : MonoBehaviour
         Event keyEvent = Event.current;
         if (keyEvent.isKey)
         {
-            KeySetting.keys[(Key)key]= keyEvent.keyCode;
+            KeySetting.keys[(Key)key] = keyEvent.keyCode;
             key = -1;
         }
     }

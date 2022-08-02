@@ -53,16 +53,22 @@ public class PlayerMove : MonoBehaviour, IDamage
     private bool isAttack = false;
     //private bool isHead = false;
 
-    public  bool isLeft = false;
+    public bool isLeft = false;
 
     private Vector3 footPosition;
-    private CapsuleCollider2D capsuleCollider2D;
+    new private BoxCollider2D collider;
     private Animator anim = null;
     private Rigidbody2D rigid;
     private Vector2 movementDirection;
     [SerializeField] private UnityEvent<Vector2> onPlayerMove;
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
+
+    private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
+    [SerializeField] Sprite _cheakPointImg;
+   
+    private PlayerAudio playerAudio;
+    private bool diePlay = false;
 
     private void Awake()
     {
@@ -72,9 +78,19 @@ public class PlayerMove : MonoBehaviour, IDamage
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        collider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         _speed = movementData.maxSpeed;
+        playerAudio = GetComponent<PlayerAudio>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CheakPoint"))
+        {
+            _cheakPointTrm = collision.transform.position;
+            collision.GetComponent<SpriteRenderer>().sprite = _cheakPointImg;
+        }
     }
 
     void Update()
@@ -84,7 +100,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             Move();
             PlayerAttack();
 
-            if(doubleJumpCount > 0)
+            if (doubleJumpCount > 0)
             {
                 DoubleJumpItem();
                 return;
@@ -96,9 +112,12 @@ public class PlayerMove : MonoBehaviour, IDamage
     public void Damege()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
-        Debug.Log("Death");
-        anim.SetTrigger("Dead");
-        GameManager.Instance.ReduceHeart();
+        if (diePlay == false)
+        {
+            Debug.Log("Death");
+            playerAudio.PlayerDieSound(); diePlay = true;
+        }
+        GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
 
     }
 
@@ -116,7 +135,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     //����
     private void Jump()
     {
-        if ((Input.GetKey(KeySetting.keys[Key.jump]) && isGround))
+
+        if ((Input.GetKeyDown(KeySetting.keys[Key.jump]) && isGround))
         {
             anim.SetBool("isJump", true);
             onPlayerJump.Invoke();
@@ -124,8 +144,8 @@ public class PlayerMove : MonoBehaviour, IDamage
             rigid.velocity = Vector2.zero;
             rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             //rigid.velocity = transform.up * _jumpPower;
-            
-            if(_localScaleY == -1)
+
+            if (_localScaleY == -1)
             {
                 rigid.velocity = Vector2.zero;
                 rigid.AddForce(transform.up * _jumpPower * -1, ForceMode2D.Impulse);
@@ -136,16 +156,16 @@ public class PlayerMove : MonoBehaviour, IDamage
     //�����̱�
     private void Move()
     {
-        Bounds bounds = capsuleCollider2D.bounds;
-        if(_localScaleY == 1)
+        Bounds bounds = collider.bounds;
+        if (_localScaleY == 1)
         {
             footPosition = new Vector2(bounds.center.x, bounds.min.y);
         }
-        else if(_localScaleY == -1)
+        else if (_localScaleY == -1)
         {
             footPosition = new Vector3(bounds.center.x, bounds.max.y);
         }
-        
+
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
 
         h = Input.GetAxisRaw("Horizontal");
@@ -153,7 +173,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             anim.SetBool("isJump", false);
             if (h != 0)
-                anim.SetBool("isMove", true); 
+                anim.SetBool("isMove", true);
             else
                 anim.SetBool("isMove", false);
         }
@@ -162,8 +182,8 @@ public class PlayerMove : MonoBehaviour, IDamage
             isLeft = true;
         if (h > 0)
             isLeft = false;
-        
-        if(isLeft)
+
+        if (isLeft)
             transform.localScale = new Vector3(-1, _localScaleY, 1);
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
@@ -191,9 +211,10 @@ public class PlayerMove : MonoBehaviour, IDamage
         rigid.position += (direction * _speed * Time.deltaTime);
         onPlayerMove.Invoke(rigid.velocity);
     }
+
     private float CalculateSpeed(Vector2 movementInput)
     {
-        if(movementInput.sqrMagnitude > 0)
+        if (movementInput.sqrMagnitude > 0)
         {
             _currentVelocity += movementData.acceleration * Time.deltaTime;
         }
@@ -209,7 +230,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
 
-        if(Input.GetKey(KeySetting.keys[Key.attack]))
+        if(Input.GetKeyDown(KeySetting.keys[Key.attack]))
         {
             if (!isAttack)
             {
@@ -219,12 +240,11 @@ public class PlayerMove : MonoBehaviour, IDamage
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Debug.Log("Sdf");
         }
     }
-
 
     IEnumerator Attack() 
     {
@@ -295,4 +315,3 @@ public class PlayerMove : MonoBehaviour, IDamage
         EventManager.StopListening("LoadStage", SetFirstPosition);
     }
 }
-

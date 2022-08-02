@@ -79,6 +79,7 @@ public class GenerateShadow : MonoBehaviour
     private void SettingRigidbody()
     {
         Rigidbody2D rigid = shadow.AddComponent<Rigidbody2D>();
+        rigid.isKinematic = true;
         rigid.gravityScale = 0f;
     }
 
