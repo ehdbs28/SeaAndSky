@@ -50,11 +50,11 @@ public class UIManager : MonoBehaviour
             gameOver.SetActive(true);
             GameManager.Instance.IsPlayerDeath = false;
         }
-        if (PlayerGoal.isGoal)
+        /*if (PlayerGoal.isGoal)
         {
             goal.SetActive(true);
             PlayerGoal.isGoal = false;
-        }
+        }*/
     }
 
     public void ContinueBtn()
