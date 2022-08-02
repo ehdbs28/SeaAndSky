@@ -53,10 +53,10 @@ public class PlayerMove : MonoBehaviour, IDamage
     private bool isAttack = false;
     //private bool isHead = false;
 
-    public  bool isLeft = false;
+    public bool isLeft = false;
 
     private Vector3 footPosition;
-    private CapsuleCollider2D capsuleCollider2D;
+    new private BoxCollider2D collider;
     private Animator anim = null;
     private Rigidbody2D rigid;
     private Vector2 movementDirection;
@@ -72,7 +72,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        collider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         _speed = movementData.maxSpeed;
     }
@@ -84,7 +84,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             Move();
             PlayerAttack();
 
-            if(doubleJumpCount > 0)
+            if (doubleJumpCount > 0)
             {
                 DoubleJumpItem();
                 return;
@@ -125,8 +125,8 @@ public class PlayerMove : MonoBehaviour, IDamage
             rigid.velocity = Vector2.zero;
             rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
             //rigid.velocity = transform.up * _jumpPower;
-            
-            if(_localScaleY == -1)
+
+            if (_localScaleY == -1)
             {
                 rigid.velocity = Vector2.zero;
                 rigid.AddForce(transform.up * _jumpPower * -1, ForceMode2D.Impulse);
@@ -137,16 +137,16 @@ public class PlayerMove : MonoBehaviour, IDamage
     //�����̱�
     private void Move()
     {
-        Bounds bounds = capsuleCollider2D.bounds;
-        if(_localScaleY == 1)
+        Bounds bounds = collider.bounds;
+        if (_localScaleY == 1)
         {
             footPosition = new Vector2(bounds.center.x, bounds.min.y);
         }
-        else if(_localScaleY == -1)
+        else if (_localScaleY == -1)
         {
             footPosition = new Vector3(bounds.center.x, bounds.max.y);
         }
-        
+
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
 
         h = Input.GetAxisRaw("Horizontal");
@@ -154,7 +154,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             anim.SetBool("isJump", false);
             if (h != 0)
-                anim.SetBool("isMove", true); 
+                anim.SetBool("isMove", true);
             else
                 anim.SetBool("isMove", false);
         }
@@ -163,8 +163,8 @@ public class PlayerMove : MonoBehaviour, IDamage
             isLeft = true;
         if (h > 0)
             isLeft = false;
-        
-        if(isLeft)
+
+        if (isLeft)
             transform.localScale = new Vector3(-1, _localScaleY, 1);
         else
             transform.localScale = new Vector3(1, _localScaleY, 1);
@@ -194,7 +194,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
     private float CalculateSpeed(Vector2 movementInput)
     {
-        if(movementInput.sqrMagnitude > 0)
+        if (movementInput.sqrMagnitude > 0)
         {
             _currentVelocity += movementData.acceleration * Time.deltaTime;
         }
@@ -221,14 +221,14 @@ public class PlayerMove : MonoBehaviour, IDamage
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             Debug.Log("Sdf");
         }
     }
 
     //�÷��̾� ����
-    IEnumerator Attack() 
+    IEnumerator Attack()
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
@@ -279,7 +279,7 @@ public class PlayerMove : MonoBehaviour, IDamage
                 Destroy(swordAttack);
                 isAttack = false;
             }
-#endregion
+            #endregion
         }
     }
 
