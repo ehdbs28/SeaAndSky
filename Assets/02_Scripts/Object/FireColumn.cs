@@ -8,7 +8,6 @@ public class FireColumn : MonoBehaviour
     private WaitForSeconds animationDelay = new WaitForSeconds(0.6f);
     private WaitForSeconds playDelay = new WaitForSeconds(2f);
     private readonly int fireHash = Animator.StringToHash("Fire");
-
     private Animator animator;
 
     new private SpriteRenderer renderer;
