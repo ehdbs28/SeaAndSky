@@ -11,7 +11,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private int _heartCnt;
     [SerializeField] private GameObject _heartPrefab;
     [SerializeField] private Transform _parentTrm;
-
+    
     private List<GameObject> heartList = new List<GameObject>();
 
     private bool _isplayerDeath = false;
