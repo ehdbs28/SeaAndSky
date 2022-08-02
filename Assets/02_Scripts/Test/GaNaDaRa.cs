@@ -12,6 +12,7 @@ public class GaNaDaRa : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnButtonPress.Invoke(3);
+            Debug.Log("Invoke3");
         }
     }
     public void PrintHello(int asd)
