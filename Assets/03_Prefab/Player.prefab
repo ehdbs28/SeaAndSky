@@ -5210,6 +5210,7 @@ Transform:
   - {fileID: 248916725}
   - {fileID: 1911904365}
   - {fileID: 1406260249}
+  - {fileID: 8791568946573081427}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5280,7 +5281,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: eca91f08bde772c4a94c5de4f6dfa527, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -5364,6 +5365,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _cheakPointImg: {fileID: 5874282622798847245, guid: 7a26812c257b83843b791cad48c9ea71, type: 3}
 --- !u!95 &5527135322220754508
 Animator:
   serializedVersion: 3
@@ -5434,6 +5436,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _failedChangeArea:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1879805588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5472,6 +5477,7 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 1459e313613a1714f9274ff497f1801a, type: 3}
   seaSound: {fileID: 8300000, guid: 8e6cb2bd9412fb44f9e36b78f677b048, type: 3}
   skySound: {fileID: 8300000, guid: 92a432da5644b6643b761c7db9a95c36, type: 3}
+  dieSound: {fileID: 8300000, guid: d41bb6922d0cf8a41a1524e0dfbc5fad, type: 3}
   seaNatureSound: {fileID: 8300000, guid: 2e5465ab54b483643b51136fb8f9e661, type: 3}
   skyNatureSound: {fileID: 8300000, guid: 30ab60ba9666a394ebef420897c953c4, type: 3}
 --- !u!114 &415869105
@@ -5542,3 +5548,69 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6975823, y: 0.8797617}
   m_EdgeRadius: 0
+--- !u!1001 &1841277715
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5527135322220754504}
+    m_Modifications:
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826497, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826502, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: m_Name
+      value: PlayerSoapBubble
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+--- !u!4 &8791568946573081427 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+  m_PrefabInstance: {fileID: 1841277715}
+  m_PrefabAsset: {fileID: 0}
