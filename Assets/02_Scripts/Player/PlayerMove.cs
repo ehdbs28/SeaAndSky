@@ -213,7 +213,6 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             if (!isAttack)
             {
-                onPlayerAttack.Invoke();
                 StartCoroutine(Attack());
                 anim.SetTrigger("Attack");
                 isAttack = true;
@@ -231,7 +230,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-
+            onPlayerAttack.Invoke();
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 GameObject swordAttack;
