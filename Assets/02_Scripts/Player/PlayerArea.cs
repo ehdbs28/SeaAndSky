@@ -8,19 +8,26 @@ public class PlayerArea : MonoBehaviour
 {
     private PlayerMove _playerMove;
     private Rigidbody2D _rigid;
-    [SerializeField] private UnityEvent<AreaState> onChangeArea;
-
+    private GenerateShadow _generateShadow;
+    [field: SerializeField] private UnityEvent<AreaState> onChangeArea;
+    [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
+    private float _circleGizmoSize = 0.2f;
     public bool IsSoapBubble
     {
         get => _isSoapBubble;
         set => _isSoapBubble = value;
     }
 
-    private void Start()
+    private void Awake()
     {
         _playerMove = GetComponent<PlayerMove>();
         _rigid = GetComponent<Rigidbody2D>();
+        _generateShadow = GetComponent<GenerateShadow>();
+    }
+    private void Start()
+    {
+
         ChangedState();
     }
     void Update()
@@ -56,6 +63,11 @@ public class PlayerArea : MonoBehaviour
 
     public void SetStateChanged()
     {
+        if (Physics2D.OverlapCircle(_generateShadow.Shadow.transform.position, _circleGizmoSize))
+        {
+            _failedChangeArea.Invoke();
+            return;
+        }
         if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
             GameManager.Instance.PlayerState = AreaState.Sky;
@@ -66,18 +78,21 @@ public class PlayerArea : MonoBehaviour
             GameManager.Instance.PlayerState = AreaState.Sea;
             _rigid.drag = 2f;
         }
-
+       
         Vector2 chagedPos = new Vector2(transform.position.x, -transform.position.y);
-        //RaycastHit2D hitFloor = Physics2D.Raycast(chagedPos, Vector2.down, 10f, LayerMask.NameToLayer("Plaform"));
-        //if(hitFloor)
-        //{
-        //    transform.position = new Vector2(transform.position.x, hitFloor.point.y + 0.3f);
-        //}
-        //else
-        //{
-        //    transform.position = chagedPos;
-        //}
         transform.position = chagedPos;
         ChangedState();
     }
+
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        //if (_generateShadow.Shadow != null)
+        //{
+        //    Gizmos.color = Color.red;
+        //    Gizmos.DrawWireSphere(_generateShadow.Shadow.transform.position, _circleGizmoSize);
+        //}
+    }
+#endif
 }
