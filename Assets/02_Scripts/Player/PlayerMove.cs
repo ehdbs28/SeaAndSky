@@ -63,6 +63,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     [SerializeField] private UnityEvent<Vector2> onPlayerMove;
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
+    private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
     private void Awake()
     {
@@ -75,6 +76,15 @@ public class PlayerMove : MonoBehaviour, IDamage
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         anim = GetComponent<Animator>();
         _speed = movementData.maxSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CheakPoint"))
+        {
+            _cheakPointTrm = collision.transform.position;
+            Destroy(collision.gameObject);
+        }
     }
 
     void Update()
@@ -97,8 +107,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
         Debug.Log("Death");
-        anim.SetTrigger("Dead");
-        GameManager.Instance.ReduceHeart();
+        //anim.SetTrigger("Dead");
+        GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
 
     }
 
