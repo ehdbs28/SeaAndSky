@@ -27,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
     #endregion
 
     #region Stage
-    [SerializeField] private List<GameObject> stages;
+    [SerializeField] StageSO stages;
     private GameObject currentStage;
     public Vector2 PlayerPosition { get => currentStage.transform.GetChild(0).position; }
     #endregion
@@ -121,7 +121,8 @@ public class GameManager : MonoSingleton<GameManager>
         if (isLoadState)
         {
             int stage = DataManager.Instance.User.stage;
-            currentStage = Instantiate(stages[stage - 1], Vector3.up * 11f, Quaternion.identity);
+            Debug.Log($"Stage {stage}");
+            currentStage = Instantiate(stages.stages[stage - 1], Vector3.zero, Quaternion.identity);
 
             EventManager.TriggerEvent("LoadStage");
         }

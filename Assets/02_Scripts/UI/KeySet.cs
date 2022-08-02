@@ -18,14 +18,17 @@ public class KeySet : MonoBehaviour
 {
     int key = -1;
     KeyCode[] defalutkeys = new KeyCode[] { KeyCode.X, KeyCode.Z, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
- 
+
     private void Awake()
     {
-        for(int i = 0; i <(int)Key.keycount; i++)
+        if (KeySetting.keys.Count == 0)
         {
-            KeySetting.keys.Add((Key)i, defalutkeys[i]);
-            key = -1;
-        }  
+            for (int i = 0; i < (int)Key.keycount; i++)
+            {
+                KeySetting.keys.Add((Key)i, defalutkeys[i]);
+                key = -1;
+            }
+        }
     }
 
     private void OnGUI()
@@ -33,7 +36,7 @@ public class KeySet : MonoBehaviour
         Event keyEvent = Event.current;
         if (keyEvent.isKey)
         {
-            KeySetting.keys[(Key)key]= keyEvent.keyCode;
+            KeySetting.keys[(Key)key] = keyEvent.keyCode;
             key = -1;
         }
     }

@@ -27,7 +27,6 @@ public class PlayerArea : MonoBehaviour
     }
     private void Start()
     {
-
         ChangedState();
     }
     void Update()
@@ -39,7 +38,7 @@ public class PlayerArea : MonoBehaviour
         //CheckState();
     }
 
-    public void ChangedState()
+    public void ChangedState() 
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
