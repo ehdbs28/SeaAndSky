@@ -7,10 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    private int escMenu = 0;
-
     [SerializeField]
-    private GameObject esc;
+    private CanvasGroup esc;
     [SerializeField]
     private GameObject gameOverUI;
     [SerializeField]
@@ -21,28 +19,23 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup interactionButton;
 
-    private Camera mainCam;
-
-    private void Start()
-    {
-        mainCam = Camera.main;
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (escMenu % 2 == 0)
+            // 켜져 있지 않을 때 => 꺼져있는 상태
+            if (!esc.gameObject.activeSelf)
             {
-                esc.SetActive(true);
-                Time.timeScale = 0;
+                esc.gameObject.SetActive(true);
+                esc.DOFade(1f, 0.5f).OnComplete(() =>
+                {
+                    Time.timeScale = 0f;
+                });
             }
             else
             {
-                esc.SetActive(false);
-                Time.timeScale = 1;
+                UnshowEscPanel();
             }
-            escMenu++;
         }
 
         if (GameManager.Instance.IsPlayerDeath)
@@ -50,17 +43,11 @@ public class UIManager : MonoBehaviour
             gameOverUI.SetActive(true);
             GameManager.Instance.IsPlayerDeath = false;
         }
-        /*if (PlayerGoal.isGoal)
-        {
-            goal.SetActive(true);
-            PlayerGoal.isGoal = false;
-        }*/
     }
 
     public void ContinueBtn()
     {
-        esc.SetActive(false);
-        Time.timeScale = 1f;
+        UnshowEscPanel();
     }
 
     public void NextStage()
@@ -78,7 +65,7 @@ public class UIManager : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
     public void KeySetBtn()
     {
         keyPanel.SetActive(true);
@@ -86,6 +73,12 @@ public class UIManager : MonoBehaviour
     public void KeySetQuit()
     {
         keyPanel.SetActive(false);
+    }
+
+    private void UnshowEscPanel()
+    {
+        esc.DOFade(0f, 0.3f).OnComplete(() => esc.gameObject.SetActive(false));
+        Time.timeScale = 1f;
     }
 
     public void SetInteractionButton(bool isActive, Vector2 pos = default)

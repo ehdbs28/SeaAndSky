@@ -81,7 +81,6 @@ public class GenerateGrass : MonoBehaviour
     Vector2 GetGrassPosition(float x)
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(new Vector3(x, yPosition), rayDirection, 30f, layer);
-        Debug.Log(hitInfo.point.y);
         return new Vector2(x, hitInfo.point.y);
     }
 

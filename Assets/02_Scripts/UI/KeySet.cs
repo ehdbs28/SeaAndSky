@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum Key
 {
@@ -18,31 +19,59 @@ public class KeySet : MonoBehaviour
 {
     int key = -1;
     KeyCode[] defalutkeys = new KeyCode[] { KeyCode.X, KeyCode.Z, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
+    string[] keyNames = new string[] { "Jump", "Attack", "Right", "Left", "Down", "Change World" };
+
+    [SerializeField] private GameObject keySettingPanel;
 
     private void Awake()
     {
         if (KeySetting.keys.Count == 0)
         {
-            for (int i = 0; i < (int)Key.keycount; i++)
+            if (DataManager.Instance.User.keySetting[0] == KeyCode.None)
             {
-                KeySetting.keys.Add((Key)i, defalutkeys[i]);
-                key = -1;
+                for (int i = 0; i < (int)Key.keycount; i++)
+                {
+                    KeySetting.keys.Add((Key)i, defalutkeys[i]);
+                    DataManager.Instance.User.keySetting[i] = defalutkeys[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < (int)Key.keycount; i++)
+                {
+                    KeySetting.keys.Add((Key)i, DataManager.Instance.User.keySetting[i]);
+                }
             }
         }
+
+        for (int i = 0; i < defalutkeys.Length; i++)
+        {
+            GameObject panel = Instantiate(keySettingPanel, keySettingPanel.transform.parent);
+            panel.transform.GetChild(1).GetComponent<Text>().text = keyNames[i];
+        }
+
+        keySettingPanel.SetActive(false);
     }
 
     private void OnGUI()
     {
         Event keyEvent = Event.current;
-        if (keyEvent.isKey)
+        if (keyEvent.isKey && key != -1)
         {
             KeySetting.keys[(Key)key] = keyEvent.keyCode;
+            DataManager.Instance.User.keySetting[key] = keyEvent.keyCode;
             key = -1;
+
         }
     }
 
     public void ChangeKey(int num)
     {
         key = num;
+    }
+
+    public void ChangeKey(GameObject callObj)
+    {
+        key = callObj.transform.GetSiblingIndex() - 1;
     }
 }

@@ -5,19 +5,25 @@ using UnityEngine.UI;
 
 public class KeyText : MonoBehaviour
 {
-    [SerializeField] Text[] txt;
+    [SerializeField] Transform textParent;
+    private Text[] txt;
+
     private void Start()
     {
-        for(int i = 0; i < txt.Length; i++)
+        txt = new Text[(int)Key.keycount];
+
+        for (int i = 0; i < (int)Key.keycount; i++)
         {
+            txt[i] = textParent.GetChild(i + 1).GetChild(0).GetComponentInChildren<Text>();
             txt[i].text = KeySetting.keys[(Key)i].ToString();
         }
     }
+
     private void Update()
     {
-        for (int i = 0; i < txt.Length; i++)
+        for (int i = 0; i < (int)Key.keycount; i++)
         {
             txt[i].text = KeySetting.keys[(Key)i].ToString();
-        } 
+        }
     }
 }

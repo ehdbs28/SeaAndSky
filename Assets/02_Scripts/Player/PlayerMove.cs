@@ -239,11 +239,6 @@ public class PlayerMove : MonoBehaviour, IDamage
                 isAttack = true;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Debug.Log("Sdf");
-        }
     }
 
     IEnumerator Attack() 
