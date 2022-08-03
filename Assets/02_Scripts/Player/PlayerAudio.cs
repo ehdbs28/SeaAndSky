@@ -32,13 +32,13 @@ public class PlayerAudio : MonoBehaviour
     private float walkTimer = 0f;
     private float WALK_DELAY = 0f;
 
-    private bool isStart;
+    private bool isStart = true;
 
     private IEnumerator Start()
     {
         WALK_DELAY = skySound.length;
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         isStart = false;
     }
 
@@ -67,7 +67,7 @@ public class PlayerAudio : MonoBehaviour
             {
                 SoundManager.Instance.PlaySound(AudioType.EffectSound, skyWalkSound);
             }
-            else if(GameManager.Instance.PlayerState == AreaState.Sea && Mathf.Abs(direction.y) < 0.01f)
+            else if (GameManager.Instance.PlayerState == AreaState.Sea && Mathf.Abs(direction.y) < 0.01f)
             {
                 SoundManager.Instance.PlaySound(AudioType.EffectSound, seaWalkSounds[Random.Range(0, seaWalkSounds.Length)]);
             }
@@ -89,7 +89,6 @@ public class PlayerAudio : MonoBehaviour
     public void PlayChangeSound(AreaState area)
     {
         if (isStart) return;
-
         if (area == AreaState.Sea)
         {
             SoundManager.Instance.PlaySound(AudioType.EffectSound, seaSound);

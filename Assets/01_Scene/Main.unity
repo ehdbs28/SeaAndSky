@@ -5071,7 +5071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4176797ebd0004490d1757da5fea6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speed: 0.02
   waitTime: 5
   colors:
   - {r: 0.34509805, g: 0.7019608, b: 1, a: 1}

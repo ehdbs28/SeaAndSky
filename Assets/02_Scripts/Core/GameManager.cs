@@ -56,6 +56,9 @@ public class GameManager : MonoSingleton<GameManager>
     [field: SerializeField]
     public Camera seaCamera { get; private set; }
 
+    private GameState gameState;
+    public GameState GameState { get => gameState; set => gameState = value; }
+
     private void Awake()
     {
         UIManager = FindObjectOfType<UIManager>();
@@ -82,6 +85,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null)
     {
         if (_isplayerDeath) return;
+
         if (heartList.Count > 0 && !_isInvincibility)
         {
             _isInvincibility = true;
@@ -94,8 +98,8 @@ public class GameManager : MonoSingleton<GameManager>
             GameObject lastIndex = heartList[heartList.Count - 1];
             Sequence sq = DOTween.Sequence();
 
-            sq.Append(lastIndex.transform.DOScale(new Vector3(2.2f, 2.2f, 2.2f), 0.2f));
-            sq.Append(lastIndex.transform.DOScale(new Vector3(0, 0, 0), 0.5f));
+            sq.Append(lastIndex.transform.DOScale(Vector3.one * 2.2f, 0.2f));
+            sq.Append(lastIndex.transform.DOScale(Vector3.zero, 0.5f));
             sq.OnComplete(() =>
             {
                 Destroy(lastIndex);

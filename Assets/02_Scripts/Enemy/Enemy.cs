@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.GameState != GameState.InGame) return;
+
         EnemyDir();
         EnemyMove();
         ColiderWall();

@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
                 esc.gameObject.SetActive(true);
                 esc.DOFade(1f, 0.5f).OnComplete(() =>
                 {
+                    GameManager.Instance.GameState = GameState.Setting;
                     Time.timeScale = 0f;
                 });
             }
@@ -78,6 +79,7 @@ public class UIManager : MonoBehaviour
     private void UnshowEscPanel()
     {
         esc.DOFade(0f, 0.3f).OnComplete(() => esc.gameObject.SetActive(false));
+        GameManager.Instance.GameState = GameState.InGame;
         Time.timeScale = 1f;
     }
 

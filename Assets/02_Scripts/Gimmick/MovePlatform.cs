@@ -11,18 +11,21 @@ public class MovePlatform : MonoBehaviour
     private float _stopDelay;
 
 
-    [SerializeField] 
+    [SerializeField]
     private float offsetX, offsetY;
     [SerializeField]
-    private float moveTime =1f;
+    private float moveTime = 1f;
+
+    [SerializeField]
+    private AudioClip moveSound;
 
     private Vector2 originVector;
     private Sequence seq;
-   
+
     private void Start()
     {
         originVector = transform.position;
-        if(_isAuto)
+        if (_isAuto)
         {
             StartCoroutine(AutomaticMoveCoroutine());
         }
@@ -30,17 +33,17 @@ public class MovePlatform : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             MoveToOffsetPosistion();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(_isAuto)
+        if (_isAuto)
         {
-           if(collision.gameObject.name == "Player")
-            collision.transform.SetParent(transform);
+            if (collision.gameObject.name == "Player")
+                collision.transform.SetParent(transform);
         }
     }
 
@@ -56,18 +59,19 @@ public class MovePlatform : MonoBehaviour
     {
         WaitForSeconds _stopTime = new WaitForSeconds(_stopDelay + moveTime);
         while (true)
-       {
+        {
             MoveToOffsetPosistion();
             yield return _stopTime;
             MoveToOriginPosition();
             yield return _stopTime;
-       }
+        }
     }
     public virtual void MoveToOffsetPosistion()
     {
         seq = DOTween.Sequence();
         Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
         seq.Append(transform.DOMove(endVec, moveTime));
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
     public virtual void MoveToOriginPosition()
     {

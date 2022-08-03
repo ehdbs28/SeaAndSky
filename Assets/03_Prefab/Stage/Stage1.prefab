@@ -33242,6 +33242,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: -5
   moveTime: 0.7
+  moveSound: {fileID: 8300000, guid: 2209bee490ac15147972175b9d1d9ac9, type: 3}
 --- !u!1 &3946188861993414116
 GameObject:
   m_ObjectHideFlags: 0
@@ -34162,6 +34163,7 @@ MonoBehaviour:
   offsetX: 0
   offsetY: 3
   moveTime: 1
+  moveSound: {fileID: 8300000, guid: 2209bee490ac15147972175b9d1d9ac9, type: 3}
 --- !u!114 &3946188862330754511
 MonoBehaviour:
   m_ObjectHideFlags: 0
