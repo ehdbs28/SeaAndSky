@@ -5338,6 +5338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: _cheakPointImg
+      value: 
+      objectReference: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
     - target: {fileID: 8791568946573081429, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_IsActive
       value: 1
