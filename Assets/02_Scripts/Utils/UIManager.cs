@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject keyPanel;
 
+    [SerializeField] private GameObject AudioSetting;
+
     [SerializeField]
     private CanvasGroup interactionButton;
 
@@ -86,6 +88,15 @@ public class UIManager : MonoBehaviour
     public void KeySetQuit()
     {
         keyPanel.SetActive(false);
+    }
+
+    public void AudioSettingBtn()
+    {
+        AudioSetting.SetActive(true);
+    }
+    public void AudioSettingQuit()
+    {
+        AudioSetting.SetActive(false);
     }
 
     public void SetInteractionButton(bool isActive, Vector2 pos = default)
