@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject keyPanel;
 
+    [SerializeField] private GameObject AudioSetting;
+
     [SerializeField]
     private CanvasGroup interactionButton;
 
@@ -23,7 +25,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // ÄÑÁ® ÀÖÁö ¾ÊÀ» ¶§ => ²¨Á®ÀÖ´Â »óÅÂ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (!esc.gameObject.activeSelf)
             {
                 esc.gameObject.SetActive(true);
@@ -53,7 +55,7 @@ public class UIManager : MonoBehaviour
 
     public void NextStage()
     {
-        Debug.Log("´ÙÀ½ ½ºÅ×ÀÌÁö");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
     public void ReStart()
@@ -81,6 +83,15 @@ public class UIManager : MonoBehaviour
         esc.DOFade(0f, 0.3f).OnComplete(() => esc.gameObject.SetActive(false));
         GameManager.Instance.GameState = GameState.InGame;
         Time.timeScale = 1f;
+    }
+
+    public void AudioSettingBtn()
+    {
+        AudioSetting.SetActive(true);
+    }
+    public void AudioSettingQuit()
+    {
+        AudioSetting.SetActive(false);
     }
 
     public void SetInteractionButton(bool isActive, Vector2 pos = default)

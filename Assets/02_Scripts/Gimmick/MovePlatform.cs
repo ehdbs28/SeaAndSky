@@ -17,12 +17,15 @@ public class MovePlatform : MonoBehaviour
 
     [SerializeField]
     private AudioClip moveSound;
+    private ParticleSystem moveParticle;
 
     private Vector2 originVector;
     private Sequence seq;
 
     private void Start()
     {
+        moveParticle = GetComponentInChildren<ParticleSystem>();
+
         originVector = transform.position;
         if (_isAuto)
         {
@@ -63,12 +66,17 @@ public class MovePlatform : MonoBehaviour
         seq = DOTween.Sequence();
         Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
         seq.Append(transform.DOMove(endVec, moveTime));
+
+        moveParticle.Play();
         SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
     public virtual void MoveToOriginPosition()
     {
         seq = DOTween.Sequence();
         seq.Append(transform.DOMove(originVector, moveTime));
+
+        moveParticle.Play();
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
 
     //È¤½Ã ¸ô¶ó¼­ 
