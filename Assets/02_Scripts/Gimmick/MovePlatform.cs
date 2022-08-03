@@ -67,7 +67,7 @@ public class MovePlatform : MonoBehaviour
         Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
         seq.Append(transform.DOMove(endVec, moveTime));
 
-        moveParticle.Play();
+        moveParticle?.Play();
         SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
     public virtual void MoveToOriginPosition()
@@ -75,7 +75,7 @@ public class MovePlatform : MonoBehaviour
         seq = DOTween.Sequence();
         seq.Append(transform.DOMove(originVector, moveTime));
 
-        moveParticle.Play();
+        moveParticle?.Play();
         SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
 
