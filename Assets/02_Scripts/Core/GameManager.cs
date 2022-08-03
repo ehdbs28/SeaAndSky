@@ -120,6 +120,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void PlayerRevival(Transform playerTrm, Vector2 cheakPoint)
     {
+        _playerState = cheakPoint.y > 0 ? AreaState.Sky : AreaState.Sea;
+        FindObjectOfType<PlayerArea>().ChangedState();
         playerTrm.position = cheakPoint;
     }
 
