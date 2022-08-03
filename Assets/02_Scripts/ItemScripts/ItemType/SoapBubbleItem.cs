@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SoapBubbleItem : MonoBehaviour
 {
     private SoapBubble _soapBubble;
-
+    public UnityEvent OnGetItem;
     private void Awake()
     {
         gameObject.SetActive(true);
@@ -22,5 +23,6 @@ public class SoapBubbleItem : MonoBehaviour
         playerArea.ChangedState();
 
         gameObject.SetActive(false);
+        OnGetItem?.Invoke();
     }
 }

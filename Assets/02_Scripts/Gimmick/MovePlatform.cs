@@ -10,7 +10,6 @@ public class MovePlatform : MonoBehaviour
     [SerializeField]
     private float _stopDelay;
 
-
     [SerializeField]
     private float offsetX, offsetY;
     [SerializeField]
@@ -30,13 +29,6 @@ public class MovePlatform : MonoBehaviour
             StartCoroutine(AutomaticMoveCoroutine());
         }
 
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            MoveToOffsetPosistion();
-        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

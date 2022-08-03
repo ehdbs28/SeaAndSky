@@ -13,7 +13,7 @@ public class GenerateShadow : MonoBehaviour
     [SerializeField] private bool isCollide = true;
     [SerializeField] private bool isMoved = false;
     [SerializeField] private bool isColChanged = false;
-
+    [SerializeField] private bool isChild = false;
     private BoxCollider2D col;
     private BoxCollider2D myCol;
     private Rigidbody2D rigid;
@@ -52,7 +52,10 @@ public class GenerateShadow : MonoBehaviour
         {
             SettingRigidbody();
         }
-
+        if(isChild)
+        {
+            Shadow.transform.SetParent(transform);
+        }
         shadow.layer = gameObject.layer;
         shadow.tag = gameObject.tag;
     }
