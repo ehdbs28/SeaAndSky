@@ -191,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2104460021974f4c8c6d4b6ef4651b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireSound: {fileID: 8300000, guid: 0fe838a10946ea046837e4d35099cd6b, type: 3}
 --- !u!82 &5086025305996618660
 AudioSource:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0fe838a10946ea046837e4d35099cd6b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -247,7 +248,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.522
       inSlope: 0
       outSlope: 0
       tangentMode: 0
