@@ -81,6 +81,8 @@ public class PlayerMove : MonoBehaviour, IDamage
         collider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         _speed = movementData.maxSpeed;
+
+        h = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
