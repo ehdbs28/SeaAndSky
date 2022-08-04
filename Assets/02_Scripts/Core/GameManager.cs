@@ -7,7 +7,7 @@ using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    #region ÇÃ·¹ÀÌ¾î HP °ü·Ã ÄÚµå
+    #region ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ HP ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
     [SerializeField] private int _heartCnt;
     [SerializeField] private GameObject _heartPrefab;
     [SerializeField] private Transform _parentTrm;
@@ -65,11 +65,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
-
-    }
-
-    private void Start()
-    {
+        
         for (int i = 0; i < _heartCnt; i++)
         {
             GameObject heart = Instantiate(_heartPrefab);
@@ -85,7 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
         GameReset();
     }
 
-    //ÇÃ·¹ÀÌ¾î ÇÏÆ® °¨¼Ò
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null)
     {
         if (_isplayerDeath) return;
