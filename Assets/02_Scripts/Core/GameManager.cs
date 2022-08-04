@@ -70,6 +70,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             GameObject heart = Instantiate(_heartPrefab);
             heart.transform.SetParent(_parentTrm);
+            heart.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             heartList.Add(heart);
         }
 
