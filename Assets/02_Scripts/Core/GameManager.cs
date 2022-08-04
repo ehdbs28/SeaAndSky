@@ -62,10 +62,6 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         UIManager = FindObjectOfType<UIManager>();
-    }
-
-    private void Start()
-    {
         for (int i = 0; i < _heartCnt; i++)
         {
             GameObject heart = Instantiate(_heartPrefab);
