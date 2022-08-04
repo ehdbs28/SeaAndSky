@@ -15,14 +15,17 @@ public class SoapBubbleItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerArea playerArea = FindObjectOfType<PlayerArea>();
-        _soapBubble.gameObject.SetActive(true);
-        _soapBubble.DestroyBubbleAnim();
+        if (collision.CompareTag("Player"))
+        {
+            PlayerArea playerArea = FindObjectOfType<PlayerArea>();
+            _soapBubble.gameObject.SetActive(true);
+            _soapBubble.DestroyBubbleAnim();
 
-        playerArea.IsSoapBubble = true;
-        playerArea.ChangedState();
+            playerArea.IsSoapBubble = true;
+            playerArea.ChangedState();
 
-        gameObject.SetActive(false);
-        OnGetItem?.Invoke();
+            gameObject.SetActive(false);
+            OnGetItem?.Invoke();
+        }
     }
 }
