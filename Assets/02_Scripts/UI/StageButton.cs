@@ -17,7 +17,7 @@ public class StageButton : MonoBehaviour
 
         stageText.text = index.ToString();
 
-        if(DataManager.Instance.User.stage < index)
+        if(DataManager.Instance.User.maxStage < index)
         {
             button.interactable = false;
         }
