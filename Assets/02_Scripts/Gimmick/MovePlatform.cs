@@ -10,7 +10,6 @@ public class MovePlatform : MonoBehaviour
     [SerializeField]
     private float _stopDelay;
 
-
     [SerializeField]
     private float offsetX, offsetY;
     [SerializeField]
@@ -34,13 +33,6 @@ public class MovePlatform : MonoBehaviour
         }
 
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            MoveToOffsetPosistion();
-        }
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (_isAuto)
@@ -63,28 +55,32 @@ public class MovePlatform : MonoBehaviour
         WaitForSeconds _stopTime = new WaitForSeconds(_stopDelay + moveTime);
         while (true)
         {
-            MoveToOffsetPosistion();
+            MoveToOffsetPosistion(true);
             yield return _stopTime;
-            MoveToOriginPosition();
+            MoveToOriginPosition(true);
             yield return _stopTime;
         }
     }
-    public virtual void MoveToOffsetPosistion()
+    public virtual void MoveToOffsetPosistion(bool isStart = false)
     {
         seq = DOTween.Sequence();
         Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
         seq.Append(transform.DOMove(endVec, moveTime));
 
-        moveParticle.Play();
-        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
+        moveParticle?.Play();
+
+        if (!isStart)
+            SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
-    public virtual void MoveToOriginPosition()
+    public virtual void MoveToOriginPosition(bool isStart = false)
     {
         seq = DOTween.Sequence();
         seq.Append(transform.DOMove(originVector, moveTime));
 
-        moveParticle.Play();
-        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
+        moveParticle?.Play();
+
+        if (!isStart)
+            SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
 
     //È¤½Ã ¸ô¶ó¼­ 

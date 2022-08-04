@@ -22,6 +22,8 @@ public class SoundManager : MonoSingleton<SoundManager>
         bgmAudio = sources[0];
         effectSoundAudio = sources[1];
         natureAudio = sources[2];
+
+        DontDestroyOnLoad(this);
     }
 
 

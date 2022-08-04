@@ -5137,7 +5137,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 7f7405b36beb5ca4b87dafb7d928c6f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5159,7 +5159,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 922b93f893d05da42947575efa5339dc, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.011764706, g: 0.7647059, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5365,7 +5365,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _cheakPointImg: {fileID: 5874282622798847245, guid: 7a26812c257b83843b791cad48c9ea71, type: 3}
+  _cheakPointImg: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
 --- !u!95 &5527135322220754508
 Animator:
   serializedVersion: 3
@@ -5495,6 +5495,7 @@ MonoBehaviour:
   isCollide: 0
   isMoved: 0
   isColChanged: 0
+  isChild: 0
 --- !u!114 &415869096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5522,6 +5523,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  obtainSound: {fileID: 8300000, guid: 968a666bf1c168f41adb624fd139a8f6, type: 3}
+  useSound: {fileID: 8300000, guid: 6359d1e3733c2ad4693c64e64a2749f0, type: 3}
 --- !u!61 &26161712842966244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5609,7 +5612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8791568947991826502, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}

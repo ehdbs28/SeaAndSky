@@ -16,11 +16,18 @@ public class FireColumn : MonoBehaviour
     private float length;
     private readonly float interval = 0.2f;
 
+    [SerializeField] private AudioClip fireSound;
+    private AudioSource audioSource;
+
+    private Transform player;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         renderer = GetComponentInChildren<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
+        audioSource = GetComponent<AudioSource>();
+        player = FindObjectOfType<PlayerMove>().transform;
 
         renderer.sprite = null;
         StartCoroutine(ActiveColumn());
@@ -36,11 +43,16 @@ public class FireColumn : MonoBehaviour
             renderer.enabled = true;
             animator.SetTrigger(fireHash);
 
+            // 나중에 사용자 볼륨 추가
+            float volume = 1f - Mathf.Lerp(0f, 1f, Vector2.Distance(transform.position, player.position) / 10f) * 1.15f;
+
+            audioSource.PlayOneShot(fireSound, volume);
+
             yield return new WaitForSeconds(length - interval);
 
             collider.enabled = false;
             renderer.sprite = null;
-            
+
             yield return new WaitForSeconds(interval);
 
             renderer.enabled = false;
