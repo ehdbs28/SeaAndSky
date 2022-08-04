@@ -44,7 +44,7 @@ public class FireColumn : MonoBehaviour
             animator.SetTrigger(fireHash);
 
             // 나중에 사용자 볼륨 추가
-            float volume = 1f - Mathf.Lerp(0f, 1f, Vector2.Distance(transform.position, player.position) / 10f) * 1.15f;
+            float volume = (1f - Mathf.Lerp(0f, 1f, Vector2.Distance(transform.position, player.position) / 10f)) * 1.15f;
 
             audioSource.PlayOneShot(fireSound, volume);
 
