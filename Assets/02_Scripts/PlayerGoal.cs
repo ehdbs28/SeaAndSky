@@ -22,7 +22,11 @@ public class PlayerGoal : MonoBehaviour
     void PlayerGoalIN()
     {
         Debug.Log("Goal");
-        DataManager.Instance.User.stage++;
+        int curStage = ++DataManager.Instance.User.stage;
+
+        if (DataManager.Instance.User.maxStage < curStage)
+            DataManager.Instance.User.maxStage = curStage;
+
         SceneManager.LoadScene("Main");
     }
 }

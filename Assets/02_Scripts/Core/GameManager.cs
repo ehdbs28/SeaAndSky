@@ -70,6 +70,7 @@ public class GameManager : MonoSingleton<GameManager>
         {
             GameObject heart = Instantiate(_heartPrefab);
             heart.transform.SetParent(_parentTrm);
+            heart.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
             heartList.Add(heart);
         }
 
@@ -145,6 +146,7 @@ public class GameManager : MonoSingleton<GameManager>
             if(stage > stages.stages.Count)
             {
                 SceneManager.LoadScene("MTitle");
+                DataManager.Instance.User.stage = 1;
                 return;
             }
             currentStage = Instantiate(stages.stages[stage - 1], Vector3.zero, Quaternion.identity);
