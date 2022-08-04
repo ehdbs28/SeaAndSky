@@ -13,6 +13,7 @@ public class PlayerArea : MonoBehaviour
     [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
     private float _circleGizmoSize = 0.2f;
+    [SerializeField] private LayerMask _isWhatGround;
     public bool IsSoapBubble
     {
         get => _isSoapBubble;
@@ -64,7 +65,7 @@ public class PlayerArea : MonoBehaviour
 
     public void SetStateChanged()
     {
-        if (Physics2D.OverlapCircle(_generateShadow.Shadow.transform.position, _circleGizmoSize))
+        if (Physics2D.OverlapCircle(_generateShadow.Shadow.transform.position, _circleGizmoSize, _isWhatGround))
         {
             _failedChangeArea.Invoke();
             return;
