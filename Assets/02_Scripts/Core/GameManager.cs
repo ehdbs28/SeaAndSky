@@ -7,7 +7,7 @@ using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    #region ÇÃ·¹ÀÌ¾î HP °ü·Ã ÄÚµå
+    #region ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ HP ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
     [SerializeField] private int _heartCnt;
     [SerializeField] private GameObject _heartPrefab;
     [SerializeField] private Transform _parentTrm;
@@ -59,9 +59,13 @@ public class GameManager : MonoSingleton<GameManager>
     private GameState gameState;
     public GameState GameState { get => gameState; set => gameState = value; }
 
+    private PlayerAudio playerAudio;
+
     private void Awake()
     {
         UIManager = FindObjectOfType<UIManager>();
+        playerAudio = FindObjectOfType<PlayerAudio>();
+        
         for (int i = 0; i < _heartCnt; i++)
         {
             GameObject heart = Instantiate(_heartPrefab);
@@ -77,7 +81,7 @@ public class GameManager : MonoSingleton<GameManager>
         GameReset();
     }
 
-    //ÇÃ·¹ÀÌ¾î ÇÏÆ® °¨¼Ò
+    //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null)
     {
         if (_isplayerDeath) return;
@@ -104,7 +108,9 @@ public class GameManager : MonoSingleton<GameManager>
 
             heartList.RemoveAt(heartList.Count - 1);
 
-            if(heartList.Count == 0)
+            playerAudio.PlayerDieSound();
+
+            if (heartList.Count == 0)
             {
                 _isplayerDeath = true;
                 _isGameOver = true;

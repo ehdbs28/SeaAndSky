@@ -61,7 +61,28 @@ public class MovePlatform : MonoBehaviour
             yield return _stopTime;
         }
     }
-    public virtual void MoveToOffsetPosistion(bool isStart = false)
+    public virtual void MoveToOffsetPosistion()
+    {
+        seq = DOTween.Sequence();
+        Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
+        seq.Append(transform.DOMove(endVec, moveTime));
+
+        moveParticle?.Play();
+
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
+    }
+    public virtual void MoveToOriginPosition()
+    {
+        seq = DOTween.Sequence();
+        seq.Append(transform.DOMove(originVector, moveTime));
+
+        moveParticle?.Play();
+
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
+    }
+
+    #region 오버로딩
+    public virtual void MoveToOffsetPosistion(bool isStart)
     {
         seq = DOTween.Sequence();
         Vector2 endVec = new Vector2(originVector.x + offsetX, originVector.y + offsetY);
@@ -72,7 +93,7 @@ public class MovePlatform : MonoBehaviour
         if (!isStart)
             SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
-    public virtual void MoveToOriginPosition(bool isStart = false)
+    public virtual void MoveToOriginPosition(bool isStart)
     {
         seq = DOTween.Sequence();
         seq.Append(transform.DOMove(originVector, moveTime));
@@ -82,6 +103,7 @@ public class MovePlatform : MonoBehaviour
         if (!isStart)
             SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
+    #endregion
 
     //혹시 몰라서 
     private void OnDestroy()
