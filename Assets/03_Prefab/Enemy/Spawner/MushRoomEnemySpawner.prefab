@@ -67,10 +67,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 371362457895688426}
     m_Modifications:
-    - target: {fileID: 886093692862065916, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: m_Name
-      value: MoveState
-      objectReference: {fileID: 0}
     - target: {fileID: 3790250603340836750, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
       propertyPath: m_Name
       value: 'MushroomMonster '
@@ -119,50 +115,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4600787776892892432, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: _transitions.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5667597966313714028, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: _hp
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5667597966313714028, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: _speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5667597966313714028, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: _deadTime
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
       propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5766194288689994504}
-    - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Dead
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EnemySpawner, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7931337169626502812, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
-      propertyPath: <OnDie>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b0cd9484fac3934fbb827c1dfb9462a, type: 3}
 --- !u!4 &1836283158890812832 stripped
