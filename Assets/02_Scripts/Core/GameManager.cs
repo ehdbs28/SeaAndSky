@@ -139,6 +139,12 @@ public class GameManager : MonoSingleton<GameManager>
         {
             int stage = DataManager.Instance.User.stage;
             Debug.Log($"Stage {stage}");
+
+            if(stage >= stages.stages.Count)
+            {
+                SceneManager.LoadScene("MTitle");
+                return;
+            }
             currentStage = Instantiate(stages.stages[stage - 1], Vector3.zero, Quaternion.identity);
 
             EventManager.TriggerEvent("LoadStage");

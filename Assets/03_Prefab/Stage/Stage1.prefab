@@ -312,7 +312,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300144, guid: c3a40e1c46727b94e959990527f8e7fa, type: 3}
   - {fileID: 21300158, guid: c3a40e1c46727b94e959990527f8e7fa, type: 3}
-  count: 30
+  count: 10
   layer:
     serializedVersion: 2
     m_Bits: 64
@@ -337,7 +337,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 002744aa750b267438cf76888a4b3577, type: 3}
   - {fileID: 21300000, guid: e4bdd58602f44f44e94f2c27a11feee0, type: 3}
-  count: 30
+  count: 10
   layer:
     serializedVersion: 2
     m_Bits: 64
