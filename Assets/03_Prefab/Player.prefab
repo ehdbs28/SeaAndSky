@@ -5439,6 +5439,9 @@ MonoBehaviour:
   _failedChangeArea:
     m_PersistentCalls:
       m_Calls: []
+  _isWhatGround:
+    serializedVersion: 2
+    m_Bits: 576
 --- !u!114 &1879805588
 MonoBehaviour:
   m_ObjectHideFlags: 0

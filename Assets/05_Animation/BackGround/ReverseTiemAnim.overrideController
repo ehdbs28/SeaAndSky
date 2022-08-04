@@ -7,5 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ReverseTiemAnim
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 73badee69d4ecc5498df482e8bc10448, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9e508782b0767124d89e191540f39d00, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 64ddc191ed00164449d7a05ccc250b88, type: 2}
