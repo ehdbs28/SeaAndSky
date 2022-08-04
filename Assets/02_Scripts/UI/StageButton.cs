@@ -13,6 +13,8 @@ public class StageButton : MonoBehaviour
     {
         stageText ??= GetComponentInChildren<Text>();
         button ??= GetComponent<Button>();
+
+        DataManager.Instance.User.stage = index;
         button.onClick.AddListener(() => SceneManager.LoadScene("Main"));
 
         stageText.text = index.ToString();
