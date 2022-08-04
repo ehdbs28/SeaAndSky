@@ -59,9 +59,13 @@ public class GameManager : MonoSingleton<GameManager>
     private GameState gameState;
     public GameState GameState { get => gameState; set => gameState = value; }
 
+    private PlayerAudio playerAudio;
+
     private void Awake()
     {
         UIManager = FindObjectOfType<UIManager>();
+        playerAudio = FindObjectOfType<PlayerAudio>();
+
     }
 
     private void Start()
@@ -108,7 +112,9 @@ public class GameManager : MonoSingleton<GameManager>
 
             heartList.RemoveAt(heartList.Count - 1);
 
-            if(heartList.Count == 0)
+            playerAudio.PlayerDieSound();
+
+            if (heartList.Count == 0)
             {
                 _isplayerDeath = true;
                 _isGameOver = true;
