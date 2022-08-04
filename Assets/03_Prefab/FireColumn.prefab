@@ -47,6 +47,7 @@ MonoBehaviour:
   isCollide: 1
   isMoved: 0
   isColChanged: 1
+  isChild: 0
 --- !u!1 &4567434629750516443
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4567434629750516443}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0fe838a10946ea046837e4d35099cd6b, type: 3}

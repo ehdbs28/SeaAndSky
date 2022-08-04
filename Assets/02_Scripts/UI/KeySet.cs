@@ -61,7 +61,6 @@ public class KeySet : MonoBehaviour
             KeySetting.keys[(Key)key] = keyEvent.keyCode;
             DataManager.Instance.User.keySetting[key] = keyEvent.keyCode;
             key = -1;
-
         }
     }
 
