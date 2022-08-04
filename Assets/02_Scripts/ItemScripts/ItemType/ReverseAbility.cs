@@ -13,6 +13,9 @@ public class ReverseAbility : MonoBehaviour
 
     [SerializeField] private UnityEvent<bool> onReverseBegin;
 
+    [SerializeField] private AudioClip obtainSound;
+    [SerializeField] private AudioClip useSound;
+
     private bool isReverse;
     public bool IsReverse
     {
@@ -29,6 +32,14 @@ public class ReverseAbility : MonoBehaviour
     {
         // ÀÏ´Ü Box¸¸...
         TARGET_LAYER = LayerMask.GetMask("Box");
+
+        onReverseBegin.AddListener((x) =>
+        {
+            if (x)
+            {
+                SoundManager.Instance.PlaySound(AudioType.EffectSound, obtainSound);
+            }
+        });
     }
 
     private void Update()
@@ -69,6 +80,7 @@ public class ReverseAbility : MonoBehaviour
         {
             IsReverse = false;
             GameManager.Instance.UIManager.SetInteractionButton(false);
+            SoundManager.Instance.PlaySound(AudioType.EffectSound, useSound);
 
             shadowController.ChangeToShadow();
         }

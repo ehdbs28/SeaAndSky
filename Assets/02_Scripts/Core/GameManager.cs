@@ -140,7 +140,7 @@ public class GameManager : MonoSingleton<GameManager>
             int stage = DataManager.Instance.User.stage;
             Debug.Log($"Stage {stage}");
 
-            if(stage >= stages.stages.Count)
+            if(stage > stages.stages.Count)
             {
                 SceneManager.LoadScene("MTitle");
                 return;
