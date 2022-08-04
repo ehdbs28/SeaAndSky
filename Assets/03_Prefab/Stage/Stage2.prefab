@@ -49344,6 +49344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoapBubbleItem
       objectReference: {fileID: 0}
+    - target: {fileID: 4781186964332722034, guid: bbf3bcb6a389d6e4cb6756e194393a12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4781186964332722036, guid: bbf3bcb6a389d6e4cb6756e194393a12, type: 3}
       propertyPath: m_RootOrder
       value: 0
