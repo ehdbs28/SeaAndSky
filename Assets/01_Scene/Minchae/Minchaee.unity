@@ -11108,6 +11108,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8094829784763740590, guid: 5bb6010f459353c4589f75543b3e10de, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb6010f459353c4589f75543b3e10de, type: 3}
 --- !u!1 &1227364809
@@ -11850,6 +11854,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 887023572}
   goal: {fileID: 708662313}
   keyPanel: {fileID: 1688081156}
+  AudioSetting: {fileID: 0}
   interactionButton: {fileID: 0}
 --- !u!4 &1446903424
 Transform:
@@ -11877,13 +11882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b9053a8ab03fd5439aeb982cf85c24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt:
-  - {fileID: 1719262747}
-  - {fileID: 657667343}
-  - {fileID: 1006408809}
-  - {fileID: 182358620}
-  - {fileID: 1846383520}
-  - {fileID: 190433544}
+  textParent: {fileID: 0}
 --- !u!114 &1446903426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11896,6 +11895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff8f8010f881ed4baa4dfc7236a6325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keySettingPanel: {fileID: 0}
 --- !u!1 &1542421139
 GameObject:
   m_ObjectHideFlags: 0
@@ -12358,7 +12358,6 @@ MonoBehaviour:
     m_Bits: 64
   material: {fileID: 2100000, guid: 8bf7ca71e2851cb46b9db9fd21af5f75, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  inactiveTag: 
   direction: 1
 --- !u!114 &1642387136
 MonoBehaviour:
@@ -12384,7 +12383,6 @@ MonoBehaviour:
     m_Bits: 64
   material: {fileID: 2100000, guid: fbdef1d0a953e2a4ebdd16399af0d02c, type: 2}
   spriteColor: {r: 0.70800996, g: 0.7320451, b: 0.8301887, a: 1}
-  inactiveTag: 
   direction: 0
 --- !u!1 &1644166830
 GameObject:
@@ -12807,7 +12805,7 @@ MonoBehaviour:
   _heartCnt: 0
   _heartPrefab: {fileID: 0}
   _parentTrm: {fileID: 0}
-  stages: []
+  stages: {fileID: 0}
   isLoadState: 0
   <skyCamera>k__BackingField: {fileID: 0}
   <seaCamera>k__BackingField: {fileID: 0}

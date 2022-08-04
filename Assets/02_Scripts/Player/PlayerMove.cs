@@ -45,6 +45,9 @@ public class PlayerMove : MonoBehaviour, IDamage
     [SerializeField] private static float h;
     [SerializeField] private LayerMask enemyLayer;
 
+    [SerializeField] private static float r;
+    [SerializeField] private static float l;
+
     private bool isGround = false;
     public bool IsGround
     {
@@ -168,7 +171,20 @@ public class PlayerMove : MonoBehaviour, IDamage
 
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
 
-        h = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKeyDown(KeySetting.keys[Key.right]))
+        {
+             h = 1;
+        }
+        if (Input.GetKeyDown(KeySetting.keys[Key.left]))
+        {
+            h = -1;
+        }
+        if (Input.GetKeyUp(KeySetting.keys[Key.left]) || Input.GetKeyUp(KeySetting.keys[Key.right]))
+        {
+            h = 0;
+        }
+
         if (isGround)
         {
             anim.SetBool("isJump", false);
