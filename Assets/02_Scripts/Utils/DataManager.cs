@@ -23,6 +23,8 @@ public class DataManager : MonoSingleton<DataManager>
         }
 
         LoadFromJson();
+
+        InvokeRepeating("SaveUser", 1f, 5f);
     }
 
     #region Json
