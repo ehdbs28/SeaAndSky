@@ -8,7 +8,7 @@ public class WindZone : MonoBehaviour
     private PlayerMove player;
     private Rigidbody2D rigid;
 
-    private BoxCollider2D collider;
+    [SerializeField] private float windForce = 250f;
 
     [SerializeField]
     private float speed = 1f;
@@ -18,16 +18,6 @@ public class WindZone : MonoBehaviour
     void Start()
     {
         windParticles = GetComponentsInChildren<ParticleSystem>();
-        collider = GetComponent<BoxCollider2D>();
-
-        foreach (ParticleSystem particle in windParticles)
-        {
-            //Vector3 pos = particle.transform.position;
-            //pos.x += collider.bounds.max.x;
-
-            //collider.
-            //particle.transform.position = pos;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,8 +40,8 @@ public class WindZone : MonoBehaviour
         {
             if (rigid)
             {
-                Debug.Log("sdf");
-                rigid.position -= Vector2.right * Time.deltaTime * speed;
+                //rigid.position -= Vector2.right * Time.deltaTime * speed;
+                rigid.AddForce(Vector2.left * windForce);
             }
         }
     }

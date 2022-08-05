@@ -48971,7 +48971,7 @@ PrefabInstance:
     - target: {fileID: 6420449460707829706, guid: 8f1f48e4b599df444a396b8e0bfb6012, type: 3}
       propertyPath: moveSound
       value: 
-      objectReference: {fileID: 8300000, guid: 2209bee490ac15147972175b9d1d9ac9, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6420449460707829706, guid: 8f1f48e4b599df444a396b8e0bfb6012, type: 3}
       propertyPath: _stopDelay
       value: 1
@@ -49344,10 +49344,6 @@ PrefabInstance:
     - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 12.599999
       objectReference: {fileID: 0}
     - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
       propertyPath: m_LocalPosition.x
