@@ -23,7 +23,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         effectSoundAudio = sources[1];
         natureAudio = sources[2];
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
 

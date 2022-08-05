@@ -34,17 +34,29 @@ public class PlayerAudio : MonoBehaviour
 
     private bool isStart = true;
 
-    private IEnumerator Start()
+    private void Start()
     {
+        EventManager.StartListening("Damage", Delay);
+        StartCoroutine(SoundDelayCoroutine());
         WALK_DELAY = skySound.length;
 
-        yield return new WaitForSeconds(0.3f);
-        isStart = false;
     }
 
     private void Update()
     {
         walkTimer += Time.deltaTime;
+    }
+
+    private void Delay()
+    {
+        StartCoroutine(SoundDelayCoroutine());
+    }
+
+    private IEnumerator SoundDelayCoroutine()
+    {
+        isStart = true;
+        yield return null;
+        isStart = false;
     }
 
     public void PlayJumpSound()
@@ -89,6 +101,7 @@ public class PlayerAudio : MonoBehaviour
     public void PlayChangeSound(AreaState area)
     {
         if (isStart) return;
+
         if (area == AreaState.Sea)
         {
             SoundManager.Instance.PlaySound(AudioType.EffectSound, seaSound);
@@ -103,5 +116,8 @@ public class PlayerAudio : MonoBehaviour
         }
     }
 
-
+    private void OnDisable()
+    {
+        EventManager.StopListening("Damage", Delay);
+    }
 }

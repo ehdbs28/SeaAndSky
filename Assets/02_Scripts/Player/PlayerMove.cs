@@ -114,6 +114,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
 
+        EventManager.TriggerEvent("Damage");
         GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
     }
 

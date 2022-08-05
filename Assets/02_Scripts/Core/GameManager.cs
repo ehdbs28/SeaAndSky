@@ -141,7 +141,6 @@ public class GameManager : MonoSingleton<GameManager>
         if (isLoadState)
         {
             int stage = DataManager.Instance.User.stage;
-            Debug.Log($"Stage {stage}");
 
             if(stage > stages.stages.Count)
             {
