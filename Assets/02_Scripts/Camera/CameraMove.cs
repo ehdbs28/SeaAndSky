@@ -17,7 +17,7 @@ public class CameraMove : MonoBehaviour
     
     private void LateUpdate()
     {
-        MoveToTarget();
+        //MoveToTarget();
     }
     public void MoveToTarget()
     {
