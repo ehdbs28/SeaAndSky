@@ -10,10 +10,12 @@ public class CameraMove : MonoBehaviour
     private void Awake()
     {
         if (target == null)
+        {
             target = FindObjectOfType<PlayerMove>().transform;
+        }
     }
     
-    private void Update()
+    private void LateUpdate()
     {
         MoveToTarget();
     }
