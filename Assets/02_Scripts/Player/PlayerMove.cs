@@ -81,6 +81,10 @@ public class PlayerMove : MonoBehaviour, IDamage
         collider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         _speed = movementData.maxSpeed;
+
+        h = 0;
+
+        _cheakPointTrm = GameManager.Instance.PlayerPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -112,6 +116,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
 
+        EventManager.TriggerEvent("Damage");
         GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
     }
 
@@ -309,7 +314,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
     private void SetFirstPosition()
     {
-        transform.position = GameManager.Instance.PlayerPosition;
+        _cheakPointTrm = GameManager.Instance.PlayerPosition;
+        transform.position = _cheakPointTrm;
     }
 
     private void OnDestroy()

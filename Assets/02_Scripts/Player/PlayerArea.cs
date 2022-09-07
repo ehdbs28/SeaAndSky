@@ -41,7 +41,7 @@ public class PlayerArea : MonoBehaviour
         //CheckState();
     }
 
-    public void ChangedState() 
+    public void ChangedState()
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
@@ -49,6 +49,7 @@ public class PlayerArea : MonoBehaviour
             _playerMove.Speed = 5f;
             _rigid.gravityScale = 3.5f;
             _playerMove.JumpPower = 11f;
+
             onChangeArea.Invoke(AreaState.Sky);
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea)
@@ -80,7 +81,7 @@ public class PlayerArea : MonoBehaviour
             GameManager.Instance.PlayerState = AreaState.Sea;
             _rigid.drag = 2f;
         }
-       
+
         Vector2 chagedPos = new Vector2(transform.position.x, -transform.position.y);
         transform.position = chagedPos;
         ChangedState();

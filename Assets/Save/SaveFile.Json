@@ -1,5 +1,6 @@
 ﻿{
-    "stage": 2,
+    "stage": 1,
+    "maxStage": 1,
     "keySetting": [
         120,
         122,

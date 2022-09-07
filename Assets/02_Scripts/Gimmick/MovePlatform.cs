@@ -68,8 +68,8 @@ public class MovePlatform : MonoBehaviour
         seq.Append(transform.DOMove(endVec, moveTime));
 
         moveParticle?.Play();
-
-        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
+        if (moveSound)
+            SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
     public virtual void MoveToOriginPosition()
     {
@@ -78,7 +78,8 @@ public class MovePlatform : MonoBehaviour
 
         moveParticle?.Play();
 
-        SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
+        if (moveSound)
+            SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
 
     #region 오버로딩
