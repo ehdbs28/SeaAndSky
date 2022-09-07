@@ -79,12 +79,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
+        anim = transform.Find("VisualSprite").GetComponent<Animator>();
         _speed = movementData.maxSpeed;
-
-        h = 0;
-
-        _cheakPointTrm = GameManager.Instance.PlayerPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -116,7 +112,6 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
 
-        EventManager.TriggerEvent("Damage");
         GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
     }
 
@@ -295,7 +290,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
                 swordAttack = Instantiate(swordAttackPrefab);
                 swordAttack.transform.position = new Vector3(transform.position.x - 1, transform.position.y, 0);
-                swordAttack.transform.localScale = new Vector3(-1, 1, 1);
+                swordAttack.transform.localScale = new Vector3(-1, 3, 1);
                 yield return new WaitForSeconds(0.1f);
                 Destroy(swordAttack);
                 isAttack = false;
@@ -314,8 +309,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
     private void SetFirstPosition()
     {
-        _cheakPointTrm = GameManager.Instance.PlayerPosition;
-        transform.position = _cheakPointTrm;
+        transform.position = GameManager.Instance.PlayerPosition;
     }
 
     private void OnDestroy()
