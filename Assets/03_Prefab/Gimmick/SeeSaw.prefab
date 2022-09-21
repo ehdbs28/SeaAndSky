@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6195302987755601760}
   - component: {fileID: 3936139864156359445}
   - component: {fileID: 4747073500980849484}
+  - component: {fileID: 8904921176655783814}
   m_Layer: 0
   m_Name: SeeSaw
   m_TagString: Untagged
@@ -112,6 +113,22 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: 0.5, y: -0.5}
       - {x: -0.5, y: -0.5}
+--- !u!114 &8904921176655783814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811572855350326442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3910fa8e0b3164746a81f704e014e79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCollide: 1
+  isMoved: 1
+  isColChanged: 0
+  isChild: 0
 --- !u!1 &8413616161299465588
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +141,7 @@ GameObject:
   - component: {fileID: 8793057192162115054}
   - component: {fileID: 7930382193364580014}
   - component: {fileID: 8069862946793807455}
+  - component: {fileID: 5235292503865786871}
   m_Layer: 12
   m_Name: Square
   m_TagString: Untagged
@@ -243,3 +261,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 5.12}
   m_EdgeRadius: 0
+--- !u!114 &5235292503865786871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8413616161299465588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3910fa8e0b3164746a81f704e014e79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCollide: 1
+  isMoved: 1
+  isColChanged: 0
+  isChild: 0

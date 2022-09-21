@@ -26,7 +26,7 @@ public class GenerateShadow : MonoBehaviour
         shadow = new GameObject($"{name}Shadow");
         rigid = GetComponentInChildren<Rigidbody2D>();
         dissolveEffect = GetComponent<DissolveEffect>();
-        if(rigid != null)
+        if (rigid != null)
             gravity = rigid.gravityScale;
 
         transform.GetComponentsInChildren<SpriteRenderer>();
@@ -52,7 +52,7 @@ public class GenerateShadow : MonoBehaviour
         {
             SettingRigidbody();
         }
-        if(isChild)
+        if (isChild)
         {
             Shadow.transform.SetParent(transform);
         }
@@ -63,6 +63,7 @@ public class GenerateShadow : MonoBehaviour
     void Update()
     {
         shadow.transform.position = new Vector2(transform.position.x, -transform.position.y);
+        shadow.transform.eulerAngles = -spriteRenderer.transform.eulerAngles;
 
         if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
         shadowRenderer.sprite = spriteRenderer.sprite;
@@ -75,8 +76,17 @@ public class GenerateShadow : MonoBehaviour
 
     private void SettingCollider()
     {
-        col.size = myCol.size;
-        col.offset = myCol.offset;
+        // 여기 이상하다
+        if (myCol.GetType() != typeof(BoxCollider2D))
+        {
+            col.size = Vector2.one;
+            col.offset = Vector2.zero;
+        }
+        else
+        {
+            col.size = myCol.size;
+            col.offset = myCol.offset;
+        }
     }
 
     private void SettingRigidbody()
@@ -90,9 +100,9 @@ public class GenerateShadow : MonoBehaviour
     {
         gravity *= -1f;
         rigid.gravityScale = gravity;
-        
+
         AreaState state = (gravity > 0) ? AreaState.Sky : AreaState.Sea;
-        
+
         dissolveEffect.PlayEffect(state);
         transform.position = shadow.transform.position;
     }
