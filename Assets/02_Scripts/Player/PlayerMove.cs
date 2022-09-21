@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 public class PlayerMove : MonoBehaviour, IDamage
 {
@@ -270,8 +271,19 @@ public class PlayerMove : MonoBehaviour, IDamage
                 if(hittable != null){
                     hittable.GetHit();
                 }
+                
+                Vector3 hitPos;
+                if(collider.GetComponent<Tilemap>() != null){
+                    Tilemap tilemap = collider.GetComponent<Tilemap>();
 
-                Vector3 hitPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y);
+                    tilemap.RefreshAllTiles();
+
+                    float x = tilemap.WorldToCell(attackPos).x;
+                    float y = tilemap.WorldToCell(attackPos).y;
+
+                    hitPos = new Vector3(x, y);
+                }
+                else hitPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y);
                 Vector3 hitNormal = transform.position - collider.transform.position;
                 particle = GameObject.Instantiate(_attackParticle, hitPos, Quaternion.Euler(hitNormal.x, hitNormal.y, hitNormal.z)).GetComponent<ParticleSystem>();
                 particle.Play();
