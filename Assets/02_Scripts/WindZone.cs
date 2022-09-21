@@ -14,7 +14,6 @@ public class WindZone : MonoBehaviour
     private float speed = 1f;
     private const string PLAYER_TAG = "Player";
 
-    // 24 1.3
     void Start()
     {
         windParticles = GetComponentsInChildren<ParticleSystem>();
@@ -24,7 +23,6 @@ public class WindZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("sdf");
             player = FindObjectOfType<PlayerMove>();
 
             if (player)
@@ -40,8 +38,9 @@ public class WindZone : MonoBehaviour
         {
             if (rigid)
             {
-                //rigid.position -= Vector2.right * Time.deltaTime * speed;
+                //rigid.position += Vector2.left * Time.deltaTime * windForce;
                 rigid.AddForce(Vector2.left * windForce);
+                //rigid.AddRelativeForce(Vector2.left * windForce, ForceMode2D.Force);
             }
         }
     }

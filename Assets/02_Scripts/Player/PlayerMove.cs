@@ -63,7 +63,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     private Animator anim = null;
     private Rigidbody2D rigid;
     private Vector2 movementDirection;
-    [SerializeField] private UnityEvent<Vector2> onPlayerMove;
+    public UnityEvent<Vector2> onPlayerMove;
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
 

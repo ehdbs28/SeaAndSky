@@ -49341,6 +49341,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2139968910531208900}
     m_Modifications:
+    - target: {fileID: 5490193597408804036, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
+      propertyPath: windForce
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 5490193597408804037, guid: d2db5e5f4630dfb4f9dd4423fdb4d6a9, type: 3}
       propertyPath: m_RootOrder
       value: 1
