@@ -15,6 +15,7 @@ TagManager:
   - Sky
   - Sea
   - CheakPoint
+  - PlayerCol
   layers:
   - Default
   - TransparentFX
