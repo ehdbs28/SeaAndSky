@@ -10,6 +10,8 @@ public class StateCamera : AgentCamera
     private bool isChecking = false;
     private bool isZoomCheck = false;
 
+    private Vector3 playerDirection = Vector3.zero;
+
     private void Start()
     {
         PlayerMove playerMove = FindObjectOfType<PlayerMove>();
@@ -21,8 +23,32 @@ public class StateCamera : AgentCamera
         transform.position = GetDestination();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+        if (playerDirection.magnitude < 0.01f)
+        {
+            if (!isChecking)
+            {
+                camEffect.ResetData();
+
+                if (!isZoomCheck)
+                    StartCoroutine(ZoomDelay());
+            }
+
+            isChecking = true;
+            camEffect.MoveCamera();
+        }
+        else
+        {
+            if (isChecking)
+            {
+                camEffect.ZoomIn();
+            }
+
+            isChecking = false;
+        }
+
+        CameraMoving(target);
 
     }
 
@@ -61,30 +87,7 @@ public class StateCamera : AgentCamera
 
     private void CameraMoving(Vector2 dir)
     {
-        if (dir.magnitude < 0.01f)
-        {
-            if (!isChecking)
-            {
-                camEffect.ResetData();
-
-                if (!isZoomCheck)
-                    StartCoroutine(ZoomDelay());
-            }
-
-            isChecking = true;
-            camEffect.MoveCamera();
-        }
-        else
-        {
-            if (isChecking)
-            {
-                camEffect.ZoomIn();
-            }
-
-            isChecking = false;
-        }
-
-        CameraMoving(target);
+        playerDirection = dir;
     }
 
     private IEnumerator ZoomDelay()
