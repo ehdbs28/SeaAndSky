@@ -92,7 +92,10 @@ public class GenerateShadow : MonoBehaviour
         rigid.gravityScale = gravity;
         
         AreaState state = (gravity > 0) ? AreaState.Sky : AreaState.Sea;
-        
+        if(state == AreaState.Sea)
+        {
+            rigid.gravityScale = 0.1f;
+        }
         dissolveEffect.PlayEffect(state);
         transform.position = shadow.transform.position;
     }

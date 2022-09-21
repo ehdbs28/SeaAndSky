@@ -147,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCollide: 1
   isMoved: 0
+  isColChanged: 0
+  isChild: 0
 --- !u!114 &381694298
 MonoBehaviour:
   m_ObjectHideFlags: 0

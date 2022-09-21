@@ -27,7 +27,6 @@ public class GameManager : MonoSingleton<GameManager>
     }
     private bool _isInvincibility = false;
     #endregion
-
     #region Stage
     [SerializeField] StageSO stages;
     private GameObject currentStage;
@@ -82,7 +81,6 @@ public class GameManager : MonoSingleton<GameManager>
         GameReset();
     }
 
-    //�÷��̾� ��Ʈ ����
     public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null)
     {
         if (_isplayerDeath) return;
