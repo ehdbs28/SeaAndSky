@@ -5,11 +5,11 @@ using DG.Tweening;
 
 public class CameraMoveEffect : MonoBehaviour
 {
-    private float xSpeed = 35f;
-    private float ySpeed = 25f;
+    public float xSpeed = 35f;
+    public float ySpeed = 25f;
 
-    private float distanceX = /*0.09f*/0f;
-    private float distanceY = 0.08f;
+    public float distanceX = 0f;
+    public float distanceY = 0.08f;
 
     private float angle = 0f;
 
@@ -22,7 +22,6 @@ public class CameraMoveEffect : MonoBehaviour
         cam = GetComponent<Camera>();
         orthographicSize = cam.orthographicSize;
         maxZoomOut = orthographicSize + 0.3f;
-        Debug.Log(orthographicSize);
     }
 
     private void Update()

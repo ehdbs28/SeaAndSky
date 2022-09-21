@@ -21,15 +21,20 @@ public class StateCamera : AgentCamera
         transform.position = GetDestination();
     }
 
+    private void Update()
+    {
+
+    }
+
     public override void CameraMoving(Transform target)
     {
         if (GameManager.Instance.PlayerState == _cameraState)
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, GetDestination(), ref velocity, dampTime);
+            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(), ref velocity, dampTime);
         }
         else
         {
-            this.transform.position = Vector3.SmoothDamp(this.transform.position, GetDestination(), ref velocity, dampTime);
+            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(), ref velocity, dampTime);
         }
     }
 
@@ -71,20 +76,21 @@ public class StateCamera : AgentCamera
         }
         else
         {
-            if(isChecking)
+            if (isChecking)
             {
                 camEffect.ZoomIn();
             }
 
             isChecking = false;
-            CameraMoving(target);
         }
+
+        CameraMoving(target);
     }
 
     private IEnumerator ZoomDelay()
     {
         isZoomCheck = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         camEffect.ZoomOut();
         isZoomCheck = false;
     }

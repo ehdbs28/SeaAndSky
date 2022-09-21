@@ -1770,6 +1770,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f1062d683d63b49ab8589a232dd6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xSpeed: 0
+  ySpeed: 10
+  distanceX: 0
+  distanceY: 0.5
 --- !u!20 &436752369
 Camera:
   m_ObjectHideFlags: 0
@@ -6535,6 +6539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f1062d683d63b49ab8589a232dd6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xSpeed: 0
+  ySpeed: 10
+  distanceX: 0
+  distanceY: 0.5
 --- !u!1 &1667424819
 GameObject:
   m_ObjectHideFlags: 0
