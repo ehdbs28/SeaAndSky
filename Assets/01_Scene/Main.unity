@@ -7429,6 +7429,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754510, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754510, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_Enabled
       value: 1
