@@ -14,6 +14,7 @@ public class Teleport : MonoBehaviour
     private void Start()
     {
         outDir = outPotal.transform.position;
+        player = GameObject.Find("Player");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
