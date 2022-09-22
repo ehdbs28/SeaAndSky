@@ -40,6 +40,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
     [SerializeField] private float _attackReboundPower;
     [SerializeField] private GameObject _attackParticle;
+    [SerializeField] private GameObject _attackEffect;
 
     [SerializeField] private LayerMask groundLayer;
 
@@ -259,6 +260,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             float attackPosX = (isGround) ? (isLeft) ? transform.position.x - 1f : transform.position.x + 1f : transform.position.x;
             float attackPosY = (Input.GetKey(KeyCode.UpArrow)) ? transform.position.y + 1.5f : (Input.GetKey(KeyCode.DownArrow)) ? transform.position.y - 1.5f : transform.position.y;
             Vector3 attackPos = new Vector3(attackPosX, attackPosY);
+            float attackRotate = (Input.GetKey(KeyCode.UpArrow)) ? 90f : (Input.GetKey(KeyCode.DownArrow)) ? -90f : 0f;
 
             Collider2D collider = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, enemyLayer); 
             if(collider){
@@ -286,15 +288,20 @@ public class PlayerMove : MonoBehaviour, IDamage
                     hitPos = new Vector3(x, y);
                 }
                 else hitPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y);
+
                 Vector3 hitNormal = transform.position - collider.transform.position;
                 particle = GameObject.Instantiate(_attackParticle, hitPos, Quaternion.Euler(hitNormal.x, hitNormal.y, hitNormal.z)).GetComponent<ParticleSystem>();
                 particle.Play();
             }
 
+            _attackEffect.SetActive(true);
+            _attackEffect.transform.position = attackPos;
+            _attackEffect.transform.rotation = Quaternion.AngleAxis(attackRotate, Vector3.forward);
            
             yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"));
             yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75f);
 
+            _attackEffect.SetActive(false);
             if(particle != null) Destroy(particle.gameObject);
             isAttack = false;
         }
