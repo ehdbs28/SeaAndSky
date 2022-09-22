@@ -271,6 +271,8 @@ public class PlayerMove : MonoBehaviour, IDamage
                 if(hittable != null){
                     hittable.GetHit();
                 }
+
+                GameManager.Instance.timeManager.TimeManaging(0.025f);
                 
                 Vector3 hitPos;
                 if(collider.GetComponent<Tilemap>() != null){
