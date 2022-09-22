@@ -7,6 +7,7 @@ public class Teleport : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject outPotal;
     [SerializeField] private ParticleSystem outEffect;
+    [SerializeField] private AudioClip clip;
 
     private Vector3 outDir;
 
@@ -27,5 +28,6 @@ public class Teleport : MonoBehaviour
     {
         player.transform.position = outDir;
         outEffect.Play();
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, clip);
     }
 }
