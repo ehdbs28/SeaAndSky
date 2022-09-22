@@ -14,8 +14,8 @@ public class GenerateShadow : MonoBehaviour
     [SerializeField] private bool isMoved = false;
     [SerializeField] private bool isColChanged = false;
     [SerializeField] private bool isChild = false;
-    private BoxCollider2D col;
-    private BoxCollider2D myCol;
+    private Collider2D col;
+    private Collider2D myCol;
     private Rigidbody2D rigid;
     private float gravity;
     private LayerMask _shadowLayer;
@@ -44,8 +44,8 @@ public class GenerateShadow : MonoBehaviour
 
         if (isCollide)
         {
-            col = shadow.AddComponent<BoxCollider2D>();
-            myCol = GetComponentInChildren<BoxCollider2D>();
+            myCol = GetComponentInChildren<Collider2D>();
+            col = shadow.AddComponent(myCol.GetType()) as Collider2D;
             SettingCollider();
         }
         if (isMoved)
@@ -76,15 +76,20 @@ public class GenerateShadow : MonoBehaviour
 
     private void SettingCollider()
     {
-        // 여기 이상하다
-        if (myCol.GetType() != typeof(BoxCollider2D))
+        if (myCol is BoxCollider2D)
         {
-            col.size = Vector2.one;
-            col.offset = Vector2.zero;
+            BoxCollider2D bCol = col as BoxCollider2D;
+            bCol.offset = myCol.offset;
+            bCol.size = (myCol as BoxCollider2D).size;
+        }
+        if (myCol is PolygonCollider2D)
+        {
+            PolygonCollider2D pCol = col as PolygonCollider2D;
+            pCol.points = (myCol as PolygonCollider2D).points;
+            pCol.offset = myCol.offset;
         }
         else
         {
-            col.size = myCol.size;
             col.offset = myCol.offset;
         }
     }
