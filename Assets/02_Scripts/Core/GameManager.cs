@@ -30,7 +30,16 @@ public class GameManager : MonoSingleton<GameManager>
     #region Stage
     [SerializeField] StageSO stages;
     private GameObject currentStage;
-    public Vector2 PlayerPosition { get => currentStage.transform.GetChild(0).position; }
+    public Vector2 PlayerPosition 
+    {
+        get 
+        {
+            if (isLoadState)
+                return currentStage.transform.GetChild(0).position;
+            else
+                return new Vector2(-93.5f, 15);
+        } 
+    }
     #endregion
 
     public bool isLoadState = false;

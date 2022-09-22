@@ -15,7 +15,7 @@ public class MoveAction : AIAction
     {
         if(_monster.CheckFrontGround() && _monster.CheckFrontWall() == false)
         {
-            _monster.transform.Translate(_monster.MonsterDir * Time.deltaTime);
+            _monster.transform.Translate(_monster.MonsterDir * Time.deltaTime * _monster._speed);
         }
         else
         {

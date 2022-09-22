@@ -83,8 +83,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         _speed = movementData.maxSpeed;
 
         h = 0;
-
-        _cheakPointTrm = GameManager.Instance.PlayerPosition;
+            _cheakPointTrm = GameManager.Instance.PlayerPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
