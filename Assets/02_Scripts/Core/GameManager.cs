@@ -48,6 +48,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     #region Controller
     public UIManager UIManager { get; private set; }
+    public TimeManager timeManager {get; private set;}
     #endregion
 
     [field: SerializeField]
@@ -63,6 +64,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+        timeManager = FindObjectOfType<TimeManager>();
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
         
