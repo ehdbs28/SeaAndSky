@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         get => _localScaleY;
     }
     private Vector2 direction = Vector2.zero;
-    private float _speed;
+    [SerializeField]private float _speed;
     public float Speed
     {
         get => _speed;
