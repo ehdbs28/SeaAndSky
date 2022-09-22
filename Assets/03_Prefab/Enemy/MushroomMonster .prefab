@@ -152,7 +152,19 @@ MonoBehaviour:
         m_CallState: 2
   <OnGetHit>k__BackingField:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7931337169626502812}
+        m_TargetAssemblyTypeName: Monster, Assembly-CSharp
+        m_MethodName: GetHitAnim
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &2324957727584924266
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -179,6 +191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8060698226215126866}
   - component: {fileID: 1734322901211162886}
+  - component: {fileID: 7484591916276834546}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -251,6 +264,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7484591916276834546
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216277926510388903}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 412f82c797e65634cb4404dc5fe59b37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7029785008561970508
 GameObject:
   m_ObjectHideFlags: 0

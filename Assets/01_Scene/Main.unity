@@ -1700,6 +1700,7 @@ GameObject:
   - component: {fileID: 436752369}
   - component: {fileID: 436752367}
   - component: {fileID: 436752366}
+  - component: {fileID: 436752368}
   m_Layer: 0
   m_Name: Sea Main Camera
   m_TagString: Untagged
@@ -1753,9 +1754,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 436752369}
-  _cameraMove: {fileID: 0}
-  dampTime: 0.15
+  _cameraMove: {fileID: 1155108434}
+  dampTime: 0.3
   _cameraState: 1
+  target: {fileID: 0}
+--- !u!114 &436752368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436752365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f1062d683d63b49ab8589a232dd6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSpeed: 0
+  ySpeed: 10
+  distanceX: 0
+  distanceY: 0.5
 --- !u!20 &436752369
 Camera:
   m_ObjectHideFlags: 0
@@ -6365,6 +6383,7 @@ GameObject:
   - component: {fileID: 1655916173}
   - component: {fileID: 1655916178}
   - component: {fileID: 1655916175}
+  - component: {fileID: 1655916179}
   m_Layer: 0
   m_Name: Sky Main Camera
   m_TagString: MainCamera
@@ -6418,9 +6437,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1655916176}
-  _cameraMove: {fileID: 0}
-  dampTime: 0.15
+  _cameraMove: {fileID: 1155108434}
+  dampTime: 0.3
   _cameraState: 0
+  target: {fileID: 0}
 --- !u!81 &1655916175
 AudioListener:
   m_ObjectHideFlags: 0
@@ -6507,6 +6527,22 @@ MonoBehaviour:
   - {r: 0.7830189, g: 0.52066875, b: 0.22456387, a: 1}
   - {r: 0.07688152, g: 0.058823526, b: 0.22745098, a: 1}
   - {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
+--- !u!114 &1655916179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655916172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f1062d683d63b49ab8589a232dd6db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xSpeed: 0
+  ySpeed: 10
+  distanceX: 0
+  distanceY: 0.5
 --- !u!1 &1667424819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7393,9 +7429,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754510, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754510, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 4672
       objectReference: {fileID: 0}
     - target: {fileID: 9080806354538350403, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _isWhatGround.m_Bits

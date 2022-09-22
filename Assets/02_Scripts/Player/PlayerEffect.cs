@@ -18,7 +18,7 @@ public class PlayerEffect : MonoBehaviour
 
     private void Awake()
     {
-        dissolveMaterial = GetComponent<Renderer>().material;
+        dissolveMaterial = transform.Find("VisualSprite").GetComponent<Renderer>().material;
         dissolveMaterial.SetFloat("_Width", 1 / dissolveWidth);
         dissolveMaterial.SetFloat("_Height", 1 / dissolveHeight);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 public class PlayerMove : MonoBehaviour, IDamage
 {
@@ -37,9 +38,10 @@ public class PlayerMove : MonoBehaviour, IDamage
             _jumpPower = value;
         }
     }
+    [SerializeField] private float _attackReboundPower;
+    [SerializeField] private GameObject _attackParticle;
 
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private GameObject swordAttackPrefab;
 
     [SerializeField] private MovementDataSO movementData;
     [SerializeField] private static float h;
@@ -63,7 +65,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     private Animator anim = null;
     private Rigidbody2D rigid;
     private Vector2 movementDirection;
-    [SerializeField] private UnityEvent<Vector2> onPlayerMove;
+    public UnityEvent<Vector2> onPlayerMove;
     [SerializeField] private UnityEvent onPlayerJump;
     [SerializeField] private UnityEvent onPlayerAttack;
 
@@ -79,12 +81,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
-        anim = GetComponent<Animator>();
+        anim = transform.Find("VisualSprite").GetComponent<Animator>();
         _speed = movementData.maxSpeed;
-
-        h = 0;
-
-        _cheakPointTrm = GameManager.Instance.PlayerPosition;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -116,7 +114,6 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (GameManager.Instance.IsPlayerDeath) return;
 
-        EventManager.TriggerEvent("Damage");
         GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
     }
 
@@ -246,9 +243,9 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             if (!isAttack)
             {
+                isAttack = true;
                 StartCoroutine(Attack());
                 anim.SetTrigger("Attack");
-                isAttack = true;
             }
         }
     }
@@ -257,49 +254,49 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-            onPlayerAttack.Invoke();
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                GameObject swordAttack;
+            ParticleSystem particle = null;
+            onPlayerAttack.Invoke(); //사운드
+            float attackPosX = (isGround) ? (isLeft) ? transform.position.x - 1f : transform.position.x + 1f : transform.position.x;
+            float attackPosY = (Input.GetKey(KeyCode.UpArrow)) ? transform.position.y + 1.5f : (Input.GetKey(KeyCode.DownArrow)) ? transform.position.y - 1.5f : transform.position.y;
+            Vector3 attackPos = new Vector3(attackPosX, attackPosY);
 
-                swordAttack = Instantiate(swordAttackPrefab);
-                swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y + 1, 0), Quaternion.Euler(0, 0, 90));
-                yield return new WaitForSeconds(0.1f);
-                Destroy(swordAttack);
-                isAttack = false;
+            Collider2D collider = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, enemyLayer); 
+            if(collider){
+                IHittable hittable = collider.GetComponent<IHittable>();
+
+                if(Input.GetKey(KeyCode.DownArrow)){
+                    rigid.velocity = Vector2.zero;
+                    rigid.velocity = Vector2.up * _attackReboundPower;
+                }
+                if(hittable != null){
+                    hittable.GetHit();
+                }
+
+                GameManager.Instance.timeManager.TimeManaging(0.025f);
+                
+                Vector3 hitPos;
+                if(collider.GetComponent<Tilemap>() != null){
+                    Tilemap tilemap = collider.GetComponent<Tilemap>();
+
+                    tilemap.RefreshAllTiles();
+
+                    float x = tilemap.WorldToCell(attackPos).x;
+                    float y = tilemap.WorldToCell(attackPos).y;
+
+                    hitPos = new Vector3(x, y);
+                }
+                else hitPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y);
+                Vector3 hitNormal = transform.position - collider.transform.position;
+                particle = GameObject.Instantiate(_attackParticle, hitPos, Quaternion.Euler(hitNormal.x, hitNormal.y, hitNormal.z)).GetComponent<ParticleSystem>();
+                particle.Play();
             }
 
-            else if (Input.GetKey(KeySetting.keys[Key.down]) && !isGround)
-            {
-                GameObject swordAttack;
+           
+            yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"));
+            yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75f);
 
-                swordAttack = Instantiate(swordAttackPrefab);
-                swordAttack.transform.SetPositionAndRotation(new Vector3(transform.position.x, transform.position.y - 1, 0), Quaternion.Euler(0, 0, -90));
-                yield return new WaitForSeconds(0.1f);
-                Destroy(swordAttack);
-                isAttack = false;
-            }
-            else if (!isLeft)
-            {
-                GameObject swordAttack;
-
-                swordAttack = Instantiate(swordAttackPrefab);
-                swordAttack.transform.position = new Vector3(transform.position.x + 1, transform.position.y, 0);
-                yield return new WaitForSeconds(0.1f);
-                Destroy(swordAttack);
-                isAttack = false;
-            }
-            else if (isLeft)
-            {
-                GameObject swordAttack;
-
-                swordAttack = Instantiate(swordAttackPrefab);
-                swordAttack.transform.position = new Vector3(transform.position.x - 1, transform.position.y, 0);
-                swordAttack.transform.localScale = new Vector3(-1, 1, 1);
-                yield return new WaitForSeconds(0.1f);
-                Destroy(swordAttack);
-                isAttack = false;
-            }
+            if(particle != null) Destroy(particle.gameObject);
+            isAttack = false;
         }
     }
 
@@ -314,8 +311,7 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
     private void SetFirstPosition()
     {
-        _cheakPointTrm = GameManager.Instance.PlayerPosition;
-        transform.position = _cheakPointTrm;
+        transform.position = GameManager.Instance.PlayerPosition;
     }
 
     private void OnDestroy()
