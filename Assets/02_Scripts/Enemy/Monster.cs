@@ -13,6 +13,7 @@ public class Monster : MonoBehaviour, IHittable
     public Transform target;
     private SpriteRenderer _spriteRenderer = null;
     public SpriteRenderer _SpriteRenderer { get => _spriteRenderer; }
+    private Animator _anim = null;
     private bool isDead = false;
     public LayerMask moveableLayer;
     [SerializeField] private AIState _currentState;
@@ -35,6 +36,7 @@ public class Monster : MonoBehaviour, IHittable
     private void Awake()
     {
         target = GameObject.Find("Player").transform;
+        _anim = transform.Find("Sprite").GetComponent<Animator>();
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         OnMonsterChangedDir += ChangedVelocity;
                 _hp = _Maxhp;
@@ -94,9 +96,14 @@ public class Monster : MonoBehaviour, IHittable
         _hp = _Maxhp;
     }
 
+    public void GetHitAnim(){
+        _anim.SetTrigger("OnHit");
+    }
+
     public void GetHit()
     {
         _hp--;
+        OnGetHit?.Invoke();
         if (_hp <= 0)
         {
             isDead = true;

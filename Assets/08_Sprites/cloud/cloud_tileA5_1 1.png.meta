@@ -1,0 +1,1134 @@
+fileFormatVersion: 2
+guid: da7acf0f870001e4e90c1355e310d5da
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7356540308066333458
+    second: cloud_tileA5_1 1_0
+  - first:
+      213: -3700530130175188070
+    second: cloud_tileA5_1 1_1
+  - first:
+      213: -8417326838140587883
+    second: cloud_tileA5_1 1_2
+  - first:
+      213: -5057597293691694089
+    second: cloud_tileA5_1 1_3
+  - first:
+      213: -543706541812295121
+    second: cloud_tileA5_1 1_4
+  - first:
+      213: -801938549131436919
+    second: cloud_tileA5_1 1_5
+  - first:
+      213: -6133392771657353116
+    second: cloud_tileA5_1 1_6
+  - first:
+      213: -6668665365587847562
+    second: cloud_tileA5_1 1_7
+  - first:
+      213: 6977691412378653119
+    second: cloud_tileA5_1 1_8
+  - first:
+      213: 2492031215845133577
+    second: cloud_tileA5_1 1_9
+  - first:
+      213: 8498714533244279096
+    second: cloud_tileA5_1 1_10
+  - first:
+      213: 7373380064512696911
+    second: cloud_tileA5_1 1_11
+  - first:
+      213: 5160548068617329972
+    second: cloud_tileA5_1 1_12
+  - first:
+      213: 1065213568206713048
+    second: cloud_tileA5_1 1_13
+  - first:
+      213: -6919352617848850834
+    second: cloud_tileA5_1 1_14
+  - first:
+      213: 8151429023943616235
+    second: cloud_tileA5_1 1_15
+  - first:
+      213: 8213144846468395944
+    second: cloud_tileA5_1 1_16
+  - first:
+      213: 5305385385896561941
+    second: cloud_tileA5_1 1_17
+  - first:
+      213: 4479426265780971336
+    second: cloud_tileA5_1 1_18
+  - first:
+      213: 5664872205480352145
+    second: cloud_tileA5_1 1_19
+  - first:
+      213: -672181174345482537
+    second: cloud_tileA5_1 1_20
+  - first:
+      213: -7692969145158646751
+    second: cloud_tileA5_1 1_21
+  - first:
+      213: -8256494888994707433
+    second: cloud_tileA5_1 1_22
+  - first:
+      213: 7570280567798617244
+    second: cloud_tileA5_1 1_23
+  - first:
+      213: -6875670368645463655
+    second: cloud_tileA5_1 1_24
+  - first:
+      213: -8093720071609297082
+    second: cloud_tileA5_1 1_25
+  - first:
+      213: -1450761289636820617
+    second: cloud_tileA5_1 1_26
+  - first:
+      213: 5517182937500108978
+    second: cloud_tileA5_1 1_27
+  - first:
+      213: -9168125590456673197
+    second: cloud_tileA5_1 1_28
+  - first:
+      213: -7047793265889576521
+    second: cloud_tileA5_1 1_29
+  - first:
+      213: 7161833009830560572
+    second: cloud_tileA5_1 1_30
+  - first:
+      213: -8817698962337976156
+    second: cloud_tileA5_1 1_31
+  - first:
+      213: -511308284523573121
+    second: cloud_tileA5_1 1_32
+  - first:
+      213: 3982816710347438093
+    second: cloud_tileA5_1 1_33
+  - first:
+      213: 1739159997497909531
+    second: cloud_tileA5_1 1_34
+  - first:
+      213: 2975051401486856366
+    second: cloud_tileA5_1 1_35
+  - first:
+      213: -8456529417961781193
+    second: cloud_tileA5_1 1_36
+  - first:
+      213: -6425389590214729394
+    second: cloud_tileA5_1 1_37
+  - first:
+      213: 1070431979058691076
+    second: cloud_tileA5_1 1_38
+  - first:
+      213: 3786142865652609415
+    second: cloud_tileA5_1 1_39
+  - first:
+      213: 1265965294838436739
+    second: cloud_tileA5_1 1_40
+  - first:
+      213: 5536135451870884684
+    second: cloud_tileA5_1 1_41
+  - first:
+      213: -3626615788068230111
+    second: cloud_tileA5_1 1_42
+  - first:
+      213: 8359591972456580398
+    second: cloud_tileA5_1 1_43
+  - first:
+      213: 3651837192419883060
+    second: cloud_tileA5_1 1_44
+  - first:
+      213: 7209106381041090760
+    second: cloud_tileA5_1 1_45
+  - first:
+      213: 2288785657561824039
+    second: cloud_tileA5_1 1_46
+  - first:
+      213: 8709965384765856192
+    second: cloud_tileA5_1 1_47
+  - first:
+      213: 6541868401642356389
+    second: cloud_tileA5_1 1_48
+  - first:
+      213: 2994456889377667153
+    second: cloud_tileA5_1 1_49
+  - first:
+      213: -3543857881693295258
+    second: cloud_tileA5_1 1_50
+  - first:
+      213: -3448504574917469243
+    second: cloud_tileA5_1 1_51
+  - first:
+      213: 412480661510365994
+    second: cloud_tileA5_1 1_52
+  - first:
+      213: -6481327403770971337
+    second: cloud_tileA5_1 1_53
+  - first:
+      213: -5267363896881992391
+    second: cloud_tileA5_1 1_54
+  - first:
+      213: 2111196478458484591
+    second: cloud_tileA5_1 1_55
+  - first:
+      213: -8369650230658786214
+    second: cloud_tileA5_1 1_56
+  - first:
+      213: 1291385115878023533
+    second: cloud_tileA5_1 1_57
+  - first:
+      213: 2190327969668217645
+    second: cloud_tileA5_1 1_58
+  - first:
+      213: 7253009315208759296
+    second: cloud_tileA5_1 1_59
+  - first:
+      213: -4204973516603873676
+    second: cloud_tileA5_1 1_60
+  - first:
+      213: -4685135750424265168
+    second: cloud_tileA5_1 1_61
+  - first:
+      213: -201522611754039176
+    second: cloud_tileA5_1 1_62
+  - first:
+      213: -196212959599852076
+    second: cloud_tileA5_1 1_63
+  - first:
+      213: 4778586148032556107
+    second: cloud_tileA5_1 1_64
+  - first:
+      213: 5271681767955275879
+    second: cloud_tileA5_1 1_65
+  - first:
+      213: -4000704498194968743
+    second: cloud_tileA5_1 1_66
+  - first:
+      213: 7166524357175675382
+    second: cloud_tileA5_1 1_67
+  - first:
+      213: -367159794885570395
+    second: cloud_tileA5_1 1_68
+  - first:
+      213: -4427557672064649070
+    second: cloud_tileA5_1 1_69
+  - first:
+      213: 7909005588170748142
+    second: cloud_tileA5_1 1_70
+  - first:
+      213: -80032363643472111
+    second: cloud_tileA5_1 1_71
+  - first:
+      213: -6988609079777217201
+    second: cloud_tileA5_1 1_72
+  - first:
+      213: 7841457651101548634
+    second: cloud_tileA5_1 1_73
+  - first:
+      213: 2326344013346555699
+    second: cloud_tileA5_1 1_74
+  - first:
+      213: 4022320772349757270
+    second: cloud_tileA5_1 1_75
+  - first:
+      213: 6961270694356155227
+    second: cloud_tileA5_1 1_76
+  - first:
+      213: 1327908963472971126
+    second: cloud_tileA5_1 1_77
+  - first:
+      213: -1461000667687865807
+    second: cloud_tileA5_1 1_78
+  - first:
+      213: 6491079451983237261
+    second: cloud_tileA5_1 1_79
+  - first:
+      213: 4526566916742895143
+    second: cloud_tileA5_1 1_80
+  - first:
+      213: -389100854083205837
+    second: cloud_tileA5_1 1_81
+  - first:
+      213: -2667852945208073919
+    second: cloud_tileA5_1 1_82
+  - first:
+      213: 9121602095108181727
+    second: cloud_tileA5_1 1_83
+  - first:
+      213: -3262652434354499895
+    second: cloud_tileA5_1 1_84
+  - first:
+      213: -4319781420295594480
+    second: cloud_tileA5_1 1_85
+  - first:
+      213: 4042683495631969401
+    second: cloud_tileA5_1 1_86
+  - first:
+      213: -1099125064124727919
+    second: cloud_tileA5_1 1_87
+  - first:
+      213: -519282495581645203
+    second: cloud_tileA5_1 1_88
+  - first:
+      213: 7599033089376210088
+    second: cloud_tileA5_1 1_89
+  - first:
+      213: 4258265607093623247
+    second: cloud_tileA5_1 1_90
+  - first:
+      213: 5014766017748256213
+    second: cloud_tileA5_1 1_91
+  - first:
+      213: 3781212678514191156
+    second: cloud_tileA5_1 1_92
+  - first:
+      213: -8687058291028853152
+    second: cloud_tileA5_1 1_93
+  - first:
+      213: -5341004792188266843
+    second: cloud_tileA5_1 1_94
+  - first:
+      213: -490521310211117941
+    second: cloud_tileA5_1 1_95
+  - first:
+      213: -2065955917416989503
+    second: cloud_tileA5_1 1_96
+  - first:
+      213: -1657433304521763922
+    second: cloud_tileA5_1 1_97
+  - first:
+      213: 4645323751258276848
+    second: cloud_tileA5_1 1_98
+  - first:
+      213: -1762535524347777033
+    second: cloud_tileA5_1 1_99
+  - first:
+      213: -4240366796845204152
+    second: cloud_tileA5_1 1_100
+  - first:
+      213: -5009130031541638738
+    second: cloud_tileA5_1 1_101
+  - first:
+      213: -7218727459350755206
+    second: cloud_tileA5_1 1_102
+  - first:
+      213: -2296963738482640276
+    second: cloud_tileA5_1 1_103
+  - first:
+      213: -398103996999486730
+    second: cloud_tileA5_1 1_104
+  - first:
+      213: 2665225625532876397
+    second: cloud_tileA5_1 1_105
+  - first:
+      213: -7952286996343562455
+    second: cloud_tileA5_1 1_106
+  - first:
+      213: 7560087352559525575
+    second: cloud_tileA5_1 1_107
+  - first:
+      213: -1203805657245462730
+    second: cloud_tileA5_1 1_108
+  - first:
+      213: 2571222558675130728
+    second: cloud_tileA5_1 1_109
+  - first:
+      213: -4265411118000329647
+    second: cloud_tileA5_1 1_110
+  - first:
+      213: -3273031220375673661
+    second: cloud_tileA5_1 1_111
+  - first:
+      213: -3484797433031127532
+    second: cloud_tileA5_1 1_112
+  - first:
+      213: -3893892679613294405
+    second: cloud_tileA5_1 1_113
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec0dd1019158e990800000000000000
+      internalID: -7356540308066333458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a93274ee37315acc0800000000000000
+      internalID: -3700530130175188070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590b44e66d5af2b80800000000000000
+      internalID: -8417326838140587883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f39784ce0ecfc9b0800000000000000
+      internalID: -5057597293691694089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2ad839e7cd5478f0800000000000000
+      internalID: -543706541812295121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98c145f6321fed4f0800000000000000
+      internalID: -801938549131436919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4683a6135cfc1eaa0800000000000000
+      internalID: -6133392771657353116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6769f2e9e242473a0800000000000000
+      internalID: -6668665365587847562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb19f13ce5db5d060800000000000000
+      internalID: 6977691412378653119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90d42adff29759220800000000000000
+      internalID: 2492031215845133577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_10
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 839997107df71f570800000000000000
+      internalID: 8498714533244279096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42e9335a12835660800000000000000
+      internalID: 7373380064512696911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d934c6023fd9740800000000000000
+      internalID: 5160548068617329972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d033e6b81668ce00800000000000000
+      internalID: 1065213568206713048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_14
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 120
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e663371547589ff90800000000000000
+      internalID: -6919352617848850834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_15
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 108
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6e7f75281bf1170800000000000000
+      internalID: 8151429023943616235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a3349609b3faf170800000000000000
+      internalID: 8213144846468395944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51dc9ea36e380a940800000000000000
+      internalID: 5305385385896561941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 847ed69a47e1a2e30800000000000000
+      internalID: 4479426265780971336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 199d3a1d14bad9e40800000000000000
+      internalID: 5664872205480352145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7debe6688ceeba6f0800000000000000
+      internalID: -672181174345482537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12447c252551d3590800000000000000
+      internalID: -7692969145158646751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71864aba4a90b6d80800000000000000
+      internalID: -8256494888994707433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_23
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c94ddad311a0f0960800000000000000
+      internalID: 7570280567798617244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99145348a36b490a0800000000000000
+      internalID: -6875670368645463655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647574c2a745daf80800000000000000
+      internalID: -8093720071609297082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7794f452b4cdddbe0800000000000000
+      internalID: -1450761289636820617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b84a8e76a8f09c40800000000000000
+      internalID: 5517182937500108978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35c59aca95644c080800000000000000
+      internalID: -9168125590456673197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_29
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b9f2409d55313e90800000000000000
+      internalID: -7047793265889576521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_30
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c330e9b6d21f36360800000000000000
+      internalID: 7161833009830560572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cloud_tileA5_1 1_31
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0b38d038d31a580800000000000000
+      internalID: -8817698962337976156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
