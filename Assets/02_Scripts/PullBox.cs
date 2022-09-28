@@ -5,30 +5,32 @@ using UnityEngine;
 public class PullBox : MonoBehaviour
 {
     [SerializeField] private float distance = 3f;
-    [SerializeField] private GameObject player;
+    //[SerializeField] private GameObject player;
+    PlayerMove player;
 
     private Vector3 _initPos;
 
     private void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<PlayerMove>();
         _initPos = transform.position;
     }
 
     private void Update()
     {
         float cal = Vector2.Distance(player.transform.position, transform.position);
+        
         if(cal < distance)
         {
             if (Input.GetKey(KeySetting.keys[Key.pullBox]))
             { 
-                player.GetComponent<PlayerMove>().Speed = 0.4f;
+                //이동방향 * 플레이어 스피드
+                player.Speed = 0.4f;
                 transform.position = new Vector2(player.transform.position.x + 1f, transform.position.y); 
             }
             if (Input.GetKeyUp(KeySetting.keys[Key.pullBox]))
             {
-                player.GetComponent<PlayerMove>().Speed = 5;
-
+                player.Speed = 5;
             }
         }
     }
