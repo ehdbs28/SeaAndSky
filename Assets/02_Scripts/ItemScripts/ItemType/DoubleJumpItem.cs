@@ -21,7 +21,7 @@ public class DoubleJumpItem : MonoBehaviour
 
     void DoubleJump()
     {
-        PlayerMove.doubleJumpCount = 2;
+        PlayerMove.JumpCount++;
         gameObject.SetActive(false);
     }
 }

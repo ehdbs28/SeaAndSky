@@ -42,7 +42,7 @@ public class PlayerOxygenGague : MonoBehaviour
         {
             if (_lifeTime <= 0)
             {
-                _player.Damege();
+                _player.Damage();
                 return;
             }
             _lifeTime -= Time.fixedDeltaTime;

@@ -46,7 +46,7 @@ public class PlayerArea : MonoBehaviour
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
             _playerMove.LocalScaleY = 1;
-            _playerMove.Speed = 5f;
+            _playerMove.Speed = 6.2f;
             _rigid.gravityScale = 3.5f;
             _playerMove.JumpPower = 11f;
 
@@ -55,7 +55,7 @@ public class PlayerArea : MonoBehaviour
         else if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
             _playerMove.LocalScaleY = _isSoapBubble ? 1 : -1;
-            _playerMove.Speed = 3f;
+            _playerMove.Speed = 5.2f;
             _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
             _playerMove.JumpPower = 17;
             onChangeArea.Invoke(AreaState.Sea);

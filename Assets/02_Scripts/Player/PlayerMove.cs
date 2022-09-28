@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMove : MonoBehaviour, IDamage
 {
-    public static int doubleJumpCount = 0;
+    public static int JumpCount = 1;
     private float _currentVelocity = 3f;
     private float _localScaleY = 1;
     public float LocalScaleY
@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             _speed = value;
         }
     }
-    private float _maxSpeed = 5;
+    private float _maxSpeed = 20;
     [SerializeField] private float _jumpPower;
     public float JumpPower
     {
@@ -83,7 +83,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
         anim = transform.Find("VisualSprite").GetComponent<Animator>();
-        _speed = movementData.maxSpeed;
+        _maxSpeed = movementData.maxSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -101,125 +101,67 @@ public class PlayerMove : MonoBehaviour, IDamage
         {
             Move();
             PlayerAttack();
-
-            if (doubleJumpCount > 0)
-            {
-                DoubleJumpItem();
-                return;
-            }
             Jump();
         }
     }
 
-    public void Damege()
+    public void Damage()
     {
         if (GameManager.Instance.IsPlayerDeath) return;
 
         GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { anim.SetTrigger("Dead"); });
     }
 
-    private void DoubleJumpItem()
-    {
-        if (doubleJumpCount > 0 && (Input.GetKey(KeySetting.keys[Key.jump])))
-        {
-            anim.SetBool("isJump", true);
-            rigid.velocity = Vector2.zero;
-            rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
-            doubleJumpCount -= 1;
-        }
-    }
-
-    //����
     private void Jump()
     {
-
-        if ((Input.GetKeyDown(KeySetting.keys[Key.jump]) && isGround))
+        if(isGround) JumpCount = 1;
+        if ((Input.GetKeyDown(KeySetting.keys[Key.jump]) && isGround && JumpCount > 0))
         {
-            anim.SetBool("isJump", true);
+            anim.SetTrigger("IsJump");
             onPlayerJump.Invoke();
 
             rigid.velocity = Vector2.zero;
-            rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
-            //rigid.velocity = transform.up * _jumpPower;
 
-            if (_localScaleY == -1)
-            {
-                rigid.velocity = Vector2.zero;
+            if(_localScaleY == 1)
+                rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
+            else if(_localScaleY == -1)
                 rigid.AddForce(transform.up * _jumpPower * -1, ForceMode2D.Impulse);
-            }
+
+            JumpCount--;
         }
     }
 
-    //�����̱�
     private void Move()
     {
         Bounds bounds = collider.bounds;
-        if (_localScaleY == 1)
-        {
-            footPosition = new Vector2(bounds.center.x, bounds.min.y);
-        }
-        else if (_localScaleY == -1)
-        {
-            footPosition = new Vector3(bounds.center.x, bounds.max.y);
-        }
-
+        footPosition = new Vector2(bounds.center.x, (_localScaleY == 1) ? bounds.min.y : bounds.max.y);
         isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
 
+        PlayerInput(out h);
 
-        if (Input.GetKeyDown(KeySetting.keys[Key.right]))
-        {
-             h = 1;
-        }
-        if (Input.GetKeyDown(KeySetting.keys[Key.left]))
-        {
-            h = -1;
-        }
-        if (Input.GetKeyUp(KeySetting.keys[Key.left]) || Input.GetKeyUp(KeySetting.keys[Key.right]))
-        {
-            h = 0;
-        }
-
-        if (isGround)
-        {
-            anim.SetBool("isJump", false);
-            if (h != 0)
-                anim.SetBool("isMove", true);
-            else
-                anim.SetBool("isMove", false);
-        }
+        anim.SetBool("isMove", (h != 0));
         
         if (h < 0)
             isLeft = true;
         if (h > 0)
             isLeft = false;
 
-        if (isLeft)
-            transform.localScale = new Vector3(-1, _localScaleY, 1);
-        else
-            transform.localScale = new Vector3(1, _localScaleY, 1);
-        Vector2 direction = new Vector2(h, 0);
+        transform.localScale = new Vector3((isLeft) ? -1 : 1, _localScaleY, 1);
 
-        if (direction.sqrMagnitude > 0)
-        {
-            if (Vector2.Dot(direction, movementDirection) < 0)
-            {
-                _currentVelocity = 0;
-            }
-            movementDirection = direction.normalized;
-        }
-        _currentVelocity = CalculateSpeed(direction);
-        rigid.velocity = new Vector2(movementDirection.x * _currentVelocity, rigid.velocity.y);
-        if (rigid.velocity.x > _maxSpeed)
-        {
-            rigid.velocity = new Vector2(_maxSpeed, rigid.velocity.y);
-        }
-        else if (rigid.velocity.x < _maxSpeed * -1)
-        {
-            rigid.velocity = new Vector2(_maxSpeed * -1, rigid.velocity.y);
-        }
-
-        rigid.position += (direction * _speed * Time.deltaTime);
+        Mathf.Clamp(rigid.velocity.x, 0, _maxSpeed);
+        rigid.velocity = new Vector3(h * _speed, rigid.velocity.y, 0);
         onPlayerMove.Invoke(rigid.velocity);
+    }
+
+    private void PlayerInput(out float h){
+        int temp = 0;
+
+        if (Input.GetKey(KeySetting.keys[Key.right]))
+            temp = 1;
+        else if(Input.GetKey(KeySetting.keys[Key.left]))
+            temp = -1;
+
+        h = temp;
     }
 
     private float CalculateSpeed(Vector2 movementInput)
