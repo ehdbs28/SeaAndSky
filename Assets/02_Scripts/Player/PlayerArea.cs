@@ -12,7 +12,7 @@ public class PlayerArea : MonoBehaviour
     [field: SerializeField] private UnityEvent<AreaState> onChangeArea;
     [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
-    private float _circleGizmoSize = 0.2f;
+    private float _circleGizmoSize = 0.4f;
     [SerializeField] private LayerMask _isWhatGround;
     public bool IsSoapBubble
     {
@@ -71,7 +71,7 @@ public class PlayerArea : MonoBehaviour
             _failedChangeArea.Invoke();
             return;
         }
-        if (GameManager.Instance.PlayerState == AreaState.Sea)
+        else if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
             GameManager.Instance.PlayerState = AreaState.Sky;
             _rigid.drag = 1f;
@@ -89,13 +89,13 @@ public class PlayerArea : MonoBehaviour
 
 
 #if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        //if (_generateShadow.Shadow != null)
-        //{
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawWireSphere(_generateShadow.Shadow.transform.position, _circleGizmoSize);
-        //}
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if (_generateShadow.Shadow != null)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireCube(_generateShadow.Shadow.transform.position, new Vector3(1f, 1f, 1f));
+    //    }
+    //}
 #endif
 }
