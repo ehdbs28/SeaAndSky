@@ -34,7 +34,7 @@ public class PlayerArea : MonoBehaviour
     {
         if (GameManager.Instance.GameState != GameState.InGame) return;
 
-        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _playerMove.IsGround)
+        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _playerMove.GroundCheak)
         {
             SetStateChanged();
         }

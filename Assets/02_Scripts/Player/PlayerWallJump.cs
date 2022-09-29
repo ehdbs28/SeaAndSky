@@ -9,5 +9,7 @@ public class PlayerWallJump : MonoBehaviour
     private bool _isWall = false;
     public bool IsWall {get => _isWall;}
 
-    
+    private void Update() {
+        
+    }
 }

@@ -39,10 +39,12 @@ public class PlayerMove : MonoBehaviour, IDamage
         }
     }
     [SerializeField] private float _attackReboundPower;
-    [SerializeField] private GameObject _attackParticle;
+    [SerializeField] private ParticleSystem _attackParticle;
     [SerializeField] private GameObject _attackEffect;
 
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallRunLayer;
+    private float _rayDistance = 0.1f;
 
     [SerializeField] private MovementDataSO movementData;
     [SerializeField] private static float h;
@@ -51,19 +53,17 @@ public class PlayerMove : MonoBehaviour, IDamage
     [SerializeField] private static float r;
     [SerializeField] private static float l;
 
-    private bool isGround = false;
-    public bool IsGround
-    {
-        get => isGround;
-    }
+    [field:SerializeField] public bool GroundCheak {get; set;} = false;
+    [field:SerializeField] public bool LeftCheak {get; set;} = false;
+    [field:SerializeField] public bool RightCheak {get; set;} = false;
+
     private bool isAttack = false;
-    //private bool isHead = false;
 
     public bool isLeft = false;
 
-    private Vector3 footPosition;
     new private BoxCollider2D collider;
     private Animator anim = null;
+    private Transform visualObject;
     private Rigidbody2D rigid;
     private Vector2 movementDirection;
     public UnityEvent<Vector2> onPlayerMove;
@@ -72,6 +72,7 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
     [SerializeField] Sprite _cheakPointImg;
+
    
     private void Awake()
     {
@@ -82,7 +83,8 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         rigid = GetComponent<Rigidbody2D>();
         collider = GetComponent<BoxCollider2D>();
-        anim = transform.Find("VisualSprite").GetComponent<Animator>();
+        visualObject = transform.Find("VisualSprite");
+        anim = visualObject.GetComponent<Animator>();
         _maxSpeed = movementData.maxSpeed;
     }
 
@@ -99,10 +101,26 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
+            Cheak();
             Move();
             PlayerAttack();
             Jump();
         }
+    }
+
+    private void Cheak(){
+        Bounds bounds = collider.bounds;
+
+        RaycastHit2D groundHit = Physics2D.CapsuleCast(bounds.center, bounds.size, CapsuleDirection2D.Vertical, 0,
+                                                         (GameManager.Instance.PlayerState == AreaState.Sky) ? Vector2.down : Vector2.up,
+                                                         _rayDistance, groundLayer);
+        RaycastHit2D leftHit = Physics2D.BoxCast(bounds.center, bounds.size, 0, Vector2.left, _rayDistance, groundLayer);
+        RaycastHit2D rightHit = Physics2D.BoxCast(bounds.center, bounds.size, 0, Vector2.right, _rayDistance, groundLayer);
+
+
+        GroundCheak = (groundHit) ? true : false;
+        LeftCheak = (leftHit) ? true : false;
+        RightCheak = (rightHit) ? true : false;
     }
 
     public void Damage()
@@ -114,8 +132,8 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private void Jump()
     {
-        if(isGround) JumpCount = 1;
-        if ((Input.GetKeyDown(KeySetting.keys[Key.jump]) && isGround && JumpCount > 0))
+        if(GroundCheak) JumpCount = 1;
+        if ((Input.GetKeyDown(KeySetting.keys[Key.jump]) && JumpCount > 0))
         {
             anim.SetTrigger("IsJump");
             onPlayerJump.Invoke();
@@ -133,10 +151,6 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private void Move()
     {
-        Bounds bounds = collider.bounds;
-        footPosition = new Vector2(bounds.center.x, (_localScaleY == 1) ? bounds.min.y : bounds.max.y);
-        isGround = Physics2D.OverlapCircle(footPosition, 0.1f, groundLayer);
-
         PlayerInput(out h);
 
         anim.SetBool("isMove", (h != 0));
@@ -146,7 +160,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         if (h > 0)
             isLeft = false;
 
-        transform.localScale = new Vector3((isLeft) ? -1 : 1, _localScaleY, 1);
+        visualObject.localScale = new Vector3((isLeft) ? -1 : 1, _localScaleY, 1);
 
         Mathf.Clamp(rigid.velocity.x, 0, _maxSpeed);
         rigid.velocity = new Vector3(h * _speed, rigid.velocity.y, 0);
@@ -154,14 +168,12 @@ public class PlayerMove : MonoBehaviour, IDamage
     }
 
     private void PlayerInput(out float h){
-        int temp = 0;
-
         if (Input.GetKey(KeySetting.keys[Key.right]))
-            temp = 1;
+            h = 1;
         else if(Input.GetKey(KeySetting.keys[Key.left]))
-            temp = -1;
-
-        h = temp;
+            h = -1;
+        else
+            h = 0;
     }
 
     private float CalculateSpeed(Vector2 movementInput)
@@ -197,16 +209,21 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (!GameManager.Instance.IsPlayerDeath)
         {
-            ParticleSystem particle = null;
             onPlayerAttack.Invoke(); //사운드
-            float attackPosX = (isGround) ? (isLeft) ? transform.position.x - 1f : transform.position.x + 1f : transform.position.x;
-            float attackPosY = (Input.GetKey(KeyCode.UpArrow)) ? transform.position.y + 1.5f : (Input.GetKey(KeyCode.DownArrow)) ? transform.position.y - 1.5f : transform.position.y;
+            float attackPosX = (!(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)))
+                                 ? (isLeft) ? transform.position.x - 1f : transform.position.x + 1f : transform.position.x;
+            float attackPosY = (Input.GetKey(KeyCode.UpArrow)) ? transform.position.y + 1.5f : (Input.GetKey(KeyCode.DownArrow))
+                                 ? transform.position.y - 1.5f : transform.position.y;
             Vector3 attackPos = new Vector3(attackPosX, attackPosY);
-            float attackRotate = (Input.GetKey(KeyCode.UpArrow)) ? 90f : (Input.GetKey(KeyCode.DownArrow)) ? -90f : 0f;
+
+            float attackRotate = (Input.GetKey(KeyCode.UpArrow)) ? 90f : (Input.GetKey(KeyCode.DownArrow)) ? -90f
+                                : (isLeft) ? -180 : 0;
 
             Collider2D collider = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, enemyLayer); 
             if(collider){
                 IHittable hittable = collider.GetComponent<IHittable>();
+                Vector3 hitPos;
+                Vector3 hitNormal;
 
                 if(Input.GetKey(KeyCode.DownArrow)){
                     rigid.velocity = Vector2.zero;
@@ -217,23 +234,19 @@ public class PlayerMove : MonoBehaviour, IDamage
                 }
 
                 GameManager.Instance.timeManager.TimeManaging(0.025f);
-                
-                Vector3 hitPos;
-                if(collider.GetComponent<Tilemap>() != null){
-                    Tilemap tilemap = collider.GetComponent<Tilemap>();
+                Tilemap tilemap = collider.GetComponent<Tilemap>();
 
+                if(tilemap != null){
                     tilemap.RefreshAllTiles();
 
-                    float x = tilemap.WorldToCell(attackPos).x;
-                    float y = tilemap.WorldToCell(attackPos).y;
-
-                    hitPos = new Vector3(x, y);
+                    hitPos = tilemap.WorldToCell(attackPos);
                 }
                 else hitPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y);
 
-                Vector3 hitNormal = transform.position - collider.transform.position;
-                particle = GameObject.Instantiate(_attackParticle, hitPos, Quaternion.Euler(hitNormal.x, hitNormal.y, hitNormal.z)).GetComponent<ParticleSystem>();
-                particle.Play();
+                hitNormal = transform.position - collider.transform.position;
+                
+                _attackParticle.transform.SetPositionAndRotation(hitPos, Quaternion.AngleAxis(hitNormal.z, Vector3.forward));
+                _attackParticle.Play();
             }
 
             _attackEffect.SetActive(true);
@@ -244,7 +257,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75f);
 
             _attackEffect.SetActive(false);
-            if(particle != null) Destroy(particle.gameObject);
+            if(_attackParticle.isPlaying) _attackParticle.Stop();
             isAttack = false;
         }
     }
