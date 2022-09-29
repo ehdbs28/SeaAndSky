@@ -6,7 +6,7 @@ public class Updraft : MonoBehaviour
 {
     [Header("Variable")]
     public float distance;
-    private float force = 250f;
+    public float force = 250f;
 
     public LayerMask targetLayer;
 
