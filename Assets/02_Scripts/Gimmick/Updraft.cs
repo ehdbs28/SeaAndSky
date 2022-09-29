@@ -21,7 +21,7 @@ public class Updraft : MonoBehaviour
         foreach (ParticleSystem ps in particles)
         {
             var main = ps.main;
-            main.startLifetime = transform.localScale.y;
+            main.startLifetime = transform.localScale.y/2;
         }
     }
 
