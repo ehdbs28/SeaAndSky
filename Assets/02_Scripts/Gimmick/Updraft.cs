@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Updraft : MonoBehaviour
 {
-    [Header("Variable")]
-    public float distance;
     public float force = 250f;
 
     public LayerMask targetLayer;
@@ -15,11 +13,16 @@ public class Updraft : MonoBehaviour
 
     private void Start()
     {
-        SetDistance();
+        GetComponent<SpriteRenderer>().color = Color.clear;
 
-        particles = GetComponentsInChildren<ParticleSystem>();
         // 파티클 길이 하기
+        particles = transform.parent.GetComponentsInChildren<ParticleSystem>();
 
+        foreach (ParticleSystem ps in particles)
+        {
+            var main = ps.main;
+            main.startLifetime = transform.localScale.y;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -55,19 +58,5 @@ public class Updraft : MonoBehaviour
         }
 
         return rigid;
-    }
-
-    private void SetDistance()
-    {
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-
-        Vector2 size = collider.size;
-        Vector2 offset = collider.offset;
-
-        size.y = distance;
-        offset.y = distance / 2;
-
-        collider.size = size;
-        collider.offset = offset;
     }
 }
