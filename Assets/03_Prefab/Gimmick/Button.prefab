@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8471131359147865192}
   - component: {fileID: 8471131359147865111}
   - component: {fileID: 8471131359147865194}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
       m_Calls: []
   pushSprite: {fileID: 1763989116612304091, guid: 6469839918910dd4fba295d7f29af957, type: 3}
   pullSprite: {fileID: 2530564911472380330, guid: 6469839918910dd4fba295d7f29af957, type: 3}
-  targetLayer:
+  _targetLayer:
     serializedVersion: 2
     m_Bits: 768
 --- !u!61 &8471131359147865194

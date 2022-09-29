@@ -5,10 +5,10 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public void TimeManaging(float time){
-        StartCoroutine("TimeCoroutine", time);
+        StartCoroutine("TimeStopCoroutine", time);
     }   
 
-    IEnumerator TimeCoroutine(float time){
+    IEnumerator TimeStopCoroutine(float time){
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;

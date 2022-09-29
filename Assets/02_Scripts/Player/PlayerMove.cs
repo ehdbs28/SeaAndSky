@@ -14,6 +14,8 @@ public class PlayerMove : MonoBehaviour, IDamage
         set => _localScaleY = value;
         get => _localScaleY;
     }
+
+
     private Vector2 direction = Vector2.zero;
     [SerializeField]private float _speed;
     public float Speed
@@ -26,6 +28,7 @@ public class PlayerMove : MonoBehaviour, IDamage
             _speed = value;
         }
     }
+    private int hashJump, hashMove;
     private float _maxSpeed = 5;
     [SerializeField] private float _jumpPower;
     public float JumpPower
@@ -57,8 +60,6 @@ public class PlayerMove : MonoBehaviour, IDamage
         get => isGround;
     }
     private bool isAttack = false;
-    //private bool isHead = false;
-
     public bool isLeft = false;
 
     private Vector3 footPosition;
@@ -72,17 +73,21 @@ public class PlayerMove : MonoBehaviour, IDamage
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
     [SerializeField] Sprite _cheakPointImg;
-   
+
     private void Awake()
     {
         EventManager.StartListening("LoadStage", SetFirstPosition);
+
+        rigid = GetComponent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
+        anim = transform.Find("VisualSprite").GetComponent<Animator>();
+
+        hashJump = Animator.StringToHash("isJump");
+        hashMove = Animator.StringToHash("isMove");
     }
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
-        anim = transform.Find("VisualSprite").GetComponent<Animator>();
         _speed = movementData.maxSpeed;
     }
 
@@ -122,25 +127,23 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         if (doubleJumpCount > 0 && (Input.GetKey(KeySetting.keys[Key.jump])))
         {
-            anim.SetBool("isJump", true);
+            anim.SetBool(hashJump, true);
             rigid.velocity = Vector2.zero;
             rigid.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
             doubleJumpCount -= 1;
         }
     }
 
-    //����
     private void Jump()
     {
 
         if ((Input.GetKeyDown(KeySetting.keys[Key.jump]) && isGround))
         {
-            anim.SetBool("isJump", true);
+            anim.SetBool(hashJump, true);
             onPlayerJump.Invoke();
 
             rigid.velocity = Vector2.zero;
             rigid.AddForce(transform.up * _jumpPower, ForceMode2D.Impulse);
-            //rigid.velocity = transform.up * _jumpPower;
 
             if (_localScaleY == -1)
             {
@@ -149,8 +152,6 @@ public class PlayerMove : MonoBehaviour, IDamage
             }
         }
     }
-
-    //�����̱�
     private void Move()
     {
         Bounds bounds = collider.bounds;
@@ -181,11 +182,11 @@ public class PlayerMove : MonoBehaviour, IDamage
 
         if (isGround)
         {
-            anim.SetBool("isJump", false);
+            anim.SetBool(hashJump, false);
             if (h != 0)
-                anim.SetBool("isMove", true);
+                anim.SetBool(hashMove, true);
             else
-                anim.SetBool("isMove", false);
+                anim.SetBool(hashMove,false);
         }
         
         if (h < 0)
@@ -256,14 +257,15 @@ public class PlayerMove : MonoBehaviour, IDamage
         if (!GameManager.Instance.IsPlayerDeath)
         {
             ParticleSystem particle = null;
-            onPlayerAttack.Invoke(); //사운드
+            onPlayerAttack.Invoke(); 
             float attackPosX = (isGround) ? (isLeft) ? transform.position.x - 1f : transform.position.x + 1f : transform.position.x;
             float attackPosY = (Input.GetKey(KeyCode.UpArrow)) ? transform.position.y + 1.5f : (Input.GetKey(KeyCode.DownArrow)) ? transform.position.y - 1.5f : transform.position.y;
             Vector3 attackPos = new Vector3(attackPosX, attackPosY);
             float attackRotate = (Input.GetKey(KeyCode.UpArrow)) ? 90f : (Input.GetKey(KeyCode.DownArrow)) ? -90f : 0f;
 
             Collider2D collider = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, enemyLayer); 
-            if(collider){
+            if(collider) 
+            {
                 IHittable hittable = collider.GetComponent<IHittable>();
 
                 if(Input.GetKey(KeyCode.DownArrow)){
@@ -288,30 +290,24 @@ public class PlayerMove : MonoBehaviour, IDamage
                     hitPos = new Vector3(x, y);
                 }
                 else hitPos = new Vector3(collider.bounds.center.x, collider.bounds.max.y);
-
                 Vector3 hitNormal = transform.position - collider.transform.position;
                 particle = GameObject.Instantiate(_attackParticle, hitPos, Quaternion.Euler(hitNormal.x, hitNormal.y, hitNormal.z)).GetComponent<ParticleSystem>();
                 particle.Play();
             }
-
             _attackEffect.SetActive(true);
             _attackEffect.transform.position = attackPos;
             _attackEffect.transform.rotation = Quaternion.AngleAxis(attackRotate, Vector3.forward);
-           
             yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"));
             yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75f);
-
             _attackEffect.SetActive(false);
             if(particle != null) Destroy(particle.gameObject);
             isAttack = false;
         }
     }
-
     public void EndDeadAnim() 
     {
         gameObject.SetActive(false);
     }
-
     public void ChangePlayerState()
     {
         transform.localScale = new Vector3(-1, 1, 0);
@@ -320,7 +316,6 @@ public class PlayerMove : MonoBehaviour, IDamage
     {
         transform.position = GameManager.Instance.PlayerPosition;
     }
-
     private void OnDestroy()
     {
         EventManager.StopListening("LoadStage", SetFirstPosition);

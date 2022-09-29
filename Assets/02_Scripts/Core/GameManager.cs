@@ -7,7 +7,7 @@ using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    #region �÷��̾� HP ���� �ڵ�
+    #region PLAYERHEARTPARAM
     [SerializeField] private int _heartCnt;
     [SerializeField] private GameObject _heartPrefab;
     [SerializeField] private Transform _parentTrm;
