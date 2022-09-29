@@ -28,8 +28,11 @@ public class Updraft : MonoBehaviour
         {
             Rigidbody2D rigid = GetRigidbody(collision);
 
-            rigid.velocity = Vector3.zero;
-            rigid?.AddRelativeForce(transform.up * force);
+            if (rigid)
+            {
+                rigid.velocity = Vector3.zero;
+                rigid?.AddRelativeForce(transform.up * force);
+            }
         }
     }
 

@@ -256,7 +256,7 @@ public class PlayerMove : MonoBehaviour, IDamage
         if (!GameManager.Instance.IsPlayerDeath)
         {
             ParticleSystem particle = null;
-            onPlayerAttack.Invoke(); //사운드
+            onPlayerAttack.Invoke();
             float attackPosX = (isGround) ? (isLeft) ? transform.position.x - 1f : transform.position.x + 1f : transform.position.x;
             float attackPosY = (Input.GetKey(KeyCode.UpArrow)) ? transform.position.y + 1.5f : (Input.GetKey(KeyCode.DownArrow)) ? transform.position.y - 1.5f : transform.position.y;
             Vector3 attackPos = new Vector3(attackPosX, attackPosY);
