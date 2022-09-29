@@ -16,14 +16,14 @@ public class EnemySpawner : MonoBehaviour
     {
         Sequence seq = DOTween.Sequence();
         _monster.gameObject.SetActive(true);
-        seq.Append(_monster._SpriteRenderer.material.DOFade(1, 1f));
+        seq.Append(_monster._SpriteRenderer.material.DOFade(1, 0.5f));
 
         OnEnemyRespawn?.Invoke(transform.position);
     }
     public void Dead()
     {
         Sequence seq = DOTween.Sequence();
-        seq.Append(_monster._SpriteRenderer.material.DOFade(0, 1f));
+        seq.Append(_monster._SpriteRenderer.material.DOFade(0, 0.5f));
         seq.OnComplete(() => { _monster.gameObject.SetActive(false); });
 
         Invoke("Respawn", _monster._deadTime);

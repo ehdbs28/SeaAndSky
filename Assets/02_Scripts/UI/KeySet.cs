@@ -11,6 +11,7 @@ public enum Key
     left,
     down,
     changeworld,
+    pullBox,
     keycount
 }
 public static class KeySetting { public static Dictionary<Key, KeyCode> keys = new Dictionary<Key, KeyCode>(); }
@@ -18,8 +19,8 @@ public static class KeySetting { public static Dictionary<Key, KeyCode> keys = n
 public class KeySet : MonoBehaviour
 {
     int key = -1;
-    KeyCode[] defalutkeys = new KeyCode[] { KeyCode.X, KeyCode.Z, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space };
-    string[] keyNames = new string[] { "Jump", "Attack", "Right", "Left", "Down", "Change World" };
+    KeyCode[] defalutkeys = new KeyCode[] { KeyCode.X, KeyCode.Z, KeyCode.RightArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.Space, KeyCode.LeftShift };
+    string[] keyNames = new string[] { "Jump", "Attack", "Right", "Left", "Down", "Change World", "Pull Box" };
 
     [SerializeField] private GameObject keySettingPanel;
 
