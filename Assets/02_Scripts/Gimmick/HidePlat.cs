@@ -29,7 +29,11 @@ public class HidePlat : MonoBehaviour
     }
 
     IEnumerator HideTime()
-    { 
+    {
+        yield return new WaitForSeconds(destroyTime - 1f);
+        //plat.transform.DOShakePosition(0.5f, 0.4f);
+        sp.DOColor(new Color(0.5f, 0.5f, 0.5f), 2);
+
         yield return new WaitForSeconds(destroyTime);
 
         plat.transform.DOMoveY(transform.position.y - 3, durationTime);
