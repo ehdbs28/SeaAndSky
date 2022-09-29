@@ -7,7 +7,7 @@ using System;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    #region PLAYERHEARTPARAM
+    #region 
     [SerializeField] private int _heartCnt;
     [SerializeField] private GameObject _heartPrefab;
     [SerializeField] private Transform _parentTrm;
@@ -107,7 +107,6 @@ public class GameManager : MonoSingleton<GameManager>
 
             GameObject lastIndex = heartList[heartList.Count - 1];
             Sequence sq = DOTween.Sequence();
-
             sq.Append(lastIndex.transform.DOScale(Vector3.one * 2.2f, 0.2f));
             sq.Append(lastIndex.transform.DOScale(Vector3.zero, 0.5f));
             sq.OnComplete(() =>
