@@ -27,7 +27,7 @@ public class FireColumn : MonoBehaviour
         renderer = GetComponentInChildren<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         //audioSource = GetComponent<AudioSource>();
-        player = FindObjectOfType<PlayerMove>().transform;
+        player = FindObjectOfType<Player>().transform;
 
         renderer.sprite = null;
         StartCoroutine(ActiveColumn());

@@ -8,7 +8,7 @@ public class PlayerShadow : MonoBehaviour
 
     private void Awake()
     {
-        _player = FindObjectOfType<PlayerMove>().transform;
+        _player = FindObjectOfType<Player>().transform;
     }
     private void Update()
     {

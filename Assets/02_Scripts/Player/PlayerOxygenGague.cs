@@ -10,12 +10,12 @@ public class PlayerOxygenGague : MonoBehaviour
     private GameObject _gauge;
     private bool _isSea = false;
     private float _lifeTime = 0;
-    private PlayerMove _player;
+    private Player _player;
     private void Awake()
     {
         _gagueBox = GameObject.Find("OxygenGagueBox");
         _gauge = transform.Find("OxygenGague").gameObject;
-        _player = transform.parent.GetComponent<PlayerMove>();
+        _player = transform.parent.GetComponent<Player>();
         CheckSea();
     }
 

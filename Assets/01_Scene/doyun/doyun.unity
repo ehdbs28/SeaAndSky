@@ -1270,6 +1270,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252028539}
   m_CullTransparentMesh: 1
+--- !u!198 &262020910 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1704303647735251108, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 463957641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &268949448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,7 +1940,10 @@ PrefabInstance:
       propertyPath: <GroundCheck>k__BackingField
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5527135322220754511, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+    - {fileID: 463957643, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+    - {fileID: 26161712842966244, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
 --- !u!1 &488561872
 GameObject:
@@ -2485,6 +2493,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622260687}
   m_CullTransparentMesh: 1
+--- !u!1 &644153481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1609427158, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 463957641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &702937298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4653,6 +4666,137 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1272816612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5527135322220754506, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 463957641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &1272816613
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272816612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.05}
+  m_Size: {x: 0.8, y: 1.1}
+  m_Direction: 0
+--- !u!114 &1272816616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1879805587, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 463957641}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272816612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02a810165d3115549bb1818fb4a0bc25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1272816617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1879805588, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+  m_PrefabInstance: {fileID: 463957641}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272816612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba952d499191cc4184b503aec0c5aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1272816622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272816612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac2db0089e4e7344b008ff7e958d607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0
+  _slidingSpeed: 0.5
+  _attackReboundPower: 15
+  _jumpPower: 0
+  _wallJumpPower: 10
+  _jumpCount: 1
+  _attackParticle: {fileID: 262020910}
+  _attackEffect: {fileID: 644153481}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1152
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 4672
+  _wallRunLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  OnPlayerMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1272816617}
+        m_TargetAssemblyTypeName: PlayerEffect, Assembly-CSharp
+        m_MethodName: ActiveSeaMoveEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1272816616}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayWalkSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlayerJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1272816616}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayJumpSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlayerAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1272816616}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayAttackSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _cheakPointImage: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
+  _isGround: 0
 --- !u!1 &1298425957
 GameObject:
   m_ObjectHideFlags: 0

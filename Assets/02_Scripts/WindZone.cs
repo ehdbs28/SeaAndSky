@@ -5,7 +5,7 @@ using UnityEngine;
 public class WindZone : MonoBehaviour
 {
     private ParticleSystem[] windParticles;
-    private PlayerMove player;
+    private Player player;
     private Rigidbody2D rigid;
 
     [SerializeField] private float windForce = 250f;
@@ -23,7 +23,7 @@ public class WindZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player = FindObjectOfType<PlayerMove>();
+            player = FindObjectOfType<Player>();
 
             if (player)
             {

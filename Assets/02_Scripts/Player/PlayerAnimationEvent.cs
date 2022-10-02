@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerAnimationEvent : MonoBehaviour
 {
-    private PlayerMove _player;
+    private Player _player;
 
     private void Start() {
-        _player = GetComponentInParent<PlayerMove>();
+        _player = GetComponentInParent<Player>();
     }
 
     public void DeadEvent(){
