@@ -32,12 +32,12 @@ public class Player : MonoBehaviour, IDamage
 
     private bool _isAttack = false;
     private bool _isJump = false;
-    public bool _isGround = false;
-    public bool _isWall = false;
+    private bool _isGround = false;
+    private bool _isWall = false;
     private bool _isWallJump = false;
 
     private float _rayDistance = 0.1f;
-    private float _wallCheckDistance = 0.25f;
+    private float _wallCheckDistance = 0.15f;
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
@@ -92,9 +92,8 @@ public class Player : MonoBehaviour, IDamage
         _isWall = Physics2D.BoxCast(transform.position, bounds.size, 0, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
 
         if(_isGround) _jumpCount = 1;
-        if(_isWall){
-            //_rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
-            //_isWallJump = false;
+        if(_isWall && !_isWallJump){
+            _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
         }
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
@@ -108,9 +107,9 @@ public class Player : MonoBehaviour, IDamage
                 _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _jumpPower;
             }
 
-            if(_isWall){
+            if(_isWall && !_isWallJump){
                 _isWallJump = true;
-                Invoke("WallJumpTogle", 0.3f);
+                Invoke("WallJumpTogle", 0.175f);
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
