@@ -33,11 +33,11 @@ public class Player : MonoBehaviour, IDamage
     private bool _isAttack = false;
     private bool _isJump = false;
     public bool _isGround = false;
-    private bool _isWall = false;
+    public bool _isWall = false;
     private bool _isWallJump = false;
 
     private float _rayDistance = 0.1f;
-    private float _wallCheckDistance = 0.15f;
+    private float _wallCheckDistance = 0.25f;
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
@@ -66,42 +66,39 @@ public class Player : MonoBehaviour, IDamage
 
     private void Update() {
         if(!GameManager.Instance.IsPlayerDeath){
-            Jump();
             Move();
+            Jump();
             Attack();
         }
     }
 
-    private void FixedUpdate() {
-        if(!GameManager.Instance.IsPlayerDeath){
-            if(_isWall){
-                _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
-            }
-        }
-    }
-
     private void Move(){
-        float h = 0;
-        if(Input.GetKey(KeySetting.keys[Key.right])) h = 1;
-        if(Input.GetKey(KeySetting.keys[Key.left])) h = -1;
+        if(!_isWallJump){
+            float h = 0;
+            if(Input.GetKey(KeySetting.keys[Key.right])) h = 1;
+            if(Input.GetKey(KeySetting.keys[Key.left])) h = -1;
 
-        _anim.SetBool("IsMove", (h != 0)); 
-        if(h != 0) PlayerFlip(h, _visualObject.localScale.y);
+            _anim.SetBool("IsMove", (h != 0)); 
+            if(h != 0 && !_isWall) PlayerFlip(h, _visualObject.localScale.y);
 
-        _rigid.velocity = new Vector2(h * _speed, _rigid.velocity.y);
-        OnPlayerMove.Invoke(_rigid.velocity);
+            _rigid.velocity = new Vector2(h * _speed, _rigid.velocity.y);
+            OnPlayerMove.Invoke(_rigid.velocity);
+        }
     }
 
     private void Jump(){
         Bounds bounds = _collider.bounds;
         _isGround = Physics2D.CapsuleCast(transform.position, bounds.size, CapsuleDirection2D.Vertical, 0, Vector2.down * _visualObject.localScale.y, _rayDistance, _groundLayer);
-        Debug.DrawRay(transform.position, Vector2.down * _visualObject.localScale.y, Color.green, _rayDistance);
-        _isWall = Physics2D.Raycast(bounds.center, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
+        _isWall = Physics2D.BoxCast(transform.position, bounds.size, 0, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
 
         if(_isGround) _jumpCount = 1;
-        
+        if(_isWall){
+            //_rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
+            //_isWallJump = false;
+        }
+
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
-            if(_jumpCount > 0){
+            if(!_isWall && _jumpCount > 0){
                 _jumpCount--;
 
                  _anim.SetTrigger("IsJump");
@@ -112,14 +109,20 @@ public class Player : MonoBehaviour, IDamage
             }
 
             if(_isWall){
+                _isWallJump = true;
+                Invoke("WallJumpTogle", 0.3f);
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
 
-                _rigid.velocity = new Vector2(-_visualObject.localPosition.x * _wallJumpPower, 0.9f * _wallJumpPower);
-                PlayerFlip(-_visualObject.localScale.x, _visualObject.localPosition.y);
+                _rigid.velocity = new Vector2(-_visualObject.localScale.x * _wallJumpPower, 0.9f * _wallJumpPower);
+                PlayerFlip(-_visualObject.localScale.x, _visualObject.localScale.y);
             }
         }
+    }
+
+    private void WallJumpTogle(){
+        _isWallJump = false;
     }
 
     private void Attack(){

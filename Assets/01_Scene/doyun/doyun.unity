@@ -4797,6 +4797,7 @@ MonoBehaviour:
         m_CallState: 2
   _cheakPointImage: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
   _isGround: 0
+  _isWall: 0
 --- !u!1 &1298425957
 GameObject:
   m_ObjectHideFlags: 0
