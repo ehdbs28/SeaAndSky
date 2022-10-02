@@ -79,6 +79,11 @@ public class GameManager : MonoSingleton<GameManager>
         LoadStage();
     }
 
+    // private void Start() 
+    // {
+    //     gameState = GameState.InGame;
+    // }
+
     void Update()
     {
         GameReset();
