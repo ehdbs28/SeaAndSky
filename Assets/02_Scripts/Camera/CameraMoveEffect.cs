@@ -41,14 +41,14 @@ public class CameraMoveEffect : MonoBehaviour
 
     public void ZoomIn()
     {
-        cam.DOKill();
-        cam.DOOrthoSize(orthographicSize, 1f);
+        cam?.DOKill();
+        cam?.DOOrthoSize(orthographicSize, 1f);
     }
 
     public void ZoomOut()
     {
-        cam.DOKill();
-        cam.DOOrthoSize(maxZoomOut, 20f);
+        cam?.DOKill();
+        cam?.DOOrthoSize(maxZoomOut, 20f);
     }
 
     public void ResetData()

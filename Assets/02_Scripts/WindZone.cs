@@ -9,9 +9,6 @@ public class WindZone : MonoBehaviour
     private Rigidbody2D rigid;
 
     [SerializeField] private float windForce = 250f;
-
-    [SerializeField]
-    private float speed = 1f;
     private const string PLAYER_TAG = "Player";
 
     void Start()

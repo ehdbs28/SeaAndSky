@@ -7,9 +7,12 @@ public class PullBox : MonoBehaviour
     [SerializeField] private float distance = 3f;
     [SerializeField] private GameObject player;
 
+    private Vector3 _initPos;
+
     private void Awake()
     {
         player = GameObject.Find("Player");
+        _initPos = transform.position;
     }
 
     private void Update()
@@ -27,6 +30,14 @@ public class PullBox : MonoBehaviour
                 player.GetComponent<Player>().Speed = 5;
 
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Trap"))
+        {
+            transform.position = _initPos;
         }
     }
 }

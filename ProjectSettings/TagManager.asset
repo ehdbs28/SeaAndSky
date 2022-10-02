@@ -16,6 +16,7 @@ TagManager:
   - Sea
   - CheakPoint
   - PlayerCol
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -31,6 +32,7 @@ TagManager:
   - Button
   - HidePlat
   - CanWallRun
+  - Both
   - 
   - 
   - 

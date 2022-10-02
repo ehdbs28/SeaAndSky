@@ -14,8 +14,8 @@ public class GenerateShadow : MonoBehaviour
     [SerializeField] private bool isMoved = false;
     [SerializeField] private bool isColChanged = false;
     [SerializeField] private bool isChild = false;
-    private BoxCollider2D col;
-    private BoxCollider2D myCol;
+    private Collider2D col;
+    private Collider2D myCol;
     private Rigidbody2D rigid;
     private float gravity;
     private LayerMask _shadowLayer;
@@ -26,7 +26,7 @@ public class GenerateShadow : MonoBehaviour
         shadow = new GameObject($"{name}Shadow");
         rigid = GetComponentInChildren<Rigidbody2D>();
         dissolveEffect = GetComponent<DissolveEffect>();
-        if(rigid != null)
+        if (rigid != null)
             gravity = rigid.gravityScale;
 
         transform.GetComponentsInChildren<SpriteRenderer>();
@@ -44,15 +44,15 @@ public class GenerateShadow : MonoBehaviour
 
         if (isCollide)
         {
-            col = shadow.AddComponent<BoxCollider2D>();
-            myCol = GetComponentInChildren<BoxCollider2D>();
+            myCol = GetComponentInChildren<Collider2D>();
+            col = shadow.AddComponent(myCol.GetType()) as Collider2D;
             SettingCollider();
         }
         if (isMoved)
         {
             SettingRigidbody();
         }
-        if(isChild)
+        if (isChild)
         {
             Shadow.transform.SetParent(transform);
         }
@@ -63,6 +63,7 @@ public class GenerateShadow : MonoBehaviour
     void Update()
     {
         shadow.transform.position = new Vector2(transform.position.x, -transform.position.y);
+        shadow.transform.eulerAngles = -spriteRenderer.transform.eulerAngles;
 
         if (!spriteRenderer.sprite && !shadowRenderer.sprite) return;
         shadowRenderer.sprite = spriteRenderer.sprite;
@@ -75,8 +76,22 @@ public class GenerateShadow : MonoBehaviour
 
     private void SettingCollider()
     {
-        col.size = myCol.size;
-        col.offset = myCol.offset;
+        if (myCol is BoxCollider2D)
+        {
+            BoxCollider2D bCol = col as BoxCollider2D;
+            bCol.offset = myCol.offset;
+            bCol.size = (myCol as BoxCollider2D).size;
+        }
+        if (myCol is PolygonCollider2D)
+        {
+            PolygonCollider2D pCol = col as PolygonCollider2D;
+            pCol.points = (myCol as PolygonCollider2D).points;
+            pCol.offset = myCol.offset;
+        }
+        else
+        {
+            col.offset = myCol.offset;
+        }
     }
 
     private void SettingRigidbody()
@@ -90,9 +105,9 @@ public class GenerateShadow : MonoBehaviour
     {
         gravity *= -1f;
         rigid.gravityScale = gravity;
-        
+
         AreaState state = (gravity > 0) ? AreaState.Sky : AreaState.Sea;
-        
+
         dissolveEffect.PlayEffect(state);
         transform.position = shadow.transform.position;
     }
