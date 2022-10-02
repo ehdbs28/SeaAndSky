@@ -95,7 +95,6 @@ public class Player : MonoBehaviour, IDamage
         }
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
-            _jumpCount--;
             if(!_isWall && _jumpCount > 0){
 
                  _anim.SetTrigger("IsJump");
@@ -115,6 +114,7 @@ public class Player : MonoBehaviour, IDamage
                 _rigid.velocity = new Vector2(-_visualObject.localScale.x * _wallJumpPower, 0.9f * _wallJumpPower);
                 PlayerFlip(-_visualObject.localScale.x, _visualObject.localScale.y);
             }
+            _jumpCount--;
         }
     }
 
