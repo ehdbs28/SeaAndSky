@@ -5314,7 +5314,6 @@ GameObject:
   - component: {fileID: 2040654939}
   - component: {fileID: 2040654938}
   - component: {fileID: 1039176156804295799}
-  - component: {fileID: 463957643}
   m_Layer: 8
   m_Name: VisualSprite
   m_TagString: PlayerCol
@@ -5418,22 +5417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed76366add8695a4f9e1ea2090f1d732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &463957643
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040654936}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.005067189, y: 0}
-  m_Size: {x: 0.71957904, y: 0.99999994}
-  m_Direction: 0
 --- !u!1 &5527135322220754506
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,13 +5427,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5527135322220754504}
   - component: {fileID: 5527135322220754510}
-  - component: {fileID: 5527135322220754511}
   - component: {fileID: 9080806354538350403}
   - component: {fileID: 1879805588}
   - component: {fileID: 1879805587}
   - component: {fileID: 415869105}
   - component: {fileID: 415869096}
-  - component: {fileID: 26161712842966244}
+  - component: {fileID: 1272816613}
+  - component: {fileID: 1272816622}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -5501,94 +5484,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5527135322220754511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5527135322220754506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b1404ffa5cbd94f9c720fe63a71183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 0
-  _jumpPower: 0
-  _attackReboundPower: 15
-  _attackParticle: {fileID: 1704303647735251108}
-  _attackEffect: {fileID: 1609427158}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4672
-  wallRunLayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  movementData: {fileID: 11400000, guid: 08d559c909f0bb746bd9c646b3993762, type: 2}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1152
-  <GroundCheak>k__BackingField: 0
-  <CanWallRun>k__BackingField: 0
-  isLeft: 0
-  onPlayerMove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1879805588}
-        m_TargetAssemblyTypeName: PlayerEffect, Assembly-CSharp
-        m_MethodName: ActiveSeaMoveEffect
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1879805587}
-        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
-        m_MethodName: PlayWalkSound
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onPlayerJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1879805587}
-        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
-        m_MethodName: PlayJumpSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onPlayerAttack:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1879805587}
-        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
-        m_MethodName: PlayAttackSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _cheakPointImg: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
 --- !u!114 &9080806354538350403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5732,8 +5627,8 @@ MonoBehaviour:
         m_CallState: 2
   obtainSound: {fileID: 8300000, guid: 968a666bf1c168f41adb624fd139a8f6, type: 3}
   useSound: {fileID: 8300000, guid: 6359d1e3733c2ad4693c64e64a2749f0, type: 3}
---- !u!61 &26161712842966244
-BoxCollider2D:
+--- !u!70 &1272816613
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5745,19 +5640,96 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031936646, y: 0.0005903244}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 0.9375}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.7475891, y: 0.9440403}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: -0.05}
+  m_Size: {x: 0.8, y: 1.1}
+  m_Direction: 0
+--- !u!114 &1272816622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527135322220754506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac2db0089e4e7344b008ff7e958d607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 0
+  _slidingSpeed: 0.5
+  _attackReboundPower: 15
+  _jumpPower: 0
+  _wallJumpPower: 10
+  _jumpCount: 1
+  _attackParticle: {fileID: 1704303647735251108}
+  _attackEffect: {fileID: 1609427158}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1152
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 12864
+  _wallRunLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  OnPlayerMove:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1879805588}
+        m_TargetAssemblyTypeName: PlayerEffect, Assembly-CSharp
+        m_MethodName: ActiveSeaMoveEffect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayWalkSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlayerJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayJumpSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlayerAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayAttackSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _cheakPointImage: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
 --- !u!1001 &1841277715
 PrefabInstance:
   m_ObjectHideFlags: 0

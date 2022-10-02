@@ -54,14 +54,12 @@ public class Player : MonoBehaviour, IDamage
     public bool IsGorund {get => _isGround; set => _isGround = value;}
 
     private void Awake() {
-        EventManager.StartListening("LoadStage", SetFirstPosition);    
-    }
+        EventManager.StartListening("LoadStage", SetFirstPosition); 
 
-    private void Start() {
-       _rigid = GetComponent<Rigidbody2D>();
+        _rigid = GetComponent<Rigidbody2D>();
        _collider = GetComponent<CapsuleCollider2D>();
        _visualObject = transform.Find("VisualSprite");
-       _anim = _visualObject.GetComponent<Animator>();
+       _anim = _visualObject.GetComponent<Animator>();   
     }
 
     private void Update() {
@@ -97,8 +95,8 @@ public class Player : MonoBehaviour, IDamage
         }
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
+            _jumpCount--;
             if(!_isWall && _jumpCount > 0){
-                _jumpCount--;
 
                  _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
@@ -109,7 +107,7 @@ public class Player : MonoBehaviour, IDamage
 
             if(_isWall && !_isWallJump){
                 _isWallJump = true;
-                Invoke("WallJumpTogle", 0.175f);
+                Invoke("WallJumpTogle", 0.15f);
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
