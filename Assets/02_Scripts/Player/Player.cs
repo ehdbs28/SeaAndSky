@@ -107,7 +107,7 @@ public class Player : MonoBehaviour, IDamage
 
             if(_isWall && !_isWallJump){
                 _isWallJump = true;
-                Invoke("WallJumpTogle", 0.15f);
+                Invoke("WallJumpToggle", 0.15f);
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour, IDamage
         }
     }
 
-    private void WallJumpTogle(){
+    private void WallJumpToggle(){
         _isWallJump = false;
     }
 
