@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
 
 public class Player : MonoBehaviour, IDamage
 {
@@ -123,20 +124,64 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void Attack(){
-        if(Input.GetKeyDown(KeySetting.keys[Key.attack])){
-            if(!_isAttack){
-                _isAttack = true;
-                StartCoroutine(AttackCoroutine());
-                _anim.SetTrigger("Attack");
+        if(Input.GetKeyDown(KeySetting.keys[Key.attack]) && !_isAttack){
+            _isAttack = true;
+            float position_x = transform.position.x + _visualObject.localScale.x;
+            float position_y = transform.position.y;
+            float rotation = (_visualObject.localScale.x > 0) ? 0f : -180f;
+            bool isLookDown = false;
+
+            if(Input.GetKey(KeyCode.UpArrow)){
+                position_x = transform.position.x;
+                position_y = transform.position.y + 1.5f;
+                rotation = 90f;
             }
+            else if(Input.GetKey(KeyCode.DownArrow)){
+                position_x = transform.position.x;
+                position_y = transform.position.y - 1.5f;
+                rotation = -90f;
+                isLookDown = true;
+            }
+
+            StartCoroutine(AttackCoroutine(new Vector2(position_x, position_y), rotation, isLookDown));
+            _anim.SetTrigger("Attack");
         }
     }
 
-    IEnumerator AttackCoroutine(){
+    IEnumerator AttackCoroutine(Vector2 attackPos, float rotation, bool isLookDown = false){
         OnPlayerAttack.Invoke();
 
-        //수정필요함
-        yield return null;
+        Collider2D checkBox = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, _enemyLayer);
+        if(checkBox){
+            Tilemap tilemap = checkBox.GetComponent<Tilemap>();
+            IHittable ihittable = checkBox.GetComponent<IHittable>();
+            Vector3 hitPos, hitNormal = transform.position - checkBox.transform.position;
+
+            if(isLookDown){
+                _rigid.velocity = Vector2.zero;
+                _rigid.velocity = Vector2.up * _attackReboundPower;
+            }
+
+            if(ihittable != null) ihittable.GetHit();
+
+            if(tilemap != null){
+                tilemap.RefreshAllTiles();
+                hitPos = tilemap.WorldToCell(attackPos);
+            }
+            else hitPos = new Vector3(checkBox.bounds.center.x, checkBox.bounds.max.y);
+
+            _attackParticle.transform.SetPositionAndRotation(hitPos, Quaternion.AngleAxis(hitNormal.z, Vector3.forward));
+            _attackParticle.Play();
+        }
+
+        _attackEffect.transform.SetPositionAndRotation(attackPos, Quaternion.AngleAxis(rotation, Vector3.forward));
+        _attackEffect.SetActive(true);
+
+        yield return new WaitUntil(() => _anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"));
+        yield return new WaitUntil(() => _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75f);
+
+        _attackEffect.SetActive(false);
+        _isAttack = false;
     }
 
     public void EndDeadAnim(){
