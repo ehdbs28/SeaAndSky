@@ -6,13 +6,13 @@ public class PullBox : MonoBehaviour
 {
     //[SerializeField] private float distance = 3f;
     //[SerializeField] private GameObject player;
-    PlayerMove player;
+    Player player;
 
     private Vector3 _initPos;
 
     private void Awake()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerMove>();
+        player = GameObject.Find("Player").GetComponent<Player>();
         _initPos = transform.position;
     }
 
@@ -30,14 +30,12 @@ public class PullBox : MonoBehaviour
             if (Input.GetKey(KeySetting.keys[Key.pullBox]))
             {
                 //이동방향 * 플레이어 스피드
-                player.Speed = 0.4f;
-                transform.position = new Vector2(player.transform.position.x + ((player.isLeft) ? -1f : 1f), transform.position.y);
-
-                //Debug.DrawRay(this.transform.position , Vector3.left * 3f, Color.red, LayerMask.GetMask("Player"));
+                player.Speed = 4f;
+                transform.position = new Vector2(player.transform.position.x + (player.VisualObj.localScale.x), transform.position.y);
             }   
             if (Input.GetKeyUp(KeySetting.keys[Key.pullBox]))
             {
-                player.Speed = 5;
+                player.Speed = 6.2f;
             }
         }
     }

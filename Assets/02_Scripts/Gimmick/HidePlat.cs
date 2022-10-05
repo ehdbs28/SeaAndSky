@@ -36,7 +36,15 @@ public class HidePlat : MonoBehaviour
 
         yield return new WaitForSeconds(destroyTime);
 
-        plat.transform.DOMoveY(transform.position.y - 3, durationTime);
+        if (GameManager.Instance.PlayerState == AreaState.Sky)
+        {
+            plat.transform.DOMoveY(transform.position.y - 3, durationTime);
+        }
+        else if (GameManager.Instance.PlayerState == AreaState.Sea)
+        {
+            plat.transform.DOMoveY(transform.position.y + 3, durationTime);
+        }
+
         sp.DOFade(0, durationTime);
         col.enabled = false;
         yield return new WaitForSeconds(spawnTime);
