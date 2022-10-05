@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DoubleJumpItem : MonoBehaviour
 {
-
     private void Start()
     {
         gameObject.SetActive(true);  
@@ -21,7 +20,7 @@ public class DoubleJumpItem : MonoBehaviour
 
     void DoubleJump()
     {
-        PlayerMove.doubleJumpCount = 2;
+        GameObject.Find("Player").GetComponent<Player>().JumpCount++;
         gameObject.SetActive(false);
     }
 }

@@ -14,9 +14,9 @@ public class StateCamera : AgentCamera
 
     private void Start()
     {
-        PlayerMove playerMove = FindObjectOfType<PlayerMove>();
-        playerMove.onPlayerMove.AddListener(CameraMoving);
-        target = playerMove.transform;
+        Player player = FindObjectOfType<Player>();
+        player.OnPlayerMove.AddListener(CameraMoving);
+        target = player.transform;
 
         camEffect = GetComponent<CameraMoveEffect>();
 

@@ -10,7 +10,7 @@ public class TileTrap : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             IDamage iDamage = collision.transform.GetComponent<IDamage>();
-            iDamage?.Damege();
+            iDamage?.Damage();
         }
     }
 }

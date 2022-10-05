@@ -5,13 +5,10 @@ using UnityEngine;
 public class WindZone : MonoBehaviour
 {
     private ParticleSystem[] windParticles;
-    private PlayerMove player;
+    private Player player;
     private Rigidbody2D rigid;
 
     [SerializeField] private float windForce = 250f;
-
-    [SerializeField]
-    private float speed = 1f;
     private const string PLAYER_TAG = "Player";
 
     void Start()
@@ -23,7 +20,7 @@ public class WindZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            player = FindObjectOfType<PlayerMove>();
+            player = FindObjectOfType<Player>();
 
             if (player)
             {

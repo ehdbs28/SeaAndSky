@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class PlayerArea : MonoBehaviour
 {
-    private PlayerMove _playerMove;
+    private Player _player;
     private Rigidbody2D _rigid;
     private GenerateShadow _generateShadow;
     [field: SerializeField] private UnityEvent<AreaState> onChangeArea;
@@ -22,7 +22,7 @@ public class PlayerArea : MonoBehaviour
 
     private void Awake()
     {
-        _playerMove = GetComponent<PlayerMove>();
+        _player = GetComponent<Player>();
         _rigid = GetComponent<Rigidbody2D>();
         _generateShadow = GetComponent<GenerateShadow>();
     }
@@ -34,7 +34,7 @@ public class PlayerArea : MonoBehaviour
     {
         if (GameManager.Instance.GameState != GameState.InGame) return;
 
-        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _playerMove.IsGround)
+        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _player.IsGorund)
         {
             SetStateChanged();
         }
@@ -45,19 +45,19 @@ public class PlayerArea : MonoBehaviour
     {
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
-            _playerMove.LocalScaleY = 1;
-            _playerMove.Speed = 5f;
+            _player.PlayerFlip(_player.VisualObj.localScale.x, 1);
+            _player.Speed = 6.2f;
             _rigid.gravityScale = 3.5f;
-            _playerMove.JumpPower = 11f;
+            _player.JumpPower = 11f;
 
             onChangeArea.Invoke(AreaState.Sky);
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
-            _playerMove.LocalScaleY = _isSoapBubble ? 1 : -1;
-            _playerMove.Speed = 3f;
+           _player.PlayerFlip(_player.VisualObj.localScale.x, (_isSoapBubble) ? 1 : -1);
+            _player.Speed = 5.2f;
             _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
-            _playerMove.JumpPower = 17;
+            _player.JumpPower = 17;
             onChangeArea.Invoke(AreaState.Sea);
         }
 

@@ -27,7 +27,7 @@ public class FireColumn : MonoBehaviour
         renderer = GetComponentInChildren<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         //audioSource = GetComponent<AudioSource>();
-        player = FindObjectOfType<PlayerMove>().transform;
+        player = FindObjectOfType<Player>().transform;
 
         renderer.sprite = null;
         StartCoroutine(ActiveColumn());
@@ -43,7 +43,7 @@ public class FireColumn : MonoBehaviour
             renderer.enabled = true;
             animator.SetTrigger(fireHash);
 
-            // ³ªÁß¿¡ »ç¿ëÀÚ º¼·ý Ãß°¡
+            // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
             float volume = (1f - Mathf.Lerp(0f, 1f, Vector2.Distance(transform.position, player.position) / 10f)) * 1.15f;
 
             //audioSource.PlayOneShot(fireSound, volume);
@@ -68,7 +68,7 @@ public class FireColumn : MonoBehaviour
         {
             //GameManager.Instance.IsPlayerDeath = true;
             IDamage damage = collision.transform.GetComponent<IDamage>();
-            damage?.Damege();
+            damage?.Damage();
         }
     }
 }

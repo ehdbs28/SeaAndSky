@@ -15,7 +15,7 @@ public class Trap : MonoBehaviour
 
     Vector3 originPos;
 
-    [Header("OnOff¿©ºÎ")]
+    [Header("OnOffï¿½ï¿½ï¿½ï¿½")]
     public bool isToggle;
 
     private bool isActive = false;
@@ -98,7 +98,7 @@ public class Trap : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             IDamage iDamage = collision.transform.GetComponent<IDamage>();
-            iDamage?.Damege();
+            iDamage?.Damage();
         }
     }
 

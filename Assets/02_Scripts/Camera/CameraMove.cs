@@ -11,7 +11,7 @@ public class CameraMove : MonoBehaviour
     {
         if (target == null)
         {
-            target = FindObjectOfType<PlayerMove>().transform;
+            target = FindObjectOfType<Player>().transform;
         }
     }
     
