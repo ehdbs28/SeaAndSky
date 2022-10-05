@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5527135322220754504}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &248916723
 ParticleSystem:
@@ -4851,7 +4851,7 @@ Transform:
   m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 5527135322220754504}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1406260250
 SpriteRenderer:
@@ -4964,7 +4964,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.6391072, z: 1}
   m_Children: []
   m_Father: {fileID: 5527135322220754504}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &1805624964
 TrailRenderer:
@@ -5205,7 +5205,7 @@ Transform:
   m_Children:
   - {fileID: 2039490520}
   m_Father: {fileID: 5527135322220754504}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1911904366
 MonoBehaviour:
@@ -5333,7 +5333,7 @@ Transform:
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children: []
   m_Father: {fileID: 5527135322220754504}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2040654939
 SpriteRenderer:
@@ -5452,12 +5452,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2040654937}
   - {fileID: 1805624965}
   - {fileID: 248916725}
   - {fileID: 1911904365}
   - {fileID: 1406260249}
   - {fileID: 8791568946573081427}
-  - {fileID: 2040654937}
   - {fileID: 1609427159}
   - {fileID: 1704303647735251109}
   m_Father: {fileID: 0}
@@ -5739,7 +5739,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8791568947991826496, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
       propertyPath: m_LocalPosition.x
