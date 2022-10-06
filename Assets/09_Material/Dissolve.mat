@@ -13,7 +13,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -63,13 +63,13 @@ Material:
     - _Fade: 1
     - _Height: 1
     - _Intensity: 0
-    - _Scale: 7.72
+    - _Scale: 6.28
     - _Tiling: 0
     - _Width: 1
     m_Colors:
     - Color_76232b124a0a432fb04be3333105f0a3: {r: 1, g: 0.92067146, b: 0, a: 1}
     - Color_8B11495: {r: 1.129412, g: 10.03922, b: 32, a: 0}
-    - _Color: {r: 0, g: 622.4314, b: 766.9961, a: 1}
+    - _Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

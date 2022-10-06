@@ -16,13 +16,22 @@ public class PlayerEffect : MonoBehaviour
     private readonly int fadeID = Shader.PropertyToID("_Fade");
     private readonly int colorID = Shader.PropertyToID("_Color");
 
+    GameObject temp;
+
     private void Awake()
     {
-        dissolveMaterial = transform.Find("VisualSprite").GetComponent<Renderer>().material;
-        dissolveMaterial.SetFloat("_Width", 1 / dissolveWidth);
-        dissolveMaterial.SetFloat("_Height", 1 / dissolveHeight);
+        dissolveMaterial = transform.Find("VisualSprite").GetComponent<SpriteRenderer>().sharedMaterial;
+        temp = Instantiate(transform.Find("VisualSprite").gameObject);
+
+        //dissolveMaterial.SetFloat("_Width", 1 / dissolveWidth);
+        //dissolveMaterial.SetFloat("_Height", 1 / dissolveHeight);
     }
 
+    private void Start()
+    {
+        dissolveMaterial.SetFloat(fadeID, 0f);
+        Destroy(temp);
+    }
     public void ActiveSeaMoveEffect(Vector2 direction)
     {
         if (GameManager.Instance.PlayerState == AreaState.Sea && direction.sqrMagnitude > 0.01f)
@@ -58,7 +67,7 @@ public class PlayerEffect : MonoBehaviour
 
     public void OnReverseEffect(bool isBegin)
     {
-        if(isBegin)
+        if (isBegin)
         {
             dissolveMaterial.DOFloat(3.5f, "_Intensity", 1f);
         }
