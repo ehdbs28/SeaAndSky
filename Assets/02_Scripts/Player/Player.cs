@@ -63,7 +63,8 @@ public class Player : MonoBehaviour, IDamage
        _anim = _visualObject.GetComponent<Animator>();   
     }
 
-    private void Update() {
+    private void Update()
+    {
         if(!GameManager.Instance.IsPlayerDeath){
             Move();
             Jump();
@@ -189,7 +190,7 @@ public class Player : MonoBehaviour, IDamage
     }
 
     public void PlayerFlip(float x_Value, float y_Value){
-        _visualObject.localScale = new Vector3(x_Value, y_Value);
+        _visualObject.localScale = new Vector3(x_Value, y_Value, 1f);
     }
 
     private void SetFirstPosition(){
