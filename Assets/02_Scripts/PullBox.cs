@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PullBox : MonoBehaviour
 {
-    //[SerializeField] private float distance = 3f;
-    //[SerializeField] private GameObject player;
     Player player;
 
     private Vector3 _initPos;
@@ -16,12 +14,8 @@ public class PullBox : MonoBehaviour
         _initPos = transform.position;
     }
 
-    RaycastHit2D hit;
-
     private void Update()
     {
-        float cal = Vector2.Distance(player.transform.position, transform.position);
-
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right,1f, LayerMask.GetMask("Player"));
         RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.left, 1f, LayerMask.GetMask("Player"));
 
