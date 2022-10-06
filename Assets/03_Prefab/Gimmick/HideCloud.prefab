@@ -146,4 +146,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyTime: 3
   spawnTime: 5
+  durationTime: 2
   plat: {fileID: 5136273842999145942}

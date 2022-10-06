@@ -92,6 +92,8 @@ public class Player : MonoBehaviour, IDamage
         _isWall = Physics2D.BoxCast(transform.position, bounds.size, 0, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
 
         if(_isGround) _jumpCount = 1;
+        else _jumpCount = 0;
+        
         if(_isWall && !_isWallJump){
             _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
         }

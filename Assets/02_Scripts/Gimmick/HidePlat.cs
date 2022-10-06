@@ -29,10 +29,22 @@ public class HidePlat : MonoBehaviour
     }
 
     IEnumerator HideTime()
-    { 
+    {
+        yield return new WaitForSeconds(destroyTime - 1f);
+        //plat.transform.DOShakePosition(0.5f, 0.4f);
+        sp.DOColor(new Color(0.5f, 0.5f, 0.5f), 2);
+
         yield return new WaitForSeconds(destroyTime);
 
-        plat.transform.DOMoveY(transform.position.y - 3, durationTime);
+        if (GameManager.Instance.PlayerState == AreaState.Sky)
+        {
+            plat.transform.DOMoveY(transform.position.y - 3, durationTime);
+        }
+        else if (GameManager.Instance.PlayerState == AreaState.Sea)
+        {
+            plat.transform.DOMoveY(transform.position.y + 3, durationTime);
+        }
+
         sp.DOFade(0, durationTime);
         col.enabled = false;
         yield return new WaitForSeconds(spawnTime);
