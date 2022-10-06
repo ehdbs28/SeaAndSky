@@ -156,6 +156,7 @@ public class Player : MonoBehaviour, IDamage
         Collider2D checkBox = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, _enemyLayer);
         if(checkBox){
             TouchAngle touchAngle = checkBox.GetComponent<TouchAngle>();
+            CircleMove circleMove = checkBox.GetComponent<CircleMove>();
             Tilemap tilemap = checkBox.GetComponent<Tilemap>();
             IHittable ihittable = checkBox.GetComponent<IHittable>();
             Vector3 hitPos, hitNormal = transform.position - checkBox.transform.position;
@@ -168,6 +169,11 @@ public class Player : MonoBehaviour, IDamage
             if (touchAngle != null)
             {
                 touchAngle.ChangeAngle();
+            }
+
+            if(circleMove != null)
+            {
+                circleMove.GoCircle();
             }
 
             if(ihittable != null) ihittable.GetHit();
@@ -207,6 +213,7 @@ public class Player : MonoBehaviour, IDamage
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
+        GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
         GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
     }
 
