@@ -92,6 +92,7 @@ public class Player : MonoBehaviour, IDamage
 
         if(_isGround) _jumpCount = 1;
         else _jumpCount = 0;
+        
         if(_isWall && !_isWallJump){
             _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
         }
