@@ -201,7 +201,7 @@ public class Player : MonoBehaviour, IDamage
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
-        GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
+        GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
