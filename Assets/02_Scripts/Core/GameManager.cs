@@ -8,12 +8,6 @@ using System;
 public class GameManager : MonoSingleton<GameManager>
 {
     #region 
-    [SerializeField] private int _heartCnt;
-    [SerializeField] private GameObject _heartPrefab;
-    [SerializeField] private Transform _parentTrm;
-    
-    private List<GameObject> heartList = new List<GameObject>();
-
     private bool _isplayerDeath = false;
     public bool IsPlayerDeath
     {
@@ -23,9 +17,10 @@ public class GameManager : MonoSingleton<GameManager>
     private bool _isGameOver = false;
     public bool IsGameOver
     {
-        get => _isGameOver;
+        get => _isGameOver; set => _isGameOver = value;
     }
     private bool _isInvincibility = false;
+    public bool IsInvincibility {get => _isInvincibility; set => _isInvincibility = value;}
     #endregion
 
     #region Stage
@@ -67,14 +62,6 @@ public class GameManager : MonoSingleton<GameManager>
         timeManager = FindObjectOfType<TimeManager>();
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
-        
-        for (int i = 0; i < _heartCnt; i++)
-        {
-            GameObject heart = Instantiate(_heartPrefab);
-            heart.transform.SetParent(_parentTrm);
-            heart.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-            heartList.Add(heart);
-        }
 
         LoadStage();
     }
@@ -87,52 +74,6 @@ public class GameManager : MonoSingleton<GameManager>
     void Update()
     {
         GameReset();
-    }
-
-    //�÷��̾� ��Ʈ ����
-    public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null)
-    {
-        if (_isplayerDeath) return;
-
-        if (heartList.Count > 0 && !_isInvincibility)
-        {
-            _isInvincibility = true;
-
-            if(heartList.Count != 0)
-            {
-                PlayerRevival(playerTrm, cheakPoint);
-            }
-
-            GameObject lastIndex = heartList[heartList.Count - 1];
-            Sequence sq = DOTween.Sequence();
-
-            sq.Append(lastIndex.transform.DOScale(Vector3.one * 2.2f, 0.2f));
-            sq.Append(lastIndex.transform.DOScale(Vector3.zero, 0.5f));
-            sq.OnComplete(() =>
-            {
-                Destroy(lastIndex);
-                _isInvincibility = false;
-            });
-
-            heartList.RemoveAt(heartList.Count - 1);
-
-            playerAudio.PlayerDieSound();
-
-            if (heartList.Count == 0)
-            {
-                _isplayerDeath = true;
-                _isGameOver = true;
-
-                OnPlayerDead?.Invoke();
-            }
-        }
-    }
-
-    private void PlayerRevival(Transform playerTrm, Vector2 cheakPoint)
-    {
-        _playerState = cheakPoint.y > 0 ? AreaState.Sky : AreaState.Sea;
-        FindObjectOfType<PlayerArea>().ChangedState();
-        playerTrm.position = cheakPoint;
     }
 
     void GameReset()

@@ -4,9 +4,16 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("About Player Hp")]
+    [SerializeField] private int _hpCount = 3;
+    [SerializeField] private int _currentHp;
+    [SerializeField] private TextMeshProUGUI _hpText;
+
     [SerializeField]
     private CanvasGroup esc;
     [SerializeField]
@@ -20,6 +27,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private CanvasGroup interactionButton;
+
+    private void Start() {
+        _currentHp = _hpCount;
+    }
 
     void Update()
     {
@@ -46,6 +57,38 @@ public class UIManager : MonoBehaviour
             gameOverUI.SetActive(true);
             GameManager.Instance.IsPlayerDeath = false;
         }
+    }
+
+    public void ReduceHeart(Transform playerTrm ,Vector2 cheakPoint, Action OnPlayerDead = null){
+        if(GameManager.Instance.IsPlayerDeath) return;
+
+        if(!GameManager.Instance.IsInvincibility){
+            StartCoroutine(ReduceHpCoroutine(playerTrm, cheakPoint, OnPlayerDead));
+        }
+    }
+
+    private IEnumerator ReduceHpCoroutine(Transform playerTrm, Vector2 cheakPoint, Action OnPlayerDead = null){
+        GameManager.Instance.IsInvincibility = true;
+        _currentHp--;
+        _hpText.text = $"X {_currentHp}";
+
+        if(_currentHp == 0){
+            GameManager.Instance.IsGameOver = true;
+            GameManager.Instance.IsPlayerDeath = true;
+            OnPlayerDead?.Invoke();
+        }
+        PlayerRevival(playerTrm, cheakPoint);
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        GameManager.Instance.IsInvincibility = false;
+    }
+
+    private void PlayerRevival(Transform playerTrm, Vector2 cheakPoint)
+    {
+        GameManager.Instance.PlayerState = cheakPoint.y > 0 ? AreaState.Sky : AreaState.Sea;
+        FindObjectOfType<PlayerArea>().ChangedState();
+        playerTrm.position = cheakPoint;
     }
 
     public void ContinueBtn()
