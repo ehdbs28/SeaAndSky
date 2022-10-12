@@ -191,7 +191,7 @@ public class Player : MonoBehaviour, IDamage
     }
 
     public void PlayerFlip(float x_Value, float y_Value){
-        _visualObject.localScale = new Vector3(x_Value, y_Value);
+        _visualObject.localScale = new Vector3(x_Value, y_Value, 1);
     }
 
     private void SetFirstPosition(){
