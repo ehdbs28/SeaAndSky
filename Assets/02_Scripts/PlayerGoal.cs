@@ -5,27 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class PlayerGoal : MonoBehaviour
 {
-    public static bool isGoal = false;
-
-    private bool isLoad;
+    public static bool isLoad;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player") && !isLoad)
         {
-            //isGoal = true;
             isLoad = true;
-            PlayerGoalIN();
+            StartCoroutine(PlayerGoalIN());
         }
     }
 
-    void PlayerGoalIN()
+    IEnumerator PlayerGoalIN()
     {
-        Debug.Log("Goal");
+        GameObject goalParticle = GameObject.Instantiate(Resources.Load<GameObject>("PortalEffect"));
+        goalParticle.transform.position = transform.position;
+
         int curStage = ++DataManager.Instance.User.stage;
 
         if (DataManager.Instance.User.maxStage < curStage)
             DataManager.Instance.User.maxStage = curStage;
+
+        yield return new WaitForSecondsRealtime(4f);
 
         SceneManager.LoadScene("Main");
     }

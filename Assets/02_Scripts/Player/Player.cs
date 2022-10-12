@@ -64,7 +64,7 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void Update() {
-        if(!GameManager.Instance.IsPlayerDeath){
+        if(!GameManager.Instance.IsPlayerDeath && !PlayerGoal.isLoad){
             Move();
             Jump();
             Attack();
