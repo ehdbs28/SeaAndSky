@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayerGoal : MonoBehaviour
 {
     public static bool isLoad;
+    private Transform player;
+
+    private void Awake() {
+        player = GameObject.Find("Player").transform;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -19,14 +24,14 @@ public class PlayerGoal : MonoBehaviour
     IEnumerator PlayerGoalIN()
     {
         GameObject goalParticle = GameObject.Instantiate(Resources.Load<GameObject>("PortalEffect"));
-        goalParticle.transform.position = transform.position;
+        goalParticle.transform.position = player.position;
 
         int curStage = ++DataManager.Instance.User.stage;
 
         if (DataManager.Instance.User.maxStage < curStage)
             DataManager.Instance.User.maxStage = curStage;
 
-        yield return new WaitForSecondsRealtime(4f);
+        yield return new WaitForSecondsRealtime(3.5f);
 
         SceneManager.LoadScene("Main");
     }
