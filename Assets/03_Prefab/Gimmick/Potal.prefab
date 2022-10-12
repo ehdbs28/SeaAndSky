@@ -244,7 +244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63de3f02e83ebfc48bb6c92baade6362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  teleportableLayerMask:
+    serializedVersion: 2
+    m_Bits: 768
   outPotal: {fileID: 9065174911616339246}
   outEffect: {fileID: 7841296840196832447}
   clip: {fileID: 8300000, guid: 85a31b61df0a69d4b80a54c99b3bc7cd, type: 3}
