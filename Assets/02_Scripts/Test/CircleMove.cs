@@ -6,6 +6,9 @@ using UnityEngine.Events;
 public class CircleMove : MonoBehaviour
 {
     public UnityEvent OnPressEvent;
+    public float respawnTime = 2f;
+
+    private Vector3 initPos;
 
     Rigidbody2D rigid;
     Vector3 lastVelocity;
@@ -14,6 +17,7 @@ public class CircleMove : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        initPos = transform.position;
     }
 
     private void Update()
@@ -24,6 +28,15 @@ public class CircleMove : MonoBehaviour
     public void GoCircle()
     {
         rigid.velocity = new Vector3(1, 0, 0) * 10f;
+    }
+
+    IEnumerator ReSpawnCoroutine(){
+        rigid.velocity = Vector2.zero;
+
+        transform.position = initPos;
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(respawnTime);
+        gameObject.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -38,6 +51,10 @@ public class CircleMove : MonoBehaviour
         {
             OnPressEvent?.Invoke();
             Destroy(gameObject);
+        }
+
+        if(coll.transform.CompareTag("Player") || coll.gameObject.layer == 6){
+            StartCoroutine(ReSpawnCoroutine());
         }
     }
 }
