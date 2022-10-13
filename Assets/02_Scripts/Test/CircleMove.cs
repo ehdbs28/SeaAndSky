@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CircleMove : MonoBehaviour
 {
+    public UnityEvent OnPressEvent;
+
     Rigidbody2D rigid;
     Vector3 lastVelocity;
     public float spawnTime = 0.3f;
@@ -33,7 +36,7 @@ public class CircleMove : MonoBehaviour
         }
         else if (coll.collider.name == "CircleGoal")
         {
-            Debug.Log("^0^");
+            OnPressEvent?.Invoke();
             Destroy(gameObject);
         }
     }

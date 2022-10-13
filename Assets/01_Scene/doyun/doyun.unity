@@ -1879,6 +1879,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: _enemyLayer.m_Bits
+      value: 33920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _groundLayer.m_Bits
       value: 4672
       objectReference: {fileID: 0}
@@ -6659,7 +6663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stages: {fileID: 11400000, guid: 7ea832b9c60788048ab9d5e6ab757402, type: 2}
   isLoadState: 1
-  _transitionPanel: {fileID: 0}
   <skyCamera>k__BackingField: {fileID: 1506639986}
   <seaCamera>k__BackingField: {fileID: 2087347279}
 --- !u!1 &1762506497

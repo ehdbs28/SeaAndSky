@@ -156,8 +156,14 @@ public class Player : MonoBehaviour, IDamage
         Collider2D checkBox = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, _enemyLayer);
         if(checkBox){
             Tilemap tilemap = checkBox.GetComponent<Tilemap>();
+            CircleMove circle = checkBox.GetComponent<CircleMove>();
+            TouchAngle touchAngle = checkBox.GetComponent<TouchAngle>();
             IHittable ihittable = checkBox.GetComponent<IHittable>();
             Vector3 hitPos, hitNormal = transform.position - checkBox.transform.position;
+
+            Debug.Log(circle);
+            if(circle != null) circle.GoCircle();
+            if(touchAngle != null)  touchAngle.ChangeAngle();
 
             if(isLookDown){
                 _rigid.velocity = Vector2.zero;
