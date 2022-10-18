@@ -12,6 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
+--- !u!114 &-7291111149768438648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b22792c3b570444eb18cb78c2af3a74, type: 3}
+  m_Name: Audio Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+  m_TrackProperties:
+    volume: 1
+    stereoPan: 0
+    spatialBlend: 0
 --- !u!74 &-3997516284893389923
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -461,6 +488,7 @@ MonoBehaviour:
   - {fileID: 207938291157635612}
   - {fileID: 3598044266411914891}
   - {fileID: 6088440054896419745}
+  - {fileID: -7291111149768438648}
   - {fileID: 8368764736169537992}
   - {fileID: -2385680588250926206}
   - {fileID: 2020805371148347458}
@@ -823,7 +851,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 3.316666666666667
+    m_Start: 2.6166666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 6596068219491717500}
     m_Duration: 5.083333333333334

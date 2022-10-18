@@ -30,6 +30,7 @@ public class CircleMove : MonoBehaviour
             var speed = lastVelocity.magnitude;
             var dir = Vector2.Reflect(lastVelocity.normalized, coll.contacts[0].normal);
             rigid.velocity = dir * Mathf.Max(speed, 0f);
+
         }
         else if (coll.collider.name == "CircleGoal")
         {
