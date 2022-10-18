@@ -64,7 +64,7 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void Update() {
-        if(!GameManager.Instance.IsPlayerDeath){
+        if(!GameManager.Instance.IsPlayerDeath && !PlayerGoal.isLoad){
             Move();
             Jump();
             Attack();
@@ -155,25 +155,19 @@ public class Player : MonoBehaviour, IDamage
 
         Collider2D checkBox = Physics2D.OverlapBox(attackPos, new Vector2(1.3f, 1.3f), 0f, _enemyLayer);
         if(checkBox){
-            TouchAngle touchAngle = checkBox.GetComponent<TouchAngle>();
-            CircleMove circleMove = checkBox.GetComponent<CircleMove>();
             Tilemap tilemap = checkBox.GetComponent<Tilemap>();
+            CircleMove circle = checkBox.GetComponent<CircleMove>();
+            TouchAngle touchAngle = checkBox.GetComponent<TouchAngle>();
             IHittable ihittable = checkBox.GetComponent<IHittable>();
             Vector3 hitPos, hitNormal = transform.position - checkBox.transform.position;
 
-            if(isLookDown && touchAngle == null){
+            Debug.Log(circle);
+            if(circle != null) circle.GoCircle();
+            if(touchAngle != null)  touchAngle.ChangeAngle();
+
+            if(isLookDown){
                 _rigid.velocity = Vector2.zero;
                 _rigid.velocity = Vector2.up * _attackReboundPower;
-            }
-
-            if (touchAngle != null)
-            {
-                touchAngle.ChangeAngle();
-            }
-
-            if(circleMove != null)
-            {
-                circleMove.GoCircle();
             }
 
             if(ihittable != null) ihittable.GetHit();
@@ -203,7 +197,7 @@ public class Player : MonoBehaviour, IDamage
     }
 
     public void PlayerFlip(float x_Value, float y_Value){
-        _visualObject.localScale = new Vector3(x_Value, y_Value);
+        _visualObject.localScale = new Vector3(x_Value, y_Value, 1);
     }
 
     private void SetFirstPosition(){
@@ -213,8 +207,7 @@ public class Player : MonoBehaviour, IDamage
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
-        GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
-        GameManager.Instance.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
+        GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
