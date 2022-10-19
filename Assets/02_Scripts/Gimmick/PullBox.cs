@@ -19,17 +19,22 @@ public class PullBox : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right,1f, LayerMask.GetMask("Player"));
         RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.left, 1f, LayerMask.GetMask("Player"));
 
-        if(hit || hit2)
+        RaycastHit2D hitWall = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right, 0.5f, LayerMask.GetMask("Platform"));
+
+        if (!hitWall)
         {
-            if (Input.GetKey(KeySetting.keys[Key.pullBox]))
+            if(hit || hit2)
             {
-                //이동방향 * 플레이어 스피드
-                player.Speed = 4f;
-                transform.position = new Vector2(player.transform.position.x + (player.VisualObj.localScale.x), transform.position.y);
-            }   
-            if (Input.GetKeyUp(KeySetting.keys[Key.pullBox]))
-            {
-                player.Speed = 6.2f;
+                if (Input.GetKey(KeySetting.keys[Key.pullBox]))
+                {
+                    //이동방향 * 플레이어 스피드
+                    player.Speed = 4f;
+                    transform.position = new Vector2(player.transform.position.x + (player.VisualObj.localScale.x), transform.position.y);
+                }   
+                if (Input.GetKeyUp(KeySetting.keys[Key.pullBox]))
+                {
+                    player.Speed = 6.2f;
+                }
             }
         }
     }
