@@ -27,6 +27,7 @@ public class Player : MonoBehaviour, IDamage
     public UnityEvent<Vector2> OnPlayerMove;
     [SerializeField] private UnityEvent OnPlayerJump;
     [SerializeField] private UnityEvent OnPlayerAttack;
+    [SerializeField] private UnityEvent OnPlayerHit;
 
     [Header("Sprite")]
     [SerializeField] private Sprite _cheakPointImage;
@@ -207,6 +208,7 @@ public class Player : MonoBehaviour, IDamage
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
+        OnPlayerHit?.Invoke();
         GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
     }
 
