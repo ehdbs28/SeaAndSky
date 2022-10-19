@@ -48,7 +48,12 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                UnshowEscPanel();
+                if (keyPanel.gameObject.activeSelf)
+                    KeySetQuit();
+                else if (AudioSetting.gameObject.activeSelf)
+                    AudioSettingQuit();
+                else
+                    UnshowEscPanel();
             }
         }
 
