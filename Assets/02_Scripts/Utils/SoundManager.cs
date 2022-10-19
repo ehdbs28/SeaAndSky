@@ -26,7 +26,6 @@ public class SoundManager : MonoSingleton<SoundManager>
         //DontDestroyOnLoad(this);
     }
 
-
     public void PlaySound(AudioType audioType, AudioClip clip)
     {
         if (audioType == AudioType.BGM)

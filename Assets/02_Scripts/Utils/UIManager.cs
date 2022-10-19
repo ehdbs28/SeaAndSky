@@ -78,9 +78,7 @@ public class UIManager : MonoBehaviour
             OnPlayerDead?.Invoke();
         }
         PlayerRevival(playerTrm, cheakPoint);
-
         yield return new WaitForSecondsRealtime(0.1f);
-
         GameManager.Instance.IsInvincibility = false;
     }
 
@@ -143,7 +141,6 @@ public class UIManager : MonoBehaviour
         {
             interactionButton.DOKill();
             interactionButton.DOFade(1f, 1f);
-
             interactionButton.transform.position = pos;
         }
         else
