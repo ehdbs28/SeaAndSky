@@ -5660,6 +5660,7 @@ MonoBehaviour:
   _attackReboundPower: 15
   _jumpPower: 0
   _wallJumpPower: 10
+  _dontMoveTime: 0.5
   _jumpCount: 1
   _attackParticle: {fileID: 1704303647735251108}
   _attackEffect: {fileID: 1609427158}
@@ -5729,6 +5730,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnPlayerHit:
+    m_PersistentCalls:
+      m_Calls: []
   _cheakPointImage: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
 --- !u!1001 &1841277715
 PrefabInstance:

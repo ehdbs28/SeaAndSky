@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
         }
         else PlayerRevival(playerTrm, cheakPoint);
 
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         GameManager.Instance.IsInvincibility = false;
     }
