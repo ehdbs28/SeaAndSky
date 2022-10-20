@@ -60,7 +60,7 @@ public class PlayerEffect : MonoBehaviour
     {
         if(isBegin)
         {
-            dissolveMaterial.DOFloat(3.5f, "_Intensity", 1f);
+            dissolveMaterial.DOFloat(0.5f, "_Intensity", 1f);
         }
         else
         {

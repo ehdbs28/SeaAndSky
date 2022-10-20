@@ -5660,7 +5660,6 @@ MonoBehaviour:
   _attackReboundPower: 15
   _jumpPower: 0
   _wallJumpPower: 10
-  _dontMoveTime: 0.5
   _jumpCount: 1
   _attackParticle: {fileID: 1704303647735251108}
   _attackEffect: {fileID: 1609427158}
@@ -5788,6 +5787,10 @@ PrefabInstance:
     - target: {fileID: 8791568947991826497, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568947991826499, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
+      propertyPath: _destroyTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8791568947991826502, guid: 7f2fea95fa1f6de42bf2e21c2a2628e7, type: 3}
       propertyPath: m_Name
