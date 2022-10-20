@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] private float _attackReboundPower;
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _wallJumpPower;
+    [SerializeField] private float _dontMoveTime
     [SerializeField] private int _jumpCount = 1;
 
     [Header("AttackEffect")]
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour, IDamage
 
     private float _rayDistance = 0.1f;
     private float _wallCheckDistance = 0.15f;
+    private float _dontMovetime;
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
@@ -65,11 +67,13 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void Update() {
-        if(!GameManager.Instance.IsPlayerDeath && !PlayerGoal.isLoad){
+        if(!GameManager.Instance.IsPlayerDeath && !PlayerGoal.isLoad && _dontMovetime < 0){
             Move();
             Jump();
             Attack();
         }
+
+        _dontMovetime -= Time.deltaTime;
     }
 
     private void Move(){
@@ -207,6 +211,7 @@ public class Player : MonoBehaviour, IDamage
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
+        _dontMovetime = _dontMoveTime;
         OnPlayerHit?.Invoke();
         GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
     }

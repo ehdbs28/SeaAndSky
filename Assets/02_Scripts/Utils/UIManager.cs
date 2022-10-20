@@ -48,7 +48,12 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                UnshowEscPanel();
+                if (keyPanel.gameObject.activeSelf)
+                    KeySetQuit();
+                else if (AudioSetting.gameObject.activeSelf)
+                    AudioSettingQuit();
+                else
+                    UnshowEscPanel();
             }
         }
 
@@ -77,8 +82,10 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.IsPlayerDeath = true;
             OnPlayerDead?.Invoke();
         }
-        PlayerRevival(playerTrm, cheakPoint);
+        else PlayerRevival(playerTrm, cheakPoint);
+
         yield return new WaitForSecondsRealtime(0.1f);
+
         GameManager.Instance.IsInvincibility = false;
     }
 
@@ -141,6 +148,7 @@ public class UIManager : MonoBehaviour
         {
             interactionButton.DOKill();
             interactionButton.DOFade(1f, 1f);
+
             interactionButton.transform.position = pos;
         }
         else
