@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
             GameManager.Instance.IsPlayerDeath = true;
             OnPlayerDead?.Invoke();
         }
-        PlayerRevival(playerTrm, cheakPoint);
+        else PlayerRevival(playerTrm, cheakPoint);
 
         yield return new WaitForSecondsRealtime(0.1f);
 
