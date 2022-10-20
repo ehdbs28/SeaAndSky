@@ -166,7 +166,6 @@ public class Player : MonoBehaviour, IDamage
             IHittable ihittable = checkBox.GetComponent<IHittable>();
             Vector3 hitPos, hitNormal = transform.position - checkBox.transform.position;
 
-            Debug.Log(circle);
             if(circle != null) circle.GoCircle();
             if(touchAngle != null)  touchAngle.ChangeAngle();
 
