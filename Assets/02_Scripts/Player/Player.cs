@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] private float _attackReboundPower;
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _wallJumpPower;
-    [SerializeField] private float _dontMoveTime
+    [SerializeField] private float _dontMoveTime;
     [SerializeField] private int _jumpCount = 1;
 
     [Header("AttackEffect")]
