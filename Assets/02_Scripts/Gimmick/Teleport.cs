@@ -15,7 +15,7 @@ public class Teleport : MonoBehaviour
 
     private void Start()
     {
-        outDir = outPotal.transform.position;
+       outDir = outPotal.transform.position;
     }
 
     private void Update()
