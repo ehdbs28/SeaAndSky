@@ -23,6 +23,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 939d139b2a0b3724580553bc8d8298d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -36,11 +40,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _CutOffHeight: 4.66
-    - _EdgeWidth: 0.2
-    - _NoiseScale: 50
-    - _NoiseStrength: 1
+    - _CutOffHeight: 0
+    - _EdgeWidth: 0.05
+    - _NoiseScale: 0
+    - _NoiseStrength: 0.5
     m_Colors:
-    - _Albedo: {r: 0, g: 0, b: 0, a: 0}
+    - _Albedo: {r: 1, g: 1, b: 1, a: 0}
     - _EdgeColor: {r: 4, g: 0.670157, b: 0, a: 1}
   m_BuildTextureStacks: []
