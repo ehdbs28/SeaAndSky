@@ -41,6 +41,8 @@ public class Player : MonoBehaviour, IDamage
     private float _rayDistance = 0.1f;
     private float _wallCheckDistance = 0.15f;
     private float _dontMovetime;
+    private const float _coyoteTime = 0.2f;
+    private float _coyoteTimeCounter;
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
@@ -94,17 +96,25 @@ public class Player : MonoBehaviour, IDamage
         _isGround = Physics2D.CapsuleCast(transform.position, bounds.size, CapsuleDirection2D.Vertical, 0, Vector2.down * _visualObject.localScale.y, _rayDistance, _groundLayer);
         _isWall = Physics2D.BoxCast(transform.position, bounds.size, 0, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
 
-        if(_isGround) _jumpCount = 1;
-        else _jumpCount = 0;
+        if(_isGround){
+            _coyoteTimeCounter = _coyoteTime;
+            _jumpCount = 1;
+        }
+        else{
+            _coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if(_coyoteTimeCounter <= 0){
+            _jumpCount = 0;
+        }
         
         if(_isWall && !_isWallJump){
             _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
         }
 
-        if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
+        if(Input.GetKeyDown(KeySetting.keys[Key.jump]) && _coyoteTimeCounter >= 0){
             if(!_isWall && _jumpCount > 0){
-
-                 _anim.SetTrigger("IsJump");
+                _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
 
