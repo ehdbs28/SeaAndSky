@@ -4306,6 +4306,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: _canDoubleJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: _doubleJumpPower
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _enemyLayer.m_Bits
       value: 33920
       objectReference: {fileID: 0}

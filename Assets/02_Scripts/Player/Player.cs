@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] private float _slidingSpeed;
     [SerializeField] private float _attackReboundPower;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private float _doubleJumpPower;
     [SerializeField] private float _wallJumpPower;
     [SerializeField] private int _jumpCount = 1;
 
@@ -31,6 +32,9 @@ public class Player : MonoBehaviour, IDamage
 
     [Header("Sprite")]
     [SerializeField] private Sprite _cheakPointImage;
+
+    [Header("CanValue")]
+    [SerializeField] private bool _canDoubleJump = false;
 
     private bool _isAttack = false;
     private bool _isJump = false;
@@ -97,6 +101,7 @@ public class Player : MonoBehaviour, IDamage
         _isWall = Physics2D.BoxCast(transform.position, bounds.size, 0, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
 
         if(_isGround){
+            _isJump = false;
             _coyoteTimeCounter = _coyoteTime;
             _jumpCount = 1;
         }
@@ -112,13 +117,22 @@ public class Player : MonoBehaviour, IDamage
             _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
         }
 
-        if(Input.GetKeyDown(KeySetting.keys[Key.jump]) && _coyoteTimeCounter >= 0){
-            if(!_isWall && _jumpCount > 0){
+        if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
+            if(!_isWall && _jumpCount > 0 && _coyoteTimeCounter >= 0){
+                _isJump = true;
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
 
                 _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _jumpPower;
+            }
+
+            if(_canDoubleJump && _isJump){
+                _anim.SetTrigger("IsDoubleJump");
+                OnPlayerJump.Invoke();
+
+                _rigid.velocity = Vector2.zero;
+                _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _doubleJumpPower;
             }
 
             if(_isWall && !_isWallJump){
