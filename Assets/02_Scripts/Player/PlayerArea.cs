@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class PlayerArea : MonoBehaviour
 {
+    [SerializeField] private float _groundJumpPower = 14f;
+    [SerializeField] private float _seaJumpPower = 17f;
+
     private Player _player;
     private Rigidbody2D _rigid;
     private GenerateShadow _generateShadow;
@@ -26,10 +29,12 @@ public class PlayerArea : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
         _generateShadow = GetComponent<GenerateShadow>();
     }
+
     private void Start()
     {
         ChangedState();
     }
+
     void Update()
     {
         if (GameManager.Instance.GameState != GameState.InGame) return;
@@ -48,7 +53,7 @@ public class PlayerArea : MonoBehaviour
             _player.PlayerFlip(_player.VisualObj.localScale.x, 1);
             _player.Speed = 6.2f;
             _rigid.gravityScale = 3.5f;
-            _player.JumpPower = 11f;
+            _player.JumpPower = _groundJumpPower;
 
             onChangeArea.Invoke(AreaState.Sky);
         }
@@ -57,7 +62,7 @@ public class PlayerArea : MonoBehaviour
            _player.PlayerFlip(_player.VisualObj.localScale.x, (_isSoapBubble) ? 1 : -1);
             _player.Speed = 5.2f;
             _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
-            _player.JumpPower = 17;
+            _player.JumpPower = _seaJumpPower;
             onChangeArea.Invoke(AreaState.Sea);
         }
 

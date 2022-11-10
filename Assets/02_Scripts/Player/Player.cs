@@ -133,6 +133,12 @@ public class Player : MonoBehaviour, IDamage
             }
             _jumpCount--;
         }
+
+        if(Input.GetKeyUp(KeySetting.keys[Key.jump])){
+            if(_rigid.velocity.y != 0){ //isJumping
+                _rigid.velocity *= new Vector3(1f, 0.5f, 1f);
+            }
+        }
     }
 
     private void WallJumpToggle(){
