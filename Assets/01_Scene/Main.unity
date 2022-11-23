@@ -3823,8 +3823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f835cc83f1a5d046a6be8ff1191d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hpCount: 3
-  _currentHp: 0
+  _dieCount: 0
   _hpText: {fileID: 175926894}
   esc: {fileID: 1706218592}
   gameOverUI: {fileID: 474516786}
@@ -4307,7 +4306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _canDoubleJump
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _doubleJumpPower

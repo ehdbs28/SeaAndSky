@@ -30,9 +30,6 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] private UnityEvent OnPlayerAttack;
     [SerializeField] private UnityEvent OnPlayerHit;
 
-    [Header("Sprite")]
-    [SerializeField] private Sprite _cheakPointImage;
-
     [Header("CanValue")]
     [SerializeField] private bool _canDoubleJump = false;
 
@@ -62,6 +59,7 @@ public class Player : MonoBehaviour, IDamage
     public int JumpCount {get => _jumpCount; set => _jumpCount = value;}
     public float Speed {get => _speed; set => _speed = value;}
     public bool IsGorund {get => _isGround; set => _isGround = value;}
+    public bool CanDoubleJump {get => _canDoubleJump; set => _canDoubleJump = value;}
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 
@@ -121,6 +119,7 @@ public class Player : MonoBehaviour, IDamage
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
             if(_canDoubleJump && !_isGround && !_isDoubleJump){
+                _canDoubleJump = false;
                 _isDoubleJump = true;
                 _anim.SetTrigger("IsDoubleJump");
                 OnPlayerJump.Invoke();
@@ -252,7 +251,6 @@ public class Player : MonoBehaviour, IDamage
         if (collision.CompareTag("CheakPoint"))
         {
             _cheakPointTrm = collision.transform.position;
-            collision.GetComponent<SpriteRenderer>().sprite = _cheakPointImage;
         }
     }
 

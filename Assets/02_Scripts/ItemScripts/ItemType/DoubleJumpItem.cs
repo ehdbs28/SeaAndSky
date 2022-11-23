@@ -10,17 +10,11 @@ public class DoubleJumpItem : MonoBehaviour
     }
 
     
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.collider.CompareTag("Player"))
-        {
-            DoubleJump();
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.transform.CompareTag("Player")){
+            Player player = other.transform.GetComponent<Player>();
+            if(player != null) player.CanDoubleJump = true;
+            gameObject.SetActive(false);
         }
-    }
-
-    void DoubleJump()
-    {
-        GameObject.Find("Player").GetComponent<Player>().JumpCount++;
-        gameObject.SetActive(false);
     }
 }

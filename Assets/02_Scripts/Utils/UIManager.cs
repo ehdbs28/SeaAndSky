@@ -9,9 +9,7 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("About Player Hp")]
-    [SerializeField] private int _hpCount = 3;
-    [SerializeField] private int _currentHp;
+    [SerializeField] private int _dieCount;
     [SerializeField] private TextMeshProUGUI _hpText;
 
     [SerializeField]
@@ -29,7 +27,7 @@ public class UIManager : MonoBehaviour
     private CanvasGroup interactionButton;
 
     private void Start() {
-        _currentHp = _hpCount;
+        _dieCount = 0;
     }
 
     void Update()
@@ -74,15 +72,10 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator ReduceHpCoroutine(Transform playerTrm, Vector2 cheakPoint, Action OnPlayerDead = null){
         GameManager.Instance.IsInvincibility = true;
-        _currentHp--;
-        _hpText.text = $"X {_currentHp}";
+        _dieCount++;
+        _hpText.text = $"- {_dieCount}";
 
-        if(_currentHp == 0){
-            GameManager.Instance.IsGameOver = true;
-            GameManager.Instance.IsPlayerDeath = true;
-            OnPlayerDead?.Invoke();
-        }
-        else PlayerRevival(playerTrm, cheakPoint);
+        PlayerRevival(playerTrm, cheakPoint);
 
         yield return new WaitForSecondsRealtime(0.5f);
 
