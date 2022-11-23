@@ -38,6 +38,7 @@ public class Player : MonoBehaviour, IDamage
 
     private bool _isAttack = false;
     private bool _isJump = false;
+    private bool _isDoubleJump = false;
     private bool _isGround = false;
     private bool _isWall = false;
     private bool _isWallJump = false;
@@ -102,6 +103,7 @@ public class Player : MonoBehaviour, IDamage
 
         if(_isGround){
             _isJump = false;
+            _isDoubleJump = false;
             _coyoteTimeCounter = _coyoteTime;
             _jumpCount = 1;
         }
@@ -118,6 +120,15 @@ public class Player : MonoBehaviour, IDamage
         }
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
+            if(_canDoubleJump && !_isGround && !_isDoubleJump){
+                _isDoubleJump = true;
+                _anim.SetTrigger("IsDoubleJump");
+                OnPlayerJump.Invoke();
+
+                _rigid.velocity = Vector2.zero;
+                _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _doubleJumpPower;
+            }
+
             if(!_isWall && _jumpCount > 0 && _coyoteTimeCounter >= 0){
                 _isJump = true;
                 _anim.SetTrigger("IsJump");
@@ -125,14 +136,6 @@ public class Player : MonoBehaviour, IDamage
                 _rigid.velocity = Vector2.zero;
 
                 _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _jumpPower;
-            }
-
-            if(_canDoubleJump && _isJump){
-                _anim.SetTrigger("IsDoubleJump");
-                OnPlayerJump.Invoke();
-
-                _rigid.velocity = Vector2.zero;
-                _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _doubleJumpPower;
             }
 
             if(_isWall && !_isWallJump){
