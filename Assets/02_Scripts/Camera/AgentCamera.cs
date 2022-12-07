@@ -10,7 +10,9 @@ public abstract class AgentCamera : MonoBehaviour
     protected float cameraMovementX = 0.5f;
     protected float cameraMovementY = 0.5f;
     protected Vector3 velocity = Vector3.zero;
+    public Vector3 MoveDownValue = new Vector3(0f, -3f, 0f);
     public AreaState _cameraState;
+    public bool IsDownView = false;
     protected Vector3 point;
     private void Awake()
     {
