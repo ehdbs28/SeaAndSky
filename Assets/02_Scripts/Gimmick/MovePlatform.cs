@@ -105,6 +105,9 @@ public class MovePlatform : MonoBehaviour
         if (!isStart)
             SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
+    public virtual void ResetPosition(){
+        
+    }
     #endregion
 
     //Ȥ�� ���� 

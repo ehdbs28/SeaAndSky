@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     private void Start() {
         _dieCount = 0;
+        _hpText.text = $"- {_dieCount}";
     }
 
     void Update()
