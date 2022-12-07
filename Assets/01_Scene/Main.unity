@@ -4400,6 +4400,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5527135322220754506, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8791568946573081429, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9080806354538350403, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _seaJumpPower
       value: 17
