@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class CollectItem : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
+    private UIManager ui;
 
+    private void Start()
+    {
+        ui = FindObjectOfType<UIManager>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            ui.collectCount++;
+            Destroy(gameObject);
         }
     }
 }

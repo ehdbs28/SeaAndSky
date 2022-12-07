@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private int _dieCount;
     [SerializeField] private TextMeshProUGUI _hpText;
+    public int collectCount;
 
     [SerializeField]
     private CanvasGroup esc;
