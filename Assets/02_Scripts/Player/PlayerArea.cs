@@ -39,7 +39,7 @@ public class PlayerArea : MonoBehaviour
     {
         if (GameManager.Instance.GameState != GameState.InGame) return;
 
-        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _player.IsGorund)
+        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]))//&& _player.IsGorund)
         {
             SetStateChanged();
         }
