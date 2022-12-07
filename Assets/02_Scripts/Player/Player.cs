@@ -59,6 +59,7 @@ public class Player : MonoBehaviour, IDamage
     public float Speed {get => _speed; set => _speed = value;}
     public bool IsGorund {get => _isGround; set => _isGround = value;}
     public bool CanDoubleJump {get => _canDoubleJump; set => _canDoubleJump = value;}
+    public Rigidbody2D Rigidbody => _rigid;
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 

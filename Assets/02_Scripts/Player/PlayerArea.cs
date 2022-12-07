@@ -15,7 +15,7 @@ public class PlayerArea : MonoBehaviour
     [field: SerializeField] private UnityEvent<AreaState> onChangeArea;
     [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
-    private float _circleGizmoSize = 0.5f;
+    private float _circleGizmoSize = 0.45f;
     [SerializeField] private LayerMask _isWhatGround;
     public bool IsSoapBubble
     {
@@ -48,6 +48,7 @@ public class PlayerArea : MonoBehaviour
 
     public void ChangedState()
     {
+        _player.Rigidbody.velocity = Vector2.zero;
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
             _player.PlayerFlip(_player.VisualObj.localScale.x, 1);
