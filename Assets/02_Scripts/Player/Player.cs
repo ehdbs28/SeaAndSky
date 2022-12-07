@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] private float _slidingSpeed;
     [SerializeField] private float _attackReboundPower;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private float _doubleJumpPower;
     [SerializeField] private float _wallJumpPower;
     [SerializeField] private int _jumpCount = 1;
 
@@ -29,11 +30,12 @@ public class Player : MonoBehaviour, IDamage
     [SerializeField] private UnityEvent OnPlayerAttack;
     [SerializeField] private UnityEvent OnPlayerHit;
 
-    [Header("Sprite")]
-    [SerializeField] private Sprite _cheakPointImage;
+    [Header("CanValue")]
+    [SerializeField] private bool _canDoubleJump = false;
 
     private bool _isAttack = false;
     private bool _isJump = false;
+    private bool _isDoubleJump = false;
     private bool _isGround = false;
     private bool _isWall = false;
     private bool _isWallJump = false;
@@ -41,6 +43,8 @@ public class Player : MonoBehaviour, IDamage
     private float _rayDistance = 0.1f;
     private float _wallCheckDistance = 0.15f;
     private float _dontMovetime;
+    private const float _coyoteTime = 0.2f;
+    private float _coyoteTimeCounter;
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
@@ -55,6 +59,7 @@ public class Player : MonoBehaviour, IDamage
     public int JumpCount {get => _jumpCount; set => _jumpCount = value;}
     public float Speed {get => _speed; set => _speed = value;}
     public bool IsGorund {get => _isGround; set => _isGround = value;}
+    public bool CanDoubleJump {get => _canDoubleJump; set => _canDoubleJump = value;}
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 
@@ -94,17 +99,38 @@ public class Player : MonoBehaviour, IDamage
         _isGround = Physics2D.CapsuleCast(transform.position, bounds.size, CapsuleDirection2D.Vertical, 0, Vector2.down * _visualObject.localScale.y, _rayDistance, _groundLayer);
         _isWall = Physics2D.BoxCast(transform.position, bounds.size, 0, Vector2.right * _visualObject.localScale.x, _wallCheckDistance, _wallRunLayer);
 
-        if(_isGround) _jumpCount = 1;
-        else _jumpCount = 0;
+        if(_isGround){
+            _isJump = false;
+            _isDoubleJump = false;
+            _coyoteTimeCounter = _coyoteTime;
+            _jumpCount = 1;
+        }
+        else{
+            _coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if(_coyoteTimeCounter <= 0){
+            _jumpCount = 0;
+        }
         
         if(_isWall && !_isWallJump){
             _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y * _slidingSpeed);
         }
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
-            if(!_isWall && _jumpCount > 0){
+            if(_canDoubleJump && !_isGround && !_isDoubleJump){
+                _canDoubleJump = false;
+                _isDoubleJump = true;
+                _anim.SetTrigger("IsDoubleJump");
+                OnPlayerJump.Invoke();
 
-                 _anim.SetTrigger("IsJump");
+                _rigid.velocity = Vector2.zero;
+                _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _doubleJumpPower;
+            }
+
+            if(!_isWall && _jumpCount > 0 && _coyoteTimeCounter >= 0){
+                _isJump = true;
+                _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
                 _rigid.velocity = Vector2.zero;
 
@@ -122,6 +148,12 @@ public class Player : MonoBehaviour, IDamage
                 PlayerFlip(-_visualObject.localScale.x, _visualObject.localScale.y);
             }
             _jumpCount--;
+        }
+
+        if(Input.GetKeyUp(KeySetting.keys[Key.jump])){
+            if(_rigid.velocity.y != 0){ //isJumping
+                _rigid.velocity *= new Vector3(1f, 0.5f, 1f);
+            }
         }
     }
 
@@ -219,7 +251,6 @@ public class Player : MonoBehaviour, IDamage
         if (collision.CompareTag("CheakPoint"))
         {
             _cheakPointTrm = collision.transform.position;
-            collision.GetComponent<SpriteRenderer>().sprite = _cheakPointImage;
         }
     }
 

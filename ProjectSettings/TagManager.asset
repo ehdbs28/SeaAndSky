@@ -17,6 +17,7 @@ TagManager:
   - CheakPoint
   - PlayerCol
   - FxTemporaire
+  - Box
   layers:
   - Default
   - TransparentFX

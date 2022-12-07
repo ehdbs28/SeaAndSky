@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class MovePlatform : MonoBehaviour
 {
-    [Header("»óÈ£ÀÛ¿ë ¾øÀÌ ¿òÁ÷ÀÏ °æ¿ì ÇÊ¿äÇÑ º¯¼ö")]
+    [Header("ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField]
     private bool _isAuto = false;
     [SerializeField]
@@ -35,6 +35,7 @@ public class MovePlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(!_isAuto) StartCoroutine(AutomaticMoveCoroutine()); _isAuto = true;
         if (_isAuto)
         {
             if (collision.gameObject.name == "Player")
@@ -82,7 +83,7 @@ public class MovePlatform : MonoBehaviour
             SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
 
-    #region ¿À¹ö·Îµù
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½
     public virtual void MoveToOffsetPosistion(bool isStart)
     {
         seq = DOTween.Sequence();
@@ -106,7 +107,7 @@ public class MovePlatform : MonoBehaviour
     }
     #endregion
 
-    //È¤½Ã ¸ô¶ó¼­ 
+    //È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
     private void OnDestroy()
     {
         StopAllCoroutines();
