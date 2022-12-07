@@ -15,7 +15,7 @@ public class PlayerArea : MonoBehaviour
     [field: SerializeField] private UnityEvent<AreaState> onChangeArea;
     [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
-    private float _circleGizmoSize = 0.2f;
+    private float _circleGizmoSize = 0.5f;
     [SerializeField] private LayerMask _isWhatGround;
     public bool IsSoapBubble
     {
@@ -91,16 +91,4 @@ public class PlayerArea : MonoBehaviour
         transform.position = chagedPos;
         ChangedState();
     }
-
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        //if (_generateShadow.Shadow != null)
-        //{
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawWireSphere(_generateShadow.Shadow.transform.position, _circleGizmoSize);
-        //}
-    }
-#endif
 }
