@@ -2,19 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleJumpItem : MonoBehaviour
+public class DoubleJumpItem : Item
 {
-    private void Start()
+    public override void GetItem(Player player)
     {
-        gameObject.SetActive(true);  
-    }
-
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.transform.CompareTag("Player")){
-            Player player = other.transform.GetComponent<Player>();
-            if(player != null) player.CanDoubleJump = true;
-            gameObject.SetActive(false);
-        }
+        player.CanDoubleJump = true;
     }
 }

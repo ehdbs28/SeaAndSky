@@ -35,7 +35,6 @@ public class Player : MonoBehaviour, IDamage
 
     private bool _isAttack = false;
     private bool _isJump = false;
-    private bool _isDoubleJump = false;
     private bool _isGround = false;
     private bool _isWall = false;
     private bool _isWallJump = false;
@@ -45,6 +44,7 @@ public class Player : MonoBehaviour, IDamage
     private float _dontMovetime;
     private const float _coyoteTime = 0.2f;
     private float _coyoteTimeCounter;
+    private float _keyInputTime = 0f;
 
     private Vector2 _cheakPointTrm = new Vector2(-89.32f, 14.9f);
 
@@ -60,6 +60,7 @@ public class Player : MonoBehaviour, IDamage
     public float Speed {get => _speed; set => _speed = value;}
     public bool IsGorund {get => _isGround; set => _isGround = value;}
     public bool CanDoubleJump {get => _canDoubleJump; set => _canDoubleJump = value;}
+    public Rigidbody2D Rigidbody => _rigid;
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour, IDamage
 
     private void Update() {
         if(!GameManager.Instance.IsPlayerDeath && !PlayerGoal.isLoad){
+            CameraViewDown();
             Move();
             Jump();
             Attack();
@@ -94,6 +96,25 @@ public class Player : MonoBehaviour, IDamage
         }
     }
 
+    private void CameraViewDown(){
+        if(Input.GetKey(KeyCode.DownArrow) && !_anim.GetBool("IsMove")){ //나중에 키코드로 바꾸기
+            if(GameManager.Instance.skyCamState.IsDownView || GameManager.Instance.seaCamState.IsDownView) return;
+            _keyInputTime += Time.deltaTime;
+            if(_keyInputTime >= 0.5f){
+                GameManager.Instance.skyCamState.IsDownView = true;
+                GameManager.Instance.seaCamState.IsDownView = true;
+
+                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
+            }
+        }
+        else{ //나중에 키코드로 바꾸기
+            _keyInputTime = 0f;
+            GameManager.Instance.skyCamState.IsDownView = false;
+            GameManager.Instance.seaCamState.IsDownView = false;
+        }
+    }
+
     private void Jump(){
         Bounds bounds = _collider.bounds;
         _isGround = Physics2D.CapsuleCast(transform.position, bounds.size, CapsuleDirection2D.Vertical, 0, Vector2.down * _visualObject.localScale.y, _rayDistance, _groundLayer);
@@ -101,7 +122,6 @@ public class Player : MonoBehaviour, IDamage
 
         if(_isGround){
             _isJump = false;
-            _isDoubleJump = false;
             _coyoteTimeCounter = _coyoteTime;
             _jumpCount = 1;
         }
@@ -118,9 +138,8 @@ public class Player : MonoBehaviour, IDamage
         }
 
         if(Input.GetKeyDown(KeySetting.keys[Key.jump])){
-            if(_canDoubleJump && !_isGround && !_isDoubleJump){
+            if(_canDoubleJump && !_isGround){
                 _canDoubleJump = false;
-                _isDoubleJump = true;
                 _anim.SetTrigger("IsDoubleJump");
                 OnPlayerJump.Invoke();
 
@@ -132,8 +151,8 @@ public class Player : MonoBehaviour, IDamage
                 _isJump = true;
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
-                _rigid.velocity = Vector2.zero;
 
+                _rigid.velocity = Vector2.zero;
                 _rigid.velocity = (_visualObject.up * _visualObject.localScale.y) * _jumpPower;
             }
 

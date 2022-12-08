@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6931717605380830906}
   m_Layer: 0
   m_Name: 1 (1)
-  m_TagString: Untagged
+  m_TagString: CheakPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34371,7 +34371,7 @@ GameObject:
   - component: {fileID: 1678721739369255170}
   m_Layer: 0
   m_Name: 1 (2)
-  m_TagString: Untagged
+  m_TagString: CheakPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62317,7 +62317,7 @@ GameObject:
   - component: {fileID: 6596039149201302944}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: CheakPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

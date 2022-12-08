@@ -15,7 +15,7 @@ public class PlayerArea : MonoBehaviour
     [field: SerializeField] private UnityEvent<AreaState> onChangeArea;
     [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
-    private float _circleGizmoSize = 0.2f;
+    private float _circleGizmoSize = 0.45f;
     [SerializeField] private LayerMask _isWhatGround;
     public bool IsSoapBubble
     {
@@ -39,7 +39,7 @@ public class PlayerArea : MonoBehaviour
     {
         if (GameManager.Instance.GameState != GameState.InGame) return;
 
-        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]) && _player.IsGorund)
+        if (Input.GetKeyDown(KeySetting.keys[Key.changeworld]))//&& _player.IsGorund)
         {
             SetStateChanged();
         }
@@ -48,6 +48,7 @@ public class PlayerArea : MonoBehaviour
 
     public void ChangedState()
     {
+        _player.Rigidbody.velocity = Vector2.zero;
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
             _player.PlayerFlip(_player.VisualObj.localScale.x, 1);
@@ -91,16 +92,4 @@ public class PlayerArea : MonoBehaviour
         transform.position = chagedPos;
         ChangedState();
     }
-
-
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        //if (_generateShadow.Shadow != null)
-        //{
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawWireSphere(_generateShadow.Shadow.transform.position, _circleGizmoSize);
-        //}
-    }
-#endif
 }

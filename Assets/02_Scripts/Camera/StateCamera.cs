@@ -10,6 +10,8 @@ public class StateCamera : AgentCamera
     private bool isChecking = false;
     private bool isZoomCheck = false;
 
+    public bool IsMainCam => GameManager.Instance.PlayerState == _cameraState;
+
     private Vector3 playerDirection = Vector3.zero;
 
     private void Start()
@@ -20,7 +22,7 @@ public class StateCamera : AgentCamera
 
         camEffect = GetComponent<CameraMoveEffect>();
 
-        transform.position = GetDestination();
+        transform.position = GetDestination(target.position);
     }
 
     private void LateUpdate()
@@ -54,31 +56,42 @@ public class StateCamera : AgentCamera
 
     public override void CameraMoving(Transform target)
     {
-        if (GameManager.Instance.PlayerState == _cameraState)
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(), ref velocity, dampTime);
+        if(IsDownView){
+            MoveDownView();
         }
-        else
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(), ref velocity, dampTime);
+        else{
+            if (GameManager.Instance.PlayerState == _cameraState)
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, GetDestination(target.position), ref velocity, dampTime);
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, GetDestination(target.position), ref velocity, dampTime);
+            }
         }
     }
 
-    private Vector3 GetDestination()
+    public void MoveDownView(){
+        if(IsDownView){
+            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(new Vector3(MoveDownValue.x, MoveDownValue.y * Mathf.Sign(GameManager.Instance.CurrentCam.transform.position.y), MoveDownValue.z)), ref velocity, dampTime);
+        }
+    }
+
+    private Vector3 GetDestination(Vector3 target)
     {
         Vector3 destination;
 
         if (GameManager.Instance.PlayerState == _cameraState)
         {
-            point = _camera.WorldToViewportPoint(target.position);
-            Vector3 delta = (target.position - _camera.ViewportToWorldPoint(new Vector3(cameraMovementX, cameraMovementY, point.z)));
+            point = _camera.WorldToViewportPoint(target);
+            Vector3 delta = (target - _camera.ViewportToWorldPoint(new Vector3(cameraMovementX, cameraMovementY, point.z)));
             destination = transform.position + delta;
 
         }
         else
         {
-            point = _camera.WorldToViewportPoint(new Vector3(target.position.x, -target.position.y, target.position.z));
-            Vector3 delta = (new Vector3(target.position.x, -target.position.y, target.position.z) - _camera.ViewportToWorldPoint(new Vector3(cameraMovementX, cameraMovementY, point.z)));
+            point = _camera.WorldToViewportPoint(new Vector3(target.x, -target.y, target.z));
+            Vector3 delta = (new Vector3(target.x, -target.y, target.z) - _camera.ViewportToWorldPoint(new Vector3(cameraMovementX, cameraMovementY, point.z)));
             destination = transform.position + delta;
         }
 
