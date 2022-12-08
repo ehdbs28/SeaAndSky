@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private int _dieCount;
     [SerializeField] private TextMeshProUGUI _hpText;
+    [SerializeField] private TextMeshProUGUI _fishText;
     public int collectCount;
 
     [SerializeField]
@@ -30,13 +31,15 @@ public class UIManager : MonoBehaviour
     private void Start() {
         _dieCount = 0;
         _hpText.text = $"- {_dieCount}";
+        _fishText.text = $"+ {collectCount}";
     }
 
     void Update()
     {
+        _fishText.text = $"+ {collectCount}";
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // ���� ���� ���� �� => �����ִ� ����
             if (!esc.gameObject.activeSelf)
             {
                 esc.gameObject.SetActive(true);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectItem : MonoBehaviour
+public class CollectFish : MonoBehaviour
 {
     private UIManager ui;
 

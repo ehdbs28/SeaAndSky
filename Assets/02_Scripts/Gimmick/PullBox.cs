@@ -40,8 +40,17 @@ public class PullBox : MonoBehaviour
 
         if (hitWall)
         {
+            Debug.Log(1);
             transform.position = new Vector2(transform.position.x , transform.position.y);
+
+            StartCoroutine(WaitSecond());
+            transform.position = new Vector2(transform.position.x - 1, transform.position.y);
         }
+    }
+
+    IEnumerator WaitSecond()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

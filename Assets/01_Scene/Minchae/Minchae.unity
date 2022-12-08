@@ -627,9 +627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f835cc83f1a5d046a6be8ff1191d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hpCount: 3
-  _currentHp: 0
+  _dieCount: 0
   _hpText: {fileID: 1979739906}
+  collectCount: 0
   esc: {fileID: 2007823322}
   gameOverUI: {fileID: 2078200958}
   goal: {fileID: 512903469}
@@ -1208,8 +1208,10 @@ GameObject:
   m_Component:
   - component: {fileID: 229463264}
   - component: {fileID: 229463263}
+  - component: {fileID: 229463265}
+  - component: {fileID: 229463266}
   m_Layer: 0
-  m_Name: NIIMOO
+  m_Name: NiMoo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1280,6 +1282,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &229463265
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229463262}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.005410644, y: -0.01982397}
+  m_Size: {x: 0.8738336, y: 0.5277968}
+  m_Direction: 1
+--- !u!114 &229463266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229463262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdbf7af388db37499d22415e8056490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &252028539
 GameObject:
   m_ObjectHideFlags: 0
