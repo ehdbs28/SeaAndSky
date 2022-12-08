@@ -54,6 +54,13 @@ public class GameManager : MonoSingleton<GameManager>
     public Camera seaCamera { get; private set; }
     public StateCamera seaCamState => seaCamera.GetComponent<StateCamera>();
 
+    public Camera CurrentCam{
+        get{
+            if(skyCamState.IsMainCam) return skyCamera;
+            else return seaCamera;
+        }
+    }
+
     private GameState gameState;
     public GameState GameState { get => gameState; set => gameState = value; }
 

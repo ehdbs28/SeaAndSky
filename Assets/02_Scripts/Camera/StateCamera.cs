@@ -10,6 +10,8 @@ public class StateCamera : AgentCamera
     private bool isChecking = false;
     private bool isZoomCheck = false;
 
+    public bool IsMainCam => GameManager.Instance.PlayerState == _cameraState;
+
     private Vector3 playerDirection = Vector3.zero;
 
     private void Start()
@@ -71,7 +73,7 @@ public class StateCamera : AgentCamera
 
     public void MoveDownView(){
         if(IsDownView){
-            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(MoveDownValue), ref velocity, dampTime);
+            transform.position = Vector3.SmoothDamp(transform.position, GetDestination(new Vector3(MoveDownValue.x, MoveDownValue.y * Mathf.Sign(GameManager.Instance.CurrentCam.transform.position.y), MoveDownValue.z)), ref velocity, dampTime);
         }
     }
 

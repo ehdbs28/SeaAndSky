@@ -4492,6 +4492,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1272816613, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1272816622, guid: 8136949a5c10bc94087d2e0324dfb44f, type: 3}
       propertyPath: _dontMoveTime
       value: 3
@@ -4966,7 +4970,9 @@ MonoBehaviour:
   _camera: {fileID: 1320313764}
   _cameraMove: {fileID: 12298503}
   dampTime: 0.3
+  MoveDownValue: {x: 0, y: -3, z: 0}
   _cameraState: 0
+  IsDownView: 0
   target: {fileID: 0}
 --- !u!114 &1320313766
 MonoBehaviour:
@@ -8242,7 +8248,9 @@ MonoBehaviour:
   _camera: {fileID: 2044519160}
   _cameraMove: {fileID: 12298503}
   dampTime: 0.3
+  MoveDownValue: {x: 0, y: -3, z: 0}
   _cameraState: 1
+  IsDownView: 0
   target: {fileID: 0}
 --- !u!114 &2044519162
 MonoBehaviour:

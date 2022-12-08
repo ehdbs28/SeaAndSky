@@ -97,18 +97,18 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void CameraViewDown(){
-        if(Input.GetKey(KeyCode.DownArrow)){ //나중에 키코드로 바꾸기
+        if(Input.GetKey(KeyCode.DownArrow) && !_anim.GetBool("IsMove")){ //나중에 키코드로 바꾸기
             if(GameManager.Instance.skyCamState.IsDownView || GameManager.Instance.seaCamState.IsDownView) return;
             _keyInputTime += Time.deltaTime;
             if(_keyInputTime >= 0.5f){
                 GameManager.Instance.skyCamState.IsDownView = true;
                 GameManager.Instance.seaCamState.IsDownView = true;
 
-                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.skyCamera.transform.position + new Vector3(0f, -4f, 0f);
-                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.skyCamera.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
             }
         }
-        else if(Input.GetKeyUp(KeyCode.DownArrow)){ //나중에 키코드로 바꾸기
+        else{ //나중에 키코드로 바꾸기
             _keyInputTime = 0f;
             GameManager.Instance.skyCamState.IsDownView = false;
             GameManager.Instance.seaCamState.IsDownView = false;
