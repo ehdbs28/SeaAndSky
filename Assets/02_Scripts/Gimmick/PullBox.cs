@@ -27,7 +27,6 @@ public class PullBox : MonoBehaviour
             {
                 if (Input.GetKey(KeySetting.keys[Key.pullBox]))
                 {
-                    //이동방향 * 플레이어 스피드
                     player.Speed = 4f;
                     transform.position = new Vector2(player.transform.position.x + (player.VisualObj.localScale.x), transform.position.y);
                 }   
@@ -40,11 +39,7 @@ public class PullBox : MonoBehaviour
 
         if (hitWall)
         {
-            Debug.Log(1);
             transform.position = new Vector2(transform.position.x , transform.position.y);
-
-            StartCoroutine(WaitSecond());
-            transform.position = new Vector2(transform.position.x - 1, transform.position.y);
         }
     }
 

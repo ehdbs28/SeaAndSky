@@ -9,8 +9,13 @@ public class CutManager : MonoBehaviour
 {
     public bool isSkip = true;
 
-    public PlayableDirector playableDirector;
-    public TimelineAsset timeline;
+    public PlayableDirector director;
+
+    public void Play()
+    {
+        Debug.Log("p");
+        director.Play();
+    }
 
     private void Update()
     {
@@ -19,10 +24,10 @@ public class CutManager : MonoBehaviour
             isSkip = false;
             SceneManager.LoadScene("MTItle");
         }
-    }
-    
-    public void EndScene()
-    {
-        SceneManager.LoadScene("MTItle");
+
+        if(director.time >= 40)
+        {
+            SceneManager.LoadScene("MTItle");
+        }
     }
 }
