@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,6 +54,8 @@ public class Player : MonoBehaviour, IDamage
     private Transform _visualObject;
     private Rigidbody2D _rigid;
 
+    private Action _resetCallBack = null;
+
     //Property
     public Transform VisualObj {get => _visualObject; set => _visualObject = value;}
     public float JumpPower {get => _jumpPower; set => _jumpPower = value;}
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour, IDamage
     public bool IsGorund {get => _isGround; set => _isGround = value;}
     public bool CanDoubleJump {get => _canDoubleJump; set => _canDoubleJump = value;}
     public Rigidbody2D Rigidbody => _rigid;
+    public Action ResetCallBack {get => _resetCallBack; set => _resetCallBack = value;}
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 
@@ -262,7 +266,7 @@ public class Player : MonoBehaviour, IDamage
         if (GameManager.Instance.IsPlayerDeath) return;
 
         OnPlayerHit?.Invoke();
-        GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
+        GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, _resetCallBack);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

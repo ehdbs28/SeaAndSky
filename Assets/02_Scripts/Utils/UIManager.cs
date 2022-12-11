@@ -71,12 +71,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private IEnumerator ReduceHpCoroutine(Transform playerTrm, Vector2 cheakPoint, Action OnPlayerDead = null){
+    private IEnumerator ReduceHpCoroutine(Transform playerTrm, Vector2 cheakPoint, Action Reset = null){
         GameManager.Instance.IsInvincibility = true;
         _dieCount++;
         _hpText.text = $"- {_dieCount}";
 
         PlayerRevival(playerTrm, cheakPoint);
+
+        Reset?.Invoke();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
