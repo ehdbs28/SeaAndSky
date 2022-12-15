@@ -12,7 +12,7 @@ public class CutManager : MonoBehaviour
         if(isSkip && Input.anyKeyDown)
         {
             isSkip = false;
-            SceneManager.LoadScene("MTItle");
+            GameManager.Instance.sceneManager.LoadScene("MTItle");
         }
     }
 }

@@ -73,6 +73,26 @@ public class Player : MonoBehaviour, IDamage
        _collider = GetComponent<CapsuleCollider2D>();
        _visualObject = transform.Find("VisualSprite");
        _anim = _visualObject.GetComponent<Animator>();   
+
+       switch(DataManager.Instance.User.stage){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                _resetCallBack = () => {
+                    MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
+
+                    if(movePlatforms.Length != 0){
+                        foreach(MovePlatform movePlatform in movePlatforms){
+                            movePlatform.ResetPosition();
+                        }
+                    }
+                };
+            break;
+       }
     }
 
     private void Update() {

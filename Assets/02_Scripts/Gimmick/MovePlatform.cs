@@ -106,6 +106,7 @@ public class MovePlatform : MonoBehaviour
             SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
     public void ResetPosition(){
+        seq.Kill();
         StopAllCoroutines();
         _isAuto = false;
         transform.position = originVector;

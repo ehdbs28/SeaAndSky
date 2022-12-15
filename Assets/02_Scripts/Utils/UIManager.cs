@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
 
         PlayerRevival(playerTrm, cheakPoint);
 
-        Reset?.Invoke();
+        Reset?.Invoke();    
 
         yield return new WaitForSecondsRealtime(0.5f);
 
@@ -97,15 +97,10 @@ public class UIManager : MonoBehaviour
         UnshowEscPanel();
     }
 
-    public void NextStage()
-    {
-        Debug.Log("���� ��������");
-    }
-
     public void ReStart()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.sceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Exit()

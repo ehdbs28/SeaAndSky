@@ -18,6 +18,7 @@ TagManager:
   - PlayerCol
   - FxTemporaire
   - Box
+  - Transitions
   layers:
   - Default
   - TransparentFX
