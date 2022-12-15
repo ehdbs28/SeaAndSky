@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PixelParticleShader
-  m_Shader: {fileID: -6465566751694194690, guid: 98ee38b6b3235ad489d4888890d77a21, type: 3}
+  m_Name: WavyShader
+  m_Shader: {fileID: -6465566751694194690, guid: bbe983edd19bc9c44a58767c2c7f5fb0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -36,7 +32,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Bits: 32
+    - _Amp: 1
+    - _Length: 0.2
+    - _Speed: 0.3
+    - _Y_Value: 0.2
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.75294244, g: 0.07036011, b: 0.03189604, a: 1}
   m_BuildTextureStacks: []
