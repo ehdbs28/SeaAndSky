@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WavyShader
+  m_Name: SkyWavyShader
   m_Shader: {fileID: -6465566751694194690, guid: bbe983edd19bc9c44a58767c2c7f5fb0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,5 +37,5 @@ Material:
     - _Speed: 0.3
     - _Y_Value: 0.2
     m_Colors:
-    - _Color: {r: 0.75294244, g: 0.07036011, b: 0.03189604, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
