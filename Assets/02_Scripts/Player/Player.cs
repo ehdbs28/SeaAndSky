@@ -128,8 +128,8 @@ public class Player : MonoBehaviour, IDamage
                 GameManager.Instance.skyCamState.IsDownView = true;
                 GameManager.Instance.seaCamState.IsDownView = true;
 
-                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
-                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.skyCamera.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.skyCamera.transform.position + new Vector3(0f, -4f, 0f);
             }
         }
         else{ //나중에 키코드로 바꾸기
