@@ -124,6 +124,12 @@ public class UIManager : MonoBehaviour
         keyPanel.SetActive(false);
     }
 
+
+    public void BtnClick(GameObject g)
+    {
+        g.SetActive(false);
+    }
+
     private void UnshowEscPanel()
     {
         esc.DOFade(0f, 0.3f).OnComplete(() => esc.gameObject.SetActive(false));
