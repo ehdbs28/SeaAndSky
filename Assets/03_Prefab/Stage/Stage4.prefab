@@ -68027,6 +68027,10 @@ PrefabInstance:
       propertyPath: _stopDelay
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6420449460707829706, guid: 8f1f48e4b599df444a396b8e0bfb6012, type: 3}
+      propertyPath: _isPlayerTouchMove
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f1f48e4b599df444a396b8e0bfb6012, type: 3}
 --- !u!4 &5049534441946425331 stripped

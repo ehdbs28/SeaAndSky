@@ -8,6 +8,8 @@ public class MovePlatform : MonoBehaviour
     [SerializeField]
     private bool _isAuto = false;
     [SerializeField]
+    private bool _isPlayerTouchMove = false;
+    [SerializeField]
     private float _stopDelay;
 
     [SerializeField]
@@ -36,7 +38,7 @@ public class MovePlatform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(!_isAuto) StartCoroutine(AutomaticMoveCoroutine()); _isAuto = true;
-        if (_isAuto)
+        if (_isAuto && _isPlayerTouchMove)
         {
             if (collision.gameObject.name == "Player")
                 collision.transform.SetParent(transform);
@@ -45,7 +47,7 @@ public class MovePlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (_isAuto)
+        if (_isAuto && _isPlayerTouchMove)
         {
             if (collision.gameObject.name == "Player")
                 collision.transform.SetParent(null);
