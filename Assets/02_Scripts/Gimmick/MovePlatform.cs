@@ -37,8 +37,8 @@ public class MovePlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!_isAuto) StartCoroutine(AutomaticMoveCoroutine()); _isAuto = true;
-        if (_isAuto && _isPlayerTouchMove)
+        if(!_isAuto && _isPlayerTouchMove) StartCoroutine(AutomaticMoveCoroutine()); _isAuto = true;
+        if (_isAuto)
         {
             if (collision.gameObject.name == "Player")
                 collision.transform.SetParent(transform);
@@ -47,7 +47,7 @@ public class MovePlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (_isAuto && _isPlayerTouchMove)
+        if (_isAuto)
         {
             if (collision.gameObject.name == "Player")
                 collision.transform.SetParent(null);
