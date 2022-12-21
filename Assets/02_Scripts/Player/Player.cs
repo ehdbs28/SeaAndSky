@@ -36,7 +36,7 @@ public class Player : MonoBehaviour, IDamage
 
     private bool _isAttack = false;
     private bool _isJump = false;
-    private bool _isGround = false;
+    [SerializeField] private bool _isGround = false;
     private bool _isWall = false;
     private bool _isWallJump = false;
 

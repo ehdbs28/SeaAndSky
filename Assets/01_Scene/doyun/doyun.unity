@@ -2486,6 +2486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dieCount: 0
   _hpText: {fileID: 920791825}
+  _fishText: {fileID: 0}
+  collectCount: 0
   esc: {fileID: 616570726}
   gameOverUI: {fileID: 477789071}
   goal: {fileID: 400967354}
