@@ -39,8 +39,8 @@ public class TitleAnimation : MonoBehaviour
 
         isRising = true;
         seq.AppendInterval(2f);
-        seq.Append(seaCam.transform.DOMove(new Vector3(0f, -5f, -10f), duration).SetEase(camEase));
-        seq.Join(skyCam.transform.DOMove(new Vector3(0f, 5f, -10f), duration).SetEase(camEase));
+        seq.Append(seaCam.transform.DOMove(new Vector3(0f, -35f, -10f), duration).SetEase(camEase));
+        seq.Join(skyCam.transform.DOMove(new Vector3(0f, 35f, -10f), duration).SetEase(camEase));
         seq.AppendCallback(TitleArrange);
     }
 
@@ -64,13 +64,13 @@ public class TitleAnimation : MonoBehaviour
 
         seq.AppendCallback(() => audioSource.PlayOneShot(seaClip));
         seq.Join(seaText.DOFade(1f, titleDelay));
-        seq.Join(seaText.transform.DOMoveY(0f, titleDelay));
+        seq.Join(seaText.GetComponent<RectTransform>().DOAnchorPosY(0f, titleDelay));
 
         seq.Append(andText.DOFade(1f, titleDelay));
 
         seq.AppendCallback(() => audioSource.PlayOneShot(skyClip));
         seq.Join(skyText.DOFade(1f, titleDelay));
-        seq.Join(skyText.transform.DOMoveY(0f, titleDelay));
+        seq.Join(skyText.GetComponent<RectTransform>().DOAnchorPosY(0f, titleDelay));
 
         seq.Append(stageGroup.DOFade(1f, 1f));
     }

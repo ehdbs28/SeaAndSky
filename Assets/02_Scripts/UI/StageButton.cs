@@ -19,8 +19,8 @@ public class StageButton : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             DataManager.Instance.User.stage = this.index;
-            //GameManager.Instance.sceneManager.LoadScene("doyun");
-            SceneManager.LoadScene("Main");
+            GameManager.Instance.sceneManager.LoadScene("doyun");
+            //SceneManager.LoadScene("Main");
         });
 
         stageText.text = index.ToString();
