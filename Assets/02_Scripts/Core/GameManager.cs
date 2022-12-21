@@ -44,6 +44,7 @@ public class GameManager : MonoSingleton<GameManager>
     #region Controller
     public UIManager UIManager { get; private set; }
     public TimeManager timeManager {get; private set;}
+    public SceneChangeManager sceneManager {get; private set;}
     #endregion
 
     [field: SerializeField]
@@ -68,6 +69,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+        sceneManager = FindObjectOfType<SceneChangeManager>();
         timeManager = FindObjectOfType<TimeManager>();
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
@@ -89,7 +91,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         if (Input.GetKey(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            UIManager.ReStart();
         }
     }
 
@@ -101,7 +103,7 @@ public class GameManager : MonoSingleton<GameManager>
 
             if(stage > stages.stages.Count)
             {
-                SceneManager.LoadScene("MTitle");
+                GameManager.Instance.sceneManager.LoadScene("MTitle");
                 DataManager.Instance.User.stage = 1;
                 return;
             }

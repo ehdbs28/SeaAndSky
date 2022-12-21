@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,6 +54,8 @@ public class Player : MonoBehaviour, IDamage
     private Transform _visualObject;
     private Rigidbody2D _rigid;
 
+    private Action _resetCallBack = null;
+
     //Property
     public Transform VisualObj {get => _visualObject; set => _visualObject = value;}
     public float JumpPower {get => _jumpPower; set => _jumpPower = value;}
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour, IDamage
     public bool IsGorund {get => _isGround; set => _isGround = value;}
     public bool CanDoubleJump {get => _canDoubleJump; set => _canDoubleJump = value;}
     public Rigidbody2D Rigidbody => _rigid;
+    public Action ResetCallBack {get => _resetCallBack; set => _resetCallBack = value;}
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 
@@ -69,6 +73,26 @@ public class Player : MonoBehaviour, IDamage
        _collider = GetComponent<CapsuleCollider2D>();
        _visualObject = transform.Find("VisualSprite");
        _anim = _visualObject.GetComponent<Animator>();   
+
+       switch(DataManager.Instance.User.stage){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                _resetCallBack = () => {
+                    MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
+
+                    if(movePlatforms.Length != 0){
+                        foreach(MovePlatform movePlatform in movePlatforms){
+                            movePlatform.ResetPosition();
+                        }
+                    }
+                };
+            break;
+       }
     }
 
     private void Update() {
@@ -104,8 +128,8 @@ public class Player : MonoBehaviour, IDamage
                 GameManager.Instance.skyCamState.IsDownView = true;
                 GameManager.Instance.seaCamState.IsDownView = true;
 
-                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
-                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.CurrentCam.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.skyCamState.MoveDownValue = GameManager.Instance.skyCamera.transform.position + new Vector3(0f, -4f, 0f);
+                GameManager.Instance.seaCamState.MoveDownValue = GameManager.Instance.skyCamera.transform.position + new Vector3(0f, -4f, 0f);
             }
         }
         else{ //나중에 키코드로 바꾸기
@@ -262,7 +286,7 @@ public class Player : MonoBehaviour, IDamage
         if (GameManager.Instance.IsPlayerDeath) return;
 
         OnPlayerHit?.Invoke();
-        GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, () => { _anim.SetTrigger("Dead"); });
+        GameManager.Instance.UIManager.ReduceHeart(transform, _cheakPointTrm, _resetCallBack);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
