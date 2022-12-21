@@ -34,6 +34,6 @@ public class PlayerGoal : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.5f);
 
         isLoad = false;
-        SceneManager.LoadScene("Main");
+        GameManager.Instance.sceneManager.LoadScene("Main");
     }
 }

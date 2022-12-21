@@ -8,6 +8,8 @@ public class MovePlatform : MonoBehaviour
     [SerializeField]
     private bool _isAuto = false;
     [SerializeField]
+    private bool _isPlayerTouchMove = false;
+    [SerializeField]
     private float _stopDelay;
 
     [SerializeField]
@@ -35,7 +37,7 @@ public class MovePlatform : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!_isAuto) StartCoroutine(AutomaticMoveCoroutine()); _isAuto = true;
+        if(!_isAuto && _isPlayerTouchMove) StartCoroutine(AutomaticMoveCoroutine()); _isAuto = true;
         if (_isAuto)
         {
             if (collision.gameObject.name == "Player")
@@ -106,6 +108,7 @@ public class MovePlatform : MonoBehaviour
             SoundManager.Instance.PlaySound(AudioType.EffectSound, moveSound);
     }
     public void ResetPosition(){
+        seq.Kill();
         StopAllCoroutines();
         _isAuto = false;
         transform.position = originVector;
