@@ -7,7 +7,7 @@ public class SceneChangeManager : MonoBehaviour
 {
     [SerializeField] private List<Animator> _transitions = new List<Animator>();
 
-    private WaitForSeconds _sceneLoadWaitingTime = new WaitForSeconds(0.7f);
+    private WaitForSecondsRealtime _sceneLoadWaitingTime = new WaitForSecondsRealtime(0.7f);
 
     private void Awake() {
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Transitions")){
@@ -18,17 +18,16 @@ public class SceneChangeManager : MonoBehaviour
     public void LoadScene(string sceneValue){
         foreach(Animator anim in _transitions){
             anim.Play("TransitionUp");
-        }
-
+        };
         StartCoroutine(SceneLoadCoroutine(sceneValue));
     }
 
     private IEnumerator SceneLoadCoroutine(string sceneValue){
         yield return _sceneLoadWaitingTime;
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetSceneByName(sceneValue).buildIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneValue);
 
-        while(operation.isDone is false){
+        while(!operation.isDone){
             yield return null;
         }
 
