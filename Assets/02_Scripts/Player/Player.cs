@@ -91,7 +91,7 @@ public class Player : MonoBehaviour, IDamage
                         }
                     }
                 };
-            break;
+                break;
        }
     }
 
@@ -101,6 +101,9 @@ public class Player : MonoBehaviour, IDamage
             Move();
             Jump();
             Attack();
+        }
+        else{
+            _rigid.velocity = Vector2.zero;
         }
 
         if(GameManager.Instance.IsInvincibility) _rigid.velocity = Vector2.zero;
