@@ -68417,7 +68417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2525643776125566305, guid: a2a264d78b108ad40a08a8f1e830fbff, type: 3}
       propertyPath: _tileChangeTime
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2525643776125566305, guid: a2a264d78b108ad40a08a8f1e830fbff, type: 3}
       propertyPath: _tiles.Array.size

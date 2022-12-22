@@ -72,7 +72,7 @@ public class PlayerArea : MonoBehaviour
 
     public void SetStateChanged()
     {
-        if (Physics2D.OverlapCircle(_generateShadow.Shadow.transform.position, _circleGizmoSize, _isWhatGround))
+        if (!GameManager.Instance.TileManager.ThereAreNoTiles(_generateShadow.Shadow.transform.position))
         {
             _failedChangeArea.Invoke();
             return;

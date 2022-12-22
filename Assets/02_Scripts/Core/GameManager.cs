@@ -45,6 +45,7 @@ public class GameManager : MonoSingleton<GameManager>
     public UIManager UIManager { get; private set; }
     public TimeManager timeManager {get; private set;}
     public SceneChangeManager sceneManager {get; private set;}
+    public TileManager TileManager {get; private set;}
     #endregion
 
     [field: SerializeField]
@@ -73,6 +74,7 @@ public class GameManager : MonoSingleton<GameManager>
         timeManager = FindObjectOfType<TimeManager>();
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
+        TileManager = FindObjectOfType<TileManager>();
 
         LoadStage();
     }
@@ -89,7 +91,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void GameReset()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             UIManager.ReStart();
         }

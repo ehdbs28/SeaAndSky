@@ -13,6 +13,8 @@ public class SceneChangeManager : MonoBehaviour
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Transitions")){
             _transitions.Add(obj.GetComponent<Animator>());
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void LoadScene(string sceneValue){
@@ -33,8 +35,14 @@ public class SceneChangeManager : MonoBehaviour
 
         yield return _sceneLoadWaitingTime;
 
+        _transitions.Clear();
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Transitions")){
+            _transitions.Add(obj.GetComponent<Animator>());
+        }
+
         foreach(Animator anim in _transitions){
             anim.Play("TransitionDown");
         }
+        GameManager.Instance.TileManager.InitTileSetting();
     }
 }
