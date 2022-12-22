@@ -7,7 +7,7 @@ public class SceneChangeManager : MonoBehaviour
 {
     [SerializeField] private List<Animator> _transitions = new List<Animator>();
 
-    private WaitForSecondsRealtime _sceneLoadWaitingTime = new WaitForSecondsRealtime(0.7f);
+    private WaitForSecondsRealtime _sceneLoadWaitingTime = new WaitForSecondsRealtime(1f);
 
     private void Awake() {
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Transitions")){
