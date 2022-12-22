@@ -27,14 +27,14 @@ public class InfoButton : MonoBehaviour
         _shader = transform.Find("InfoGraphic").GetComponent<SpriteRenderer>().material;
     }
 
-    [ContextMenu("On")]
     public void OnButton(){
+        StopAllCoroutines();
         StartCoroutine(SetLightRadious(true));
         StartCoroutine(SetDissolveValue(true));
     }
 
-    [ContextMenu("Off")]
     public void OffButton(){
+        StopAllCoroutines();
         StartCoroutine(SetLightRadious(false));
         StartCoroutine(SetDissolveValue(false));
     }
