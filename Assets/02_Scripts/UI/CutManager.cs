@@ -11,6 +11,8 @@ public class CutManager : MonoBehaviour
 
     public PlayableDirector director;
 
+    public float finishTime = 32;
+
     public void Play()
     {
         Debug.Log("p");
@@ -25,7 +27,7 @@ public class CutManager : MonoBehaviour
             GameManager.Instance.sceneManager.LoadScene("MTItle");
         }
 
-        if(director.time >= 40)
+        if(director.time >= finishTime)
         {
             SceneManager.LoadScene("MTItle");
         }
