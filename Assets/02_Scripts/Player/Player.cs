@@ -82,6 +82,7 @@ public class Player : MonoBehaviour, IDamage
             case 3:
                 break;
             case 4:
+            case 5:
                 _resetCallBack = () => {
                     MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
 
@@ -106,7 +107,7 @@ public class Player : MonoBehaviour, IDamage
             _rigid.velocity = Vector2.zero;
         }
 
-        if(GameManager.Instance.IsInvincibility) _rigid.velocity = Vector2.zero;
+        if(GameManager.Instance.IsInvincibility) _rigid.velocity = new Vector2(0f, _rigid.velocity.y);
     }
 
     private void Move(){
@@ -188,8 +189,8 @@ public class Player : MonoBehaviour, IDamage
                 Invoke("WallJumpToggle", 0.15f);
                 _anim.SetTrigger("IsJump");
                 OnPlayerJump.Invoke();
-                _rigid.velocity = Vector2.zero;
 
+                _rigid.velocity = Vector2.zero;
                 _rigid.velocity = new Vector2(-_visualObject.localScale.x * _wallJumpPower, 0.9f * _wallJumpPower);
                 PlayerFlip(-_visualObject.localScale.x, _visualObject.localScale.y);
             }
