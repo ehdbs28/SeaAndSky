@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IDamage
             case 3:
                 break;
             case 4:
-            case 5:
+            case 6:
                 _resetCallBack = () => {
                     MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
 
