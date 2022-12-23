@@ -93,6 +93,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.PlayerState = cheakPoint.y > 0 ? AreaState.Sky : AreaState.Sea;
         FindObjectOfType<PlayerArea>().ChangedState(); 
+        if(playerTrm.parent != null) playerTrm.SetParent(null);
         playerTrm.position = cheakPoint;
     }
 
