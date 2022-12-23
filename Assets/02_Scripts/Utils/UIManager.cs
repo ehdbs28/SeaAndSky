@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
     private void PlayerRevival(Transform playerTrm, Vector2 cheakPoint)
     {
         GameManager.Instance.PlayerState = cheakPoint.y > 0 ? AreaState.Sky : AreaState.Sea;
-        FindObjectOfType<PlayerArea>().ChangedState();
+        FindObjectOfType<PlayerArea>().ChangedState(); 
         playerTrm.position = cheakPoint;
     }
 
