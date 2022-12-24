@@ -6,7 +6,6 @@ using UnityEngine;
 public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private AudioClip[] _bgmClips;
-    private int[] _selectBGM;
 
     private AudioSource bgmAudio;
     private AudioSource effectSoundAudio;
@@ -30,7 +29,15 @@ public class SoundManager : MonoSingleton<SoundManager>
     }
 
     public void PlayRandomBGM(){
-        AudioClip clip = _bgmClips[Random.Range(0, _bgmClips.Length)];
+        int clipNum = 0;
+        if(DataManager.Instance.User.selectedBGM.Count >= 5)
+            DataManager.Instance.User.selectedBGM.Clear();
+
+        while(DataManager.Instance.User.selectedBGM.Contains(clipNum)){
+            clipNum = Random.Range(0, _bgmClips.Length);
+        }   
+        DataManager.Instance.User.selectedBGM.Add(clipNum);
+        AudioClip clip = _bgmClips[clipNum];
 
         bgmAudio.clip = clip;
         bgmAudio.Play();
