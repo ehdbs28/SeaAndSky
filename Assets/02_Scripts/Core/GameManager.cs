@@ -70,19 +70,19 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
+        EventManager.StartListening("LoadStage", () => SoundManager.Instance.PlayRandomBGM());
+
         sceneManager = FindObjectOfType<SceneChangeManager>();
         timeManager = FindObjectOfType<TimeManager>();
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
         TileManager = FindObjectOfType<TileManager>();
-
-        LoadStage();
     }
 
-    // private void Start() 
-    // {
-    //     gameState = GameState.InGame;
-    // }
+    private void Start() 
+    {
+        LoadStage();
+    }
 
     void Update()
     {

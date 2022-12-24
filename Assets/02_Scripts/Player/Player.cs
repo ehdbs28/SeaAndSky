@@ -67,14 +67,14 @@ public class Player : MonoBehaviour, IDamage
     public Action ResetCallBack {get => _resetCallBack; set => _resetCallBack = value;}
 
     private void Awake() {
-        EventManager.StartListening("LoadStage", SetFirstPosition); 
+        EventManager.StartListening("LoadStage", () => transform.position = GameManager.Instance.PlayerPosition); 
 
         _rigid = GetComponent<Rigidbody2D>();
-       _collider = GetComponent<CapsuleCollider2D>();
-       _visualObject = transform.Find("VisualSprite");
-       _anim = _visualObject.GetComponent<Animator>();   
+        _collider = GetComponent<CapsuleCollider2D>();
+        _visualObject = transform.Find("VisualSprite");
+        _anim = _visualObject.GetComponent<Animator>();   
 
-       switch(DataManager.Instance.User.stage){
+        switch(DataManager.Instance.User.stage){
             case 1:
                 break;
             case 2:
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour, IDamage
                     }
                 };
                 break;
-       }
+        }
     }
 
     private void Update() {
@@ -282,10 +282,6 @@ public class Player : MonoBehaviour, IDamage
         _visualObject.localScale = new Vector3(x_Value, y_Value, 1);
     }
 
-    private void SetFirstPosition(){
-        transform.position = GameManager.Instance.PlayerPosition;
-    }
-
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
@@ -302,6 +298,6 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void OnDestroy(){
-        EventManager.StopListening("LoadStage", SetFirstPosition);
+        EventManager.StopListening("LoadStage", () => transform.position = GameManager.Instance.PlayerPosition);
     }
 }
