@@ -44,7 +44,6 @@ public class GameManager : MonoSingleton<GameManager>
     #region Controller
     public UIManager UIManager { get; private set; }
     public TimeManager timeManager {get; private set;}
-    public SceneChangeManager sceneManager {get; private set;}
     public TileManager TileManager {get; private set;}
     #endregion
 
@@ -70,17 +69,13 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Awake()
     {
-        EventManager.StartListening("LoadStage", () => SoundManager.Instance.PlayRandomBGM());
+        SoundManager.Instance.SoundManagerAwake();
 
-        sceneManager = FindObjectOfType<SceneChangeManager>();
         timeManager = FindObjectOfType<TimeManager>();
         UIManager = FindObjectOfType<UIManager>();
         playerAudio = FindObjectOfType<PlayerAudio>();
         TileManager = FindObjectOfType<TileManager>();
-    }
 
-    private void Start() 
-    {
         LoadStage();
     }
 
@@ -105,13 +100,14 @@ public class GameManager : MonoSingleton<GameManager>
 
             if(stage > stages.stages.Count)
             {
-                GameManager.Instance.sceneManager.LoadScene("MTitle");
+                SceneChangeManager.Instance.LoadScene("MTitle");
                 DataManager.Instance.User.stage = 1;
                 return;
             }
             currentStage = Instantiate(stages.stages[stage - 1], Vector3.zero, Quaternion.identity);
 
             EventManager.TriggerEvent("LoadStage");
+            SoundManager.Instance.PlayRandomBGM();
         }
     }
 }

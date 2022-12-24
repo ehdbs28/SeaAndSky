@@ -67,7 +67,7 @@ public class Player : MonoBehaviour, IDamage
     public Action ResetCallBack {get => _resetCallBack; set => _resetCallBack = value;}
 
     private void Awake() {
-        EventManager.StartListening("LoadStage", () => transform.position = GameManager.Instance.PlayerPosition); 
+        EventManager.StartListening("LoadStage", SetFirstPosition); 
 
         _rigid = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
@@ -282,6 +282,10 @@ public class Player : MonoBehaviour, IDamage
         _visualObject.localScale = new Vector3(x_Value, y_Value, 1);
     }
 
+    private void SetFirstPosition(){
+        transform.position = GameManager.Instance.PlayerPosition;
+    }
+
     public void Damage(){
         if (GameManager.Instance.IsPlayerDeath) return;
 
@@ -298,6 +302,6 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void OnDestroy(){
-        EventManager.StopListening("LoadStage", () => transform.position = GameManager.Instance.PlayerPosition);
+        EventManager.StopListening("LoadStage", SetFirstPosition);
     }
 }

@@ -6,12 +6,13 @@ using UnityEngine;
 public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private AudioClip[] _bgmClips;
+    private int[] _selectBGM;
 
     private AudioSource bgmAudio;
     private AudioSource effectSoundAudio;
     private AudioSource natureAudio;
 
-    private void Awake()
+    public void SoundManagerAwake()
     {
         if (FindObjectsOfType<SoundManager>().Length != 1)
         {
