@@ -38,7 +38,7 @@ public class PlayerAudio : MonoBehaviour
     {
         EventManager.StartListening("Damage", Delay);
         StartCoroutine(SoundDelayCoroutine());
-        WALK_DELAY = skySound.length;
+        WALK_DELAY = skyWalkSound.length;
 
     }
 

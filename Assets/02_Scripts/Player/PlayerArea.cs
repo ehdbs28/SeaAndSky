@@ -51,6 +51,7 @@ public class PlayerArea : MonoBehaviour
         _player.Rigidbody.velocity = Vector2.zero;
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
+            Debug.Log(1);
             _player.PlayerFlip(_player.VisualObj.localScale.x, 1);
             _player.Speed = 6.2f;
             _rigid.gravityScale = 3.5f;
@@ -60,7 +61,7 @@ public class PlayerArea : MonoBehaviour
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
-           _player.PlayerFlip(_player.VisualObj.localScale.x, (_isSoapBubble) ? 1 : -1);
+            _player.PlayerFlip(_player.VisualObj.localScale.x, (_isSoapBubble) ? 1 : -1);
             _player.Speed = 5.2f;
             _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
             _player.JumpPower = _seaJumpPower;
