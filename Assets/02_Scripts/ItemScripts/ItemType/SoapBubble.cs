@@ -13,6 +13,14 @@ public class SoapBubble : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void Update() {
+        _anim.SetFloat("AnimSpeed", (GameManager.Instance.PlayerState == AreaState.Sky) ? 5f : 1f);
+    }
+
+    public void StartBubble(){
+        _anim.Play("StartBubble");
+    }
+
     public void DestroyBubbleAnim()
     {
         StartCoroutine(DestroyCoroutine());
@@ -20,6 +28,7 @@ public class SoapBubble : MonoBehaviour
 
     public void DestroyBubble() //animation event
     {
+        Debug.Log(4);
         PlayerArea playerArea = FindObjectOfType<PlayerArea>();
 
         playerArea.IsSoapBubble = false;
@@ -30,9 +39,21 @@ public class SoapBubble : MonoBehaviour
 
     IEnumerator DestroyCoroutine()
     {
-        yield return new WaitForSeconds(_destroyTime / 2);
+        float currentTime = 0;
+        
+        while(currentTime <= ((GameManager.Instance.PlayerState == AreaState.Sky) ? 0 : _destroyTime / 2)){
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        currentTime = 0;
+
         _anim.Play("FadeBubble");
-        yield return new WaitForSeconds(_destroyTime / 2);
+        
+        while(currentTime <= ((GameManager.Instance.PlayerState == AreaState.Sky) ? 0 : _destroyTime / 2)){
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+
         _anim.Play("DestroyBubble");
     }
 }
