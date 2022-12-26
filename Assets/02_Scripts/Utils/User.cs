@@ -5,7 +5,7 @@ using UnityEngine;
 public class User
 {
     //Max Stage
-    private const int StageLimit = 6;
+    private const int StageLimit = 6;       //Don't change it unless you add a stage
 
     public int stage = 1;
     public int maxStage = 1;
