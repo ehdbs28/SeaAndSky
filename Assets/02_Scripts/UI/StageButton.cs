@@ -19,7 +19,7 @@ public class StageButton : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             DataManager.Instance.User.stage = this.index;
-            GameManager.Instance.sceneManager.LoadScene("Main");
+            SceneChangeManager.Instance.LoadScene("Main");
             //SceneManager.LoadScene("Main");
         });
 

@@ -24,7 +24,7 @@ public class CutManager : MonoBehaviour
         if(isSkip && Input.anyKeyDown)
         {
             isSkip = false;
-            GameManager.Instance.sceneManager.LoadScene("MTItle");
+            SceneChangeManager.Instance.LoadScene("MTItle");
         }
 
         if(director.time >= finishTime)

@@ -16,6 +16,7 @@ public class SoapBubbleItem : Item
     {
         PlayerArea playerArea = player.GetComponent<PlayerArea>();
         _soapBubble.gameObject.SetActive(true);
+        _soapBubble.StartBubble();
         _soapBubble.DestroyBubbleAnim();
 
         playerArea.IsSoapBubble = true;

@@ -105,7 +105,7 @@ public class UIManager : MonoBehaviour
     public void ReStart()
     {
         Time.timeScale = 1f;
-        GameManager.Instance.sceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneChangeManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Exit()

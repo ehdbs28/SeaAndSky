@@ -70,11 +70,11 @@ public class Player : MonoBehaviour, IDamage
         EventManager.StartListening("LoadStage", SetFirstPosition); 
 
         _rigid = GetComponent<Rigidbody2D>();
-       _collider = GetComponent<CapsuleCollider2D>();
-       _visualObject = transform.Find("VisualSprite");
-       _anim = _visualObject.GetComponent<Animator>();   
+        _collider = GetComponent<CapsuleCollider2D>();
+        _visualObject = transform.Find("VisualSprite");
+        _anim = _visualObject.GetComponent<Animator>();   
 
-       switch(DataManager.Instance.User.stage){
+        switch(DataManager.Instance.User.stage){
             case 1:
                 break;
             case 2:
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IDamage
             case 3:
                 break;
             case 4:
-            case 5:
+            case 6:
                 _resetCallBack = () => {
                     MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
 
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour, IDamage
                     }
                 };
                 break;
-       }
+        }
     }
 
     private void Update() {
