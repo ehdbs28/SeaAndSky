@@ -21,9 +21,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject goal;
     [SerializeField]
-    private GameObject keyPanel;
+    private CanvasGroup keyPanel;
 
-    [SerializeField] private GameObject AudioSetting;
+    [SerializeField] private CanvasGroup AudioSetting;
 
     [SerializeField]
     private CanvasGroup interactionButton;
@@ -116,11 +116,12 @@ public class UIManager : MonoBehaviour
 
     public void KeySetBtn()
     {
-        keyPanel.SetActive(true);
+        keyPanel.gameObject.SetActive(true);
+        keyPanel.DOFade(1f, 0.5f).SetUpdate(true);
     }
     public void KeySetQuit()
     {
-        keyPanel.SetActive(false);
+        keyPanel.DOFade(0f, 0.5f).OnComplete(() => keyPanel.gameObject.SetActive(false)).SetUpdate(true);
     }
 
 
@@ -138,11 +139,13 @@ public class UIManager : MonoBehaviour
 
     public void AudioSettingBtn()
     {
-        AudioSetting.SetActive(true);
+        AudioSetting.gameObject.SetActive(true);
+        AudioSetting.DOFade(1f, 0.5f).SetUpdate(true);
     }
+
     public void AudioSettingQuit()
     {
-        AudioSetting.SetActive(false);
+        AudioSetting.DOFade(0f, 0.5f).OnComplete(() => AudioSetting.gameObject.SetActive(false)).SetUpdate(true);
     }
 
     public void SetInteractionButton(bool isActive, Vector2 pos = default)
