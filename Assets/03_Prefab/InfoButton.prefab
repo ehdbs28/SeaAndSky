@@ -259,6 +259,7 @@ MonoBehaviour:
   _dissolveValue:
     min: 0
     max: 1
+  _popUpSound: {fileID: 8300000, guid: e65cd241737b1194a887dd9932362b42, type: 3}
 --- !u!114 &5122291008249217912
 MonoBehaviour:
   m_ObjectHideFlags: 0
