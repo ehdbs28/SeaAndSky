@@ -67,8 +67,10 @@ public class TitleAnimation : MonoBehaviour
 
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(thanksText.DOFade(1f, titleDelay));
-        thanksPointLights.ForEach((renderer) => seq.Join(renderer.DOFade(0.4f, titleDelay)));
+        if(DataManager.Instance.User.isClearGame){
+            seq.Append(thanksText.DOFade(1f, titleDelay));
+            thanksPointLights.ForEach((renderer) => seq.Join(renderer.DOFade(0.4f, titleDelay)));
+        }
 
         seq.AppendCallback(() => audioSource.PlayOneShot(seaClip));
         seq.Join(seaText.DOFade(1f, titleDelay));
