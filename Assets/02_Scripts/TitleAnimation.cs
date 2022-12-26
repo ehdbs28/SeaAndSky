@@ -13,10 +13,15 @@ public class TitleAnimation : MonoBehaviour
 
     [SerializeField] private Ease camEase;
 
+    [Header("Thanks")]
+    [SerializeField] private CanvasGroup thanksText;
+    [SerializeField] private List<SpriteRenderer> thanksPointLights;
+    
     [Header("Title")]
     [SerializeField] private CanvasGroup seaText;
     [SerializeField] private CanvasGroup andText;
     [SerializeField] private CanvasGroup skyText;
+
 
     [SerializeField] private CanvasGroup stageGroup;
 
@@ -61,6 +66,9 @@ public class TitleAnimation : MonoBehaviour
         skipText.DOFade(0f, 1f);
 
         Sequence seq = DOTween.Sequence();
+
+        seq.Append(thanksText.DOFade(1f, titleDelay));
+        thanksPointLights.ForEach((renderer) => seq.Join(renderer.DOFade(0.4f, titleDelay)));
 
         seq.AppendCallback(() => audioSource.PlayOneShot(seaClip));
         seq.Join(seaText.DOFade(1f, titleDelay));
