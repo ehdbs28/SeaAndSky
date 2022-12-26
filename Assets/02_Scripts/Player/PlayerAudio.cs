@@ -32,14 +32,12 @@ public class PlayerAudio : MonoBehaviour
     private float walkTimer = 0f;
     private float WALK_DELAY = 0f;
 
-    private bool isStart = true;
+    private bool isStart = false;
 
     private void Start()
     {
         EventManager.StartListening("Damage", Delay);
-        StartCoroutine(SoundDelayCoroutine());
-        WALK_DELAY = skyWalkSound.length;
-
+        //StartCoroutine(SoundDelayCoroutine());
     }
 
     private void Update()
