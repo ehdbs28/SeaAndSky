@@ -2422,6 +2422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 509934255}
+  - component: {fileID: 509934256}
   m_Layer: 5
   m_Name: KeySet
   m_TagString: Untagged
@@ -2450,6 +2451,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &509934256
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509934254}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &542678820
 GameObject:
   m_ObjectHideFlags: 0
@@ -5090,6 +5103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1145443278}
+  - component: {fileID: 1145443279}
   m_Layer: 5
   m_Name: AudioSetting
   m_TagString: Untagged
@@ -5117,6 +5131,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1145443279
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145443277}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1149984025
 GameObject:
   m_ObjectHideFlags: 0
@@ -5230,8 +5256,8 @@ MonoBehaviour:
   esc: {fileID: 881726927}
   gameOverUI: {fileID: 1788539448}
   goal: {fileID: 360797554}
-  keyPanel: {fileID: 509934254}
-  AudioSetting: {fileID: 1145443277}
+  keyPanel: {fileID: 509934256}
+  AudioSetting: {fileID: 1145443279}
   interactionButton: {fileID: 2144442304}
 --- !u!114 &1291062834
 MonoBehaviour:
