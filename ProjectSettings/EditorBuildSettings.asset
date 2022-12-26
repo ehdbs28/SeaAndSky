@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/01_Scene/Minchae/CutScene.unity
     guid: 9f75cd0cc0a009e40853981acec2555e
   - enabled: 1
@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scene/Main.unity
     guid: 1988e7ae5586acd46b8dea2946f114cd
-  - enabled: 1
-    path: Assets/01_Scene/doyun/doyun.unity
-    guid: 27b20d0a3b66d934bb30250033ca8dd0
   m_configObjects: {}
