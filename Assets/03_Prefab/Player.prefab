@@ -5374,7 +5374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 2346428892977187499, guid: 4772fee1987348a409583e8145cfd4c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5496,6 +5496,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9616f7d385bb91f40a4b6eead1e0c1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _groundJumpPower: 14
+  _seaJumpPower: 17
   onChangeArea:
     m_PersistentCalls:
       m_Calls:
@@ -5579,6 +5581,8 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 1459e313613a1714f9274ff497f1801a, type: 3}
   seaSound: {fileID: 8300000, guid: 8e6cb2bd9412fb44f9e36b78f677b048, type: 3}
   skySound: {fileID: 8300000, guid: 92a432da5644b6643b761c7db9a95c36, type: 3}
+  fishPickUpSound: {fileID: 8300000, guid: 57ca165115fd17948937fbcd148e7b01, type: 3}
+  clearPortalSound: {fileID: 8300000, guid: 4724cdd03a56e3c46bfc44f2063a80d2, type: 3}
   dieSound: {fileID: 8300000, guid: d41bb6922d0cf8a41a1524e0dfbc5fad, type: 3}
   seaNatureSound: {fileID: 8300000, guid: 2e5465ab54b483643b51136fb8f9e661, type: 3}
   skyNatureSound: {fileID: 8300000, guid: 30ab60ba9666a394ebef420897c953c4, type: 3}
@@ -5641,7 +5645,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 0.8, y: 1.1}
+  m_Size: {x: 0.75, y: 1.1}
   m_Direction: 0
 --- !u!114 &1272816622
 MonoBehaviour:
@@ -5659,16 +5663,17 @@ MonoBehaviour:
   _slidingSpeed: 0.5
   _attackReboundPower: 15
   _jumpPower: 0
+  _doubleJumpPower: 13
   _wallJumpPower: 10
   _jumpCount: 1
   _attackParticle: {fileID: 1704303647735251108}
   _attackEffect: {fileID: 1609427158}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 33920
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 12864
+    m_Bits: 4672
   _wallRunLayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -5731,8 +5736,20 @@ MonoBehaviour:
         m_CallState: 2
   OnPlayerHit:
     m_PersistentCalls:
-      m_Calls: []
-  _cheakPointImage: {fileID: -4341209307699571989, guid: 9b1791c700477b44ab7675a208e21ff7, type: 3}
+      m_Calls:
+      - m_Target: {fileID: 1879805587}
+        m_TargetAssemblyTypeName: PlayerAudio, Assembly-CSharp
+        m_MethodName: PlayerDieSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _canDoubleJump: 0
 --- !u!1001 &1841277715
 PrefabInstance:
   m_ObjectHideFlags: 0

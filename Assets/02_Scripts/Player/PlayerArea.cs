@@ -51,7 +51,6 @@ public class PlayerArea : MonoBehaviour
         _player.Rigidbody.velocity = Vector2.zero;
         if (GameManager.Instance.PlayerState == AreaState.Sky)
         {
-            Debug.Log(1);
             _player.PlayerFlip(_player.VisualObj.localScale.x, 1);
             _player.Speed = 6.2f;
             _rigid.gravityScale = 3.5f;

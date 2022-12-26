@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerGoal : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerGoal : MonoBehaviour
         if (collision.collider.CompareTag("Player") && !isLoad)
         {
             isLoad = true;
+            collision.collider.GetComponent<PlayerAudio>()?.PlayClearPortalSound();
             StartCoroutine(PlayerGoalIN());
         }
     }

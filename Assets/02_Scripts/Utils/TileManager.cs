@@ -20,7 +20,6 @@ public class TileManager : MonoBehaviour
         foreach(Tilemap tilemap in _StageTileMaps){
             Vector3Int tilePos = tilemap.WorldToCell(pos);
             if(tilemap.GetTile(tilePos)){
-                Debug.Log(tilemap.GetTile(tilePos).name);
                 return false;
             }
         }
