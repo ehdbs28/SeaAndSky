@@ -105,6 +105,7 @@ public class UIManager : MonoBehaviour
     public void ReStart()
     {
         Time.timeScale = 1f;
+        UnshowEscPanel();
         SceneChangeManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
     }
 
