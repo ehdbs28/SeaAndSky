@@ -28,7 +28,10 @@ Sea and Sky는 **바다와 하늘**이라는 반전된 두 세계를 플레이�
 
 ### `게임의 여러가지 기믹들`
 
-![image](https://user-images.githubusercontent.com/98889991/209694131-3fdffb81-f309-447f-9022-30af0b8c972c.png)![image](https://user-images.githubusercontent.com/98889991/209694219-93af57e4-4ad2-4a9b-b6e9-551ced2e90a2.png)![image](https://user-images.githubusercontent.com/98889991/209694391-953f8365-a71d-4e9e-b58a-a8f83f45de74.png)![image](https://user-images.githubusercontent.com/98889991/209694288-f6efbeca-7a63-40a5-9372-35e22a0733ae.png)![image](https://user-images.githubusercontent.com/98889991/209694246-f52ba7cc-baf7-48b4-b5b3-1d139fa98216.png)
+![1](https://user-images.githubusercontent.com/98889991/209695556-93634fe5-5481-45ca-802d-50eddfd80748.png)
+![2](https://user-images.githubusercontent.com/98889991/209695562-737f0c70-3268-47fd-aa48-8be39a7d5765.png)
+![3](https://user-images.githubusercontent.com/98889991/209695567-ad98e5fc-baf6-491b-a120-d46472bb5d33.png)
+![4](https://user-images.githubusercontent.com/98889991/209695572-17bad630-845e-4820-ad80-2b47e6ed3c96.png)
 
 바다와 하늘 속 여러가지 기믹들을 해결해나가며 스테이지를 클리어 하세요
 
