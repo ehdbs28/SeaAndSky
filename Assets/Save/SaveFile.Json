@@ -1,5 +1,5 @@
 ﻿{
-    "stage": 2,
+    "stage": 7,
     "maxStage": 6,
     "keySetting": [
         120,
@@ -11,6 +11,8 @@
         304
     ],
     "selectedBGM": [
-        0
+        0,
+        4,
+        1
     ]
 }
