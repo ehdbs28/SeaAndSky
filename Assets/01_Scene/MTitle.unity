@@ -2414,7 +2414,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421283752}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -3118,6 +3118,13 @@ MonoBehaviour:
   seaCam: {fileID: 1062873911}
   duration: 8
   camEase: 7
+  scoreText: {fileID: 421283754}
+  dieScoreTexts:
+  - {fileID: 407113539}
+  - {fileID: 1964182396}
+  fishCollectScoreTexts:
+  - {fileID: 1708529018}
+  - {fileID: 357936870}
   thanksText: {fileID: 949788911}
   thanksPointLights:
   - {fileID: 934296793}

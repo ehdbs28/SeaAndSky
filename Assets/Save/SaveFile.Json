@@ -1,7 +1,7 @@
 ﻿{
     "stage": 1,
     "maxStage": 6,
-    "playerDie": 6,
+    "playerDie": 0,
     "playerFishScore": 0,
     "keySetting": [
         120,
