@@ -1,6 +1,8 @@
 ﻿{
-    "stage": 7,
+    "stage": 1,
     "maxStage": 6,
+    "playerDie": 0,
+    "playerFishScore": 0,
     "keySetting": [
         120,
         122,
@@ -9,10 +11,5 @@
         274,
         32,
         304
-    ],
-    "selectedBGM": [
-        0,
-        4,
-        1
     ]
 }

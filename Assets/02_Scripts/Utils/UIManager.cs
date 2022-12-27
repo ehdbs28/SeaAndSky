@@ -9,10 +9,8 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private int _dieCount;
     [SerializeField] private TextMeshProUGUI _hpText;
     [SerializeField] private TextMeshProUGUI _fishText;
-    public int collectCount;
 
     [SerializeField]
     private CanvasGroup esc;
@@ -29,14 +27,13 @@ public class UIManager : MonoBehaviour
     private CanvasGroup interactionButton;
 
     private void Start() {
-        _dieCount = 0;
-        _hpText.text = $"- {_dieCount}";
-        _fishText.text = $"+ {collectCount}";
+        _hpText.text = $"- {DataManager.Instance.User.playerDie}";
+        _fishText.text = $"+ {DataManager.Instance.User.playerFishScore}";
     }
 
     void Update()
     {
-        _fishText.text = $"+ {collectCount}";
+        _fishText.text = $"+ {DataManager.Instance.User.playerFishScore}";
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -77,8 +74,8 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator ReduceHpCoroutine(Transform playerTrm, Vector2 cheakPoint, Action Reset = null){
         GameManager.Instance.IsInvincibility = true;
-        _dieCount++;
-        _hpText.text = $"- {_dieCount}";
+        DataManager.Instance.User.playerDie++;
+        _hpText.text = $"- {DataManager.Instance.User.playerDie}";
 
         PlayerRevival(playerTrm, cheakPoint);
 

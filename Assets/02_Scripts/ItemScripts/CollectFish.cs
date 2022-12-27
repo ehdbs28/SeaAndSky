@@ -5,12 +5,10 @@ using DG.Tweening;
 
 public class CollectFish : MonoBehaviour
 {
-    private UIManager ui;
     public GameObject player;
 
     private void Start()
     {
-        ui = FindObjectOfType<UIManager>();
         player = GameObject.Find("Player");
     }
 
@@ -30,7 +28,7 @@ public class CollectFish : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerAudio>()?.PlayFishPickUpSound();
-            ui.collectCount++;
+            DataManager.Instance.User.playerFishScore++;
             Destroy(gameObject);
         }
     }

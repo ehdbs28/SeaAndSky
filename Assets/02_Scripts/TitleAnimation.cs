@@ -13,6 +13,11 @@ public class TitleAnimation : MonoBehaviour
 
     [SerializeField] private Ease camEase;
 
+    [Header("Score")]
+    [SerializeField] private CanvasGroup scoreText;
+    [SerializeField] private List<Text> dieScoreTexts;
+    [SerializeField] private List<Text> fishCollectScoreTexts;   
+
     [Header("Thanks")]
     [SerializeField] private CanvasGroup thanksText;
     [SerializeField] private List<SpriteRenderer> thanksPointLights;
@@ -70,6 +75,10 @@ public class TitleAnimation : MonoBehaviour
         if(DataManager.Instance.User.isClearGame){
             seq.Append(thanksText.DOFade(1f, titleDelay));
             thanksPointLights.ForEach((renderer) => seq.Join(renderer.DOFade(0.4f, titleDelay)));
+
+            seq.Join(scoreText.DOFade(1f, titleDelay));
+            dieScoreTexts.ForEach((text) => text.text = $"-  {DataManager.Instance.User.playerDie}");
+            fishCollectScoreTexts.ForEach((text) => text.text = $"+  {DataManager.Instance.User.playerFishScore}");
         }
 
         seq.AppendCallback(() => audioSource.PlayOneShot(seaClip));

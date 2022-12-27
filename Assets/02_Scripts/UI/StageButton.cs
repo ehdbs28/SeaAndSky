@@ -19,6 +19,10 @@ public class StageButton : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             DataManager.Instance.User.stage = this.index;
+            if(index == 1){ //Reset Score at first Stage
+                DataManager.Instance.User.playerDie = 0;
+                DataManager.Instance.User.playerFishScore = 0;
+            }
             SceneChangeManager.Instance.LoadScene("Main");
             //SceneManager.LoadScene("Main");
         });
