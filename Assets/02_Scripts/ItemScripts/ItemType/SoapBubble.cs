@@ -28,7 +28,6 @@ public class SoapBubble : MonoBehaviour
 
     public void DestroyBubble() //animation event
     {
-        Debug.Log(4);
         PlayerArea playerArea = FindObjectOfType<PlayerArea>();
 
         playerArea.IsSoapBubble = false;

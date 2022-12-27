@@ -60,7 +60,7 @@ public class PlayerArea : MonoBehaviour
         }
         else if (GameManager.Instance.PlayerState == AreaState.Sea)
         {
-           _player.PlayerFlip(_player.VisualObj.localScale.x, (_isSoapBubble) ? 1 : -1);
+            _player.PlayerFlip(_player.VisualObj.localScale.x, (_isSoapBubble) ? 1 : -1);
             _player.Speed = 5.2f;
             _rigid.gravityScale = _isSoapBubble ? 1f : -2f;
             _player.JumpPower = _seaJumpPower;

@@ -19,6 +19,8 @@ public class InfoButton : MonoBehaviour
     [field:SerializeField] private LightRadious _lightRadious;
     [field:SerializeField] private DissolveValue _dissolveValue;
 
+    [SerializeField] private AudioClip _popUpSound;
+
     private Light2D _light;
     private Material _shader;
 
@@ -28,6 +30,7 @@ public class InfoButton : MonoBehaviour
     }
 
     public void OnButton(){
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, _popUpSound);
         StopAllCoroutines();
         StartCoroutine(SetLightRadious(true));
         StartCoroutine(SetDissolveValue(true));

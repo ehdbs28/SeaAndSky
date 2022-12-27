@@ -43,6 +43,7 @@ public class SceneChangeManager : MonoSingleton<SceneChangeManager>
         foreach(Animator anim in _transitions){
             anim.Play("TransitionDown");
         }
-        GameManager.Instance.TileManager.InitTileSetting();
+        
+        if(sceneValue == "Main") GameManager.Instance.TileManager.InitTileSetting();
     }
 }

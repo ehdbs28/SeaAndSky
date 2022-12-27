@@ -29,6 +29,7 @@ public class CollectFish : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            collision.GetComponent<PlayerAudio>()?.PlayFishPickUpSound();
             ui.collectCount++;
             Destroy(gameObject);
         }

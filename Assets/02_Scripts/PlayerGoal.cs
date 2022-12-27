@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerGoal : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerGoal : MonoBehaviour
         if (collision.collider.CompareTag("Player") && !isLoad)
         {
             isLoad = true;
+            collision.collider.GetComponent<PlayerAudio>()?.PlayClearPortalSound();
             StartCoroutine(PlayerGoalIN());
         }
     }
@@ -28,12 +30,14 @@ public class PlayerGoal : MonoBehaviour
 
         int curStage = ++DataManager.Instance.User.stage;
 
-        if (DataManager.Instance.User.maxStage < curStage)
+        if(DataManager.Instance.User.maxStage < curStage){
             DataManager.Instance.User.maxStage = curStage;
+            DataManager.Instance.User.maxStage = Mathf.Clamp(DataManager.Instance.User.maxStage, 1, DataManager.Instance.User.stageLimit);
+        }
 
         yield return new WaitForSecondsRealtime(3.5f);
 
         isLoad = false;
-        SceneChangeManager.Instance.LoadScene("Main");
+        SceneChangeManager.Instance.LoadScene((curStage >= DataManager.Instance.User.stageLimit + 1) ? "MTitle" : "Main");
     }
 }

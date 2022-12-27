@@ -22,6 +22,12 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private AudioClip seaSound;
     [SerializeField] private AudioClip skySound;
 
+    [Header("PickUpFish")]
+    [SerializeField] private AudioClip fishPickUpSound;
+
+    [Header("StageClear")]
+    [SerializeField] private AudioClip clearPortalSound;
+
     [Header("Die")]
     public AudioClip dieSound;
 
@@ -32,14 +38,12 @@ public class PlayerAudio : MonoBehaviour
     private float walkTimer = 0f;
     private float WALK_DELAY = 0f;
 
-    private bool isStart = true;
+    private bool isStart = false;
 
     private void Start()
     {
         EventManager.StartListening("Damage", Delay);
-        StartCoroutine(SoundDelayCoroutine());
-        WALK_DELAY = skySound.length;
-
+        //StartCoroutine(SoundDelayCoroutine());
     }
 
     private void Update()
@@ -86,6 +90,14 @@ public class PlayerAudio : MonoBehaviour
 
             walkTimer = 0f;
         }
+    }
+
+    public void PlayFishPickUpSound(){
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, fishPickUpSound);
+    }
+
+    public void PlayClearPortalSound(){
+        SoundManager.Instance.PlaySound(AudioType.EffectSound, clearPortalSound);
     }
 
     public void PlayAttackSound()
