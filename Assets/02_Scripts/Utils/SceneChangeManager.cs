@@ -18,6 +18,7 @@ public class SceneChangeManager : MonoSingleton<SceneChangeManager>
     }
 
     public void LoadScene(string sceneValue){
+        DataManager.Instance.SaveUser();
         foreach(Animator anim in _transitions){
             anim.Play("TransitionUp");
         };

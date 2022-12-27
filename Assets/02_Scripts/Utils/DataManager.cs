@@ -54,7 +54,7 @@ public class DataManager : MonoSingleton<DataManager>
     }
     #endregion
 
-    private void SaveUser()
+    public void SaveUser()
     {
         SaveToJson(user);
     }
