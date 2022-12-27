@@ -58583,6 +58583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishCollect (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1488068422365868089, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
+      propertyPath: index
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 1488068422365868091, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -58644,6 +58648,10 @@ PrefabInstance:
     - target: {fileID: 1488068422365868069, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
       propertyPath: m_Name
       value: FishCollect (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488068422365868089, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
+      propertyPath: index
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1488068422365868091, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
       propertyPath: m_RootOrder
@@ -58769,6 +58777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishCollect (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1488068422365868089, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
+      propertyPath: index
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1488068422365868091, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -58830,6 +58842,10 @@ PrefabInstance:
     - target: {fileID: 1488068422365868069, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
       propertyPath: m_Name
       value: FishCollect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488068422365868089, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
+      propertyPath: index
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1488068422365868091, guid: 5c1d3487c061c11468125d057ad0bc18, type: 3}
       propertyPath: m_RootOrder

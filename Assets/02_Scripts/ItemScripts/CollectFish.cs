@@ -5,7 +5,14 @@ using DG.Tweening;
 
 public class CollectFish : MonoBehaviour
 {
+    [SerializeField] private int index;
     public GameObject player;
+
+    private void Awake() {
+        if(index <= DataManager.Instance.User.playerFishScore){
+            gameObject.SetActive(false);
+        }
+    }
 
     private void Start()
     {
