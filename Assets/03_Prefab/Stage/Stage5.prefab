@@ -26124,7 +26124,7 @@ GameObject:
   - component: {fileID: 5314901267898852565}
   m_Layer: 10
   m_Name: TrapTile
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
