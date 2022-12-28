@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!esc.gameObject.activeSelf)
+            if (GameManager.Instance.GameState == GameState.InGame && !esc.gameObject.activeSelf)
             {
                 esc.gameObject.SetActive(true);
                 esc.DOFade(1f, 0.5f).OnComplete(() =>
@@ -48,12 +48,14 @@ public class UIManager : MonoBehaviour
             }
             else
             {
-                if (keyPanel.gameObject.activeSelf)
-                    KeySetQuit();
-                else if (AudioSetting.gameObject.activeSelf)
-                    AudioSettingQuit();
-                else
-                    UnshowEscPanel();
+                if(GameManager.Instance.GameState == GameState.Setting){
+                    if (keyPanel.gameObject.activeSelf)
+                        KeySetQuit();
+                    else if (AudioSetting.gameObject.activeSelf)
+                        AudioSettingQuit();
+                    else
+                        UnshowEscPanel();
+                }
             }
         }
 
