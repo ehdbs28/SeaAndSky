@@ -1,8 +1,8 @@
 ﻿{
-    "stage": 1,
+    "stage": 4,
     "maxStage": 6,
-    "playerDie": 0,
-    "playerFishScore": 0,
+    "playerDie": 2,
+    "playerFishScore": 9,
     "keySetting": [
         120,
         122,
