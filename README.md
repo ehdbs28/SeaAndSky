@@ -31,7 +31,7 @@ Sea and Sky는 **바다와 하늘**이라는 반전된 두 세계를 플레이�
 ![1](https://user-images.githubusercontent.com/98889991/209938285-52047ddc-e0d5-4a13-a93c-49382303dc2d.png)![2](https://user-images.githubusercontent.com/98889991/209938515-a569285d-2950-4a95-ac9c-ea489870abd8.png)
 ![3](https://user-images.githubusercontent.com/98889991/209938520-83588f49-cfde-4a60-b517-0a2cfd648461.png)![4](https://user-images.githubusercontent.com/98889991/209938523-cafa583c-6883-428e-bbca-5f271dbca336.png)
 
-바다와 하늘 속 여러가지 기믹들을 해결해나가며 스테이지를 클리어 하세요
+바다와 하늘 속 여러가지 기믹들을 해결해나가며 스테이지를 클리어 하세요.
 
 <br>
 
