@@ -28,6 +28,15 @@ public class HidePlat : MonoBehaviour
         }
     }
 
+    public void ResetCloudPlatform(){
+        StopAllCoroutines();
+        foreach (SpriteRenderer s in sp)
+        {
+            s.DOFade(1, 0);
+        }
+        col.enabled = true;
+    }
+
     IEnumerator HideTime()
     {
         yield return new WaitForSeconds(destroyTime - 1f);
