@@ -16,7 +16,6 @@ public class PlayerArea : MonoBehaviour
     [field: SerializeField] private UnityEvent _failedChangeArea;
     private bool _isSoapBubble = false;
     private float _circleGizmoSize = 0.3f;
-    [SerializeField] private LayerMask _isWhatGround;
     public bool IsSoapBubble
     {
         get => _isSoapBubble;

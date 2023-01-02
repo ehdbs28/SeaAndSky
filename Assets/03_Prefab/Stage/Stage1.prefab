@@ -315,7 +315,7 @@ MonoBehaviour:
   count: 10
   layer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65536
   material: {fileID: 2100000, guid: 8bf7ca71e2851cb46b9db9fd21af5f75, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   direction: 1
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 2049659897630889837}
   - component: {fileID: 389945397508839047}
   - component: {fileID: 8567534855569375808}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Shadow Sky Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31358,7 +31358,7 @@ GameObject:
   - component: {fileID: 3946188861745239249}
   - component: {fileID: 3946188861745239254}
   - component: {fileID: 3946188861745239255}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Sea Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33449,7 +33449,7 @@ GameObject:
   - component: {fileID: 3946188862074706819}
   - component: {fileID: 3946188862074706816}
   - component: {fileID: 3946188862074706817}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: OnlySkyTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34235,7 +34235,7 @@ GameObject:
   - component: {fileID: 3946188862526009683}
   - component: {fileID: 3946188862526009680}
   - component: {fileID: 3946188862526009681}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Sky Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
