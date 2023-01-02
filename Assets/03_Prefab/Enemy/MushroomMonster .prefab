@@ -133,7 +133,7 @@ MonoBehaviour:
   target: {fileID: 0}
   moveableLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65600
   _currentState: {fileID: 4600787776892892432}
   <OnDie>k__BackingField:
     m_PersistentCalls:
