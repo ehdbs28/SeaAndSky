@@ -18,26 +18,24 @@ Sea and Sky는 **바다와 하늘**이라는 반전된 두 세계를 플레이�
 
 ## 게임 특징
 
-### `게임의 메인 기믹`
+### 1. 게임의 메인 기믹
 
 ![Change](https://user-images.githubusercontent.com/77655318/195731420-6b695920-39a9-4393-a914-64f729b01e48.gif)
 
 바다와 하늘을 오가며 그와 관련된 **다양한 퍼즐**들을 풀 수 있습니다.
 
----
+<br>
 
-### `게임의 여러가지 기믹들`
+### 2. 게임의 여러가지 기믹들
 
-![1](https://user-images.githubusercontent.com/98889991/209695556-93634fe5-5481-45ca-802d-50eddfd80748.png)
-![2](https://user-images.githubusercontent.com/98889991/209695562-737f0c70-3268-47fd-aa48-8be39a7d5765.png)
-![3](https://user-images.githubusercontent.com/98889991/209695567-ad98e5fc-baf6-491b-a120-d46472bb5d33.png)
-![4](https://user-images.githubusercontent.com/98889991/209695572-17bad630-845e-4820-ad80-2b47e6ed3c96.png)
+![1](https://user-images.githubusercontent.com/98889991/209938285-52047ddc-e0d5-4a13-a93c-49382303dc2d.png)![2](https://user-images.githubusercontent.com/98889991/209938515-a569285d-2950-4a95-ac9c-ea489870abd8.png)
+![3](https://user-images.githubusercontent.com/98889991/209938520-83588f49-cfde-4a60-b517-0a2cfd648461.png)![4](https://user-images.githubusercontent.com/98889991/209938523-cafa583c-6883-428e-bbca-5f271dbca336.png)
 
-바다와 하늘 속 여러가지 기믹들을 해결해나가며 스테이지를 클리어 하세요
+바다와 하늘 속 여러가지 기믹들을 해결해나가며 스테이지를 클리어 하세요.
 
 <br>
 
-### 2. 귀엽고 잔잔한 그래픽
+### 3. 귀엽고 잔잔한 그래픽
 
 ![graphic1](https://user-images.githubusercontent.com/77655318/195748423-e7caa9c5-1c49-4542-9d3f-796ede8485ca.png)![graphic2](https://user-images.githubusercontent.com/77655318/195748436-556dc287-e400-4d9e-8911-e8904a83c353.png)
 
