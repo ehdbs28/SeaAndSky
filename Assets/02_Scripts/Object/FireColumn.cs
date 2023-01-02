@@ -32,7 +32,6 @@ public class FireColumn : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("시작");
             collider.enabled = true;
             renderer.enabled = true;
             animator.SetTrigger(fireHash);
