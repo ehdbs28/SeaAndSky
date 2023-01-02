@@ -25353,7 +25353,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139968909790054812}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000029504295}
-  m_LocalPosition: {x: -36.6, y: 32.6, z: 0}
+  m_LocalPosition: {x: -36.6, y: 30.4, z: 0}
   m_LocalScale: {x: 132.60794, y: 9.299634, z: 0.6279732}
   m_Children: []
   m_Father: {fileID: 2139968909105583039}
@@ -26058,7 +26058,7 @@ GameObject:
   - component: {fileID: 5314901267898852565}
   m_Layer: 10
   m_Name: TrapTile
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29771,7 +29771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2985382564035960829}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0.0000029504295}
-  m_LocalPosition: {x: -34.861797, y: 37.440197, z: -0.1}
+  m_LocalPosition: {x: -34.861797, y: 35.2402, z: -0.1}
   m_LocalScale: {x: 169.188, y: 9.299634, z: 0.6279732}
   m_Children: []
   m_Father: {fileID: 2139968909105583039}
