@@ -1920,7 +1920,7 @@ MonoBehaviour:
   count: 30
   layer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65536
   material: {fileID: 2100000, guid: 8bf7ca71e2851cb46b9db9fd21af5f75, type: 2}
   spriteColor: {r: 1, g: 1, b: 1, a: 1}
   direction: 1
@@ -2125,10 +2125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f835cc83f1a5d046a6be8ff1191d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dieCount: 0
   _hpText: {fileID: 1347942994}
   _fishText: {fileID: 1312696040}
-  collectCount: 0
   esc: {fileID: 353006549}
   gameOverUI: {fileID: 97276250}
   goal: {fileID: 509280578}

@@ -33,6 +33,7 @@ public class SoapBubble : MonoBehaviour
         playerArea.IsSoapBubble = false;
         playerArea.ChangedState();
         
+        transform.localScale = new Vector3(2.1f, 2.1f, 1f);
         gameObject.SetActive(false);
     }
 

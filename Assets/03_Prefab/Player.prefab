@@ -5540,9 +5540,6 @@ MonoBehaviour:
   _failedChangeArea:
     m_PersistentCalls:
       m_Calls: []
-  _isWhatGround:
-    serializedVersion: 2
-    m_Bits: 576
 --- !u!114 &1879805588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5673,7 +5670,7 @@ MonoBehaviour:
     m_Bits: 33920
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 4672
+    m_Bits: 70208
   _wallRunLayer:
     serializedVersion: 2
     m_Bits: 8192
