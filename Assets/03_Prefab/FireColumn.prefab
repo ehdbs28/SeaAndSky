@@ -99,7 +99,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.020563483}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.08102814, y: 0.43852055}
+    pivot: {x: 0.030933699, y: 0.42485845}
     oldSize: {x: 6, y: 2}
     newSize: {x: 6, y: 2}
     adaptiveTilingThreshold: 0.5
@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2104460021974f4c8c6d4b6ef4651b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireSound: {fileID: 8300000, guid: 0fe838a10946ea046837e4d35099cd6b, type: 3}
 --- !u!82 &5086025305996618660
 AudioSource:
   m_ObjectHideFlags: 0

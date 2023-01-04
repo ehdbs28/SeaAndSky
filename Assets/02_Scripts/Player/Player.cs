@@ -68,6 +68,7 @@ public class Player : MonoBehaviour, IDamage
 
     private void Awake() {
         EventManager.StartListening("LoadStage", SetFirstPosition); 
+        _resetCallBack = null;
 
         _rigid = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CapsuleCollider2D>();
@@ -82,8 +83,26 @@ public class Player : MonoBehaviour, IDamage
             case 3:
                 break;
             case 4:
+                _resetCallBack += () => {
+                    HidePlat[] hidePlats = FindObjectsOfType<HidePlat>();
+                    
+                    if(hidePlats.Length != 0){
+                        foreach(HidePlat hidePlat in hidePlats){
+                            hidePlat.ResetCloudPlatform();
+                        }
+                    }
+
+                    MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
+
+                    if(movePlatforms.Length != 0){
+                        foreach(MovePlatform movePlatform in movePlatforms){
+                            movePlatform.ResetPosition();
+                        }
+                    }
+                };
+                break;
             case 6:
-                _resetCallBack = () => {
+                _resetCallBack += () => {
                     MovePlatform[] movePlatforms = FindObjectsOfType<MovePlatform>();
 
                     if(movePlatforms.Length != 0){
