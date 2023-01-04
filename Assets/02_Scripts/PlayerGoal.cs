@@ -6,11 +6,15 @@ using UnityEngine.Events;
 
 public class PlayerGoal : MonoBehaviour
 {
-    public static bool isLoad;
+    public static bool isLoad = false;
     private Transform player;
 
     private void Awake() {
         player = GameObject.Find("Player").transform;
+    }
+
+    private void Start() {
+        isLoad = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
