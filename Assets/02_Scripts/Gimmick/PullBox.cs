@@ -40,7 +40,6 @@ public class PullBox : MonoBehaviour
 
         if (hitWall || hitWall1)
         {
-            Debug.Log("x");
             transform.position = new Vector2(transform.position.x , transform.position.y);
         }
     }
