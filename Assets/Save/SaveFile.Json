@@ -1,4 +1,5 @@
 ﻿{
+    "theme": 1,
     "stage": 2,
     "maxStage": 6,
     "playerDie": 0,
