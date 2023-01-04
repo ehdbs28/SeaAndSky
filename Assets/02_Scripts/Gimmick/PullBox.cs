@@ -20,8 +20,9 @@ public class PullBox : MonoBehaviour
         RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.left, 1f, LayerMask.GetMask("Player"));
 
         RaycastHit2D hitWall = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right, 1f, LayerMask.GetMask("Platform"));
+        RaycastHit2D hitWall1 = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right, 1f, LayerMask.GetMask("GrassPlatform"));
 
-        if (!hitWall)
+        if (!hitWall && !hitWall1)
         {
             if(hit || hit2)
             {
@@ -37,15 +38,11 @@ public class PullBox : MonoBehaviour
             }
         }
 
-        if (hitWall)
+        if (hitWall || hitWall1)
         {
+            Debug.Log("x");
             transform.position = new Vector2(transform.position.x , transform.position.y);
         }
-    }
-
-    IEnumerator WaitSecond()
-    {
-        yield return new WaitForSeconds(0.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
