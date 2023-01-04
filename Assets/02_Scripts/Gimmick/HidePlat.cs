@@ -30,11 +30,12 @@ public class HidePlat : MonoBehaviour
 
     public void ResetCloudPlatform(){
         StopAllCoroutines();
-        foreach (SpriteRenderer s in sp)
-        {
-            s.DOFade(1, 0);
-        }
         col.enabled = true;
+        plat.transform.position = dir;
+        
+        foreach(SpriteRenderer s in sp){
+            s.color = new Color(1, 1, 1, 1);
+        }
     }
 
     IEnumerator HideTime()
