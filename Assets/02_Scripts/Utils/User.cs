@@ -14,6 +14,7 @@ public class User
     public List<int> selectedBGM => _selectedBGM;
     #endregion
     
+    public int theme = 1;
     public int stage = 1;
     public int maxStage = 1;
     public int playerDie = 0;

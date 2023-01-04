@@ -27,7 +27,7 @@ public class TitleAnimation : MonoBehaviour
     [SerializeField] private CanvasGroup andText;
     [SerializeField] private CanvasGroup skyText;
 
-
+    [SerializeField] private CanvasGroup themeGroup;
     [SerializeField] private CanvasGroup stageGroup;
 
     [SerializeField] private float titleDelay;
@@ -91,7 +91,12 @@ public class TitleAnimation : MonoBehaviour
         seq.Join(skyText.DOFade(1f, titleDelay));
         seq.Join(skyText.GetComponent<RectTransform>().DOAnchorPosY(0f, titleDelay));
 
-        seq.Append(stageGroup.DOFade(1f, 1f));
+        seq.AppendCallback(() => {
+            foreach(ThemeButton btn in themeGroup.transform.Find("Theme").GetComponentsInChildren<ThemeButton>()){
+                btn.Init();
+            }
+        });
+        seq.Join(themeGroup.DOFade(1f, 1f));
     }
 
     private void SkipAnimation()
